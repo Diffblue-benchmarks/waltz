@@ -3,9 +3,14 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.khartec</groupId>
-    <artifactId>waltz</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <parent>
+        <groupId>com.khartec</groupId>
+        <artifactId>waltz</artifactId>
+        <version>1.0-SNAPSHOT</version>
+        <relativePath>waltz-parent/pom.xml</relativePath>
+    </parent>
+
+    <artifactId>waltz-wrapper</artifactId>
     <modules>
         <module>waltz-common</module>
         <module>waltz-model</module>
@@ -19,281 +24,79 @@
     </modules>
     <packaging>pom</packaging>
 
-    <name>waltz</name>
-    <url>http://khartec.com</url>
+    <dependencies>
+        <dependency>
+            <groupId>com.khartec</groupId>
+            <artifactId>waltz-common</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.khartec</groupId>
+            <artifactId>waltz-model</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.khartec</groupId>
+            <artifactId>waltz-service</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.khartec</groupId>
+            <artifactId>waltz-web</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.khartec</groupId>
+            <artifactId>waltz-jobs</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.khartec</groupId>
+            <artifactId>waltz-data</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.khartec</groupId>
+            <artifactId>waltz-schema</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
 
-    <issueManagement>
-        <url>https://github.com/khartec/waltz/issues</url>
-        <system>GitHub Issues</system>
-    </issueManagement>
-
-    <scm>
-        <url>https://github.com/khartec/waltz</url>
-        <connection>scm:git:git://github.com/khartec/waltz.git</connection>
-        <developerConnection>scm:git:git@github.com:davidwatkins73/waltz.git</developerConnection>
-    </scm>
-
-    <properties>
-        <plugin.maven-compiler.version>3.3</plugin.maven-compiler.version>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-
-        <hikari.version>2.6.3</hikari.version>
-        <immutables.version>2.7.5</immutables.version>
-        <jackson.version>2.10.0</jackson.version>
-        <javax.mail.version>1.4.7</javax.mail.version>
-        <jackson-jsr310.version>2.9.9</jackson-jsr310.version>
-        <jbcrypt.version>0.4.1</jbcrypt.version>
-        <jgrapht.version>1.2.0</jgrapht.version>
-        <jool.version>0.9.12</jool.version>
-        <junit.version>4.12</junit.version>
-        <jwt.version>3.8.1</jwt.version>
-        <logback.version>1.2.3</logback.version>
-        <pcollections.version>2.1.2</pcollections.version>
-        <poi.version>3.15</poi.version>
-        <slf4j.version>1.7.26</slf4j.version>
-        <spark.version>2.9.1</spark.version>
-        <spring.version>5.1.7.RELEASE</spring.version>
-        <super-csv.version>2.4.0</super-csv.version>
-        <freemarker.version>2.3.28</freemarker.version>
-        <maven-shade-plugin.version>2.4.3</maven-shade-plugin.version>
-        <archunit.version>0.9.1</archunit.version>
-        <timestamp>${maven.build.timestamp}</timestamp>
-        <maven.build.timestamp.format>yyyy-MM-dd HH:mm</maven.build.timestamp.format>
-    </properties>
-
-
-    <dependencyManagement>
-        <dependencies>
-
-            <!-- web -->
-            <dependency>
-                <groupId>com.sparkjava</groupId>
-                <artifactId>spark-core</artifactId>
-                <version>${spark.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.auth0</groupId>
-                <artifactId>java-jwt</artifactId>
-                <version>${jwt.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>de.svenkubiak</groupId>
-                <artifactId>jBCrypt</artifactId>
-                <version>${jbcrypt.version}</version>
-            </dependency>
-
-
-            <!-- json -->
-            <dependency>
-                <groupId>com.fasterxml.jackson.core</groupId>
-                <artifactId>jackson-annotations</artifactId>
-                <version>${jackson.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.fasterxml.jackson.core</groupId>
-                <artifactId>jackson-core</artifactId>
-                <version>${jackson.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.fasterxml.jackson.core</groupId>
-                <artifactId>jackson-databind</artifactId>
-                <version>${jackson.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.fasterxml.jackson.dataformat</groupId>
-                <artifactId>jackson-dataformat-yaml</artifactId>
-                <version>${jackson.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.fasterxml.jackson.datatype</groupId>
-                <artifactId>jackson-datatype-jdk8</artifactId>
-                <version>${jackson.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.fasterxml.jackson.datatype</groupId>
-                <artifactId>jackson-datatype-jsr310</artifactId>
-                <version>${jackson-jsr310.version}</version>
-            </dependency>
-
-
-            <!-- logging -->
-            <dependency>
-                <groupId>org.slf4j</groupId>
-                <artifactId>slf4j-api</artifactId>
-                <version>${slf4j.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>ch.qos.logback</groupId>
-                <artifactId>logback-core</artifactId>
-                <version>${logback.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>ch.qos.logback</groupId>
-                <artifactId>logback-classic</artifactId>
-                <version>${logback.version}</version>
-            </dependency>
-
-
-            <!-- core -->
-            <dependency>
-                <groupId>org.springframework</groupId>
-                <artifactId>spring-context</artifactId>
-                <version>${spring.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework</groupId>
-                <artifactId>spring-context-support</artifactId>
-                <version>${spring.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework</groupId>
-                <artifactId>spring-core</artifactId>
-                <version>${spring.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework</groupId>
-                <artifactId>spring-beans</artifactId>
-                <version>${spring.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.jooq</groupId>
-                <artifactId>jool</artifactId>
-                <version>${jool.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.immutables</groupId>
-                <artifactId>value</artifactId>
-                <version>${immutables.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.pcollections</groupId>
-                <artifactId>pcollections</artifactId>
-                <version>${pcollections.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.jgrapht</groupId>
-                <artifactId>jgrapht-core</artifactId>
-                <version>${jgrapht.version}</version>
-            </dependency>
-
-
-            <!-- db -->
-            <dependency>
-                <groupId>com.zaxxer</groupId>
-                <artifactId>HikariCP</artifactId>
-                <version>${hikari.version}</version>
-            </dependency>
-
-
-            <!-- mail -->
-            <dependency>
-                <groupId>org.freemarker</groupId>
-                <artifactId>freemarker</artifactId>
-                <version>${freemarker.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>javax.mail</groupId>
-                <artifactId>mail</artifactId>
-                <version>${javax.mail.version}</version>
-            </dependency>
-
-
-            <!-- other -->
-            <dependency>
-                <groupId>net.sf.supercsv</groupId>
-                <artifactId>super-csv</artifactId>
-                <version>${super-csv.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.poi</groupId>
-                <artifactId>poi</artifactId>
-                <version>${poi.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.poi</groupId>
-                <artifactId>poi-ooxml</artifactId>
-                <version>${poi.version}</version>
-            </dependency>
-
-
-            <!-- test -->
-            <dependency>
-                <groupId>junit</groupId>
-                <artifactId>junit</artifactId>
-                <version>${junit.version}</version>
-                <scope>test</scope>
-            </dependency>
-            <dependency>
-                <groupId>com.tngtech.archunit</groupId>
-                <artifactId>archunit</artifactId>
-                <version>${archunit.version}</version>
-                <scope>test</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.dbunit</groupId>
-                <artifactId>dbunit</artifactId>
-                <version>${dbunit.version}</version>
-                <scope>test</scope>
-            </dependency>
-
-        </dependencies>
-    </dependencyManagement>
-
-    <build>
+    <reporting>
         <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-site-plugin</artifactId>
-                <version>3.7.1</version>
-            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-project-info-reports-plugin</artifactId>
                 <version>3.0.0</version>
+                <reportSets>
+                    <reportSet/>
+                </reportSets>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>${plugin.maven-compiler.version}</version>
+                <artifactId>maven-surefire-report-plugin</artifactId>
+                <version>3.0.0-M3</version>
                 <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
-                    <useIncrementalCompilation>false</useIncrementalCompilation>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>buildnumber-maven-plugin</artifactId>
-                <version>1.4</version>
-                <executions>
-                    <execution>
-                        <phase>process-resources</phase>
-                        <goals>
-                            <goal>create</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <doCheck>false</doCheck>
-                    <doUpdate>false</doUpdate>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
-    <reporting>
-        <plugins>
-            <plugin>
-                <groupId>org.owasp</groupId>
-                <artifactId>dependency-check-maven</artifactId>
-                <configuration>
-                    <cveValidForHours>48</cveValidForHours>
-                    <!--<failBuildOnCVSS>7</failBuildOnCVSS>-->
-                    <!--mavenSettingsProxyId>artifactory</mavenSettingsProxyId-->
+                    <aggregate>true</aggregate>
+                    <linkXRef>false</linkXRef>
+                    <showSuccess>false</showSuccess>
                 </configuration>
                 <reportSets>
                     <reportSet>
                         <reports>
-                            <report>aggregate</report>
+                            <report>report</report>
+                        </reports>
+                    </reportSet>
+                </reportSets>
+            </plugin>
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>0.8.5</version>
+                <reportSets>
+                    <reportSet>
+                        <reports>
+                            <report>report-aggregate</report>
                         </reports>
                     </reportSet>
                 </reportSets>

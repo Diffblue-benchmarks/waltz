@@ -6,6 +6,7 @@
         <artifactId>waltz</artifactId>
         <groupId>com.khartec</groupId>
         <version>1.0-SNAPSHOT</version>
+        <relativePath>../waltz-parent/pom.xml</relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -15,6 +16,10 @@
     <properties>
         <jooq.version>3.11.9</jooq.version>
         <liquibase.maven.version>3.5.1</liquibase.maven.version>
+        <database.url>jdbc:mysql://127.0.0.1:3306/waltz</database.url>
+        <database.user>root</database.user>
+        <database.password></database.password>
+        <database.schema>waltz</database.schema>
     </properties>
 
     <profiles>
