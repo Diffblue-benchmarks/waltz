@@ -1,0 +1,60 @@
+{
+  "console": {
+    "batch": false,
+    "verbose": false
+  },
+  "workingDirectory": ".",
+  "input": {
+    "classpath": "/home/diffblue/maria.svorenova/diffblue/waltz/waltz-common/target/classes:/home/diffblue/maria.svorenova/.m2/repository/org/pcollections/pcollections/2.1.2/pcollections-2.1.2.jar:/home/diffblue/maria.svorenova/.m2/repository/org/jooq/jool/0.9.12/jool-0.9.12.jar:/home/diffblue/maria.svorenova/.m2/repository/org/springframework/spring-core/5.1.7.RELEASE/spring-core-5.1.7.RELEASE.jar:/home/diffblue/maria.svorenova/.m2/repository/org/springframework/spring-jcl/5.1.7.RELEASE/spring-jcl-5.1.7.RELEASE.jar:/home/diffblue/maria.svorenova/.m2/repository/org/slf4j/slf4j-api/1.7.26/slf4j-api-1.7.26.jar:/home/diffblue/maria.svorenova/.m2/repository/ch/qos/logback/logback-core/1.2.3/logback-core-1.2.3.jar:/home/diffblue/maria.svorenova/.m2/repository/ch/qos/logback/logback-classic/1.2.3/logback-classic-1.2.3.jar:/home/diffblue/maria.svorenova/.m2/repository/junit/junit/4.12/junit-4.12.jar:/home/diffblue/maria.svorenova/.m2/repository/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar",
+    "entryPoints": {
+      "include": [
+        "com.khartec.waltz.common",
+        "com.khartec.waltz.common.exception",
+        "com.khartec.waltz.common.hierarchy"
+      ],
+      "exclude": [
+        "com.khartec.waltz.common.LoggingUtilities"
+      ]
+    }
+  },
+  "testCreation": {
+    "advancedTests": {
+      "enabled": true
+    },
+    "essentialTests": {
+      "jcover": false,
+      "fuzzingIterations": 10
+    },
+    "testVerification": {
+      "enabled": true,
+      "complianceLevel": 8,
+      "command": "mvn clean test",
+      "commandDir": "."
+    }
+  },
+  "output": {
+    "location": {
+      "testOutputDir": "src/testAdvanced/java",
+      "mergeExistingTests": false
+    },
+    "naming": {
+      "classNameTemplate": "${CLASS_NAME}DiffblueTest",
+      "methodNameTemplate": "${METHOD_NAME}Test"
+    },
+    "style": {
+      "inlining": {
+        "constants": true,
+        "arrangeIntoActAssert": true,
+        "actIntoAssert": true,
+        "constructors": true,
+        "joinSimpleTests": true
+      },
+      "comments": {
+        "outputComments": true
+      }
+    },
+    "framework": {
+      "testing": "junit-4.8.2"
+    }
+  }
+}
