@@ -3,18 +3,17 @@
  * Copyright (C) 2016, 2017, 2018, 2019 Waltz open source project
  * See README.md for more information
  *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Lesser General Public License for more details.
+ *     http://www.apache.org/licenses/LICENSE-2.0
  *
- * You should have received a copy of the GNU Lesser General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific
+ *
  */
 
 
@@ -32,17 +31,10 @@ export function store($http, BaseApiUrl) {
     };
 
 
-    const create = (ref, assessmentDefinitionId, ratingId, description = null) => {
+    const store = (ref, assessmentDefinitionId, ratingId, comment = null) => {
         checkIsEntityRef(ref);
         return $http
-            .post(`${BASE}/entity/${ref.kind}/${ref.id}/${assessmentDefinitionId}`, { ratingId, description })
-            .then(d => d.data);
-    };
-
-    const update = (ref, assessmentDefinitionId, ratingId, description = null) => {
-        checkIsEntityRef(ref);
-        return $http
-            .put(`${BASE}/entity/${ref.kind}/${ref.id}/${assessmentDefinitionId}`, { ratingId, description })
+            .post(`${BASE}/entity/${ref.kind}/${ref.id}/${assessmentDefinitionId}`, { ratingId, comment })
             .then(d => d.data);
     };
 
@@ -63,8 +55,7 @@ export function store($http, BaseApiUrl) {
     return {
         findForEntityReference,
         findByTargetKindForRelatedSelector,
-        create,
-        update,
+        store,
         remove
     };
 }
@@ -90,15 +81,10 @@ export const AssessmentRatingStore_API = {
         serviceFnName: "findByTargetKindForRelatedSelector",
         description: "find all assessment ratings for a particular target kind by a selector for that kind [targetKind, selector]"
     },
-    create: {
+    store: {
         serviceName,
-        serviceFnName: "create",
-        description: "create a rating"
-    },
-    update: {
-        serviceName,
-        serviceFnName: "update",
-        description: "update a rating"
+        serviceFnName: "store",
+        description: "update or create a rating"
     },
     remove: {
         serviceName,

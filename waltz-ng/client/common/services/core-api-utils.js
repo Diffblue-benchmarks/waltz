@@ -1,20 +1,19 @@
 /*
  * Waltz - Enterprise Architecture
- * Copyright (C) 2016, 2017 Waltz open source project
+ * Copyright (C) 2016, 2017, 2018, 2019 Waltz open source project
  * See README.md for more information
  *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Lesser General Public License for more details.
+ *     http://www.apache.org/licenses/LICENSE-2.0
  *
- * You should have received a copy of the GNU Lesser General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific
+ *
  */
 
 import {ActorStore_API as ActorStore} from "../../actor/services/actor-store";
@@ -49,7 +48,7 @@ import {EntityNamedNoteTypeStore_API as EntityNamedNoteTypeStore} from "../../en
 import {EntityRelationshipStore_API as EntityRelationshipStore} from "../../entity-relationship/services/entity-relationship-store";
 import {EntitySearchStore_API as EntitySearchStore} from "../../entity/services/entity-search-store";
 import {EntityStatisticStore_API as EntityStatisticStore} from "../../entity-statistics/services/entity-statistic-store";
-import { TagStore_API as TagStore } from "../../tag/services/tag-store";
+import {TagStore_API as TagStore} from "../../tag/services/tag-store";
 import {EnumValueStore_API as EnumValueStore} from "../../enum-value/services/enum-value-store";
 import {EntitySvgDiagramStore_API as EntitySvgDiagramStore} from "../../entity-svg-diagram/services/entity-svg-diagram-store";
 import {ExternalIdentifierStore_API as ExternalIdentifierStore} from "../../external-identifier/services/external-identifier-store"
@@ -65,6 +64,8 @@ import {LogicalFlowStore_API as LogicalFlowStore} from "../../logical-flow/servi
 import {LogicalFlowDecoratorStore_API as LogicalFlowDecoratorStore} from "../../logical-flow-decorator/services/logical-flow-decorator-store";
 import {MeasurableCategoryStore_API as MeasurableCategoryStore} from "../../measurable-category/services/measurable-category-store";
 import {MeasurableRatingStore_API as MeasurableRatingStore} from "../../measurable-rating/services/measurable-rating-store";
+import {MeasurableRatingPlannedDecommissionStore_API as MeasurableRatingPlannedDecommissionStore} from "../../measurable-rating/services/measurable-rating-planned-decommission-store";
+import {MeasurableRatingReplacementStore_API as MeasurableRatingReplacementStore} from "../../measurable-rating/services/measurable-rating-replacement-store";
 import {MeasurableRelationshipStore_API as MeasurableRelationshipStore} from "../../measurable-relationship/services/measurable-relationship-store";
 import {MeasurableStore_API as MeasurableStore} from "../../measurable/services/measurable-store";
 import {NotificationStore_API as NotificationStore} from "../../notification/services/notification-store";
@@ -148,6 +149,8 @@ export const CORE_API = {
     LogicalFlowDecoratorStore,
     MeasurableCategoryStore,
     MeasurableRatingStore,
+    MeasurableRatingPlannedDecommissionStore,
+    MeasurableRatingReplacementStore,
     MeasurableRelationshipStore,
     MeasurableStore,
     NotificationStore,

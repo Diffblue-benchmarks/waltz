@@ -1,20 +1,19 @@
 /*
  * Waltz - Enterprise Architecture
- * Copyright (C) 2016, 2017 Waltz open source project
+ * Copyright (C) 2016, 2017, 2018, 2019 Waltz open source project
  * See README.md for more information
  *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Lesser General Public License for more details.
+ *     http://www.apache.org/licenses/LICENSE-2.0
  *
- * You should have received a copy of the GNU Lesser General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific
+ *
  */
 
 import _ from "lodash";
@@ -38,9 +37,23 @@ const initialState = {
 };
 
 
+function buildHierarchyWithUsageEnrichment(vm) {
+    const usedTypeIds = _.map(vm.usedTypes, "id");
+    const enrichedDataTypes = _.map(
+        vm.allDataTypes,
+        dt => Object.assign({}, dt, {isUsed: _.includes(usedTypeIds, dt.id)}));
+    const hierarchy = buildHierarchies(enrichedDataTypes, false);
+    return hierarchy;
+}
+
 function controller(serviceBroker) {
     const vm = _.defaults(this, initialState);
 
+    function loadDataTypes() {
+        return serviceBroker
+            .loadAppData(CORE_API.DataTypeStore.findAll)
+            .then(r => vm.allDataTypes = r.data);
+    }
     vm.onShowAll= () => {
         vm.selectedType = "ALL";
         vm.visibility.tree = false;
@@ -56,17 +69,18 @@ function controller(serviceBroker) {
         vm.notifyChanges()
     };
 
-    vm.$onInit = () => {
-        serviceBroker
-            .loadAppData(CORE_API.DataTypeStore.findAll)
-            .then(r => vm.allDataTypes = r.data);
-    };
-
     vm.$onChanges = () => {
-        vm.notifyChanges();
-        const usedTypeIds = _.map(vm.usedTypes, "id");
-        const enrichedDataTypes = _.map(vm.allDataTypes, dt => Object.assign({}, dt, { isUsed: _.includes(usedTypeIds, dt.id) }));
-        vm.hierarchy = buildHierarchies(enrichedDataTypes, false);
+        if (_.isEmpty(vm.usedTypes)) {
+            return;
+        } else {
+            loadDataTypes()
+                .then(() => {
+                    const hierarchy = buildHierarchyWithUsageEnrichment(vm);
+                    vm.hierarchy = hierarchy;
+                    vm.notifyChanges();
+                });
+        }
+
     };
 
     vm.notifyChanges = () => {

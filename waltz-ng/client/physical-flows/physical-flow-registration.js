@@ -1,20 +1,19 @@
 /*
  * Waltz - Enterprise Architecture
- * Copyright (C) 2016, 2017 Waltz open source project
+ * Copyright (C) 2016, 2017, 2018, 2019 Waltz open source project
  * See README.md for more information
  *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Lesser General Public License for more details.
+ *     http://www.apache.org/licenses/LICENSE-2.0
  *
- * You should have received a copy of the GNU Lesser General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific
+ *
  */
 
 import _ from 'lodash';
@@ -26,6 +25,7 @@ import template from './physical-flow-registration.html';
 import {CORE_API} from "../common/services/core-api-utils";
 import {loadEntity} from "../common/entity-utils";
 import {removeEnrichments} from "./physical-flow-utils";
+import {columnDef, withWidth} from "../physical-flow/physical-flow-table-utilities";
 
 
 const initialState = {
@@ -86,13 +86,12 @@ function controller(
     preventNavigationService.setupWarningDialog($scope, () => isDirty());
 
     vm.similarFlowDefs = [
-        { field: 'specification.name', displayName: 'Name', width: "10%" },
-        { field: 'specification.format', displayName: 'Format', width: "10%", cellFilter: 'toDisplayName:"dataFormatKind"' },
-        { field: 'physicalFlow.transport', displayName: 'Transport', width: "14%", cellFilter: 'toDisplayName:"TransportKind"' },
-        { field: 'physicalFlow.frequency', displayName: 'Frequency', width: "10%", cellFilter: 'toDisplayName:"frequencyKind"' },
-        { field: 'physicalFlow.basisOffset', displayName: 'Basis', width: "10%", cellFilter: 'toBasisOffset' },
-        { field: 'specification.description', displayName: 'Description' }
-
+        withWidth(columnDef.name, "10%"),
+        withWidth(columnDef.format, "10%"),
+        withWidth(columnDef.transport, "14%"),
+        withWidth(columnDef.frequency, "10%"),
+        withWidth(columnDef.basisOffset, "10%"),
+        columnDef.description
     ];
 
 

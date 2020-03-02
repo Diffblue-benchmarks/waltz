@@ -3,18 +3,17 @@
  * Copyright (C) 2016, 2017, 2018, 2019 Waltz open source project
  * See README.md for more information
  *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Lesser General Public License for more details.
+ *     http://www.apache.org/licenses/LICENSE-2.0
  *
- * You should have received a copy of the GNU Lesser General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific
+ *
  */
 
 package com.khartec.waltz.data.measurable;
@@ -155,11 +154,38 @@ public class MeasurableIdSelectorFactory implements IdSelectorFactory {
     }
 
 
-    private Select<Record1<Long>> mkForDirectEntityKind(IdSelectionOptions options) {
+    private Select<Record1<Long>> mkForDirectEntityKindOld(IdSelectionOptions options) {
         checkTrue(options.scope() == HierarchyQueryScope.EXACT, "Can only calculate application based selectors with exact scopes");
         return mkBaseRatingBasedSelector()
                 .where(MEASURABLE_RATING.ENTITY_ID.in(options.entityReference().id()))
                 .and(MEASURABLE_RATING.ENTITY_KIND.eq(options.entityReference().kind().name()));
+    }
+
+
+    private Select<Record1<Long>> mkForDirectEntityKind(IdSelectionOptions options) {
+        checkTrue(options.scope() == HierarchyQueryScope.EXACT, "Can only calculate application based selectors with exact scopes");
+
+        SelectConditionStep<Record1<Long>> measurablesViaReplacements = DSL
+                .select(MEASURABLE_RATING_PLANNED_DECOMMISSION.MEASURABLE_ID)
+                .from(MEASURABLE_RATING_PLANNED_DECOMMISSION)
+                .innerJoin(MEASURABLE_RATING_REPLACEMENT)
+                .on(MEASURABLE_RATING_PLANNED_DECOMMISSION.ID.eq(MEASURABLE_RATING_REPLACEMENT.DECOMMISSION_ID))
+                .where(MEASURABLE_RATING_REPLACEMENT.ENTITY_ID.eq(options.entityReference().id())
+                        .and(MEASURABLE_RATING_REPLACEMENT.ENTITY_KIND.eq(options.entityReference().kind().name())));
+
+        SelectConditionStep<Record1<Long>> measurablesViaRatings = DSL
+                .select(MEASURABLE_RATING.MEASURABLE_ID)
+                .from(MEASURABLE_RATING)
+                .where(MEASURABLE_RATING.ENTITY_ID.eq(options.entityReference().id())
+                        .and(MEASURABLE_RATING.ENTITY_KIND.eq(options.entityReference().kind().name())));
+
+        return DSL
+                .selectDistinct(MEASURABLE.ID)
+                .from(MEASURABLE)
+                .innerJoin(ENTITY_HIERARCHY)
+                .on(ENTITY_HIERARCHY.ANCESTOR_ID.eq(MEASURABLE.ID)
+                        .and(ENTITY_HIERARCHY.KIND.eq(EntityKind.MEASURABLE.name())))
+                .where(ENTITY_HIERARCHY.ID.in(measurablesViaRatings.union(measurablesViaReplacements)));
     }
 
 
@@ -178,9 +204,9 @@ public class MeasurableIdSelectorFactory implements IdSelectorFactory {
                 .where(FLOW_DIAGRAM_ENTITY.ENTITY_KIND.eq(EntityKind.MEASURABLE.name()))
                 .and(FLOW_DIAGRAM_ENTITY.DIAGRAM_ID.eq(diagramId));
 
-        return viaAppRatings.union(viaDirectRelationship);
-
+        return DSL.selectFrom(viaAppRatings.union(viaDirectRelationship).asTable());
     }
+
 
 
     /**

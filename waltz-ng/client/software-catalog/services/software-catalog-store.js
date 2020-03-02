@@ -1,20 +1,19 @@
 /*
  * Waltz - Enterprise Architecture
- * Copyright (C) 2016, 2017 Waltz open source project
+ * Copyright (C) 2016, 2017, 2018, 2019 Waltz open source project
  * See README.md for more information
  *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Lesser General Public License for more details.
+ *     http://www.apache.org/licenses/LICENSE-2.0
  *
- * You should have received a copy of the GNU Lesser General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific
+ *
  */
 import _ from "lodash";
 
@@ -27,6 +26,7 @@ export function store($http, BaseApiUrl) {
             .then(r => r.data);
     };
 
+
     const findStatsForSelector = (id, kind, scope = "CHILDREN") => {
         const options = _.isObject(id)
             ? id
@@ -36,14 +36,34 @@ export function store($http, BaseApiUrl) {
             .then(result => result.data);
     };
 
+
+    const findBySelector = (options) => $http
+        .post(`${BASE}/selector`, options)
+        .then(x => x.data);
+
+
     const getByPackageId = (id) => $http
         .get(`${BASE}/package-id/${id}`)
         .then(r => r.data);
 
+
+    const getByVersionId = (id) => $http
+        .get(`${BASE}/version-id/${id}`)
+        .then(r => r.data);
+
+
+    const getByLicenceId = (id) => $http
+        .get(`${BASE}/licence-id/${id}`)
+        .then(r => r.data);
+
+
     return {
         findByAppIds,
+        findBySelector,
         findStatsForSelector,
-        getByPackageId
+        getByPackageId,
+        getByLicenceId,
+        getByVersionId
     };
 }
 
@@ -62,6 +82,11 @@ export const SoftwareCatalogStore_API = {
         serviceFnName: "findByAppIds",
         description: "retrieve catalog for a list of app ids"
     },
+    findBySelector: {
+        serviceName,
+        serviceFnName: "findBySelector",
+        description: "find software catalog for a given selector options"
+    },
     findStatsForSelector: {
         serviceName,
         serviceFnName: "findStatsForSelector",
@@ -71,6 +96,11 @@ export const SoftwareCatalogStore_API = {
         serviceName,
         serviceFnName: 'getByPackageId',
         description: 'executes getByPackageId'
+    },
+    getByVersionId: {
+        serviceName,
+        serviceFnName: 'getByVersionId',
+        description: 'executes getByVersionId'
     },
 };
 

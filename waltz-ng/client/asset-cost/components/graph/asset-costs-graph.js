@@ -1,29 +1,28 @@
 /*
  * Waltz - Enterprise Architecture
- * Copyright (C) 2016, 2017  Waltz open source project
+ * Copyright (C) 2016, 2017, 2018, 2019 Waltz open source project
  * See README.md for more information
  *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Lesser General Public License for more details.
+ *     http://www.apache.org/licenses/LICENSE-2.0
  *
- * You should have received a copy of the GNU Lesser General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific
+ *
  */
 import _ from "lodash";
 import "d3-selection-multi";
 import {initialiseData, isEmpty} from "../../../common";
 import {responsivefy} from "../../../common/d3-utils";
-import {scaleLinear, scaleBand} from "d3-scale";
+import {scaleBand, scaleLinear} from "d3-scale";
 import {select} from "d3-selection";
 import {extent} from "d3-array";
-import {axisLeft, axisBottom} from "d3-axis";
+import {axisBottom, axisLeft} from "d3-axis";
 import {format} from "d3-format";
 import namedSettings from "../../../system/named-settings";
 import {currenciesByCode} from "../../../common/currency-utils";
@@ -33,14 +32,12 @@ const template = "<div class='waltz-asset-costs-graph'></div>";
 
 const bindings = {
     costs: "<",
-    onHover: "<",
     onSelect: "<"
 };
 
 
 const initialState = {
     costs: [],
-    onHover: _.identity,
     onSelect: _.identity
 };
 
@@ -100,7 +97,6 @@ function drawYAxis(yScale, container) {
 
 
 function draw(svg, costs = [],
-              onHover = _.identity,
               onSelect = _.identity,
               currencyFormat) {
     // remove any previous elements
@@ -132,8 +128,6 @@ function draw(svg, costs = [],
         .append("g")
         .classed("wacg-bar", true)
         .attr("transform", (d, i) => `translate(0, ${yScale(d.entityRef.name)})`)
-        .on("mouseenter.hover", d => onHover(d))
-        .on("mouseleave.hover", d => onHover(null))
         .on("click.select", d => onSelect(d));
 
     bars.append("rect")
@@ -181,7 +175,6 @@ function controller($element, $scope, settingsService) {
         draw(
             svg,
             aggCosts,
-            x => $scope.$applyAsync(() => vm.onHover(x)),
             x => $scope.$applyAsync(() => vm.onSelect(x)),
             currencyFormat);
 

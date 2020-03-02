@@ -3,18 +3,17 @@
  * Copyright (C) 2016, 2017, 2018, 2019 Waltz open source project
  * See README.md for more information
  *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Lesser General Public License for more details.
+ *     http://www.apache.org/licenses/LICENSE-2.0
  *
- * You should have received a copy of the GNU Lesser General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific
+ *
  */
 
 package com.khartec.waltz.common;
@@ -28,11 +27,13 @@ import static java.util.stream.Collectors.toSet;
 
 public class SetUtilities {
 
+    @SafeVarargs
     public static <T> Set<T> asSet(T... ts) {
         return fromArray(ts);
     }
 
 
+    @SafeVarargs
     public static <T> Set<T> fromArray(T... ts) {
         if (ts == null || ts.length == 0) return new HashSet<>();
 
@@ -52,37 +53,35 @@ public class SetUtilities {
                 .collect(toSet());
     }
 
+    @SafeVarargs
     public static <T> Set<T> union(Collection<T>... xss) {
         Set<T> result = new HashSet<>();
-        for (Collection xs : xss) {
+        for (Collection<T> xs : xss) {
             result.addAll(xs);
         }
-
-        Arrays.stream(xss)
-                .collect(toSet());
         return result;
     }
 
+    @SafeVarargs
     public static <T> Set<T> orderedUnion(Collection<T>... xss) {
         // LinkedHashSet preserves iteration ordering, source: https://stackoverflow.com/a/16480560
         Set<T> result = new LinkedHashSet<>();
-        for (Collection xs : xss) {
+        for (Collection<T> xs : xss) {
             result.addAll(xs);
         }
 
-        Arrays.stream(xss)
-                .collect(toSet());
         return result;
     }
 
 
     /**
      * Remove vararg of <code>ys's</code> from <code>xs</code>
-     * @param xs
-     * @param yss
-     * @param <T>
+     * @param xs the set to subtract from
+     * @param yss var of of sets to remove from `xs`
+     * @param <T>  type of the elements in the sets
      * @return xs without all members of yss
      */
+    @SafeVarargs
     public static <T> Set<T> minus(Set<T> xs, Set<T>... yss) {
         checkNotNull(xs, "xs cannot be null");
         checkNotNull(yss, "yss cannot be null");

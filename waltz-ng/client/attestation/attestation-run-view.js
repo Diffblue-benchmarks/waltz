@@ -3,18 +3,17 @@
  * Copyright (C) 2016, 2017, 2018, 2019 Waltz open source project
  * See README.md for more information
  *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Lesser General Public License for more details.
+ *     http://www.apache.org/licenses/LICENSE-2.0
  *
- * You should have received a copy of the GNU Lesser General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific
+ *
  */
 
 import _ from "lodash";
@@ -34,22 +33,21 @@ const initialState = {
     instances: [],
     selectedInstance: null,
     columnDefs: [],
-    tableData: [],
-    onGridInitialise: (cfg) => console.log('default grid initialise handler for attestation-run-view')
+    tableData: []
 };
 
 
 function mkRagRating(run = {}, instance = {}) {
     if(instance.attestedBy) {
-        return { rag: 'G', name: 'Complete', color: green }
+        return { rag: "G", name: "Complete", color: green }
     }
     const dueDate = moment.utc(run.dueDate, formats.parse );
     const now = moment.utc();
 
     if(now > dueDate) {
-        return { rag: 'R', name: 'Overdue', color: red };
+        return { rag: "R", name: "Overdue", color: red };
     } else {
-        return { rag: 'A', name: 'Pending', color: amber };
+        return { rag: "A", name: "Pending", color: amber };
     }
 }
 
@@ -59,10 +57,10 @@ function mkInstancesWithRagRating(run = {}, instances = []) {
 }
 
 const ratingOrdinal = {
-    'R': 3,
-    'A': 2,
-    'G': 1,
-    'Z': 0
+    "R": 3,
+    "A": 2,
+    "G": 1,
+    "Z": 0
 };
 
 
@@ -74,34 +72,32 @@ const ratingCellTemplate = `
 
 
 function prepareColumnDefs() {
-    const initialCols = [
-        mkEntityLinkGridCell('Subject', 'parentEntity'),
+    return [
+        mkEntityLinkGridCell("Subject", "parentEntity"),
         {
-            field: 'rating',
-            name: 'Status',
+            field: "rating",
+            name: "Status",
             cellTemplate: ratingCellTemplate,
             sortingAlgorithm: (a, b) => {
-                if(a.rag == b.rag) return 0;
+                if(a.rag === b.rag) return 0;
                 return ratingOrdinal[a.rag] - ratingOrdinal[b.rag];
             }
         },
         {
-            field: 'attestedBy',
-            name: 'Attested By',
-            cellTemplate: '<div class="ui-grid-cell-contents"><a ui-sref="main.profile.view ({userId: COL_FIELD})"><span ng-bind="COL_FIELD"></span></a></div>'
+            field: "attestedBy",
+            name: "Attested By",
+            cellTemplate: "<div class=\"ui-grid-cell-contents\"><a ui-sref=\"main.profile.view ({userId: COL_FIELD})\"><span ng-bind=\"COL_FIELD\"></span></a></div>"
         },
         {
-            field: 'attestedAt',
-            name: 'Attested At',
-            cellTemplate: '<div class="ui-grid-cell-contents"><waltz-from-now timestamp="COL_FIELD"></waltz-from-now></div>'
+            field: "attestedAt",
+            name: "Attested At",
+            cellTemplate: "<div class=\"ui-grid-cell-contents\"><waltz-from-now timestamp=\"COL_FIELD\"></waltz-from-now></div>"
         },
         {
-            name: 'Recipients',
-            cellTemplate: '<div class="ui-grid-cell-contents"><a ng-click="grid.appScope.selectInstance(row.entity)" class="clickable">Show</a></div>'
+            name: "Recipients",
+            cellTemplate: "<div class=\"ui-grid-cell-contents\"><a ng-click=\"grid.appScope.selectInstance(row.entity)\" class=\"clickable\">Show</a></div>"
         }
     ];
-
-    return initialCols;
 }
 
 
@@ -132,22 +128,18 @@ function controller($q,
         vm.selectedInstance = instance;
     };
 
-    vm.onGridInitialise = (cfg) => {
-        vm.exportData = () => cfg.exportFn("attestation_instances.csv");
-    }
-
 }
 
 
 controller.$inject = [
-    '$q',
-    '$stateParams',
-    'ServiceBroker'
+    "$q",
+    "$stateParams",
+    "ServiceBroker"
 ];
 
 
 export default {
     template,
     controller,
-    controllerAs: 'ctrl'
+    controllerAs: "ctrl"
 };

@@ -1,27 +1,26 @@
 /*
  * Waltz - Enterprise Architecture
- * Copyright (C) 2016, 2017 Waltz open source project
+ * Copyright (C) 2016, 2017, 2018, 2019 Waltz open source project
  * See README.md for more information
  *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Lesser General Public License for more details.
+ *     http://www.apache.org/licenses/LICENSE-2.0
  *
- * You should have received a copy of the GNU Lesser General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific
+ *
  */
 
 import _ from "lodash";
 import {initialiseData} from "../../../common";
-import {mkEntityLinkGridCell, mkEnumGridCell} from "../../../common/grid-utils";
 import template from "./physical-data-section.html";
 import {isRemoved} from "../../../common/entity-utils";
+import {columnDef, withWidth} from "../../../physical-flow/physical-flow-table-utilities";
 
 
 const bindings = {
@@ -29,7 +28,7 @@ const bindings = {
     physicalFlows: "<",
     specifications: "<",
     logicalFlows: "<",
-    onInitialise: "<"
+    onInitialise: "<?"
 };
 
 
@@ -40,7 +39,7 @@ const initialState = {
     logicalFlows: [],
     specifications: [],
     selectedFilter: "ALL",
-    onInitialise: (e) => {}
+    // onInitialise: (e) => {}
 };
 
 
@@ -114,17 +113,13 @@ function controller() {
     const vm = initialiseData(this, initialState);
 
     vm.columnDefs = [
-        Object.assign(mkEntityLinkGridCell("Name", "physicalFlow", "left"), { width: "25%"} ),
-        { field: "specification.externalId", displayName: "Ext. Id", width: "5%" },
-        Object.assign(mkEntityLinkGridCell("Source", "logicalFlow.source", "left"), { width: "15%"} ),
-        Object.assign(mkEntityLinkGridCell("Target", "logicalFlow.target", "left"), { width: "15%" }),
-        Object.assign(mkEnumGridCell("Observation", "physicalFlow.freshnessIndicator", "FreshnessIndicator", true, true), { width: "10%"}),
-        { field: "physicalFlow.criticality", displayName: "Criticality", width: "5%", cellFilter: "toDisplayName:\"physicalFlowCriticality\"" },
-        { field: "specification.description", displayName: "Description", width: "25%" },
-        // hidden columns - for local filtering
-        { field: "specification.format", displayName: "Format", visible:false, cellFilter: "toDisplayName:\"dataFormatKind\"" },
-        { field: "physicalFlow.transport", displayName: "Transport", visible:false, cellFilter: "toDisplayName:\"TransportKind\"" },
-        { field: "physicalFlow.frequency", displayName: "Frequency", visible:false, cellFilter: "toDisplayName:\"frequencyKind\"" }
+        withWidth(columnDef.name, "25%"),
+        withWidth(columnDef.extId, "5%"),
+        columnDef.source,
+        columnDef.target,
+        columnDef.observation,
+        columnDef.criticality,
+        columnDef.description
     ];
 
     vm.unusedSpecificationsColumnDefs = [

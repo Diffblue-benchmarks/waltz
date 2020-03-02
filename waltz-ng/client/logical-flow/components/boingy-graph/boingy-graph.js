@@ -1,49 +1,64 @@
-forceCenter/*
+/*
  * Waltz - Enterprise Architecture
- * Copyright (C) 2016, 2017 Waltz open source project
+ * Copyright (C) 2016, 2017, 2018, 2019 Waltz open source project
  * See README.md for more information
  *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Lesser General Public License for more details.
+ *     http://www.apache.org/licenses/LICENSE-2.0
  *
- * You should have received a copy of the GNU Lesser General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific
+ *
  */
 
-import { initialiseData } from "../../../common";
-import { lineWithArrowPath, responsivefy } from "../../../common/d3-utils";
-import { event, select } from "d3-selection";
-import { forceCenter, forceLink, forceManyBody, forceSimulation, forceX, forceY } from "d3-force";
-import { drag } from "d3-drag";
-import { symbol, symbolWye } from "d3-shape";
-import { zoom, zoomIdentity } from "d3-zoom";
+import {initialiseData} from "../../../common";
+
+import {lineWithArrowPath, responsivefy} from "../../../common/d3-utils";
+import {event, select} from "d3-selection";
+import {forceLink, forceManyBody, forceSimulation, forceX, forceY} from "d3-force";
+import {drag} from "d3-drag";
+import {symbol, symbolWye} from "d3-shape";
+import {zoom, zoomIdentity} from "d3-zoom";
 import "d3-selection-multi";
 import _ from "lodash";
+import {scalePow} from "d3-scale";
 
+import {refToString} from "../../../common/entity-utils";
 
 import template from "./boingy-graph.html";
 
-const width = 800;
-const height = 500;
+const width = 900;
+const height = 600;
+const DEFAULT_NODE_LIMIT = 500;
 
 
 const bindings = {
-    data: "<",
+    data: "<", // { decorators: [], entities: [], flows: [] }
     tweakers: "<"
 };
 
-
 const initialState = {
-    zoomEnabled: false
+    zoomEnabled: false,
+    selectedNode: null,
+    showFilters: false,
+    showIsolated: false,
+    showManyNodesWarning: false,
+    overrideManyNodesWarning: false
 };
 
+const opacityScale = scalePow()
+    .exponent(0.01)
+    .range([0.4, 1])
+    .clamp(true);
+
+const nodeSizeScale = scalePow()
+    .range([5, 10])
+    .clamp(true);
 
 const DEFAULT_TWEAKER = {
     enter: (selection) => selection,
@@ -55,7 +70,8 @@ const simulation = forceSimulation()
     .force("link", forceLink().id(d => d.id))
     .force("charge", forceManyBody().strength(-110).distanceMin(1).distanceMax(400))
     .force("x", forceX())
-    .force("y", forceY());
+    .force("y", forceY())
+    .alphaTarget(0);
 
 const actorSymbol = symbol()
     .size(128)
@@ -111,8 +127,7 @@ function addNodeCircle(selection) {
     selection
         .filter(d => d.kind === "APPLICATION")
         .append("circle")
-        .attr("class", "wdfd-glyph")
-        .attr("r", 6);
+        .attr("class", "wdfd-glyph");
 
     selection
         .filter(d => d.kind === "ACTOR")
@@ -123,13 +138,15 @@ function addNodeCircle(selection) {
 }
 
 
-function drawNodes(nodes = [], holder, tweakers = DEFAULT_TWEAKER) {
+function drawNodes(nodes,
+                   holder,
+                   tweakers = DEFAULT_TWEAKER,
+                   onSelectNode) {
 
     function dragStarted(d) {
         if (!event.active) {
             simulation
-               .alphaTarget(0.1)
-               .restart();
+                .restart();
         }
         d.fx = d.x;
         d.fy = d.y;
@@ -143,7 +160,6 @@ function drawNodes(nodes = [], holder, tweakers = DEFAULT_TWEAKER) {
     function dragEnded(d) {
         if (!event.active) {
             simulation
-                .alphaTarget(0)
                 .restart();
         }
         d.fx = event.x;
@@ -159,6 +175,7 @@ function drawNodes(nodes = [], holder, tweakers = DEFAULT_TWEAKER) {
         .append("g")
         .classed("wdfd-node", true)
         .on("dblclick.unfix", d => { d.fx = null; d.fy = null })
+        .on("click.node-selected", onSelectNode)
         .call(drag()
             .on("start", dragStarted)
             .on("drag", dragged)
@@ -174,15 +191,55 @@ function drawNodes(nodes = [], holder, tweakers = DEFAULT_TWEAKER) {
         .call(tweakers.exit)
         .remove();
 
-    return nodeSelection
+    const allNodes = nodeSelection
         .merge(newNodes);
 
+    allNodes
+        .select("text")
+        .attr("opacity", d => opacityScale(d.flowCount));
+
+    allNodes
+        .select("circle")
+        .attr("opacity", d => opacityScale(d.flowCount))
+        .attr("r", d => nodeSizeScale(d.flowCount));
+
+    allNodes
+        .select("path")
+        .attr("opacity", d => opacityScale(d.flowCount))
+        .attr("r", d => nodeSizeScale(d.flowCount));
+
+    const setOpacity = (selection, opacity) => {
+        selection
+            .selectAll("text, circle, path")
+            .attr("opacity", opacity);
+        return selection;
+    };
+
+    allNodes.on("mouseenter.opacityHover",
+        function (d) {
+            const selection = select(this);
+            setOpacity(selection, 1);
+            selection
+                .select("circle")
+                .attr("r", nodeSizeScale(d.flowCount) + 2);
+            return selection;
+        })
+        .on("mouseout.opacityHover", function (d) {
+            const selection = select(this);
+            setOpacity(selection, opacityScale(d.flowCount));
+            selection
+                .select("circle")
+                .attr("r", nodeSizeScale(d.flowCount));
+            return selection;
+        });
+
+    return allNodes;
 }
 
 
 function setup(vizElem) {
     const svg = vizElem
-        .append('svg')
+        .append("svg")
         .attr("width", width)
         .attr("height", height)
         .attr("viewBox", [-width / 2, -height / 2, width, height]);
@@ -199,10 +256,10 @@ function setup(vizElem) {
 }
 
 
-
 function draw(data = [],
               parts,
-              tweakers = {}) {
+              tweakers = {},
+              onSelectNode = () => {}) {
 
     const linkTweakers = _.defaults(tweakers.link, DEFAULT_TWEAKER);
     const nodeTweakers = _.defaults(tweakers.node, DEFAULT_TWEAKER);
@@ -218,7 +275,8 @@ function draw(data = [],
     const nodeSelection = drawNodes(
         nodes,
         parts.svg.select(".nodes"),
-        nodeTweakers);
+        nodeTweakers,
+        onSelectNode);
 
     const ticked = () => {
         nodeSelection
@@ -236,8 +294,29 @@ function draw(data = [],
         .force("link")
         .links(links);
 
-
     return simulation;
+}
+
+
+function enrichData(data = []) {
+    const flows = data.flows;
+    const flowCounts = _.chain(flows)
+        .flatMap(f => [f.source, f.target])
+        .countBy(refToString)
+        .value();
+
+    const maxFlowCount = _.max(_.values(flowCounts));
+
+    opacityScale.domain([1, maxFlowCount]);
+    nodeSizeScale.domain([1, maxFlowCount]);
+
+    const enrichedEntities = _
+        .chain(data.entities)
+        .map(n => Object.assign(n, { flowCount: flowCounts[refToString(n)]}))
+        .orderBy(d => d.flowCount)
+        .value();
+
+    return Object.assign(data, { entities: enrichedEntities });
 }
 
 
@@ -245,19 +324,27 @@ function controller($timeout, $element) {
     const vm = initialiseData(this, initialState);
 
     const vizElem = select($element[0])
-        .select('.viz');
+        .select(".viz");
 
     const parts = setup(vizElem);
 
-    const debouncedDraw = _.debounce(() => {
-        draw(vm.data, parts, vm.tweakers);
-        simulation.alpha(0.4).restart();
+    const debouncedDraw = _.debounce((data) => {
+        const tooManyNodes = !vm.overrideManyNodesWarning && data.entities.length > DEFAULT_NODE_LIMIT ;
+        $timeout(() => vm.showManyNodesWarning = tooManyNodes);
+
+        if (tooManyNodes) {
+            draw({entities: [], flows: []}, parts);
+        } else {
+            const enrichedData = enrichData(data);
+            draw(enrichedData, parts, vm.tweakers, onSelectNode);
+            simulation.alpha(0.3).restart();
+        }
     }, 250);
 
     vm.$onChanges = (changes) => {
         if (changes.data) {
             // we draw using async to prevent clientWidth reporting '0'
-            $timeout(debouncedDraw);
+            $timeout(() => debouncedDraw(vm.data));
         }
     };
 
@@ -301,13 +388,16 @@ function controller($timeout, $element) {
         vm.zoomEnabled = false;
     };
 
-    vm.resetSimulation = () => {
+    function unPinAll() {
         _.forEach(vm.data.entities, d => {
-            d.x = null;
-            d.y = null;
             d.fx = null;
             d.fy = null;
         });
+    }
+
+    vm.resetSimulation = () => {
+        unPinAll();
+        vm.showIsolated = false;
 
         vizElem
             .select("svg")
@@ -315,7 +405,68 @@ function controller($timeout, $element) {
             .duration(750)
             .call(myZoom.transform, zoomIdentity);
 
-        debouncedDraw();
+        simulation.alpha(1);
+        debouncedDraw(vm.data);
+    };
+
+    // not registered as a method on `vm` as will be invoked via d3 handler code...
+    function onSelectNode(node) {
+        $timeout(() => {
+            vm.onHideFilters();
+            if (vm.selectedNode === node) {
+                vm.onDeselectNode();
+            } else {
+                vm.selectedNode = node;
+            }
+        }, 0);
+    }
+
+    vm.onDeselectNode = () => {
+        vm.selectedNode = null;
+    };
+
+    vm.onHideFilters = () => {
+        vm.showFilters = false;
+        vm.filtersEnabled = false;
+    };
+
+    vm.onShowFilters = () => {
+        vm.onDeselectNode();
+        vm.showFilters = true;
+        vm.filtersEnabled = true;
+    };
+
+    vm.onUndoIsolate = () => {
+        vm.showIsolated = false;
+        debouncedDraw(vm.data);
+    };
+
+    vm.onIsolate = () => {
+        vm.showIsolated = true;
+        unPinAll();
+        const entitiesByRef = _.keyBy(vm.data.entities, refToString);
+
+        const flowFilter = f => f.source.id === vm.selectedNode.id || f.target.id === vm.selectedNode.id;
+        const flows = _.filter(vm.data.flows, flowFilter);
+        const entities = _.chain(flows)
+            .flatMap(f => [refToString(f.source), refToString(f.target)])
+            .uniq()
+            .map(r => entitiesByRef[r])
+            .value();
+
+        const isolatedData = {
+            flows,
+            entities,
+            decorators: vm.data.decorators
+        };
+
+        simulation.alpha(0.2);
+        debouncedDraw(isolatedData);
+    };
+
+    vm.onOverrideManyNodesWarning = () => {
+        vm.overrideManyNodesWarning = true;
+        debouncedDraw(vm.data);
     };
 }
 
@@ -326,7 +477,11 @@ controller.$inject = ["$timeout", "$element"];
 const component = {
     bindings,
     template,
-    controller
+    controller,
+    transclude: {
+        "filterControl": "?filterControl",
+        "selectedControl": "?selectedControl"
+    }
 };
 
 

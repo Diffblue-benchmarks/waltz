@@ -3,18 +3,17 @@
  * Copyright (C) 2016, 2017, 2018, 2019 Waltz open source project
  * See README.md for more information
  *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Lesser General Public License for more details.
+ *     http://www.apache.org/licenses/LICENSE-2.0
  *
- * You should have received a copy of the GNU Lesser General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific
+ *
  */
 
 package com.khartec.waltz.common;
@@ -122,8 +121,16 @@ public class MapUtilities {
     }
 
 
-    public static <K, V> Map<K, V> indexBy(Collection<V> xs, Function<V, K> keyFn) {
+    public static <K, V> Map<K, V> indexBy(Collection<V> xs,
+                                           Function<V, K> keyFn) {
         return indexBy(keyFn, xs);
+    }
+
+
+    public static <K, V, V2> Map<K, V2> indexBy(Collection<V> xs,
+                                                Function<V, K> keyFn,
+                                                Function<V, V2> valueFn) {
+        return indexBy(keyFn, valueFn, xs);
     }
 
 
@@ -134,6 +141,7 @@ public class MapUtilities {
 
         return indexBy(keyFn, identity(), xs);
     }
+
 
 
     public static <K, R, V> Map<K, R> indexBy(Function<V, K> keyFn,
@@ -180,10 +188,10 @@ public class MapUtilities {
 
     /**
      * Returns true if map is null or empty
-     * @param map
-     * @param <K>
-     * @param <V>
-     * @return
+     * @param map  the map to test
+     * @param <K>  type of the keys in the map
+     * @param <V>  type of the values in the map
+     * @return  true if the map is null or empty
      */
     public static <K, V> boolean isEmpty(Map<K, V> map) {
         return map == null || map.isEmpty();
@@ -198,7 +206,7 @@ public class MapUtilities {
     }
 
     /**
-     * Similar to groupby, however the valueFn runs over the entire group after the initial grouping
+     * Similar to groupBy, however the valueFn runs over the entire group after the initial grouping
      * has been performed
      * @param keyFn  - extracts/derives the grouping key
      * @param valueFn - function which transforms each group
@@ -206,7 +214,8 @@ public class MapUtilities {
      * @param <K> - key type
      * @param <V> - (initial value type)
      * @param <V2> - resultant value type
-     * @return
+     * @return a new map where elements of xs have been grouped by the key fn,
+     *      the resultant group is then transformed using the valueFn.
      */
     public static <K, V, V2> Map<K, V2> groupAndThen(Function<V, K> keyFn,
                                                      Function<Collection<V>, V2> valueFn,
@@ -231,8 +240,7 @@ public class MapUtilities {
 
     public static<K, K2, V> Map<K2, V> transformKeys(Map<K, V> original, Function<K, K2> transformation) {
         Map<K2, V> output = new HashMap<>();
-        original.entrySet()
-                .forEach(d -> output.put(transformation.apply(d.getKey()), d.getValue()));
+        original.forEach((key, value) -> output.put(transformation.apply(key), value));
         return output;
     }
 
@@ -250,8 +258,8 @@ public class MapUtilities {
      * @return a map going from K1 -> V
      */
     public static <K1, K2, V> Map<K1, V> compose(Map<K1, K2> map1, Map<K2, V> map2) {
-        Map<K1, V> result = new HashMap();
-        map1.entrySet().forEach(e -> result.put(e.getKey(), map2.get(e.getValue())));
+        Map<K1, V> result = new HashMap<>();
+        map1.forEach((key, value) -> result.put(key, map2.get(value)));
         return result;
     }
 }

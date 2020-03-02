@@ -1,20 +1,19 @@
 /*
  * Waltz - Enterprise Architecture
- * Copyright (C) 2016, 2017 Waltz open source project
+ * Copyright (C) 2016, 2017, 2018, 2019 Waltz open source project
  * See README.md for more information
  *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Lesser General Public License for more details.
+ *     http://www.apache.org/licenses/LICENSE-2.0
  *
- * You should have received a copy of the GNU Lesser General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific
+ *
  */
 
 import _ from "lodash";
@@ -91,12 +90,41 @@ function controller(serviceBroker) {
         vm.allDataTypesById = _.keyBy(vm.allDataTypes, "id");
     };
 
+    const doSave = () => {
+        const parentKind = vm.parentEntityRef.kind;
+        switch (parentKind) {
+            case "PHYSICAL_SPECIFICATION":
+                const specUpdateCommand = mkSpecDataTypeUpdateCommand(
+                    vm.parentEntityRef.id,
+                    vm.checkedItemIds,
+                    vm.originalSelectedItemIds);
+                return serviceBroker
+                    .execute(
+                        CORE_API.PhysicalSpecDataTypeStore.save,
+                        [ vm.parentEntityRef.id, specUpdateCommand ]);
+
+            case "LOGICAL_DATA_FLOW":
+                const flowUpdateCommand = mkFlowDataTypeDecoratorsUpdateCommand(
+                    vm.parentEntityRef.id,
+                    vm.checkedItemIds,
+                    vm.originalSelectedItemIds);
+
+                return serviceBroker
+                    .execute(
+                        CORE_API.LogicalFlowDecoratorStore.updateDecorators,
+                        [ flowUpdateCommand ]);
+            default:
+                return Promise.reject("Cannot save data types for kind: ${parentKind}");
+        }
+    };
+
     const loadDataTypes = (force = false) => {
+
         const selectorOptions = {
             entityReference: vm.parentEntityRef,
             scope: "EXACT"
         };
-        const promise = vm.parentEntityRef.kind == "PHYSICAL_SPECIFICATION"
+        const promise = vm.parentEntityRef.kind === "PHYSICAL_SPECIFICATION"
             ? serviceBroker
                 .loadViewData(
                     CORE_API.PhysicalSpecDataTypeStore.findBySpecificationSelector,
@@ -120,12 +148,16 @@ function controller(serviceBroker) {
         return promise.then(result => vm.dataTypes = result);
     };
 
-    serviceBroker
-        .loadAppData(CORE_API.DataTypeStore.findAll)
-        .then(result => {
-            vm.allDataTypes = result.data;
-        });
+    const anySelected = () => {
+        return notEmpty(vm.checkedItemIds);
+    };
 
+    const hasAnyChanges = () => {
+        return !_.isEqual(vm.checkedItemIds.sort(), vm.originalSelectedItemIds.sort());
+    };
+
+
+    // -- INTERACT
 
     vm.toggleTypeChecked = (id) => {
         _.some(vm.checkedItemIds, x => x === id)
@@ -135,7 +167,7 @@ function controller(serviceBroker) {
 
     vm.typeUnchecked = (id) => {
         vm.checkedItemIds = _.without(vm.checkedItemIds, id);
-        vm.onDirty(vm.hasAnyChanges() && vm.anySelected());
+        vm.onDirty(hasAnyChanges() && anySelected());
         //set disable flag of selected non concrete to true
         if(!vm.allDataTypesById[id].concrete) {
             _.find(vm.allDataTypes, { id: id}).disable = true;
@@ -153,16 +185,40 @@ function controller(serviceBroker) {
             }
             dt = parent;
         }
-        vm.checkedItemIds = _.union(vm.checkedItemIds, [id])
-        vm.onDirty(vm.hasAnyChanges());
+
+        vm.checkedItemIds = _
+            .chain(vm.checkedItemIds)
+            .reject(dtId => vm.unknownDataType ? dtId === vm.unknownDataType.id : false)
+            .union([id])
+            .value();
+
+        vm.onDirty(hasAnyChanges());
     };
 
-    vm.anySelected = () => {
-        return notEmpty(vm.checkedItemIds);
+    vm.save = () => {
+        return doSave()
+            .then(() => loadDataTypes(true))
+            .then(() => {
+                postLoadActions();
+                vm.onDirty(false);
+            });
     };
 
-    vm.hasAnyChanges = () => {
-        return !_.isEqual(vm.checkedItemIds.sort(), vm.originalSelectedItemIds.sort());
+    // -- LIFECYCLE
+
+    vm.$onInit = () => {
+        vm.onDirty(false);
+        vm.onRegisterSave(vm.save);
+
+        serviceBroker
+            .loadAppData(CORE_API.DataTypeStore.findAll)
+            .then(result => {
+                vm.allDataTypes = result.data;
+                vm.unknownDataType = _.find(vm.allDataTypes, dt => dt.unknown);
+            });
+
+        loadDataTypes()
+            .then(postLoadActions);
     };
 
     vm.$onChanges = () => {
@@ -173,40 +229,6 @@ function controller(serviceBroker) {
             });
     };
 
-    vm.save = () => {
-        let promise = null;
-        if(vm.parentEntityRef.kind === "PHYSICAL_SPECIFICATION") {
-            const updateCommand = mkSpecDataTypeUpdateCommand(
-                vm.parentEntityRef.id,
-                vm.checkedItemIds,
-                vm.originalSelectedItemIds);
-
-            promise = serviceBroker
-                .execute(CORE_API.PhysicalSpecDataTypeStore.save, [vm.parentEntityRef.id, updateCommand]);
-        } else if(vm.parentEntityRef.kind === "LOGICAL_DATA_FLOW") {
-            const updateCommand = mkFlowDataTypeDecoratorsUpdateCommand(
-                vm.parentEntityRef.id,
-                vm.checkedItemIds,
-                vm.originalSelectedItemIds);
-
-            promise = serviceBroker
-                .execute(CORE_API.LogicalFlowDecoratorStore.updateDecorators, [updateCommand]);
-        }
-        return promise
-            .then(result => loadDataTypes(true))
-            .then(() => {
-                postLoadActions();
-                vm.onDirty(false);
-            });
-    };
-
-    vm.$onInit = () => {
-        vm.onDirty(false);
-        vm.onRegisterSave(vm.save);
-
-        loadDataTypes()
-            .then(postLoadActions);
-    };
 }
 
 

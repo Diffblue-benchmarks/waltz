@@ -3,18 +3,17 @@
  * Copyright (C) 2016, 2017, 2018, 2019 Waltz open source project
  * See README.md for more information
  *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Lesser General Public License for more details.
+ *     http://www.apache.org/licenses/LICENSE-2.0
  *
- * You should have received a copy of the GNU Lesser General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific
+ *
  */
 
 package com.khartec.waltz.service.assessment_rating;
@@ -74,44 +73,23 @@ public class AssessmentRatingService {
     }
 
 
-    public boolean update(SaveAssessmentRatingCommand command, String username) {
+    public boolean store(SaveAssessmentRatingCommand command, String username) {
         AssessmentDefinition assessmentDefinition = assessmentDefinitionDao.getById(command.assessmentDefinitionId());
         ChangeLog logEntry = ImmutableChangeLog.builder()
                 .message(format(
-                        "Updated %s as [%s - %s]",
+                        "Storing assessment %s as [%s - %s]",
                         assessmentDefinition.name(),
                         ratingSchemeDAO.getRagNameById(command.ratingId()).name(),
-                        command.description()))
+                        command.comment()))
                 .parentReference(mkRef(command.entityReference().kind(), command.entityReference().id()))
                 .userId(username)
-                .childKind(command.entityReference().kind())
                 .severity(Severity.INFORMATION)
                 .operation(Operation.UPDATE)
                 .build();
 
         changeLogService.write(logEntry);
 
-        return assessmentRatingDao.update(command);
-    }
-
-
-    public boolean create(SaveAssessmentRatingCommand command, String username) {
-        ChangeLog logEntry = ImmutableChangeLog.builder()
-                .message(format(
-                        "Created %s as [%s - %s]",
-                        assessmentDefinitionDao.getById(command.assessmentDefinitionId()).name(),
-                        ratingSchemeDAO.getRagNameById(command.ratingId()).name(),
-                        command.description()))
-                .parentReference(mkRef(command.entityReference().kind(), command.entityReference().id()))
-                .userId(username)
-                .childKind(command.entityReference().kind())
-                .severity(Severity.INFORMATION)
-                .operation(Operation.ADD)
-                .build();
-
-        changeLogService.write(logEntry);
-
-        return assessmentRatingDao.create(command);
+        return assessmentRatingDao.store(command);
     }
 
 

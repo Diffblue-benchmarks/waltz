@@ -3,18 +3,17 @@
  * Copyright (C) 2016, 2017, 2018, 2019 Waltz open source project
  * See README.md for more information
  *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Lesser General Public License for more details.
+ *     http://www.apache.org/licenses/LICENSE-2.0
  *
- * You should have received a copy of the GNU Lesser General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific
+ *
  */
 
 import _ from "lodash";
@@ -22,23 +21,22 @@ import {authoritativeRatingColorScale} from "../../common/colors";
 
 
 function pickWorst(ratings = []) {
-    const sortedByBadness = [ 'DISCOURAGED', 'SECONDARY', 'PRIMARY', 'NO_OPINION' ];
+    const sortedByBadness = [ "DISCOURAGED", "SECONDARY", "PRIMARY", "NO_OPINION" ];
     const worst = _.find(sortedByBadness, x => _.includes(ratings, x));
 
-    return worst || 'NO_OPINION';
+    return worst || "NO_OPINION";
 }
 
 
 export default [
     () => {
-
         const buildGraphTweakers = (appIds = [], decorators = []) => {
 
-            const decoratorsByFlowId = _.groupBy(decorators, 'dataFlowId');
+            const decoratorsByFlowId = _.groupBy(decorators, "dataFlowId");
             const calcRating = (d) => {
                 const flowId = d.data.id;
                 const flowDecorators = decoratorsByFlowId[flowId] || [];
-                const ratings = _.map(flowDecorators, 'rating');
+                const ratings = _.map(flowDecorators, "rating");
                 return pickWorst(ratings);
             };
 
@@ -46,9 +44,8 @@ export default [
                 node : {
                     enter: (selection) => {
                         selection
-                            .classed('wdfd-intra-node', d => _.includes(appIds, d.id))
-                            .classed('wdfd-extra-node', d => ! _.includes(appIds, d.id))
-                            .on('dblclick.unfix', d => { d.fx = null; d.fy = null; })
+                            .classed("wdfd-intra-node", d => _.includes(appIds, d.id))
+                            .classed("wdfd-extra-node", d => ! _.includes(appIds, d.id))
                     },
                     update: _.identity,
                     exit: _.identity
@@ -56,18 +53,18 @@ export default [
                 link : {
                     update: (selection) => {
                         return selection
-                            .attr('stroke', d => {
+                            .attr("stroke", d => {
                                 const rating = calcRating(d);
                                 return authoritativeRatingColorScale(rating);
                             })
-                            .attr('fill', d => {
+                            .attr("fill", d => {
                                 const rating = calcRating(d);
                                 return authoritativeRatingColorScale(rating).brighter();
                             });
                     },
                     enter: (selection) => {
                         return selection
-                            .attr('stroke-width', 1.5);
+                            .attr("stroke-width", 1.5);
 
                     },
                     exit: _.identity
@@ -82,7 +79,7 @@ export default [
                     const enriched = {
                         dataType: {
                             id: dc.entityReference.id,
-                            name: displayNameService.lookup('dataType', dc.entityReference.id)
+                            name: displayNameService.lookup("dataType", dc.entityReference.id)
                         },
                         inbound: 0,
                         outbound: 0,

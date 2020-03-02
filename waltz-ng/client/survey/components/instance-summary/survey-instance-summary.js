@@ -1,9 +1,27 @@
+/*
+ * Waltz - Enterprise Architecture
+ * Copyright (C) 2016, 2017, 2018, 2019 Waltz open source project
+ * See README.md for more information
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific
+ *
+ */
+
 import {initialiseData} from "../../../common";
 import template from "./survey-instance-summary.html";
 import {CORE_API} from "../../../common/services/core-api-utils";
 import _ from "lodash";
 import {timeFormat} from "d3-time-format";
-import {loadEntity, mkRef, sameRef} from "../../../common/entity-utils";
+import {loadEntity, sameRef} from "../../../common/entity-utils";
 import {displayError} from "../../../common/error-utils";
 import roles from "../../../user/system-roles";
 
@@ -144,10 +162,10 @@ function controller($state, serviceBroker, userService, notification) {
     function determineAvailableStatusActions() {
         vm.availableStatusActions = _.filter(
             statusActions,
-                act => act.predicate(
-                    vm.surveyInstance,
-                    vm.permissions,
-                    vm.currentResponseVersion.isLatest));
+            act => act.predicate(
+                vm.surveyInstance,
+                vm.permissions,
+                vm.currentResponseVersion.isLatest));
     }
 
     function loadUser() {
@@ -296,9 +314,7 @@ function controller($state, serviceBroker, userService, notification) {
             .execute(
                 CORE_API.SurveyInstanceStore.updateRecipient,
                 [vm.surveyInstance.id, cmd])
-            .then(r => {
-                notification.success("Updated survey recipient");
-            })
+            .then(() => notification.success("Updated survey recipient"))
             .catch(e => displayError(notification, "Failed to update recipient", e))
             .finally(() => loadRecipients(true));
     };
@@ -315,7 +331,7 @@ function controller($state, serviceBroker, userService, notification) {
                     notification.success("Survey instance due date updated successfully");
                     loadInstanceAndRun(true);
                 })
-                .catch(r => notification.error("Failed to update survey instance due date"));
+                .catch(e => displayError(notification, "Failed to update survey instance due date", e));
         }
     };
 
@@ -326,9 +342,6 @@ function controller($state, serviceBroker, userService, notification) {
     };
 
     // -- LIFECYCLE
-
-    vm.$onInit = () => {
-    };
 
     vm.$onChanges = (changes) => {
         if (vm.instanceId) {

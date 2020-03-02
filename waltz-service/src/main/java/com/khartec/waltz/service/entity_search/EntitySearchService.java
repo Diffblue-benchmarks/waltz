@@ -1,28 +1,27 @@
 /*
  * Waltz - Enterprise Architecture
- * Copyright (C) 2016, 2017 Waltz open source project
+ * Copyright (C) 2016, 2017, 2018, 2019 Waltz open source project
  * See README.md for more information
  *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Lesser General Public License for more details.
+ *     http://www.apache.org/licenses/LICENSE-2.0
  *
- * You should have received a copy of the GNU Lesser General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific
+ *
  */
 
 package com.khartec.waltz.service.entity_search;
 
+import com.khartec.waltz.common.StringUtilities;
 import com.khartec.waltz.data.DBExecutorPoolInterface;
-import com.khartec.waltz.model.EntityKind;
-import com.khartec.waltz.model.EntityReference;
-import com.khartec.waltz.model.WaltzEntity;
+import com.khartec.waltz.data.SearchUtilities;
+import com.khartec.waltz.model.*;
 import com.khartec.waltz.model.entity_search.EntitySearchOptions;
 import com.khartec.waltz.service.actor.ActorService;
 import com.khartec.waltz.service.app_group.AppGroupService;
@@ -40,6 +39,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.Callable;
 import java.util.concurrent.Future;
@@ -110,15 +110,22 @@ public class EntitySearchService {
     }
 
 
-    public List<EntityReference> search(String query, EntitySearchOptions options) {
-        checkNotNull(query, "query cannot be null");
+    public List<EntityReference> search(EntitySearchOptions options) {
         checkNotNull(options, "options cannot be null");
 
-        List<Future<Collection<? extends WaltzEntity>>> futures = options.entityKinds().stream()
-                .map(ek -> dbExecutorPool.submit(mkCallable(ek, query, options)))
+        if (StringUtilities.isEmpty(options.searchQuery())
+                || SearchUtilities.mkTerms(options.searchQuery()).isEmpty()) {
+            return Collections.emptyList();
+        }
+
+        List<Future<Collection<? extends WaltzEntity>>> futures = options
+                .entityKinds()
+                .stream()
+                .map(ek -> dbExecutorPool.submit(mkCallable(ek, options)))
                 .collect(toList());
 
-        return futures.stream()
+        return futures
+                .stream()
                 .flatMap(f -> supplier(f::get).get().stream())
                 .map(WaltzEntity::entityReference)
                 .collect(toList());
@@ -126,33 +133,32 @@ public class EntitySearchService {
 
 
     private Callable<Collection<? extends WaltzEntity>> mkCallable(EntityKind entityKind,
-                                                                   String query,
                                                                    EntitySearchOptions options) {
         switch (entityKind) {
             case ACTOR:
-                return () -> actorService.search(query, options);
+                return () -> actorService.search(options);
             case APPLICATION:
-                return () -> applicationService.search(query, options);
+                return () -> applicationService.search(options);
             case APP_GROUP:
-                return () -> appGroupService.search(query, options);
+                return () -> appGroupService.search(options);
             case CHANGE_INITIATIVE:
-                return () -> changeInitiativeService.search(query, options);
+                return () -> changeInitiativeService.search(options);
             case DATA_TYPE:
-                return () -> dataTypeService.search(query);
+                return () -> dataTypeService.search(options);
             case LOGICAL_DATA_ELEMENT:
-                return () -> logicalDataElementService.search(query, options);
+                return () -> logicalDataElementService.search(options);
             case MEASURABLE:
-                return () -> measurableService.search(query, options);
+                return () -> measurableService.search(options);
             case ORG_UNIT:
-                return () -> organisationalUnitService.search(query, options);
+                return () -> organisationalUnitService.search(options);
             case PERSON:
-                return () -> personService.search(query, options);
+                return () -> personService.search(options);
             case PHYSICAL_SPECIFICATION:
-                return () -> physicalSpecificationService.search(query, options);
+                return () -> physicalSpecificationService.search(options);
             case ROADMAP:
-                return () -> roadmapService.search(query, options);
+                return () -> roadmapService.search(options);
             case SERVER:
-                return () -> serverInformationService.search(query, options);
+                return () -> serverInformationService.search(options);
             default:
                 throw new UnsupportedOperationException("no search service available for: " + entityKind);
         }

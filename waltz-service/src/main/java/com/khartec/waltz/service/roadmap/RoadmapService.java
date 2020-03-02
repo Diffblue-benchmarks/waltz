@@ -1,3 +1,21 @@
+/*
+ * Waltz - Enterprise Architecture
+ * Copyright (C) 2016, 2017, 2018, 2019 Waltz open source project
+ * See README.md for more information
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific
+ *
+ */
+
 package com.khartec.waltz.service.roadmap;
 
 import com.khartec.waltz.data.entity_relationship.EntityRelationshipDao;
@@ -149,15 +167,15 @@ public class RoadmapService {
 
 
     public List<EntityReference> search(String query) {
-        List<Roadmap> roadmaps = search(query, EntitySearchOptions.mkForEntity(EntityKind.ROADMAP));
+        List<Roadmap> roadmaps = search(EntitySearchOptions.mkForEntity(EntityKind.ROADMAP, query));
         return roadmaps.stream()
                 .map(Roadmap::entityReference)
                 .collect(toList());
     }
 
 
-    public List<Roadmap> search(String query, EntitySearchOptions options) {
-        return roadmapSearchDao.search(query, options);
+    public List<Roadmap> search(EntitySearchOptions options) {
+        return roadmapSearchDao.search(options);
     }
 
 

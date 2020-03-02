@@ -1,3 +1,21 @@
+/*
+ * Waltz - Enterprise Architecture
+ * Copyright (C) 2016, 2017, 2018, 2019 Waltz open source project
+ * See README.md for more information
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific
+ *
+ */
+
 package com.khartec.waltz.web.endpoints.extracts;
 
 import com.khartec.waltz.common.ListUtilities;
@@ -20,7 +38,7 @@ import static spark.Spark.get;
 
 
 @Service
-public class SurveyRunExtractor extends BaseDataExtractor {
+public class SurveyRunExtractor extends DirectQueryBasedDataExtractor {
 
     private static final Logger LOG = LoggerFactory.getLogger(SurveyRunExtractor.class);
     private static List<Field> SURVEY_RESPONSE_FIELDS;
@@ -35,7 +53,8 @@ public class SurveyRunExtractor extends BaseDataExtractor {
                 SURVEY_QUESTION_RESPONSE.NUMBER_RESPONSE.cast(String.class).coalesce(""),
                 SURVEY_QUESTION_RESPONSE.BOOLEAN_RESPONSE.cast(String.class).coalesce(""),
                 SURVEY_QUESTION_RESPONSE.DATE_RESPONSE.cast(String.class).coalesce(""),
-                ENTITY_RESPONSE_NAME_FIELD.coalesce("")).as("Answer");
+                ENTITY_RESPONSE_NAME_FIELD.coalesce(""),
+                SURVEY_QUESTION_RESPONSE.LIST_RESPONSE_CONCAT.coalesce("")).as("Answer");
 
         SURVEY_RESPONSE_FIELDS = ListUtilities.asList(
                 SURVEY_QUESTION.SECTION_NAME.as("Section"),
@@ -147,9 +166,11 @@ public class SurveyRunExtractor extends BaseDataExtractor {
                 .and(SURVEY_INSTANCE.ORIGINAL_INSTANCE_ID.isNull());
     }
 
+
     private String mkFilename(String postfix) {
         return "survey-run-instances-" + postfix;
     }
+
 
     private String getSurveyRunNameById(long id) {
         return dsl.select(SURVEY_RUN.NAME)
@@ -157,6 +178,7 @@ public class SurveyRunExtractor extends BaseDataExtractor {
                 .where(SURVEY_RUN.ID.eq(id))
                 .fetchOne().component1();
     }
+
 
     private String getSurveyRunNameByInstanceId(long surveyInstanceId) {
         return dsl.select(SURVEY_RUN.NAME)
@@ -168,4 +190,5 @@ public class SurveyRunExtractor extends BaseDataExtractor {
                 ))
                 .fetchOne().component1();
     }
+
 }

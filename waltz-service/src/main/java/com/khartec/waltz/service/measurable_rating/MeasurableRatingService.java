@@ -3,18 +3,17 @@
  * Copyright (C) 2016, 2017, 2018, 2019 Waltz open source project
  * See README.md for more information
  *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Lesser General Public License for more details.
+ *     http://www.apache.org/licenses/LICENSE-2.0
  *
- * You should have received a copy of the GNU Lesser General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific
+ *
  */
 
 package com.khartec.waltz.service.measurable_rating;
@@ -25,7 +24,6 @@ import com.khartec.waltz.data.measurable.MeasurableDao;
 import com.khartec.waltz.data.measurable.MeasurableIdSelectorFactory;
 import com.khartec.waltz.data.measurable_category.MeasurableCategoryDao;
 import com.khartec.waltz.data.measurable_rating.MeasurableRatingDao;
-import com.khartec.waltz.data.perspective_rating.PerspectiveRatingDao;
 import com.khartec.waltz.model.*;
 import com.khartec.waltz.model.changelog.ImmutableChangeLog;
 import com.khartec.waltz.model.measurable.Measurable;
@@ -44,7 +42,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.Collection;
 import java.util.List;
-import java.util.function.Function;
 
 import static com.khartec.waltz.common.Checks.checkNotNull;
 import static com.khartec.waltz.common.Checks.checkTrue;
@@ -55,7 +52,6 @@ public class MeasurableRatingService {
 
     private final MeasurableRatingDao measurableRatingDao;
     private final MeasurableDao measurableDao;
-    private final PerspectiveRatingDao perspectiveRatingDao;
     private final ChangeLogService changeLogService;
     private final MeasurableCategoryDao measurableCategoryDao;
 
@@ -67,18 +63,15 @@ public class MeasurableRatingService {
     public MeasurableRatingService(MeasurableRatingDao measurableRatingDao,
                                    MeasurableDao measurableDao,
                                    MeasurableCategoryDao measurableCategoryDao,
-                                   PerspectiveRatingDao perspectiveRatingDao,
                                    ChangeLogService changeLogService) {
         checkNotNull(measurableRatingDao, "measurableRatingDao cannot be null");
         checkNotNull(measurableDao, "measurableDao cannot be null");
         checkNotNull(measurableCategoryDao, "measurableCategoryDao cannot be null");
-        checkNotNull(perspectiveRatingDao, "perspectiveRatingDao cannot be null");
         checkNotNull(changeLogService, "changeLogService cannot be null");
 
         this.measurableRatingDao = measurableRatingDao;
         this.measurableDao = measurableDao;
         this.measurableCategoryDao = measurableCategoryDao;
-        this.perspectiveRatingDao = perspectiveRatingDao;
         this.changeLogService = changeLogService;
     }
 
@@ -105,21 +98,23 @@ public class MeasurableRatingService {
 
     // -- WRITE
 
-    public Collection<MeasurableRating> update(SaveMeasurableRatingCommand command) {
-        return save(
-                command,
-                measurableRatingDao::update,
-                "Updated: %s with a rating of: %s",
-                Operation.UPDATE);
-    }
+    public Collection<MeasurableRating> save(SaveMeasurableRatingCommand command) {
+        checkNotNull(command, "command cannot be null");
 
+        Measurable measurable = measurableDao.getById(command.measurableId());
+        checkNotNull(measurable, format("Unknown measurable with id: %d", command.measurableId()));
+        checkTrue(measurable.concrete(), "Cannot rate against an abstract measurable");
 
-    public Collection<MeasurableRating> create(SaveMeasurableRatingCommand command) {
-        return save(
+        Operation operationThatWasPerformed = measurableRatingDao.save(command);
+
+        writeChangeLogEntry(
                 command,
-                measurableRatingDao::create,
-                "Added: %s with a rating of: %s",
-                Operation.ADD);
+                format("Saved: %s with a rating of: %s",
+                        measurable.name(),
+                        command.rating()),
+                operationThatWasPerformed);
+
+        return findForEntity(command.entityReference());
     }
 
 
@@ -159,7 +154,6 @@ public class MeasurableRatingService {
         Measurable measurable = measurableDao.getById(command.measurableId());
 
         boolean success = measurableRatingDao.remove(command);
-        perspectiveRatingDao.cascadeRemovalOfMeasurableRating(command.entityReference(), command.measurableId());
 
         if (success && measurable != null) {
             writeChangeLogEntry(
@@ -191,30 +185,6 @@ public class MeasurableRatingService {
 
 
     // -- HELPERS --
-
-    private Collection<MeasurableRating> save(SaveMeasurableRatingCommand command,
-                                              Function<SaveMeasurableRatingCommand, Boolean> action,
-                                              String messageTemplate,
-                                              Operation operation) {
-        checkNotNull(command, "command cannot be null");
-
-        Measurable measurable = measurableDao.getById(command.measurableId());
-        checkNotNull(measurable, format("Unknown measurable with id: %d", command.measurableId()));
-        checkTrue(measurable.concrete(), "Cannot rate against an abstract measurable");
-
-        boolean success = action.apply(command);
-
-        if (success) {
-            writeChangeLogEntry(
-                    command,
-                    format(messageTemplate,
-                            measurable.name(),
-                            command.rating()),
-                    operation);
-        }
-
-        return findForEntity(command.entityReference());
-    }
 
 
     private void writeChangeLogEntry(MeasurableRatingCommand command, String message, Operation operation) {

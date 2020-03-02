@@ -1,28 +1,27 @@
 /*
  * Waltz - Enterprise Architecture
- * Copyright (C) 2016, 2017 Waltz open source project
+ * Copyright (C) 2016, 2017, 2018, 2019 Waltz open source project
  * See README.md for more information
  *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Lesser General Public License for more details.
+ *     http://www.apache.org/licenses/LICENSE-2.0
  *
- * You should have received a copy of the GNU Lesser General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific
+ *
  */
 
 package com.khartec.waltz.data.software_catalog;
 
 import com.khartec.waltz.common.Checks;
 import com.khartec.waltz.data.JooqUtilities;
+import com.khartec.waltz.model.UserTimestamp;
 import com.khartec.waltz.model.software_catalog.ImmutableSoftwarePackage;
-import com.khartec.waltz.model.software_catalog.MaturityStatus;
 import com.khartec.waltz.model.software_catalog.SoftwarePackage;
 import com.khartec.waltz.model.tally.Tally;
 import com.khartec.waltz.schema.tables.records.SoftwarePackageRecord;
@@ -39,8 +38,10 @@ import java.util.Optional;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
+import static com.khartec.waltz.common.DateTimeUtilities.nowUtcTimestamp;
 import static com.khartec.waltz.schema.tables.SoftwarePackage.SOFTWARE_PACKAGE;
 import static com.khartec.waltz.schema.tables.SoftwareUsage.SOFTWARE_USAGE;
+import static com.khartec.waltz.schema.tables.SoftwareVersion.SOFTWARE_VERSION;
 
 @Repository
 public class SoftwarePackageDao {
@@ -52,15 +53,14 @@ public class SoftwarePackageDao {
         SoftwarePackageRecord record = new SoftwarePackageRecord();
 
         record.setVendor(sp.vendor());
+        record.setGroup(sp.group());
         record.setName(sp.name());
-        record.setVersion(sp.version());
-        record.setDescription(sp.description());
-
-        record.setMaturityStatus(sp.maturityStatus().name());
         record.setNotable(sp.isNotable());
-
-        record.setProvenance(sp.provenance());
+        record.setDescription(sp.description());
         record.setExternalId(sp.externalId().orElse(null));
+        record.setCreatedAt(sp.created().map(t -> t.atTimestamp()).orElse(nowUtcTimestamp()));
+        record.setCreatedBy(sp.created().map(t -> t.by()).orElse(""));
+        record.setProvenance(sp.provenance());
 
         return record;
     };
@@ -71,12 +71,12 @@ public class SoftwarePackageDao {
         return ImmutableSoftwarePackage.builder()
                 .id(record.getId())
                 .vendor(record.getVendor())
+                .group(record.getGroup())
                 .name(record.getName())
-                .version(record.getVersion())
-                .description(record.getDescription())
                 .isNotable(record.getNotable())
-                .maturityStatus(MaturityStatus.valueOf(record.getMaturityStatus()))
                 .externalId(Optional.ofNullable(record.getExternalId()))
+                .description(record.getDescription())
+                .created(UserTimestamp.mkForUser(record.getCreatedBy(), record.getCreatedAt()))
                 .provenance(record.getProvenance())
                 .build();
     };
@@ -98,7 +98,7 @@ public class SoftwarePackageDao {
                 .collect(Collectors.toList());
 
         LOG.info("Bulk storing " + records.size() + " records");
-        return dsl.batchStore(records).execute();
+        return dsl.batchInsert(records).execute();
     }
 
 
@@ -144,8 +144,10 @@ public class SoftwarePackageDao {
         return dsl
                 .select(groupingField, DSL.count(groupingField))
                 .from(SOFTWARE_PACKAGE)
+                .innerJoin(SOFTWARE_VERSION)
+                    .on(SOFTWARE_VERSION.SOFTWARE_PACKAGE_ID.eq(SOFTWARE_PACKAGE.ID))
                 .innerJoin(SOFTWARE_USAGE)
-                .on(SOFTWARE_PACKAGE.ID.eq(SOFTWARE_USAGE.SOFTWARE_PACKAGE_ID))
+                    .on(SOFTWARE_USAGE.ID.eq(SOFTWARE_VERSION.SOFTWARE_PACKAGE_ID))
                 .where(dsl.renderInlined(condition))
                 .groupBy(groupingField)
                 .fetch(JooqUtilities.TO_STRING_TALLY);

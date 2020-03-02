@@ -1,25 +1,26 @@
 /*
  * Waltz - Enterprise Architecture
- * Copyright (C) 2016, 2017 Waltz open source project
+ * Copyright (C) 2016, 2017, 2018, 2019 Waltz open source project
  * See README.md for more information
  *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Lesser General Public License for more details.
+ *     http://www.apache.org/licenses/LICENSE-2.0
  *
- * You should have received a copy of the GNU Lesser General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific
+ *
  */
 
 package com.khartec.waltz.web.endpoints.api;
 
+import com.khartec.waltz.model.EntityKind;
 import com.khartec.waltz.model.datatype.DataType;
+import com.khartec.waltz.model.entity_search.EntitySearchOptions;
 import com.khartec.waltz.service.data_type.DataTypeService;
 import com.khartec.waltz.web.DatumRoute;
 import com.khartec.waltz.web.ListRoute;
@@ -29,10 +30,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import static com.khartec.waltz.common.Checks.checkNotNull;
-import static com.khartec.waltz.web.WebUtilities.getLong;
 import static com.khartec.waltz.web.WebUtilities.mkPath;
-import static com.khartec.waltz.web.endpoints.EndpointUtilities.getForDatum;
-import static com.khartec.waltz.web.endpoints.EndpointUtilities.getForList;
+import static com.khartec.waltz.web.WebUtilities.readBody;
+import static com.khartec.waltz.web.endpoints.EndpointUtilities.*;
 import static java.lang.Long.parseLong;
 
 
@@ -52,18 +52,24 @@ public class DataTypesEndpoint implements Endpoint {
 
     @Override
     public void register() {
-        String searchPath = mkPath(BASE_URL, "search", ":query");
+        String searchPath = mkPath(BASE_URL, "search");
         String getDataTypeByIdPath = mkPath(BASE_URL, "id", ":id");
+        String getDataTypeByCodePath = mkPath(BASE_URL, "code", ":code");
 
         ListRoute<DataType> searchRoute = (request, response) ->
-                service.search(request.params("query"));
+                service.search(EntitySearchOptions
+                        .mkForEntity(EntityKind.DATA_TYPE, readBody(request, String.class)));
 
         DatumRoute<DataType> getDataTypeByIdRoute = (request, response) ->
                 service.getDataTypeById(parseLong(request.params("id")));
 
+        DatumRoute<DataType> getDataTypeByCodeRoute = (request, response) ->
+                service.getDataTypeByCode(request.params("code"));
+
         getForList(BASE_URL, (request, response) -> service.findAll());
-        getForList(searchPath, searchRoute);
+        postForList(searchPath, searchRoute);
         getForDatum(getDataTypeByIdPath, getDataTypeByIdRoute);
+        getForDatum(getDataTypeByCodePath, getDataTypeByCodeRoute);
     }
 
 

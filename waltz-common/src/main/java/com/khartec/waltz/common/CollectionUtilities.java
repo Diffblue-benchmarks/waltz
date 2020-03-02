@@ -1,20 +1,19 @@
 /*
  * Waltz - Enterprise Architecture
- * Copyright (C) 2016, 2017 Waltz open source project
+ * Copyright (C) 2016, 2017, 2018, 2019 Waltz open source project
  * See README.md for more information
  *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Lesser General Public License for more details.
+ *     http://www.apache.org/licenses/LICENSE-2.0
  *
- * You should have received a copy of the GNU Lesser General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific
+ *
  */
 
 package com.khartec.waltz.common;
@@ -23,6 +22,7 @@ import java.util.*;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Predicate;
+import java.util.function.ToLongFunction;
 import java.util.stream.Collectors;
 
 import static com.khartec.waltz.common.Checks.checkNotEmpty;
@@ -208,7 +208,7 @@ public class CollectionUtilities {
      * @param <X>        type of elements in `xs`, should implement `Comparable`
      * @return new list with members of `xs` sorted by the items comparator
      */
-    public static <X extends Comparable> List<X> sort(Collection<X> xs) {
+    public static <X extends Comparable<X>> List<X> sort(Collection<X> xs) {
         checkNotNull(xs, "xs cannot be null");
 
         List<X> sorted = new ArrayList<>(xs);
@@ -245,4 +245,26 @@ public class CollectionUtilities {
                 .findFirst();
     }
 
+
+    public static <X> long sumBy(Collection<X> xs, ToLongFunction<X> fn) {
+        return xs.stream().mapToLong(fn).sum();
+    }
+
+
+    public static Long sumInts(Collection<Integer> values) {
+        long acc = 0;
+        for(Integer v : values) {
+            acc += v;
+        }
+        return acc;
+    }
+
+
+    public static Long sumLongs(Collection<Long> values) {
+        long acc = 0;
+        for(Long v : values) {
+            acc += v;
+        }
+        return acc;
+    }
 }

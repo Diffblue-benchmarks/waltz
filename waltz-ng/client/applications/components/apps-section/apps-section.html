@@ -1,13 +1,31 @@
+<!--
+  ~ Waltz - Enterprise Architecture
+  ~ Copyright (C) 2016, 2017, 2018, 2019 Waltz open source project
+  ~ See README.md for more information
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific
+  ~
+  -->
+
 <div>
 
     <waltz-section-actions>
-        <button class="btn btn-xs btn-primary"
-                ng-if="$ctrl.visibility.tab == 2"
-                ng-click="$ctrl.export()">
-            <waltz-icon name="cloud-download"></waltz-icon>
-            Export
-        </button>
-
+        <waltz-data-extract-link name="Export"
+                                 styling="button"
+                                 extract="application/by-selector"
+                                 method="POST"
+                                 request-body="$ctrl.selectorOptions"
+                                 ng-if="$ctrl.visibility.tab == 'DETAIL'">
+        </waltz-data-extract-link>
         <button class="btn btn-xs waltz-btn-transparent"
                 ng-click="$ctrl.visibility.appOverlay = ! $ctrl.visibility.appOverlay">
             <waltz-icon name="map-signs"></waltz-icon>
@@ -18,25 +36,25 @@
                                entities="['APPLICATION', 'END_USER_APPLICATION']">
     </waltz-source-data-overlay>
 
-    <uib-tabset ng-if="$ctrl.combinedApps.length > 0">
-        <uib-tab heading="Summary" select="$ctrl.visibility.tab = 1">
+    <uib-tabset ng-if="$ctrl.combinedCount > 0">
+        <uib-tab heading="Summary"
+                 select="$ctrl.onTabSelect('SUMMARY')">
             <waltz-app-summary apps="$ctrl.apps"
                                end-user-apps="$ctrl.endUserApps">
             </waltz-app-summary>
         </uib-tab>
 
-        <uib-tab select="$ctrl.visibility.tab = 2"
+        <uib-tab select="$ctrl.onTabSelect('DETAIL')"
                  heading="Applications">
             <br>
-            <div ng-if="$ctrl.visibility.tab == 2">
-                <waltz-app-table applications="$ctrl.combinedApps"
-                                 on-initialise="$ctrl.onInitialise">
+            <div ng-if="$ctrl.visibility.tab == 'DETAIL'">
+                <waltz-app-table applications="$ctrl.combinedApps">
                 </waltz-app-table>
             </div>
         </uib-tab>
     </uib-tabset>
 
-    <waltz-no-data ng-if="$ctrl.combinedApps.length == 0">
+    <waltz-no-data ng-if="$ctrl.combinedCount == 0">
         <message>
             There are <strong>no application </strong>
             associations.

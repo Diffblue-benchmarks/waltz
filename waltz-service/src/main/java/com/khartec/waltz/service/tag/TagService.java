@@ -1,20 +1,19 @@
 /*
  * Waltz - Enterprise Architecture
- * Copyright (C) 2016, 2017 Waltz open source project
+ * Copyright (C) 2016, 2017, 2018, 2019 Waltz open source project
  * See README.md for more information
  *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Lesser General Public License for more details.
+ *     http://www.apache.org/licenses/LICENSE-2.0
  *
- * You should have received a copy of the GNU Lesser General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific
+ *
  */
 
 package com.khartec.waltz.service.tag;
@@ -23,7 +22,9 @@ import com.khartec.waltz.common.SetUtilities;
 import com.khartec.waltz.data.tag.TagDao;
 import com.khartec.waltz.model.EntityKind;
 import com.khartec.waltz.model.EntityReference;
+import com.khartec.waltz.model.Operation;
 import com.khartec.waltz.model.tag.Tag;
+import com.khartec.waltz.service.changelog.ChangeLogService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,24 +41,18 @@ import static com.khartec.waltz.common.SetUtilities.fromCollection;
 @Service
 public class TagService {
 
-    private final TagDao tagDao;
     private static final Logger LOG = LoggerFactory.getLogger(TagService.class);
 
+    private final TagDao tagDao;
+    private final ChangeLogService changeLogService;
+
+
     @Autowired
-    public TagService(TagDao tagDao) {
+    public TagService(TagDao tagDao, ChangeLogService changeLogService) {
         this.tagDao = tagDao;
+        this.changeLogService = changeLogService;
     }
 
-
-    @Deprecated
-    public List<Tag> findAllTags() {
-        return tagDao.findAllTags();
-    }
-
-    @Deprecated
-    public List<EntityReference> findByTag(String tag) {
-        return tagDao.findByTag(tag);
-    }
 
     public List<Tag> findTagsForEntityReference(EntityReference reference) {
         return tagDao.findTagsForEntityReference(reference);
@@ -68,6 +63,12 @@ public class TagService {
         return tagDao.findTagsForEntityKind(entityKind);
     }
 
+
+    public Tag getById(long id) {
+        return tagDao.getById(id);
+    }
+
+    
     public List<Tag> updateTags(EntityReference ref, Collection<String> tags, String username) {
         checkNotNull(tags, "tags cannot be null");
         LOG.info("Adding tags {} for entity ref {}", tags, ref);
@@ -93,11 +94,28 @@ public class TagService {
             toAdd.forEach(tag -> createTagUsage(ref, tag, username));
         }
 
+        writeChangeLogEntries(ref, username, toRemove, toAdd);
+        
         return findTagsForEntityReference(ref);
     }
 
+
+    private void writeChangeLogEntries(EntityReference ref,
+                                       String username,
+                                       Set<String> removed,
+                                       Set<String> added) {
+
+        String postamble = new StringBuilder()
+                .append(added.isEmpty() ? "" : " Added tags: " + added + ". ")
+                .append(removed.isEmpty() ? "" : "Removed tags: " + removed + ". ")
+                .toString();
+
+        changeLogService.writeChangeLogEntries(ref, username, postamble, Operation.UPDATE);
+    }
+
+
     private void createTagUsage(EntityReference ref, String tag, String username) {
-        Tag existingTag = tagDao.findTagByNameAndTargetKind(ref.kind(), tag);
+        Tag existingTag = tagDao.getTagByNameAndTargetKind(ref.kind(), tag);
 
         Long tagId =  existingTag != null
                 ? existingTag.id().get()
@@ -105,5 +123,4 @@ public class TagService {
 
         tagDao.createTagUsage(ref, username, tagId);
     }
-
 }

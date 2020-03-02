@@ -1,54 +1,70 @@
 /*
  * Waltz - Enterprise Architecture
- * Copyright (C) 2016, 2017 Waltz open source project
+ * Copyright (C) 2016, 2017, 2018, 2019 Waltz open source project
  * See README.md for more information
  *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Lesser General Public License for more details.
+ *     http://www.apache.org/licenses/LICENSE-2.0
  *
- * You should have received a copy of the GNU Lesser General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific
+ *
  */
 
 import _ from "lodash";
-import { perhaps, termSearch } from "../../../common";
-import { CORE_API } from "../../../common/services/core-api-utils";
-import { mkLinkGridCell } from '../../../common/grid-utils';
+import {initialiseData, perhaps, termSearch} from "../../../common";
+import {CORE_API} from "../../../common/services/core-api-utils";
+import {mkEntityLinkGridCell, mkLinkGridCell} from "../../../common/grid-utils";
 
-import template from './technology-section.html';
-import { mkSelectionOptions } from "../../../common/selector-utils";
+import {mkSelectionOptions} from "../../../common/selector-utils";
+import {withWidth} from "../../../physical-flow/physical-flow-table-utilities";
 
+import template from "./technology-section.html";
+import {countByVersionsByPackageId} from "../../../software-catalog/software-catalog-utilities";
 
 const bindings = {
-    parentEntityRef: '<'
+    parentEntityRef: "<"
+};
+
+const initialState = {
+    activeTabIndex: 0,
+    repeatedPackages: []
 };
 
 
-const EOL_CELL_TEMPLATE = '<div class="ui-grid-cell-contents"> <waltz-icon ng-if="COL_FIELD" name="power-off"></waltz-icon></div>';
-
-const MATURITY_STATUS_TEMPLATE = '<div class="ui-grid-cell-contents"> <waltz-maturity-status ng-if="COL_FIELD" status="COL_FIELD"></waltz-maturity-status></div>';
+function mkEndOfLifeCell(title, dateField, flagField) {
+    return {
+        field: dateField,
+        displayName: title,
+        cellTemplate: `
+            <div class="ui-grid-cell-contents">
+                <span ng-bind="row.entity.${dateField}"></span>
+                <waltz-icon ng-if="row.entity.${flagField}"
+                            name="power-off">
+                </waltz-icon>
+            </div>`
+    };
+}
 
 
 function mkBooleanColumnFilter(uiGridConstants) {
     return {
         type: uiGridConstants.filter.SELECT,
         selectOptions: [
-            {value: 'true', label: 'Yes'},
-            {value: 'false', label: 'No'}
+            {value: "true", label: "Yes"},
+            {value: "false", label: "No"}
         ]
     };
 }
 
 
 function isEndOfLife(endOfLifeStatus) {
-    return endOfLifeStatus === 'END_OF_LIFE';
+    return endOfLifeStatus === "END_OF_LIFE";
 }
 
 
@@ -72,41 +88,29 @@ function createDefaultTableOptions($animate, uiGridConstants, exportFileName = "
 function prepareServerGridOptions($animate, uiGridConstants) {
 
     const columnDefs = [
-        mkLinkGridCell('Host', 'hostname', 'id', 'main.server.view'),
-        { field: 'environment' },
+        mkLinkGridCell("Host", "hostname", "id", "main.server.view"),
+        { field: "environment" },
         {
-            field: 'virtual',
-            displayName: 'Virtual',
+            field: "virtual",
+            displayName: "Virtual",
             width: "5%",
             filter: mkBooleanColumnFilter(uiGridConstants),
             cellTemplate: `
-                <div class="ui-grid-cell-contents"> 
-                    <waltz-icon ng-if="COL_FIELD" name="check"></waltz-icon>
+                <div class="ui-grid-cell-contents">
+                    <waltz-icon ng-if="COL_FIELD"
+                                name="check">
+                    </waltz-icon>
                 </div>`
         },
-        { field: 'operatingSystem', displayName: 'OS' },
-        { field: 'operatingSystemVersion', displayName: 'Version' },
-        { field: 'location' },
-        { field: 'country' },
+        { field: "operatingSystem", displayName: "OS" },
+        { field: "operatingSystemVersion", displayName: "Version" },
+        { field: "location" },
+        { field: "country" },
+        mkEndOfLifeCell("h/w EOL On", "hardwareEndOfLifeDate", "isHwEndOfLife"),
+        mkEndOfLifeCell("OS EOL On", "operatingSystemEndOfLifeDate", "isOperatingSystemEndOfLife"),
         {
-            field: 'isHwEndOfLife',
-            displayName: 'h/w EOL',
-            width: "6%",
-            filter: mkBooleanColumnFilter(uiGridConstants),
-            cellTemplate: EOL_CELL_TEMPLATE
-        },
-        { field: 'hardwareEndOfLifeDate', displayName: 'h/w EOL On' },
-        {
-            field: 'isOperatingSystemEndOfLife',
-            displayName: 'OS EOL',
-            width: "6%",
-            filter: mkBooleanColumnFilter(uiGridConstants),
-            cellTemplate: EOL_CELL_TEMPLATE
-        },
-        { field: 'operatingSystemEndOfLifeDate', displayName: 'OS EOL On' },
-        {
-            field: 'lifecycleStatus',
-            displayName: 'Lifecycle',
+            field: "lifecycleStatus",
+            displayName: "Lifecycle",
             cellFilter: "toDisplayName:'lifecycleStatus'"
         }
     ];
@@ -114,7 +118,7 @@ function prepareServerGridOptions($animate, uiGridConstants) {
     const baseTable = createDefaultTableOptions($animate, uiGridConstants, "server.csv");
     return _.extend(baseTable, {
         columnDefs,
-        rowTemplate: '<div ng-class="{\'bg-danger\': row.entity.isHwEndOfLife || row.entity.isOperatingSystemEndOfLife}"><div ng-repeat="col in colContainer.renderedColumns track by col.colDef.name" class="ui-grid-cell" ui-grid-cell></div></div>'
+        rowTemplate: "<div ng-class=\"{'bg-danger': row.entity.isHwEndOfLife || row.entity.isOperatingSystemEndOfLife}\"><div ng-repeat=\"col in colContainer.renderedColumns track by col.colDef.name\" class=\"ui-grid-cell\" ui-grid-cell></div></div>"
     });
 }
 
@@ -122,23 +126,16 @@ function prepareServerGridOptions($animate, uiGridConstants) {
 function prepareDatabaseGridOptions($animate, uiGridConstants) {
 
     const columnDefs = [
-        { field: 'instanceName', displayName: 'Instance' },
-        { field: 'databaseName', displayName: 'Database' },
-        { field: 'environment' },
-        { field: 'dbmsVendor', displayName: 'Vendor' },
-        { field: 'dbmsName', displayName: 'Product Name' },
-        { field: 'dbmsVersion', displayName: 'Version' },
+        { field: "instanceName", displayName: "Instance" },
+        { field: "databaseName", displayName: "Database" },
+        { field: "environment" },
+        { field: "dbmsVendor", displayName: "Vendor" },
+        { field: "dbmsName", displayName: "Product Name" },
+        { field: "dbmsVersion", displayName: "Version" },
+        mkEndOfLifeCell("EOL", "endOfLifeDate", "isEndOfLife"),
         {
-            field: 'isEndOfLife',
-            displayName: 'EOL',
-            width: "5%",
-            filter: mkBooleanColumnFilter(uiGridConstants),
-            cellTemplate: EOL_CELL_TEMPLATE
-        },
-        { field: 'endOfLifeDate', displayName: 'EOL On' },
-        {
-            field: 'lifecycleStatus',
-            displayName: 'Lifecycle',
+            field: "lifecycleStatus",
+            displayName: "Lifecycle",
             cellFilter: "toDisplayName:'lifecycleStatus'"
         }
     ];
@@ -146,7 +143,7 @@ function prepareDatabaseGridOptions($animate, uiGridConstants) {
     const baseTable = createDefaultTableOptions($animate, uiGridConstants, "database.csv");
     return _.extend(baseTable, {
         columnDefs,
-        rowTemplate: '<div ng-class="{\'bg-danger\': row.entity.isEndOfLife}"><div ng-repeat="col in colContainer.renderedColumns track by col.colDef.name" class="ui-grid-cell" ui-grid-cell></div></div>'
+        rowTemplate: "<div ng-class=\"{'bg-danger': row.entity.isEndOfLife}\"><div ng-repeat=\"col in colContainer.renderedColumns track by col.colDef.name\" class=\"ui-grid-cell\" ui-grid-cell></div></div>"
     });
 }
 
@@ -154,9 +151,9 @@ function prepareDatabaseGridOptions($animate, uiGridConstants) {
 function prepareLicenceGridOptions($animate, uiGridConstants) {
 
     const columnDefs = [
-        mkLinkGridCell('Name', 'name', 'id', 'main.licence.view'),
-        { field: 'externalId', displayName: 'External Id' },
-        { field: 'approvalStatus', displayName: 'Approval Status', cellFilter: "toDisplayName:'ApprovalStatus'"},
+        mkLinkGridCell("Name", "name", "id", "main.licence.view"),
+        { field: "externalId", displayName: "External Id" },
+        { field: "approvalStatus", displayName: "Approval Status", cellFilter: "toDisplayName:'ApprovalStatus'"},
     ];
 
     const baseTable = createDefaultTableOptions($animate, uiGridConstants, "licences.csv");
@@ -169,12 +166,12 @@ function prepareLicenceGridOptions($animate, uiGridConstants) {
 function prepareSoftwareCatalogGridOptions($animate, uiGridConstants) {
 
     const columnDefs = [
-        mkLinkGridCell('Name', 'name', 'id', 'main.software-package.view'),
-        { field: 'externalId', displayName: 'External Id' },
-        { field: 'version', displayName: 'Version'},
-        { field: 'description', displayName: 'Description'},
-        { field: 'maturityStatus', displayName: 'Maturity Status', cellTemplate: MATURITY_STATUS_TEMPLATE},
-        { field: 'notable', displayName: 'Notable'},
+        withWidth(mkEntityLinkGridCell("Name", "package", "none", "right"), "20%"),
+        { field: "version.externalId", displayName: "External Id", width: "35%" },
+        withWidth(mkEntityLinkGridCell("Version", "version", "none", "right"), "10%"),
+        { field: "version.releaseDate", displayName: "Release Date", width: "5%"},
+        { field: "package.description", displayName: "Description", width: "25%"},
+        { field: "package.isNotable", displayName: "Notable", width: "5%"}
     ];
 
     const baseTable = createDefaultTableOptions($animate, uiGridConstants, "software.csv");
@@ -205,7 +202,7 @@ function combineServersAndUsage(servers = [], serverUsage = []) {
 
 function controller($q, $animate, uiGridConstants, serviceBroker) {
 
-    const vm = this;
+    const vm = initialiseData(this, initialState);
 
 
     function refresh(qry) {
@@ -248,9 +245,9 @@ function controller($q, $animate, uiGridConstants, serviceBroker) {
             .then(r => {
                 vm.databases = r.data;
                 _.forEach(vm.databases,
-                    (db) => Object.assign(db, {
-                        "isEndOfLife": isEndOfLife(db.endOfLifeStatus)
-                    })
+                          (db) => Object.assign(db, {
+                              "isEndOfLife": isEndOfLife(db.endOfLifeStatus)
+                          })
                 );
                 vm.databaseGridOptions.data = vm.databases;
             })
@@ -260,11 +257,12 @@ function controller($q, $animate, uiGridConstants, serviceBroker) {
         serviceBroker
             .loadViewData(
                 CORE_API.LicenceStore.findBySelector,
-                [ mkSelectionOptions(vm.parentEntityRef)]
+                [mkSelectionOptions(vm.parentEntityRef)]
             )
             .then(r => {
                 vm.licences = r.data;
                 vm.licenceGridOptions.data = vm.licences;
+                return vm.licences;
             })
             .then(() => refresh(vm.qry));
 
@@ -272,14 +270,39 @@ function controller($q, $animate, uiGridConstants, serviceBroker) {
         serviceBroker
             .loadViewData(
                 CORE_API.SoftwareCatalogStore.findByAppIds,
-                [ [vm.parentEntityRef.id] ]
+                [[vm.parentEntityRef.id]]
             )
-            .then(r => {
-                vm.softwareCatalog = r.data;
-                vm.softwareCatalogGridOptions.data = vm.softwareCatalog.packages;
+            .then(r => r.data)
+            .then(softwareCatalog => {
+                vm.softwareCatalog = softwareCatalog;
+                const versionsById = _.keyBy(vm.softwareCatalog.versions, v => v.id);
+                const packagesById = _.keyBy(vm.softwareCatalog.packages, v => v.id);
+
+                const packageCounts = countByVersionsByPackageId(vm.softwareCatalog.usages);
+                vm.repeatedPackages =_.chain(packageCounts)
+                    .map((v,k) => ({
+                        package: packagesById[k],
+                        packageId: k,
+                        count: v
+                    }))
+                    .filter(p => p.count > 1)
+                    .orderBy(["count"], ["desc"])
+                    .value();
+
+                const gridData = _
+                    .chain(vm.softwareCatalog.usages)
+                    .map(u => Object.assign({}, _.pick(u, ["softwarePackageId", "softwareVersionId"])))
+                    .uniqWith(_.isEqual)
+                    .map(u => Object.assign(
+                        { },
+                        { package: packagesById[u.softwarePackageId] },
+                        { version: versionsById[u.softwareVersionId] }
+                    ))
+                    .value();
+
+                vm.softwareCatalogGridOptions.data = gridData;
             })
             .then(() => refresh(vm.qry));
-
     };
 
     vm.serverGridOptions = prepareServerGridOptions($animate, uiGridConstants);
@@ -300,10 +323,10 @@ function controller($q, $animate, uiGridConstants, serviceBroker) {
 
 
 controller.$inject = [
-    '$q',
-    '$animate',
-    'uiGridConstants',
-    'ServiceBroker'
+    "$q",
+    "$animate",
+    "uiGridConstants",
+    "ServiceBroker"
 ];
 
 
@@ -314,7 +337,7 @@ const component = {
 };
 
 export default {
-    id: 'waltzTechnologySection',
+    id: "waltzTechnologySection",
     component
 };
 

@@ -1,23 +1,27 @@
+/*
+ * Waltz - Enterprise Architecture
+ * Copyright (C) 2016, 2017, 2018, 2019 Waltz open source project
+ * See README.md for more information
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific
+ *
+ */
+
 package com.khartec.waltz.web;
 
-import com.khartec.waltz.common.SetUtilities;
-import com.tngtech.archunit.core.domain.JavaClass;
-import com.tngtech.archunit.core.domain.JavaClasses;
-import com.tngtech.archunit.core.domain.JavaModifier;
-import com.tngtech.archunit.core.importer.ClassFileImporter;
-import com.tngtech.archunit.lang.ArchCondition;
 import com.tngtech.archunit.lang.ArchRule;
-import com.tngtech.archunit.lang.ConditionEvents;
-import com.tngtech.archunit.lang.SimpleConditionEvent;
 import org.junit.Test;
 import org.springframework.stereotype.Repository;
 
-import java.util.Collection;
-import java.util.Map;
-import java.util.Optional;
-import java.util.Set;
-
-import static com.khartec.waltz.common.CollectionUtilities.any;
 import static com.tngtech.archunit.lang.syntax.ArchRuleDefinition.classes;
 
 public class DaoArchitectureCompliance extends BaseArchitectureComplianceCheck {

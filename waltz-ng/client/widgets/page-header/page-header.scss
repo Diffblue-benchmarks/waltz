@@ -1,3 +1,21 @@
+/*!
+ * Waltz - Enterprise Architecture
+ * Copyright (C) 2016, 2017, 2018, 2019 Waltz open source project
+ * See README.md for more information
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific
+ *
+ */
+
 @import "../../../style/_variables";
 @import "../../../style/_util";
 
@@ -10,9 +28,8 @@
 
 .waltz-page-header.wph-free {
     padding: 6px 6px 6px 16px;
-    border-top-left-radius: 10px;
+    border-radius: 3px;
     height: 80px;
-    border-top-right-radius: 10px;
     margin-bottom: 12px;
     border: 1px solid $waltz-border-color-lighter;
 
@@ -29,7 +46,7 @@
     overflow: hidden;
     position: fixed;
     top: 50px;
-    left: 0px;
+    left: 0;
     z-index: 999;
     border-bottom: 2px solid $waltz-border-color-lighter;
     opacity: 0;

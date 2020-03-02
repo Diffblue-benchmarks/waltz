@@ -1,40 +1,32 @@
 /*
  * Waltz - Enterprise Architecture
- * Copyright (C) 2016, 2017 Waltz open source project
+ * Copyright (C) 2016, 2017, 2018, 2019 Waltz open source project
  * See README.md for more information
  *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Lesser General Public License for more details.
+ *     http://www.apache.org/licenses/LICENSE-2.0
  *
- * You should have received a copy of the GNU Lesser General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific
+ *
  */
 
 package com.khartec.waltz.jobs.harness;
 
-import com.khartec.waltz.common.SetUtilities;
+import com.khartec.waltz.common.FunctionUtilities;
+import com.khartec.waltz.data.authoritative_source.AuthoritativeSourceDao;
 import com.khartec.waltz.data.data_flow_decorator.LogicalFlowDecoratorDao;
-import com.khartec.waltz.model.data_flow_decorator.LogicalFlowDecorator;
 import com.khartec.waltz.service.DIConfiguration;
 import com.khartec.waltz.service.authoritative_source.AuthSourceRatingCalculator;
 import com.khartec.waltz.service.authoritative_source.AuthoritativeSourceService;
 import com.khartec.waltz.service.data_flow_decorator.LogicalFlowDecoratorRatingsCalculator;
 import org.jooq.DSLContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-
-import java.util.Collection;
-import java.util.List;
-import java.util.Set;
-
-import static com.khartec.waltz.common.ListUtilities.newArrayList;
-import static com.khartec.waltz.common.SetUtilities.fromCollection;
 
 
 public class AuthSourceHarness {
@@ -47,9 +39,14 @@ public class AuthSourceHarness {
         AuthSourceRatingCalculator authSourceRatingCalculatorCalculator = ctx.getBean(AuthSourceRatingCalculator.class);
         LogicalFlowDecoratorRatingsCalculator flowCalculator = ctx.getBean(LogicalFlowDecoratorRatingsCalculator.class);
         LogicalFlowDecoratorDao decoratorDao = ctx.getBean(LogicalFlowDecoratorDao.class);
+        AuthoritativeSourceDao authoritativeSourceDao = ctx.getBean(AuthoritativeSourceDao.class);
 
 
-        List<LogicalFlowDecorator> preDecorators = decoratorDao.findByFlowIds(newArrayList(24938L));
+        FunctionUtilities.time("Flow ratings", () -> svc.recalculateAllFlowRatings());
+
+        /*
+        List<AuthoritativeRatingVantagePoint> authoritativeRatingVantagePoints = authoritativeSourceDao.findAuthoritativeRatingVantagePoints(SetUtilities.asSet(6645L));
+        List<LogicalFlowDecorator> preDecorators = decoratorDao.findByFlowIds(newArrayList(39835L));
         preDecorators.forEach(System.out::println);
 
         Collection<LogicalFlowDecorator> postDecorators = flowCalculator.calculate(preDecorators);
@@ -62,7 +59,7 @@ public class AuthSourceHarness {
 
         System.out.println("---- mod ----");
         modifiedDecorators.forEach(System.out::println);
-
+        */
 
         System.exit(-1);
     }

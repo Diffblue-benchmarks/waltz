@@ -3,18 +3,17 @@
  * Copyright (C) 2016, 2017, 2018, 2019 Waltz open source project
  * See README.md for more information
  *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Lesser General Public License for more details.
+ *     http://www.apache.org/licenses/LICENSE-2.0
  *
- * You should have received a copy of the GNU Lesser General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific
+ *
  */
 
 package com.khartec.waltz.common;
@@ -22,7 +21,6 @@ package com.khartec.waltz.common;
 import java.util.*;
 import java.util.function.Function;
 import java.util.function.Predicate;
-import java.util.stream.IntStream;
 
 import static com.khartec.waltz.common.Checks.checkNotNull;
 import static java.util.stream.Collectors.toList;
@@ -52,6 +50,7 @@ public class ListUtilities {
     }
 
 
+    @SafeVarargs
     public static <T> List<T> asList(T... ts){
         return newArrayList(ts);
     }
@@ -73,9 +72,9 @@ public class ListUtilities {
 
 
     @SafeVarargs
-    public static <T> List<T> concat(List<T>... tss) {
+    public static <T> List<T> concat(List<? extends T>... tss) {
         List<T> result = new ArrayList<>();
-        for (List<T> ts : tss) {
+        for (List<? extends T> ts : tss) {
             if (ts != null) {
                 result.addAll(ts);
             }
@@ -141,39 +140,6 @@ public class ListUtilities {
     @SafeVarargs
     public static <T> List<T> push(List<T> xs, T... elems) {
         return ListUtilities.concat(xs, Arrays.asList(elems));
-    }
-
-
-    public static <T> Builder<T> builder(Class<T> cls) {
-        return new Builder<>();
-    }
-
-    public static List<Integer> integerRange(int startInclusive, int endExclusive) {
-        return IntStream
-                .range(startInclusive, endExclusive)
-                .mapToObj(Integer::valueOf)
-                .collect(toList());
-    }
-
-
-    public static class Builder<T> {
-
-        private List<T> workingList = new LinkedList<>();
-
-        @SafeVarargs
-        public final Builder<T> addAll(T... ts) {
-            workingList.addAll(Arrays.asList(ts));
-            return this;
-        }
-
-        public final Builder<T> addAll(List<T> ts) {
-            workingList.addAll(ts);
-            return this;
-        }
-
-        public List<T> build() {
-            return Collections.unmodifiableList(workingList);
-        }
     }
 
 

@@ -1,20 +1,19 @@
 /*
  * Waltz - Enterprise Architecture
- * Copyright (C) 2016, 2017 Waltz open source project
+ * Copyright (C) 2016, 2017, 2018, 2019 Waltz open source project
  * See README.md for more information
  *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Lesser General Public License for more details.
+ *     http://www.apache.org/licenses/LICENSE-2.0
  *
- * You should have received a copy of the GNU Lesser General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific
+ *
  */
 
 package com.khartec.waltz.data.attestation;
@@ -65,6 +64,7 @@ public class AttestationInstanceDao {
                         r.getValue(ENTITY_NAME_FIELD)))
                 .attestedAt(Optional.ofNullable(record.getAttestedAt()).map(ts -> ts.toLocalDateTime()))
                 .attestedBy(Optional.ofNullable(record.getAttestedBy()))
+                .attestedEntityKind(EntityKind.valueOf(record.getAttestedEntityKind()))
                 .build();
     };
 
@@ -93,6 +93,7 @@ public class AttestationInstanceDao {
         record.setAttestationRunId(attestationInstance.attestationRunId());
         record.setParentEntityKind(attestationInstance.parentEntity().kind().name());
         record.setParentEntityId(attestationInstance.parentEntity().id());
+        record.setAttestedEntityKind(attestationInstance.attestedEntityKind().name());
 
         record.store();
 
@@ -216,6 +217,15 @@ public class AttestationInstanceDao {
                 .and(ATTESTATION_INSTANCE.PARENT_ENTITY_ID.eq(command.entityReference().id()))
                 .and(ATTESTATION_INSTANCE.PARENT_ENTITY_KIND.eq(command.entityReference().kind().name())))
                 .and(maybeUnattestedOnlyCondition)
+                .fetch(TO_DOMAIN_MAPPER);
+    }
+
+    public List<AttestationInstance> findByIdSelector(Select<Record1<Long>> selector) {
+        return dsl.select(ATTESTATION_INSTANCE.fields())
+                .select(ENTITY_NAME_FIELD)
+                .from(ATTESTATION_INSTANCE)
+                .where(ATTESTATION_INSTANCE.ID.in(selector))
+                .and(ATTESTATION_INSTANCE.ATTESTED_AT.isNotNull())
                 .fetch(TO_DOMAIN_MAPPER);
     }
 }

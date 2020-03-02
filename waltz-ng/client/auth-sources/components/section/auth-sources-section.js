@@ -3,18 +3,17 @@
  * Copyright (C) 2016, 2017, 2018, 2019 Waltz open source project
  * See README.md for more information
  *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Lesser General Public License for more details.
+ *     http://www.apache.org/licenses/LICENSE-2.0
  *
- * You should have received a copy of the GNU Lesser General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific
+ *
  */
 
 import {initialiseData} from "../../../common/index";
@@ -33,17 +32,40 @@ const bindings = {
     showNonAuthSources: "@?"
 };
 
+const allTabDefinitions = [
+    {
+        name: "Summary",
+        template: "wass-summary-tab-content",
+        excludeFor: ["DATA_TYPE"]
+    }, {
+        name: "Rated Flows Scorecard",
+        template: "wass-scorecard-tab-content"
+    }, {
+        name: "Authoritative Sources",
+        template: "wass-sources-tab-content"
+    }, {
+        name: "Non Authoritative Sources",
+        template: "wass-nonsources-tab-content"
+    }
+];
+
 
 const initialState = {
     authSources: [],
-    selector: null,
-    showNonAuthSources: true,
     visibility: {
-        tab: 0,
         sourceDataRatingsOverlay: false,
         authSourcesList: false
-    }
+    },
+    tabDefinitions: [],
+    selectedTabName:null
 };
+
+
+function mkTabDefinitionsForKind(kind) {
+    return _.reject(
+        allTabDefinitions,
+        td => _.includes(td.excludeFor, kind));
+}
 
 
 function controller(serviceBroker) {
@@ -62,55 +84,37 @@ function controller(serviceBroker) {
     };
 
     const loadNonAuthSources = () => {
-        vm.selector = mkSelector();
+        const selector = mkSelector();
         serviceBroker
             .loadViewData(
                 CORE_API.AuthSourcesStore.findNonAuthSources,
-                [vm.selector])
+                [selector])
             .then(r => vm.nonAuthSources = r.data);
     };
 
     const loadAuthSources = () => {
-        vm.selector = mkSelector();
+        const selector = mkSelector();
         serviceBroker
             .loadViewData(
                 CORE_API.AuthSourcesStore.findAuthSources,
-                [vm.selector])
+                [selector])
             .then(r => {
                 vm.authSources = r.data;
-            })
+            });
     };
 
     vm.$onInit = () => {
-        vm.visibility.tab = vm.parentEntityRef.kind === "DATA_TYPE"
-            ? 1
-            : 0;
-
-        vm.visibility.authSourcesList = vm.parentEntityRef.kind === "ORG_UNIT" || vm.parentEntityRef.kind === "DATA_TYPE"
+        vm.tabDefinitions = mkTabDefinitionsForKind(vm.parentEntityRef.kind);
+        vm.selectedTabName = _.first(vm.tabDefinitions).name;
+        loadAuthSources();
+        loadNonAuthSources();
     };
 
-    vm.$onChanges = (changes) => {
-        if (changes.filters) {
-            loadAuthSources();
-            loadNonAuthSources();
-        }
-    };
 
-    vm.tabSelected = (name, idx) => {
-        vm.visibility.tab = idx;
-        vm.visibility.editBtn = false;
-
-        switch(name) {
-            case "summary":
-                break;
-            case "authSources":
-                loadAuthSources();
-                vm.visibility.editBtn = vm.parentEntityRef.kind === "ORG_UNIT";
-                break;
-            case "nonAuthSources":
-                loadNonAuthSources();
-                break;
-        }
+    vm.activeTab = () => {
+        return _.find(
+            vm.tabDefinitions,
+            td => td.name === vm.selectedTabName);
     };
 
     vm.toggleSourceDataRatingOverlay = () =>
