@@ -10,7 +10,7 @@ public class AliasesDiffblueTest {
     Aliases<Object> aliases = new Aliases<Object>();
 
     // Act and Assert
-    assertSame(aliases, aliases.register("foo", "foo", "foo", "foo"));
+    assertSame(aliases, aliases.register("val", "foo", "foo", "foo"));
   }
 }
 

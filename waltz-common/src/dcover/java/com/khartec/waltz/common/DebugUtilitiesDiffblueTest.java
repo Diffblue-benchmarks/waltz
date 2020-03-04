@@ -8,12 +8,6 @@ import org.junit.Test;
 
 public class DebugUtilitiesDiffblueTest {
   @Test
-  public void logValueTest() {
-    // Arrange, Act and Assert
-    assertEquals("foo", DebugUtilities.<Object>logValue("foo", "foo", "foo", "foo"));
-  }
-
-  @Test
   public void dumpTest() {
     // Arrange
     HashMap<Object, Object> objectObjectMap = new HashMap<Object, Object>();
@@ -25,6 +19,12 @@ public class DebugUtilitiesDiffblueTest {
     // Assert
     assertSame(objectObjectMap, actualDumpResult);
     assertEquals(1, actualDumpResult.size());
+  }
+
+  @Test
+  public void logValueTest() {
+    // Arrange, Act and Assert
+    assertEquals("result", DebugUtilities.<Object>logValue("result", "result", "foo", "result"));
   }
 }
 

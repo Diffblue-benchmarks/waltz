@@ -20,6 +20,52 @@ public class RandomUtilitiesDiffblueTest {
   }
 
   @Test
+  public void randomPickTest() {
+    // Arrange
+    ArrayList<Object> objectList = new ArrayList<Object>();
+    objectList.add("foo");
+
+    // Act and Assert
+    assertEquals("foo", RandomUtilities.<Object>randomPick((Collection<Object>) objectList));
+  }
+
+  @Test
+  public void randomPickTest2() {
+    // Arrange
+    ArrayList<Object> objectList = new ArrayList<Object>();
+    objectList.add("foo");
+
+    // Act and Assert
+    assertEquals(1, RandomUtilities.<Object>randomPick(objectList, 1).size());
+  }
+
+  @Test
+  public void randomPickTest3() {
+    // Arrange
+    ArrayList<Object> objectList = new ArrayList<Object>();
+    objectList.add("foo");
+
+    // Act and Assert
+    assertEquals(1, RandomUtilities.<Object>randomPick(objectList, Integer.valueOf(38)).size());
+  }
+
+  @Test
+  public void randomPickTest4() {
+    // Arrange
+    ArrayList<Object> objectList = new ArrayList<Object>();
+    objectList.add("foo");
+
+    // Act and Assert
+    assertEquals(0, RandomUtilities.<Object>randomPick(objectList, Integer.valueOf(0)).size());
+  }
+
+  @Test
+  public void randomPickTest5() {
+    // Arrange, Act and Assert
+    assertEquals("foo", RandomUtilities.<Object>randomPick("foo", "foo", "foo"));
+  }
+
+  @Test
   public void randomPickTest6() {
     // Arrange
     ArrayList<Object> objectList = new ArrayList<Object>();
@@ -34,52 +80,6 @@ public class RandomUtilitiesDiffblueTest {
     // Arrange, Act and Assert
     thrown.expect(IllegalArgumentException.class);
     RandomUtilities.randomlySizedIntStream(1, 1);
-  }
-
-  @Test
-  public void randomPickTest5() {
-    // Arrange, Act and Assert
-    assertEquals("foo", RandomUtilities.<Object>randomPick("foo", "foo", "foo"));
-  }
-
-  @Test
-  public void randomPickTest4() {
-    // Arrange
-    ArrayList<Object> objectList = new ArrayList<Object>();
-    objectList.add("foo");
-
-    // Act and Assert
-    assertEquals(0, RandomUtilities.<Object>randomPick(objectList, Integer.valueOf(0)).size());
-  }
-
-  @Test
-  public void randomPickTest3() {
-    // Arrange
-    ArrayList<Object> objectList = new ArrayList<Object>();
-    objectList.add("foo");
-
-    // Act and Assert
-    assertEquals(1, RandomUtilities.<Object>randomPick(objectList, Integer.valueOf(41)).size());
-  }
-
-  @Test
-  public void randomPickTest2() {
-    // Arrange
-    ArrayList<Object> objectList = new ArrayList<Object>();
-    objectList.add("foo");
-
-    // Act and Assert
-    assertEquals(1, RandomUtilities.<Object>randomPick(objectList, 1).size());
-  }
-
-  @Test
-  public void randomPickTest() {
-    // Arrange
-    ArrayList<Object> objectList = new ArrayList<Object>();
-    objectList.add("foo");
-
-    // Act and Assert
-    assertEquals("foo", RandomUtilities.<Object>randomPick((Collection<Object>) objectList));
   }
 }
 

@@ -7,12 +7,6 @@ import org.junit.Test;
 
 public class RangeBandDiffblueTest {
   @Test
-  public void equalsTest() {
-    // Arrange, Act and Assert
-    assertFalse((new RangeBand<Float>(Float.valueOf(10.0f), Float.valueOf(10.0f))).equals("foo"));
-  }
-
-  @Test
   public void constructorTest() {
     // Arrange and Act
     RangeBand<Float> actualRangeBand = new RangeBand<Float>(Float.valueOf(10.0f), Float.valueOf(10.0f));
@@ -23,21 +17,27 @@ public class RangeBandDiffblueTest {
   }
 
   @Test
-  public void hashCodeTest() {
-    // Arrange, Act and Assert
-    assertEquals(603979776, (new RangeBand<Float>(Float.valueOf(10.0f), Float.valueOf(10.0f))).hashCode());
-  }
-
-  @Test
   public void containsTest() {
     // Arrange, Act and Assert
     assertTrue((new RangeBand<Float>(Float.valueOf(10.0f), Float.valueOf(10.0f))).contains(Float.valueOf(10.0f)));
   }
 
   @Test
-  public void toStringTest() {
+  public void equalsTest() {
     // Arrange, Act and Assert
-    assertEquals("10.0 - 10.0", (new RangeBand<Float>(Float.valueOf(10.0f), Float.valueOf(10.0f))).toString());
+    assertFalse((new RangeBand<Float>(Float.valueOf(10.0f), Float.valueOf(10.0f))).equals("o"));
+  }
+
+  @Test
+  public void hashCodeTest() {
+    // Arrange, Act and Assert
+    assertEquals(603979776, (new RangeBand<Float>(Float.valueOf(10.0f), Float.valueOf(10.0f))).hashCode());
+  }
+
+  @Test
+  public void testTest() {
+    // Arrange, Act and Assert
+    assertFalse((new RangeBand<Float>(Float.valueOf(10.0f), Float.valueOf(10.0f))).test(Float.valueOf(0.5f)));
   }
 
   @Test
@@ -47,9 +47,9 @@ public class RangeBandDiffblueTest {
   }
 
   @Test
-  public void testTest() {
+  public void toStringTest() {
     // Arrange, Act and Assert
-    assertFalse((new RangeBand<Float>(Float.valueOf(10.0f), Float.valueOf(10.0f))).test(Float.valueOf(0.5f)));
+    assertEquals("10.0 - 10.0", (new RangeBand<Float>(Float.valueOf(10.0f), Float.valueOf(10.0f))).toString());
   }
 }
 

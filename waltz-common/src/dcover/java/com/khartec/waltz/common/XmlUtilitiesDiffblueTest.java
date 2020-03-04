@@ -9,17 +9,17 @@ import org.junit.Test;
 
 public class XmlUtilitiesDiffblueTest {
   @Test
-  public void printDocumentTest() throws TransformerException {
-    // Arrange, Act and Assert
-    assertEquals("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>" + "\n" + "\n",
-        XmlUtilities.printDocument(new CoreDocumentImpl(), true));
-  }
-
-  @Test
   public void createNonValidatingDocumentBuilderFactoryTest() throws ParserConfigurationException {
     // Arrange, Act and Assert
     assertTrue(XmlUtilities
         .createNonValidatingDocumentBuilderFactory() instanceof com.sun.org.apache.xerces.internal.jaxp.DocumentBuilderFactoryImpl);
+  }
+
+  @Test
+  public void printDocumentTest() throws TransformerException {
+    // Arrange, Act and Assert
+    assertEquals("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>" + "\n" + "\n",
+        XmlUtilities.printDocument(new CoreDocumentImpl(), true));
   }
 }
 

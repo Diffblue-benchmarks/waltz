@@ -9,16 +9,6 @@ import org.junit.Test;
 
 public class CollectionUtilitiesDiffblueTest {
   @Test
-  public void isEmptyTest() {
-    // Arrange
-    ArrayList<Object> objectList = new ArrayList<Object>();
-    objectList.add("foo");
-
-    // Act and Assert
-    assertFalse(CollectionUtilities.<Object>isEmpty(objectList));
-  }
-
-  @Test
   public void firstTest() {
     // Arrange
     ArrayList<Object> objectList = new ArrayList<Object>();
@@ -29,13 +19,23 @@ public class CollectionUtilitiesDiffblueTest {
   }
 
   @Test
-  public void sumIntsTest() {
+  public void isEmptyTest() {
     // Arrange
-    ArrayList<Integer> integerList = new ArrayList<Integer>();
-    integerList.add(Integer.valueOf(1));
+    ArrayList<Object> objectList = new ArrayList<Object>();
+    objectList.add("foo");
 
     // Act and Assert
-    assertEquals(Long.valueOf(1L), CollectionUtilities.sumInts(integerList));
+    assertFalse(CollectionUtilities.<Object>isEmpty(objectList));
+  }
+
+  @Test
+  public void notEmptyTest() {
+    // Arrange
+    ArrayList<Object> objectList = new ArrayList<Object>();
+    objectList.add("foo");
+
+    // Act and Assert
+    assertTrue(CollectionUtilities.<Object>notEmpty(objectList));
   }
 
   @Test
@@ -53,6 +53,16 @@ public class CollectionUtilitiesDiffblueTest {
   }
 
   @Test
+  public void sumIntsTest() {
+    // Arrange
+    ArrayList<Integer> integerList = new ArrayList<Integer>();
+    integerList.add(Integer.valueOf(1));
+
+    // Act and Assert
+    assertEquals(Long.valueOf(1L), CollectionUtilities.sumInts(integerList));
+  }
+
+  @Test
   public void sumLongsTest() {
     // Arrange
     ArrayList<Long> resultLongList = new ArrayList<Long>();
@@ -60,16 +70,6 @@ public class CollectionUtilitiesDiffblueTest {
 
     // Act and Assert
     assertEquals(Long.valueOf(1L), CollectionUtilities.sumLongs(resultLongList));
-  }
-
-  @Test
-  public void notEmptyTest() {
-    // Arrange
-    ArrayList<Object> objectList = new ArrayList<Object>();
-    objectList.add("foo");
-
-    // Act and Assert
-    assertTrue(CollectionUtilities.<Object>notEmpty(objectList));
   }
 }
 

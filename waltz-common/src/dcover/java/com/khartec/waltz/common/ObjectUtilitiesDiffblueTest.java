@@ -7,7 +7,7 @@ public class ObjectUtilitiesDiffblueTest {
   @Test
   public void dumpTest() {
     // Arrange, Act and Assert
-    assertEquals("foo", ObjectUtilities.<Object>dump("foo"));
+    assertEquals("x", ObjectUtilities.<Object>dump("x"));
   }
 
   @Test

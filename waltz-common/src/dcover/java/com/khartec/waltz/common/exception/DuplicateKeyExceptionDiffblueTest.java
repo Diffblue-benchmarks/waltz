@@ -7,6 +7,15 @@ import org.junit.Test;
 
 public class DuplicateKeyExceptionDiffblueTest {
   @Test
+  public void constructorTest() {
+    // Arrange
+    Throwable throwable = new Throwable();
+
+    // Act and Assert
+    assertSame((new DuplicateKeyException("An error occurred", throwable)).getCause(), throwable);
+  }
+
+  @Test
   public void constructorTest2() {
     // Arrange and Act
     DuplicateKeyException actualDuplicateKeyException = new DuplicateKeyException("An error occurred");
@@ -18,15 +27,6 @@ public class DuplicateKeyExceptionDiffblueTest {
     assertNull(actualDuplicateKeyException.getCause());
     assertEquals("An error occurred", actualDuplicateKeyException.getMessage());
     assertEquals(0, actualDuplicateKeyException.getSuppressed().length);
-  }
-
-  @Test
-  public void constructorTest() {
-    // Arrange
-    Throwable throwable = new Throwable();
-
-    // Act and Assert
-    assertSame((new DuplicateKeyException("An error occurred", throwable)).getCause(), throwable);
   }
 }
 

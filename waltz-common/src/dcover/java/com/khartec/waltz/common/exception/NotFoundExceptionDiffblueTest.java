@@ -5,15 +5,15 @@ import org.junit.Test;
 
 public class NotFoundExceptionDiffblueTest {
   @Test
-  public void constructorTest2() {
+  public void constructorTest() {
     // Arrange, Act and Assert
-    assertEquals("foo", (new NotFoundException("foo", "An error occurred", new Throwable())).getCode());
+    assertEquals("code", (new NotFoundException("code", "An error occurred")).getCode());
   }
 
   @Test
-  public void constructorTest() {
+  public void constructorTest2() {
     // Arrange, Act and Assert
-    assertEquals("foo", (new NotFoundException("foo", "An error occurred")).getCode());
+    assertEquals("code", (new NotFoundException("code", "An error occurred", new Throwable())).getCode());
   }
 }
 

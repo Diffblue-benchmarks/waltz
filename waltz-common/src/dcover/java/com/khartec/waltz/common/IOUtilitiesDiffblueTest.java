@@ -10,20 +10,6 @@ import org.springframework.core.io.Resource;
 
 public class IOUtilitiesDiffblueTest {
   @Test
-  public void readLinesTest() {
-    // Arrange
-    byte[] byteArray = new byte[24];
-    Arrays.fill(byteArray, (byte) -1);
-
-    // Act
-    List<String> actualReadLinesResult = IOUtilities.readLines(new ByteArrayInputStream(byteArray));
-
-    // Assert
-    assertEquals(1, actualReadLinesResult.size());
-    assertEquals("������������������������", actualReadLinesResult.get(0));
-  }
-
-  @Test
   public void getFileResourceTest() {
     // Arrange and Act
     Resource actualFileResource = IOUtilities.getFileResource("file.txt");
@@ -42,6 +28,20 @@ public class IOUtilitiesDiffblueTest {
 
     // Act and Assert
     assertEquals("������������������������", IOUtilities.readAsString(new ByteArrayInputStream(byteArray)));
+  }
+
+  @Test
+  public void readLinesTest() {
+    // Arrange
+    byte[] byteArray = new byte[24];
+    Arrays.fill(byteArray, (byte) -1);
+
+    // Act
+    List<String> actualReadLinesResult = IOUtilities.readLines(new ByteArrayInputStream(byteArray));
+
+    // Assert
+    assertEquals(1, actualReadLinesResult.size());
+    assertEquals("������������������������", actualReadLinesResult.get(0));
   }
 }
 

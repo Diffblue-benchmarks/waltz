@@ -9,21 +9,15 @@ public class ChecksDiffblueTest {
   @Rule
   public ExpectedException thrown = ExpectedException.none();
   @Test
-  public void checkNotNullTest() {
-    // Arrange, Act and Assert
-    assertEquals("", Checks.<Object>checkNotNull("", "message", "foo", "", "foo"));
-  }
-  @Test
-  public void mkFailTest() {
+  public void checkFalseTest() {
     // Arrange, Act and Assert
     thrown.expect(IllegalArgumentException.class);
-    Checks.mkFail("", "foo", "foo", "foo");
+    Checks.checkFalse(true, "message");
   }
   @Test
-  public void failTest() {
+  public void checkNotEmptyTest() {
     // Arrange, Act and Assert
-    thrown.expect(IllegalArgumentException.class);
-    Checks.fail("", "foo", "foo", "foo");
+    assertEquals("str", Checks.checkNotEmpty("str", "message"));
   }
   @Test
   public void checkNotEmptyTest2() {
@@ -32,15 +26,21 @@ public class ChecksDiffblueTest {
     Checks.checkNotEmpty("", "message");
   }
   @Test
-  public void checkNotEmptyTest() {
+  public void checkNotNullTest() {
     // Arrange, Act and Assert
-    assertEquals("foo", Checks.checkNotEmpty("foo", "message"));
+    assertEquals("", Checks.<Object>checkNotNull("", "message", "foo", "", "foo"));
   }
   @Test
-  public void checkFalseTest() {
+  public void failTest() {
     // Arrange, Act and Assert
     thrown.expect(IllegalArgumentException.class);
-    Checks.checkFalse(true, "message");
+    Checks.fail("", "foo", "foo", "foo");
+  }
+  @Test
+  public void mkFailTest() {
+    // Arrange, Act and Assert
+    thrown.expect(IllegalArgumentException.class);
+    Checks.mkFail("", "foo", "foo", "foo");
   }
 }
 

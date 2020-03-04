@@ -7,6 +7,18 @@ import org.junit.Test;
 
 public class ArrayUtilitiesDiffblueTest {
   @Test
+  public void initialTest() {
+    // Arrange, Act and Assert
+    assertEquals(2, ArrayUtilities.<Object>initial(new Object[]{"foo", "foo", "foo"}).length);
+  }
+
+  @Test
+  public void isEmptyTest() {
+    // Arrange, Act and Assert
+    assertFalse(ArrayUtilities.<Object>isEmpty(new Object[]{"foo", "foo", "foo"}));
+  }
+
+  @Test
   public void lastTest() {
     // Arrange, Act and Assert
     assertEquals("foo", ArrayUtilities.<Object>last(new Object[]{"foo", "foo", "foo"}));
@@ -20,18 +32,6 @@ public class ArrayUtilitiesDiffblueTest {
 
     // Act and Assert
     assertEquals(8, ArrayUtilities.sum(intArray));
-  }
-
-  @Test
-  public void isEmptyTest() {
-    // Arrange, Act and Assert
-    assertFalse(ArrayUtilities.<Object>isEmpty(new Object[]{"foo", "foo", "foo"}));
-  }
-
-  @Test
-  public void initialTest() {
-    // Arrange, Act and Assert
-    assertEquals(2, ArrayUtilities.<Object>initial(new Object[]{"foo", "foo", "foo"}).length);
   }
 }
 

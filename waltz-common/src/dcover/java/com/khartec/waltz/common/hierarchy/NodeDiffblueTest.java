@@ -8,17 +8,12 @@ import org.junit.Test;
 
 public class NodeDiffblueTest {
   @Test
-  public void setParentTest() {
+  public void addChildTest() {
     // Arrange
     Node<Object, Object> node = new Node<Object, Object>("123", "123");
-    Node<Object, Object> node1 = new Node<Object, Object>("123", "123");
 
-    // Act
-    Node actualSetParentResult = node.setParent(node1);
-
-    // Assert
-    assertSame(node, actualSetParentResult);
-    assertSame(node1, actualSetParentResult.getParent());
+    // Act and Assert
+    assertSame(node, node.addChild(new Node("123", "123")));
   }
 
   @Test
@@ -33,24 +28,29 @@ public class NodeDiffblueTest {
   }
 
   @Test
-  public void addChildTest() {
+  public void getChildrenTest() {
+    // Arrange, Act and Assert
+    assertEquals(0, (new Node<Object, Object>("123", "123")).getChildren().size());
+  }
+
+  @Test
+  public void setParentTest() {
     // Arrange
     Node<Object, Object> node = new Node<Object, Object>("123", "123");
+    Node<Object, Object> node1 = new Node<Object, Object>("123", "123");
 
-    // Act and Assert
-    assertSame(node, node.addChild(new Node("123", "123")));
+    // Act
+    Node actualSetParentResult = node.setParent(node1);
+
+    // Assert
+    assertSame(node, actualSetParentResult);
+    assertSame(node1, actualSetParentResult.getParent());
   }
 
   @Test
   public void toStringTest() {
     // Arrange, Act and Assert
     assertEquals("Node{id=123, #children=0}", (new Node<Object, Object>("123", "123")).toString());
-  }
-
-  @Test
-  public void getChildrenTest() {
-    // Arrange, Act and Assert
-    assertEquals(0, (new Node<Object, Object>("123", "123")).getChildren().size());
   }
 }
 

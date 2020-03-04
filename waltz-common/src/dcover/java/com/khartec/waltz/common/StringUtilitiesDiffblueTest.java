@@ -9,15 +9,29 @@ import org.junit.Test;
 
 public class StringUtilitiesDiffblueTest {
   @Test
-  public void parseIntegerTest() {
-    // Arrange, Act and Assert
-    assertEquals(Integer.valueOf(0), StringUtilities.parseInteger("value", Integer.valueOf(0)));
+  public void firstCharTest() {
+    // Arrange
+    char actualFirstCharResult = StringUtilities.firstChar("", 'A');
+
+    // Act and Assert
+    assertEquals('A', actualFirstCharResult);
+    assertEquals('s', StringUtilities.firstChar("str", 'A'));
   }
 
   @Test
-  public void mkSafeTest() {
+  public void ifEmptyTest() {
+    // Arrange
+    String actualIfEmptyResult = StringUtilities.ifEmpty("", "");
+
+    // Act and Assert
+    assertEquals("", actualIfEmptyResult);
+    assertEquals("x", StringUtilities.ifEmpty("x", ""));
+  }
+
+  @Test
+  public void isEmptyTest() {
     // Arrange, Act and Assert
-    assertEquals("", StringUtilities.mkSafe(""));
+    assertTrue(StringUtilities.isEmpty(""));
   }
 
   @Test
@@ -31,16 +45,6 @@ public class StringUtilitiesDiffblueTest {
   }
 
   @Test
-  public void firstCharTest() {
-    // Arrange
-    char actualFirstCharResult = StringUtilities.firstChar("", 'A');
-
-    // Act and Assert
-    assertEquals('A', actualFirstCharResult);
-    assertEquals('f', StringUtilities.firstChar("foo", 'A'));
-  }
-
-  @Test
   public void joinTest() {
     // Arrange
     ArrayList<Object> objectList = new ArrayList<Object>();
@@ -51,35 +55,49 @@ public class StringUtilitiesDiffblueTest {
   }
 
   @Test
-  public void ifEmptyTest() {
+  public void lengthTest() {
+    // Arrange, Act and Assert
+    assertEquals(0, StringUtilities.length(""));
+  }
+
+  @Test
+  public void limitTest() {
+    // Arrange, Act and Assert
+    assertEquals("", StringUtilities.limit("", 3));
+  }
+
+  @Test
+  public void lowerTest() {
+    // Arrange, Act and Assert
+    assertEquals("value", StringUtilities.lower("value"));
+  }
+
+  @Test
+  public void mkSafeTest() {
+    // Arrange, Act and Assert
+    assertEquals("", StringUtilities.mkSafe(""));
+  }
+
+  @Test
+  public void notEmptyTest() {
     // Arrange
-    String actualIfEmptyResult = StringUtilities.ifEmpty("", "");
+    boolean actualNotEmptyResult = StringUtilities.notEmpty("");
 
     // Act and Assert
-    assertEquals("", actualIfEmptyResult);
-    assertEquals("foo", StringUtilities.ifEmpty("foo", ""));
+    assertFalse(actualNotEmptyResult);
+    assertTrue(StringUtilities.notEmpty("x"));
   }
 
   @Test
-  public void tokeniseTest4() {
-    // Arrange and Act
-    List<String> actualTokeniseResult = StringUtilities.tokenise("value");
-
-    // Assert
-    assertEquals(1, actualTokeniseResult.size());
-    assertEquals("value", actualTokeniseResult.get(0));
-  }
-
-  @Test
-  public void tokeniseTest3() {
+  public void parseIntegerTest() {
     // Arrange, Act and Assert
-    assertEquals(0, StringUtilities.tokenise(" ").size());
+    assertEquals(Integer.valueOf(0), StringUtilities.parseInteger("value", Integer.valueOf(0)));
   }
 
   @Test
-  public void tokeniseTest2() {
+  public void parseLongTest() {
     // Arrange, Act and Assert
-    assertEquals(0, StringUtilities.tokenise("", "").size());
+    assertEquals(Long.valueOf(1L), StringUtilities.parseLong("value", Long.valueOf(1L)));
   }
 
   @Test
@@ -97,43 +115,25 @@ public class StringUtilitiesDiffblueTest {
   }
 
   @Test
-  public void parseLongTest() {
+  public void tokeniseTest2() {
     // Arrange, Act and Assert
-    assertEquals(Long.valueOf(1L), StringUtilities.parseLong("value", Long.valueOf(1L)));
+    assertEquals(0, StringUtilities.tokenise("", "").size());
   }
 
   @Test
-  public void isEmptyTest() {
+  public void tokeniseTest3() {
     // Arrange, Act and Assert
-    assertTrue(StringUtilities.isEmpty(""));
+    assertEquals(0, StringUtilities.tokenise(" ").size());
   }
 
   @Test
-  public void lowerTest() {
-    // Arrange, Act and Assert
-    assertEquals("value", StringUtilities.lower("value"));
-  }
+  public void tokeniseTest4() {
+    // Arrange and Act
+    List<String> actualTokeniseResult = StringUtilities.tokenise("value");
 
-  @Test
-  public void notEmptyTest() {
-    // Arrange
-    boolean actualNotEmptyResult = StringUtilities.notEmpty("");
-
-    // Act and Assert
-    assertFalse(actualNotEmptyResult);
-    assertTrue(StringUtilities.notEmpty("foo"));
-  }
-
-  @Test
-  public void limitTest() {
-    // Arrange, Act and Assert
-    assertEquals("", StringUtilities.limit("", 3));
-  }
-
-  @Test
-  public void lengthTest() {
-    // Arrange, Act and Assert
-    assertEquals(0, StringUtilities.length(""));
+    // Assert
+    assertEquals(1, actualTokeniseResult.size());
+    assertEquals("value", actualTokeniseResult.get(0));
   }
 }
 

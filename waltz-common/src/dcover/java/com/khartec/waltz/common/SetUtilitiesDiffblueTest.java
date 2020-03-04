@@ -8,17 +8,9 @@ import org.junit.Test;
 
 public class SetUtilitiesDiffblueTest {
   @Test
-  public void orderedUnionTest() {
-    // Arrange
-    ArrayList<Object> objectList = new ArrayList<Object>();
-    objectList.add("foo");
-    ArrayList<Object> objectList1 = new ArrayList<Object>();
-    objectList1.add("foo");
-    ArrayList<Object> objectList2 = new ArrayList<Object>();
-    objectList2.add("foo");
-
-    // Act and Assert
-    assertEquals(1, SetUtilities.<Object>orderedUnion(objectList, objectList1, objectList2).size());
+  public void asSetTest() {
+    // Arrange, Act and Assert
+    assertEquals(1, SetUtilities.<Object>asSet("foo", "foo", "foo").size());
   }
 
   @Test
@@ -28,15 +20,13 @@ public class SetUtilitiesDiffblueTest {
   }
 
   @Test
-  public void unionAllTest() {
+  public void fromCollectionTest() {
     // Arrange
-    ArrayList<Collection<Object>> collectionList = new ArrayList<Collection<Object>>();
     ArrayList<Object> objectList = new ArrayList<Object>();
     objectList.add("foo");
-    collectionList.add(objectList);
 
     // Act and Assert
-    assertEquals(1, SetUtilities.<Object>unionAll(collectionList).size());
+    assertEquals(1, SetUtilities.<Object>fromCollection(objectList).size());
   }
 
   @Test
@@ -52,19 +42,43 @@ public class SetUtilitiesDiffblueTest {
   }
 
   @Test
-  public void fromCollectionTest() {
+  public void minusTest() {
     // Arrange
-    ArrayList<Object> objectList = new ArrayList<Object>();
-    objectList.add("foo");
+    HashSet<Object> objectSet = new HashSet<Object>();
+    objectSet.add("foo");
+    HashSet<Object> objectSet1 = new HashSet<Object>();
+    objectSet1.add("foo");
+    HashSet<Object> objectSet2 = new HashSet<Object>();
+    objectSet2.add("foo");
 
     // Act and Assert
-    assertEquals(1, SetUtilities.<Object>fromCollection(objectList).size());
+    assertEquals(0, SetUtilities.<Object>minus(objectSet, objectSet1, objectSet2, objectSet2).size());
   }
 
   @Test
-  public void asSetTest() {
-    // Arrange, Act and Assert
-    assertEquals(1, SetUtilities.<Object>asSet("foo", "foo", "foo").size());
+  public void orderedUnionTest() {
+    // Arrange
+    ArrayList<Object> objectList = new ArrayList<Object>();
+    objectList.add("foo");
+    ArrayList<Object> objectList1 = new ArrayList<Object>();
+    objectList1.add("foo");
+    ArrayList<Object> objectList2 = new ArrayList<Object>();
+    objectList2.add("foo");
+
+    // Act and Assert
+    assertEquals(1, SetUtilities.<Object>orderedUnion(objectList, objectList1, objectList2).size());
+  }
+
+  @Test
+  public void unionAllTest() {
+    // Arrange
+    ArrayList<Collection<Object>> collectionList = new ArrayList<Collection<Object>>();
+    ArrayList<Object> objectList = new ArrayList<Object>();
+    objectList.add("foo");
+    collectionList.add(objectList);
+
+    // Act and Assert
+    assertEquals(1, SetUtilities.<Object>unionAll(collectionList).size());
   }
 
   @Test
@@ -79,20 +93,6 @@ public class SetUtilitiesDiffblueTest {
 
     // Act and Assert
     assertEquals(1, SetUtilities.<Object>union(objectList, objectList1, objectList2).size());
-  }
-
-  @Test
-  public void minusTest() {
-    // Arrange
-    HashSet<Object> objectSet = new HashSet<Object>();
-    objectSet.add("foo");
-    HashSet<Object> objectSet1 = new HashSet<Object>();
-    objectSet1.add("foo");
-    HashSet<Object> objectSet2 = new HashSet<Object>();
-    objectSet2.add("foo");
-
-    // Act and Assert
-    assertEquals(0, SetUtilities.<Object>minus(objectSet, objectSet1, objectSet2, objectSet2).size());
   }
 }
 
