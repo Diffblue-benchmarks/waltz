@@ -13,33 +13,27 @@ public class ImmutablePhysicalSpecificationAddCommandDiffblueTest {
   @Rule
   public ExpectedException thrown = ExpectedException.none();
   @Test
-  public void owningEntityTest() {
+  public void buildTest() {
     // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutablePhysicalSpecificationAddCommand.Json()).owningEntity();
+    thrown.expect(IllegalStateException.class);
+    ImmutablePhysicalSpecificationAddCommand.builder().build();
   }
   @Test
-  public void formatTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutablePhysicalSpecificationAddCommand.Json()).format();
-  }
-  @Test
-  public void setDescriptionTest() {
-    // Arrange
-    ImmutablePhysicalSpecificationAddCommand.Json json = new ImmutablePhysicalSpecificationAddCommand.Json();
-
-    // Act
-    json.setDescription("description");
+  public void constructorTest() {
+    // Arrange and Act
+    ImmutablePhysicalSpecificationAddCommand.Json actualJson = new ImmutablePhysicalSpecificationAddCommand.Json();
 
     // Assert
-    assertEquals("description", json.description);
+    assertNull(actualJson.owningEntity);
+    assertNull(actualJson.format);
+    assertNull(actualJson.name);
+    assertNull(actualJson.description);
   }
   @Test
-  public void nameTest() {
+  public void copyOfTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    (new ImmutablePhysicalSpecificationAddCommand.Json()).name();
+    ImmutablePhysicalSpecificationAddCommand.copyOf(new ImmutablePhysicalSpecificationAddCommand.Json());
   }
   @Test
   public void descriptionTest() {
@@ -54,15 +48,75 @@ public class ImmutablePhysicalSpecificationAddCommandDiffblueTest {
     (new ImmutablePhysicalSpecificationAddCommand.Json()).externalId();
   }
   @Test
-  public void setNameTest() {
+  public void formatTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutablePhysicalSpecificationAddCommand.Json()).format();
+  }
+  @Test
+  public void fromJsonTest() {
+    // Arrange, Act and Assert
+    thrown.expect(IllegalStateException.class);
+    ImmutablePhysicalSpecificationAddCommand.fromJson(new ImmutablePhysicalSpecificationAddCommand.Json());
+  }
+  @Test
+  public void fromTest() {
+    // Arrange
+    ImmutablePhysicalSpecificationAddCommand.Builder builderResult = ImmutablePhysicalSpecificationAddCommand.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from((ExternalIdProvider) new ImmutablePhysicalSpecification.Json());
+  }
+  @Test
+  public void fromTest2() {
+    // Arrange
+    ImmutablePhysicalSpecificationAddCommand.Builder builderResult = ImmutablePhysicalSpecificationAddCommand.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from(new ImmutablePhysicalSpecificationAddCommand.Json());
+  }
+  @Test
+  public void fromTest3() {
+    // Arrange
+    ImmutablePhysicalSpecificationAddCommand.Builder builderResult = ImmutablePhysicalSpecificationAddCommand.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from((DescriptionProvider) new ImmutablePhysicalSpecification.Json());
+  }
+  @Test
+  public void fromTest4() {
+    // Arrange
+    ImmutablePhysicalSpecificationAddCommand.Builder builderResult = ImmutablePhysicalSpecificationAddCommand.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from((NameProvider) new ImmutablePhysicalSpecification.Json());
+  }
+  @Test
+  public void nameTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutablePhysicalSpecificationAddCommand.Json()).name();
+  }
+  @Test
+  public void owningEntityTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutablePhysicalSpecificationAddCommand.Json()).owningEntity();
+  }
+  @Test
+  public void setDescriptionTest() {
     // Arrange
     ImmutablePhysicalSpecificationAddCommand.Json json = new ImmutablePhysicalSpecificationAddCommand.Json();
 
     // Act
-    json.setName("name");
+    json.setDescription("description");
 
     // Assert
-    assertEquals("name", json.name);
+    assertEquals("description", json.description);
   }
   @Test
   public void setFormatTest() {
@@ -76,69 +130,15 @@ public class ImmutablePhysicalSpecificationAddCommandDiffblueTest {
     assertEquals(DataFormatKind.BINARY, json.format);
   }
   @Test
-  public void constructorTest() {
-    // Arrange and Act
-    ImmutablePhysicalSpecificationAddCommand.Json actualJson = new ImmutablePhysicalSpecificationAddCommand.Json();
+  public void setNameTest() {
+    // Arrange
+    ImmutablePhysicalSpecificationAddCommand.Json json = new ImmutablePhysicalSpecificationAddCommand.Json();
+
+    // Act
+    json.setName("name");
 
     // Assert
-    assertNull(actualJson.owningEntity);
-    assertNull(actualJson.format);
-    assertNull(actualJson.name);
-    assertNull(actualJson.description);
-  }
-  @Test
-  public void fromJsonTest() {
-    // Arrange, Act and Assert
-    thrown.expect(IllegalStateException.class);
-    ImmutablePhysicalSpecificationAddCommand.fromJson(new ImmutablePhysicalSpecificationAddCommand.Json());
-  }
-  @Test
-  public void copyOfTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    ImmutablePhysicalSpecificationAddCommand.copyOf(new ImmutablePhysicalSpecificationAddCommand.Json());
-  }
-  @Test
-  public void fromTest4() {
-    // Arrange
-    ImmutablePhysicalSpecificationAddCommand.Builder builderResult = ImmutablePhysicalSpecificationAddCommand.builder();
-
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from((NameProvider) new ImmutablePhysicalSpecification.Json());
-  }
-  @Test
-  public void fromTest3() {
-    // Arrange
-    ImmutablePhysicalSpecificationAddCommand.Builder builderResult = ImmutablePhysicalSpecificationAddCommand.builder();
-
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from((DescriptionProvider) new ImmutablePhysicalSpecification.Json());
-  }
-  @Test
-  public void fromTest2() {
-    // Arrange
-    ImmutablePhysicalSpecificationAddCommand.Builder builderResult = ImmutablePhysicalSpecificationAddCommand.builder();
-
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from(new ImmutablePhysicalSpecificationAddCommand.Json());
-  }
-  @Test
-  public void fromTest() {
-    // Arrange
-    ImmutablePhysicalSpecificationAddCommand.Builder builderResult = ImmutablePhysicalSpecificationAddCommand.builder();
-
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from((ExternalIdProvider) new ImmutablePhysicalSpecification.Json());
-  }
-  @Test
-  public void buildTest() {
-    // Arrange, Act and Assert
-    thrown.expect(IllegalStateException.class);
-    ImmutablePhysicalSpecificationAddCommand.builder().build();
+    assertEquals("name", json.name);
   }
 }
 

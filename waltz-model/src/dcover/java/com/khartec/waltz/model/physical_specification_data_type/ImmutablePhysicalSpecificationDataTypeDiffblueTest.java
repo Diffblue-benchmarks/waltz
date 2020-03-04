@@ -14,57 +14,10 @@ public class ImmutablePhysicalSpecificationDataTypeDiffblueTest {
   @Rule
   public ExpectedException thrown = ExpectedException.none();
   @Test
-  public void setLastUpdatedByTest() {
-    // Arrange
-    ImmutablePhysicalSpecificationDataType.Json json = new ImmutablePhysicalSpecificationDataType.Json();
-
-    // Act
-    json.setLastUpdatedBy("foo");
-
-    // Assert
-    assertEquals("foo", json.lastUpdatedBy);
-  }
-  @Test
-  public void specificationIdTest() {
+  public void buildTest() {
     // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutablePhysicalSpecificationDataType.Json()).specificationId();
-  }
-  @Test
-  public void lastUpdatedByTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutablePhysicalSpecificationDataType.Json()).lastUpdatedBy();
-  }
-  @Test
-  public void lastUpdatedAtTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutablePhysicalSpecificationDataType.Json()).lastUpdatedAt();
-  }
-  @Test
-  public void setSpecificationIdTest() {
-    // Arrange
-    ImmutablePhysicalSpecificationDataType.Json json = new ImmutablePhysicalSpecificationDataType.Json();
-
-    // Act
-    json.setSpecificationId(123L);
-
-    // Assert
-    assertEquals(123L, json.specificationId);
-    assertTrue(json.specificationIdIsSet);
-  }
-  @Test
-  public void dataTypeIdTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutablePhysicalSpecificationDataType.Json()).dataTypeId();
-  }
-  @Test
-  public void provenanceTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutablePhysicalSpecificationDataType.Json()).provenance();
+    thrown.expect(IllegalStateException.class);
+    ImmutablePhysicalSpecificationDataType.builder().build();
   }
   @Test
   public void constructorTest() {
@@ -81,6 +34,69 @@ public class ImmutablePhysicalSpecificationDataTypeDiffblueTest {
     assertFalse(actualJson.specificationIdIsSet);
   }
   @Test
+  public void copyOfTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    ImmutablePhysicalSpecificationDataType.copyOf(new ImmutablePhysicalSpecificationDataType.Json());
+  }
+  @Test
+  public void dataTypeIdTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutablePhysicalSpecificationDataType.Json()).dataTypeId();
+  }
+  @Test
+  public void fromJsonTest() {
+    // Arrange, Act and Assert
+    thrown.expect(IllegalStateException.class);
+    ImmutablePhysicalSpecificationDataType.fromJson(new ImmutablePhysicalSpecificationDataType.Json());
+  }
+  @Test
+  public void fromTest() {
+    // Arrange
+    ImmutablePhysicalSpecificationDataType.Builder builderResult = ImmutablePhysicalSpecificationDataType.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from(new ImmutablePhysicalSpecificationDataType.Json());
+  }
+  @Test
+  public void fromTest2() {
+    // Arrange
+    ImmutablePhysicalSpecificationDataType.Builder builderResult = ImmutablePhysicalSpecificationDataType.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from((LastUpdatedProvider) new ImmutablePhysicalSpecificationDataType.Json());
+  }
+  @Test
+  public void fromTest3() {
+    // Arrange
+    ImmutablePhysicalSpecificationDataType.Builder builderResult = ImmutablePhysicalSpecificationDataType.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from((ProvenanceProvider) new ImmutablePhysicalSpecificationDataType.Json());
+  }
+  @Test
+  public void lastUpdatedAtTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutablePhysicalSpecificationDataType.Json()).lastUpdatedAt();
+  }
+  @Test
+  public void lastUpdatedByTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutablePhysicalSpecificationDataType.Json()).lastUpdatedBy();
+  }
+  @Test
+  public void provenanceTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutablePhysicalSpecificationDataType.Json()).provenance();
+  }
+  @Test
   public void setDataTypeIdTest() {
     // Arrange
     ImmutablePhysicalSpecificationDataType.Json json = new ImmutablePhysicalSpecificationDataType.Json();
@@ -93,60 +109,44 @@ public class ImmutablePhysicalSpecificationDataTypeDiffblueTest {
     assertTrue(json.dataTypeIdIsSet);
   }
   @Test
+  public void setLastUpdatedByTest() {
+    // Arrange
+    ImmutablePhysicalSpecificationDataType.Json json = new ImmutablePhysicalSpecificationDataType.Json();
+
+    // Act
+    json.setLastUpdatedBy("lastUpdatedBy");
+
+    // Assert
+    assertEquals("lastUpdatedBy", json.lastUpdatedBy);
+  }
+  @Test
   public void setProvenanceTest() {
     // Arrange
     ImmutablePhysicalSpecificationDataType.Json json = new ImmutablePhysicalSpecificationDataType.Json();
 
     // Act
-    json.setProvenance("foo");
+    json.setProvenance("provenance");
 
     // Assert
-    assertEquals("foo", json.provenance);
+    assertEquals("provenance", json.provenance);
   }
   @Test
-  public void fromTest3() {
+  public void setSpecificationIdTest() {
     // Arrange
-    ImmutablePhysicalSpecificationDataType.Builder builderResult = ImmutablePhysicalSpecificationDataType.builder();
+    ImmutablePhysicalSpecificationDataType.Json json = new ImmutablePhysicalSpecificationDataType.Json();
 
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from((ProvenanceProvider) new ImmutablePhysicalSpecificationDataType.Json());
-  }
-  @Test
-  public void fromTest2() {
-    // Arrange
-    ImmutablePhysicalSpecificationDataType.Builder builderResult = ImmutablePhysicalSpecificationDataType.builder();
+    // Act
+    json.setSpecificationId(123L);
 
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from((LastUpdatedProvider) new ImmutablePhysicalSpecificationDataType.Json());
+    // Assert
+    assertEquals(123L, json.specificationId);
+    assertTrue(json.specificationIdIsSet);
   }
   @Test
-  public void fromTest() {
-    // Arrange
-    ImmutablePhysicalSpecificationDataType.Builder builderResult = ImmutablePhysicalSpecificationDataType.builder();
-
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from(new ImmutablePhysicalSpecificationDataType.Json());
-  }
-  @Test
-  public void buildTest() {
-    // Arrange, Act and Assert
-    thrown.expect(IllegalStateException.class);
-    ImmutablePhysicalSpecificationDataType.builder().build();
-  }
-  @Test
-  public void fromJsonTest() {
-    // Arrange, Act and Assert
-    thrown.expect(IllegalStateException.class);
-    ImmutablePhysicalSpecificationDataType.fromJson(new ImmutablePhysicalSpecificationDataType.Json());
-  }
-  @Test
-  public void copyOfTest() {
+  public void specificationIdTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    ImmutablePhysicalSpecificationDataType.copyOf(new ImmutablePhysicalSpecificationDataType.Json());
+    (new ImmutablePhysicalSpecificationDataType.Json()).specificationId();
   }
 }
 

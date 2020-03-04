@@ -11,10 +11,16 @@ public class ImmutableAttestEntityCommandDiffblueTest {
   @Rule
   public ExpectedException thrown = ExpectedException.none();
   @Test
-  public void entityReferenceTest() {
+  public void attestedEntityKindTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableAttestEntityCommand.Json()).entityReference();
+    (new ImmutableAttestEntityCommand.Json()).attestedEntityKind();
+  }
+  @Test
+  public void buildTest() {
+    // Arrange, Act and Assert
+    thrown.expect(IllegalStateException.class);
+    ImmutableAttestEntityCommand.builder().build();
   }
   @Test
   public void constructorTest() {
@@ -26,10 +32,31 @@ public class ImmutableAttestEntityCommandDiffblueTest {
     assertNull(actualJson.entityReference);
   }
   @Test
-  public void attestedEntityKindTest() {
+  public void copyOfTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableAttestEntityCommand.Json()).attestedEntityKind();
+    ImmutableAttestEntityCommand.copyOf(new ImmutableAttestEntityCommand.Json());
+  }
+  @Test
+  public void entityReferenceTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableAttestEntityCommand.Json()).entityReference();
+  }
+  @Test
+  public void fromJsonTest() {
+    // Arrange, Act and Assert
+    thrown.expect(IllegalStateException.class);
+    ImmutableAttestEntityCommand.fromJson(new ImmutableAttestEntityCommand.Json());
+  }
+  @Test
+  public void fromTest() {
+    // Arrange
+    ImmutableAttestEntityCommand.Builder builderResult = ImmutableAttestEntityCommand.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from(new ImmutableAttestEntityCommand.Json());
   }
   @Test
   public void setAttestedEntityKindTest() {
@@ -41,33 +68,6 @@ public class ImmutableAttestEntityCommandDiffblueTest {
 
     // Assert
     assertEquals(EntityKind.ACTOR, json.attestedEntityKind);
-  }
-  @Test
-  public void fromJsonTest() {
-    // Arrange, Act and Assert
-    thrown.expect(IllegalStateException.class);
-    ImmutableAttestEntityCommand.fromJson(new ImmutableAttestEntityCommand.Json());
-  }
-  @Test
-  public void copyOfTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    ImmutableAttestEntityCommand.copyOf(new ImmutableAttestEntityCommand.Json());
-  }
-  @Test
-  public void buildTest() {
-    // Arrange, Act and Assert
-    thrown.expect(IllegalStateException.class);
-    ImmutableAttestEntityCommand.builder().build();
-  }
-  @Test
-  public void fromTest() {
-    // Arrange
-    ImmutableAttestEntityCommand.Builder builderResult = ImmutableAttestEntityCommand.builder();
-
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from(new ImmutableAttestEntityCommand.Json());
   }
 }
 

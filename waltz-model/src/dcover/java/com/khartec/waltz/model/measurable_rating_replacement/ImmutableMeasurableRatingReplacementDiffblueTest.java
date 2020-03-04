@@ -12,129 +12,10 @@ public class ImmutableMeasurableRatingReplacementDiffblueTest {
   @Rule
   public ExpectedException thrown = ExpectedException.none();
   @Test
-  public void fromJsonTest() {
-    // Arrange, Act and Assert
-    thrown.expect(IllegalStateException.class);
-    ImmutableMeasurableRatingReplacement.fromJson(new ImmutableMeasurableRatingReplacement.Json());
-  }
-  @Test
-  public void copyOfTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    ImmutableMeasurableRatingReplacement.copyOf(new ImmutableMeasurableRatingReplacement.Json());
-  }
-  @Test
-  public void fromTest3() {
-    // Arrange
-    ImmutableMeasurableRatingReplacement.Builder builderResult = ImmutableMeasurableRatingReplacement.builder();
-
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from((CreatedProvider) new ImmutableMeasurableRatingReplacement.Json());
-  }
-  @Test
-  public void fromTest2() {
-    // Arrange
-    ImmutableMeasurableRatingReplacement.Builder builderResult = ImmutableMeasurableRatingReplacement.builder();
-
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from(new ImmutableMeasurableRatingReplacement.Json());
-  }
-  @Test
-  public void fromTest() {
-    // Arrange
-    ImmutableMeasurableRatingReplacement.Builder builderResult = ImmutableMeasurableRatingReplacement.builder();
-
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from((LastUpdatedProvider) new ImmutableMeasurableRatingReplacement.Json());
-  }
-  @Test
   public void buildTest() {
     // Arrange, Act and Assert
     thrown.expect(IllegalStateException.class);
     ImmutableMeasurableRatingReplacement.builder().build();
-  }
-  @Test
-  public void createdByTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableMeasurableRatingReplacement.Json()).createdBy();
-  }
-  @Test
-  public void entityReferenceTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableMeasurableRatingReplacement.Json()).entityReference();
-  }
-  @Test
-  public void setLastUpdatedByTest() {
-    // Arrange
-    ImmutableMeasurableRatingReplacement.Json json = new ImmutableMeasurableRatingReplacement.Json();
-
-    // Act
-    json.setLastUpdatedBy("foo");
-
-    // Assert
-    assertEquals("foo", json.lastUpdatedBy);
-  }
-  @Test
-  public void createdAtTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableMeasurableRatingReplacement.Json()).createdAt();
-  }
-  @Test
-  public void lastUpdatedByTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableMeasurableRatingReplacement.Json()).lastUpdatedBy();
-  }
-  @Test
-  public void setDecommissionIdTest() {
-    // Arrange
-    ImmutableMeasurableRatingReplacement.Json json = new ImmutableMeasurableRatingReplacement.Json();
-
-    // Act
-    json.setDecommissionId(Long.valueOf(123L));
-
-    // Assert
-    assertEquals(Long.valueOf(123L), json.decommissionId);
-  }
-  @Test
-  public void setCreatedByTest() {
-    // Arrange
-    ImmutableMeasurableRatingReplacement.Json json = new ImmutableMeasurableRatingReplacement.Json();
-
-    // Act
-    json.setCreatedBy("foo");
-
-    // Assert
-    assertEquals("foo", json.createdBy);
-  }
-  @Test
-  public void setIdTest() {
-    // Arrange
-    ImmutableMeasurableRatingReplacement.Json json = new ImmutableMeasurableRatingReplacement.Json();
-
-    // Act
-    json.setId(Long.valueOf(123L));
-
-    // Assert
-    assertEquals(Long.valueOf(123L), json.id);
-  }
-  @Test
-  public void decommissionIdTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableMeasurableRatingReplacement.Json()).decommissionId();
-  }
-  @Test
-  public void lastUpdatedAtTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableMeasurableRatingReplacement.Json()).lastUpdatedAt();
   }
   @Test
   public void constructorTest() {
@@ -152,16 +33,135 @@ public class ImmutableMeasurableRatingReplacementDiffblueTest {
     assertNull(actualJson.createdBy);
   }
   @Test
-  public void plannedCommissionDateTest() {
+  public void copyOfTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableMeasurableRatingReplacement.Json()).plannedCommissionDate();
+    ImmutableMeasurableRatingReplacement.copyOf(new ImmutableMeasurableRatingReplacement.Json());
+  }
+  @Test
+  public void createdAtTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableMeasurableRatingReplacement.Json()).createdAt();
+  }
+  @Test
+  public void createdByTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableMeasurableRatingReplacement.Json()).createdBy();
+  }
+  @Test
+  public void decommissionIdTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableMeasurableRatingReplacement.Json()).decommissionId();
+  }
+  @Test
+  public void entityReferenceTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableMeasurableRatingReplacement.Json()).entityReference();
+  }
+  @Test
+  public void fromJsonTest() {
+    // Arrange, Act and Assert
+    thrown.expect(IllegalStateException.class);
+    ImmutableMeasurableRatingReplacement.fromJson(new ImmutableMeasurableRatingReplacement.Json());
+  }
+  @Test
+  public void fromTest() {
+    // Arrange
+    ImmutableMeasurableRatingReplacement.Builder builderResult = ImmutableMeasurableRatingReplacement.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from((LastUpdatedProvider) new ImmutableMeasurableRatingReplacement.Json());
+  }
+  @Test
+  public void fromTest2() {
+    // Arrange
+    ImmutableMeasurableRatingReplacement.Builder builderResult = ImmutableMeasurableRatingReplacement.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from(new ImmutableMeasurableRatingReplacement.Json());
+  }
+  @Test
+  public void fromTest3() {
+    // Arrange
+    ImmutableMeasurableRatingReplacement.Builder builderResult = ImmutableMeasurableRatingReplacement.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from((CreatedProvider) new ImmutableMeasurableRatingReplacement.Json());
   }
   @Test
   public void idTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
     (new ImmutableMeasurableRatingReplacement.Json()).id();
+  }
+  @Test
+  public void lastUpdatedAtTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableMeasurableRatingReplacement.Json()).lastUpdatedAt();
+  }
+  @Test
+  public void lastUpdatedByTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableMeasurableRatingReplacement.Json()).lastUpdatedBy();
+  }
+  @Test
+  public void plannedCommissionDateTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableMeasurableRatingReplacement.Json()).plannedCommissionDate();
+  }
+  @Test
+  public void setCreatedByTest() {
+    // Arrange
+    ImmutableMeasurableRatingReplacement.Json json = new ImmutableMeasurableRatingReplacement.Json();
+
+    // Act
+    json.setCreatedBy("createdBy");
+
+    // Assert
+    assertEquals("createdBy", json.createdBy);
+  }
+  @Test
+  public void setDecommissionIdTest() {
+    // Arrange
+    ImmutableMeasurableRatingReplacement.Json json = new ImmutableMeasurableRatingReplacement.Json();
+
+    // Act
+    json.setDecommissionId(Long.valueOf(123L));
+
+    // Assert
+    assertEquals(Long.valueOf(123L), json.decommissionId);
+  }
+  @Test
+  public void setIdTest() {
+    // Arrange
+    ImmutableMeasurableRatingReplacement.Json json = new ImmutableMeasurableRatingReplacement.Json();
+
+    // Act
+    json.setId(Long.valueOf(123L));
+
+    // Assert
+    assertEquals(Long.valueOf(123L), json.id);
+  }
+  @Test
+  public void setLastUpdatedByTest() {
+    // Arrange
+    ImmutableMeasurableRatingReplacement.Json json = new ImmutableMeasurableRatingReplacement.Json();
+
+    // Act
+    json.setLastUpdatedBy("lastUpdatedBy");
+
+    // Assert
+    assertEquals("lastUpdatedBy", json.lastUpdatedBy);
   }
 }
 

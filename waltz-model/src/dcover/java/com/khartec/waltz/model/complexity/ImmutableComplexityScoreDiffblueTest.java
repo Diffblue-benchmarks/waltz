@@ -13,20 +13,23 @@ public class ImmutableComplexityScoreDiffblueTest {
   public ExpectedException thrown = ExpectedException.none();
 
   @Test
-  public void fromTest() {
-    // Arrange
-    ImmutableComplexityScore.Builder builderResult = ImmutableComplexityScore.builder();
-
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from(new ImmutableComplexityScore.Json());
-  }
-
-  @Test
   public void buildTest() {
     // Arrange, Act and Assert
     thrown.expect(IllegalStateException.class);
     ImmutableComplexityScore.builder().build();
+  }
+
+  @Test
+  public void constructorTest() {
+    // Arrange and Act
+    ImmutableComplexityScore.Json actualJson = new ImmutableComplexityScore.Json();
+
+    // Assert
+    assertEquals(0L, actualJson.id);
+    assertFalse(actualJson.scoreIsSet);
+    assertNull(actualJson.kind);
+    assertEquals(0.0, actualJson.score, 0.0);
+    assertFalse(actualJson.idIsSet);
   }
 
   @Test
@@ -44,28 +47,13 @@ public class ImmutableComplexityScoreDiffblueTest {
   }
 
   @Test
-  public void setKindTest() {
+  public void fromTest() {
     // Arrange
-    ImmutableComplexityScore.Json json = new ImmutableComplexityScore.Json();
+    ImmutableComplexityScore.Builder builderResult = ImmutableComplexityScore.builder();
 
-    // Act
-    json.setKind(ComplexityKind.CONNECTION);
-
-    // Assert
-    assertEquals(ComplexityKind.CONNECTION, json.kind);
-  }
-
-  @Test
-  public void setScoreTest() {
-    // Arrange
-    ImmutableComplexityScore.Json json = new ImmutableComplexityScore.Json();
-
-    // Act
-    json.setScore(10.0);
-
-    // Assert
-    assertTrue(json.scoreIsSet);
-    assertEquals(10.0, json.score, 0.0);
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from(new ImmutableComplexityScore.Json());
   }
 
   @Test
@@ -103,16 +91,28 @@ public class ImmutableComplexityScoreDiffblueTest {
   }
 
   @Test
-  public void constructorTest() {
-    // Arrange and Act
-    ImmutableComplexityScore.Json actualJson = new ImmutableComplexityScore.Json();
+  public void setKindTest() {
+    // Arrange
+    ImmutableComplexityScore.Json json = new ImmutableComplexityScore.Json();
+
+    // Act
+    json.setKind(ComplexityKind.CONNECTION);
 
     // Assert
-    assertEquals(0L, actualJson.id);
-    assertFalse(actualJson.scoreIsSet);
-    assertNull(actualJson.kind);
-    assertEquals(0.0, actualJson.score, 0.0);
-    assertFalse(actualJson.idIsSet);
+    assertEquals(ComplexityKind.CONNECTION, json.kind);
+  }
+
+  @Test
+  public void setScoreTest() {
+    // Arrange
+    ImmutableComplexityScore.Json json = new ImmutableComplexityScore.Json();
+
+    // Act
+    json.setScore(10.0);
+
+    // Assert
+    assertTrue(json.scoreIsSet);
+    assertEquals(10.0, json.score, 0.0);
   }
 }
 

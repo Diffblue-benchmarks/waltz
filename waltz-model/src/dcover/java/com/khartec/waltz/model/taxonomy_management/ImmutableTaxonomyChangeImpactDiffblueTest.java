@@ -14,21 +14,57 @@ public class ImmutableTaxonomyChangeImpactDiffblueTest {
   @Rule
   public ExpectedException thrown = ExpectedException.none();
   @Test
-  public void setSeverityTest() {
-    // Arrange
-    ImmutableTaxonomyChangeImpact.Json json = new ImmutableTaxonomyChangeImpact.Json();
-
-    // Act
-    json.setSeverity(Severity.INFORMATION);
-
-    // Assert
-    assertEquals(Severity.INFORMATION, json.severity);
+  public void buildTest() {
+    // Arrange, Act and Assert
+    thrown.expect(IllegalStateException.class);
+    ImmutableTaxonomyChangeImpact.builder().build();
   }
   @Test
-  public void severityTest() {
+  public void constructorTest() {
+    // Arrange, Act and Assert
+    assertEquals(0, (new ImmutableTaxonomyChangeImpact.Json()).impactedReferences.size());
+  }
+  @Test
+  public void copyOfTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableTaxonomyChangeImpact.Json()).severity();
+    ImmutableTaxonomyChangeImpact.copyOf(new ImmutableTaxonomyChangeImpact.Json());
+  }
+  @Test
+  public void descriptionTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableTaxonomyChangeImpact.Json()).description();
+  }
+  @Test
+  public void fromJsonTest() {
+    // Arrange, Act and Assert
+    thrown.expect(IllegalStateException.class);
+    ImmutableTaxonomyChangeImpact.fromJson(new ImmutableTaxonomyChangeImpact.Json());
+  }
+  @Test
+  public void fromTest() {
+    // Arrange
+    ImmutableTaxonomyChangeImpact.Builder builderResult = ImmutableTaxonomyChangeImpact.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from(new ImmutableTaxonomyChangeImpact.Json());
+  }
+  @Test
+  public void fromTest2() {
+    // Arrange
+    ImmutableTaxonomyChangeImpact.Builder builderResult = ImmutableTaxonomyChangeImpact.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from((DescriptionProvider) new ImmutableTaxonomyChangeImpact.Json());
+  }
+  @Test
+  public void impactedReferencesTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableTaxonomyChangeImpact.Json()).impactedReferences();
   }
   @Test
   public void setDescriptionTest() {
@@ -40,12 +76,6 @@ public class ImmutableTaxonomyChangeImpactDiffblueTest {
 
     // Assert
     assertEquals("description", json.description);
-  }
-  @Test
-  public void descriptionTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableTaxonomyChangeImpact.Json()).description();
   }
   @Test
   public void setImpactedReferencesTest() {
@@ -61,51 +91,21 @@ public class ImmutableTaxonomyChangeImpactDiffblueTest {
     assertSame(entityReferenceSet, json.impactedReferences);
   }
   @Test
-  public void constructorTest() {
-    // Arrange, Act and Assert
-    assertEquals(0, (new ImmutableTaxonomyChangeImpact.Json()).impactedReferences.size());
-  }
-  @Test
-  public void impactedReferencesTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableTaxonomyChangeImpact.Json()).impactedReferences();
-  }
-  @Test
-  public void fromTest2() {
+  public void setSeverityTest() {
     // Arrange
-    ImmutableTaxonomyChangeImpact.Builder builderResult = ImmutableTaxonomyChangeImpact.builder();
+    ImmutableTaxonomyChangeImpact.Json json = new ImmutableTaxonomyChangeImpact.Json();
 
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from((DescriptionProvider) new ImmutableTaxonomyChangeImpact.Json());
-  }
-  @Test
-  public void buildTest() {
-    // Arrange, Act and Assert
-    thrown.expect(IllegalStateException.class);
-    ImmutableTaxonomyChangeImpact.builder().build();
-  }
-  @Test
-  public void fromTest() {
-    // Arrange
-    ImmutableTaxonomyChangeImpact.Builder builderResult = ImmutableTaxonomyChangeImpact.builder();
+    // Act
+    json.setSeverity(Severity.INFORMATION);
 
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from(new ImmutableTaxonomyChangeImpact.Json());
+    // Assert
+    assertEquals(Severity.INFORMATION, json.severity);
   }
   @Test
-  public void fromJsonTest() {
-    // Arrange, Act and Assert
-    thrown.expect(IllegalStateException.class);
-    ImmutableTaxonomyChangeImpact.fromJson(new ImmutableTaxonomyChangeImpact.Json());
-  }
-  @Test
-  public void copyOfTest() {
+  public void severityTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    ImmutableTaxonomyChangeImpact.copyOf(new ImmutableTaxonomyChangeImpact.Json());
+    (new ImmutableTaxonomyChangeImpact.Json()).severity();
   }
 }
 

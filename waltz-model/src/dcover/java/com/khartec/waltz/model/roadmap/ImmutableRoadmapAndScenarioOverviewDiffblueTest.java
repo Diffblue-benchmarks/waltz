@@ -13,6 +13,23 @@ public class ImmutableRoadmapAndScenarioOverviewDiffblueTest {
   public ExpectedException thrown = ExpectedException.none();
 
   @Test
+  public void buildTest() {
+    // Arrange, Act and Assert
+    thrown.expect(IllegalStateException.class);
+    ImmutableRoadmapAndScenarioOverview.builder().build();
+  }
+
+  @Test
+  public void constructorTest() {
+    // Arrange and Act
+    ImmutableRoadmapAndScenarioOverview.Json actualJson = new ImmutableRoadmapAndScenarioOverview.Json();
+
+    // Assert
+    assertNull(actualJson.roadmap);
+    assertNull(actualJson.scenarios);
+  }
+
+  @Test
   public void copyOfTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
@@ -27,13 +44,6 @@ public class ImmutableRoadmapAndScenarioOverviewDiffblueTest {
   }
 
   @Test
-  public void buildTest() {
-    // Arrange, Act and Assert
-    thrown.expect(IllegalStateException.class);
-    ImmutableRoadmapAndScenarioOverview.builder().build();
-  }
-
-  @Test
   public void fromTest() {
     // Arrange
     ImmutableRoadmapAndScenarioOverview.Builder builderResult = ImmutableRoadmapAndScenarioOverview.builder();
@@ -44,10 +54,30 @@ public class ImmutableRoadmapAndScenarioOverviewDiffblueTest {
   }
 
   @Test
+  public void roadmapTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableRoadmapAndScenarioOverview.Json()).roadmap();
+  }
+
+  @Test
   public void scenariosTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
     (new ImmutableRoadmapAndScenarioOverview.Json()).scenarios();
+  }
+
+  @Test
+  public void setRoadmapTest() {
+    // Arrange
+    ImmutableRoadmapAndScenarioOverview.Json json = new ImmutableRoadmapAndScenarioOverview.Json();
+    ImmutableRoadmap.Json json1 = new ImmutableRoadmap.Json();
+
+    // Act
+    json.setRoadmap(json1);
+
+    // Assert
+    assertSame(json1, json.roadmap);
   }
 
   @Test
@@ -62,36 +92,6 @@ public class ImmutableRoadmapAndScenarioOverviewDiffblueTest {
 
     // Assert
     assertSame(scenarioList, json.scenarios);
-  }
-
-  @Test
-  public void constructorTest() {
-    // Arrange and Act
-    ImmutableRoadmapAndScenarioOverview.Json actualJson = new ImmutableRoadmapAndScenarioOverview.Json();
-
-    // Assert
-    assertNull(actualJson.roadmap);
-    assertNull(actualJson.scenarios);
-  }
-
-  @Test
-  public void roadmapTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableRoadmapAndScenarioOverview.Json()).roadmap();
-  }
-
-  @Test
-  public void setRoadmapTest() {
-    // Arrange
-    ImmutableRoadmapAndScenarioOverview.Json json = new ImmutableRoadmapAndScenarioOverview.Json();
-    ImmutableRoadmap.Json json1 = new ImmutableRoadmap.Json();
-
-    // Act
-    json.setRoadmap(json1);
-
-    // Assert
-    assertSame(json1, json.roadmap);
   }
 }
 

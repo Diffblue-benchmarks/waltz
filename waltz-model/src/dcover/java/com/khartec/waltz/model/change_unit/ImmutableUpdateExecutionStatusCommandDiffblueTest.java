@@ -13,10 +13,20 @@ public class ImmutableUpdateExecutionStatusCommandDiffblueTest {
   @Rule
   public ExpectedException thrown = ExpectedException.none();
   @Test
-  public void fromJsonTest() {
+  public void buildTest() {
     // Arrange, Act and Assert
     thrown.expect(IllegalStateException.class);
-    ImmutableUpdateExecutionStatusCommand.fromJson(new ImmutableUpdateExecutionStatusCommand.Json());
+    ImmutableUpdateExecutionStatusCommand.builder().build();
+  }
+  @Test
+  public void constructorTest() {
+    // Arrange and Act
+    ImmutableUpdateExecutionStatusCommand.Json actualJson = new ImmutableUpdateExecutionStatusCommand.Json();
+
+    // Assert
+    assertEquals(0L, actualJson.id);
+    assertNull(actualJson.executionStatus);
+    assertFalse(actualJson.idIsSet);
   }
   @Test
   public void copyOfTest() {
@@ -31,10 +41,40 @@ public class ImmutableUpdateExecutionStatusCommandDiffblueTest {
     (new ImmutableUpdateExecutionStatusCommand.Json()).executionStatus();
   }
   @Test
+  public void fromJsonTest() {
+    // Arrange, Act and Assert
+    thrown.expect(IllegalStateException.class);
+    ImmutableUpdateExecutionStatusCommand.fromJson(new ImmutableUpdateExecutionStatusCommand.Json());
+  }
+  @Test
+  public void fromTest() {
+    // Arrange
+    ImmutableUpdateExecutionStatusCommand.Builder builderResult = ImmutableUpdateExecutionStatusCommand.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from((EntityChangeCommand) new ImmutableUpdateExecutionStatusCommand.Json());
+  }
+  @Test
+  public void fromTest2() {
+    // Arrange
+    ImmutableUpdateExecutionStatusCommand.Builder builderResult = ImmutableUpdateExecutionStatusCommand.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from(new ImmutableUpdateExecutionStatusCommand.Json());
+  }
+  @Test
   public void idTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
     (new ImmutableUpdateExecutionStatusCommand.Json()).id();
+  }
+  @Test
+  public void lastUpdateTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableUpdateExecutionStatusCommand.Json()).lastUpdate();
   }
   @Test
   public void setIdTest() {
@@ -47,46 +87,6 @@ public class ImmutableUpdateExecutionStatusCommandDiffblueTest {
     // Assert
     assertEquals(123L, json.id);
     assertTrue(json.idIsSet);
-  }
-  @Test
-  public void constructorTest() {
-    // Arrange and Act
-    ImmutableUpdateExecutionStatusCommand.Json actualJson = new ImmutableUpdateExecutionStatusCommand.Json();
-
-    // Assert
-    assertEquals(0L, actualJson.id);
-    assertNull(actualJson.executionStatus);
-    assertFalse(actualJson.idIsSet);
-  }
-  @Test
-  public void lastUpdateTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableUpdateExecutionStatusCommand.Json()).lastUpdate();
-  }
-  @Test
-  public void buildTest() {
-    // Arrange, Act and Assert
-    thrown.expect(IllegalStateException.class);
-    ImmutableUpdateExecutionStatusCommand.builder().build();
-  }
-  @Test
-  public void fromTest2() {
-    // Arrange
-    ImmutableUpdateExecutionStatusCommand.Builder builderResult = ImmutableUpdateExecutionStatusCommand.builder();
-
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from(new ImmutableUpdateExecutionStatusCommand.Json());
-  }
-  @Test
-  public void fromTest() {
-    // Arrange
-    ImmutableUpdateExecutionStatusCommand.Builder builderResult = ImmutableUpdateExecutionStatusCommand.builder();
-
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from((EntityChangeCommand) new ImmutableUpdateExecutionStatusCommand.Json());
   }
 }
 

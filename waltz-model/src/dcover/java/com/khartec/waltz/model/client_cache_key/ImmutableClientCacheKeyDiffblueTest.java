@@ -10,16 +10,47 @@ public class ImmutableClientCacheKeyDiffblueTest {
   @Rule
   public ExpectedException thrown = ExpectedException.none();
   @Test
-  public void fromJsonTest() {
+  public void buildTest() {
     // Arrange, Act and Assert
     thrown.expect(IllegalStateException.class);
-    ImmutableClientCacheKey.fromJson(new ImmutableClientCacheKey.Json());
+    ImmutableClientCacheKey.builder().build();
+  }
+  @Test
+  public void constructorTest() {
+    // Arrange and Act
+    ImmutableClientCacheKey.Json actualJson = new ImmutableClientCacheKey.Json();
+
+    // Assert
+    assertNull(actualJson.key);
+    assertNull(actualJson.lastUpdatedAt);
+    assertNull(actualJson.guid);
   }
   @Test
   public void copyOfTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
     ImmutableClientCacheKey.copyOf(new ImmutableClientCacheKey.Json());
+  }
+  @Test
+  public void fromJsonTest() {
+    // Arrange, Act and Assert
+    thrown.expect(IllegalStateException.class);
+    ImmutableClientCacheKey.fromJson(new ImmutableClientCacheKey.Json());
+  }
+  @Test
+  public void fromTest() {
+    // Arrange
+    ImmutableClientCacheKey.Builder builderResult = ImmutableClientCacheKey.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from(new ImmutableClientCacheKey.Json());
+  }
+  @Test
+  public void guidTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableClientCacheKey.Json()).guid();
   }
   @Test
   public void keyTest() {
@@ -32,16 +63,6 @@ public class ImmutableClientCacheKeyDiffblueTest {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
     (new ImmutableClientCacheKey.Json()).lastUpdatedAt();
-  }
-  @Test
-  public void constructorTest() {
-    // Arrange and Act
-    ImmutableClientCacheKey.Json actualJson = new ImmutableClientCacheKey.Json();
-
-    // Assert
-    assertNull(actualJson.key);
-    assertNull(actualJson.lastUpdatedAt);
-    assertNull(actualJson.guid);
   }
   @Test
   public void setGuidTest() {
@@ -60,31 +81,10 @@ public class ImmutableClientCacheKeyDiffblueTest {
     ImmutableClientCacheKey.Json json = new ImmutableClientCacheKey.Json();
 
     // Act
-    json.setKey("foo");
+    json.setKey("key");
 
     // Assert
-    assertEquals("foo", json.key);
-  }
-  @Test
-  public void guidTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableClientCacheKey.Json()).guid();
-  }
-  @Test
-  public void fromTest() {
-    // Arrange
-    ImmutableClientCacheKey.Builder builderResult = ImmutableClientCacheKey.builder();
-
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from(new ImmutableClientCacheKey.Json());
-  }
-  @Test
-  public void buildTest() {
-    // Arrange, Act and Assert
-    thrown.expect(IllegalStateException.class);
-    ImmutableClientCacheKey.builder().build();
+    assertEquals("key", json.key);
   }
 }
 

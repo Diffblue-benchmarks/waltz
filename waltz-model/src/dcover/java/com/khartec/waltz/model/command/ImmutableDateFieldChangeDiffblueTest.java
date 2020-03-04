@@ -24,19 +24,14 @@ public class ImmutableDateFieldChangeDiffblueTest {
   }
 
   @Test
-  public void fromTest() {
-    // Arrange
-    ImmutableDateFieldChange.Builder builderResult = ImmutableDateFieldChange.builder();
+  public void constructorTest() {
+    // Arrange and Act
+    ImmutableDateFieldChange.Json actualJson = new ImmutableDateFieldChange.Json();
 
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from(new ImmutableDateFieldChange.Json());
-  }
-
-  @Test
-  public void equalsTest() {
-    // Arrange, Act and Assert
-    assertFalse(ImmutableDateFieldChange.fromJson(new ImmutableDateFieldChange.Json()).equals("foo"));
+    // Assert
+    assertNull(actualJson.newVal);
+    assertNull(actualJson.oldVal);
+    assertNull(actualJson.description);
   }
 
   @Test
@@ -44,6 +39,25 @@ public class ImmutableDateFieldChangeDiffblueTest {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
     ImmutableDateFieldChange.copyOf(new ImmutableDateFieldChange.Json());
+  }
+
+  @Test
+  public void descriptionTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableDateFieldChange.Json()).description();
+  }
+
+  @Test
+  public void descriptionTest2() {
+    // Arrange, Act and Assert
+    assertNull(ImmutableDateFieldChange.fromJson(new ImmutableDateFieldChange.Json()).description());
+  }
+
+  @Test
+  public void equalsTest() {
+    // Arrange, Act and Assert
+    assertFalse(ImmutableDateFieldChange.fromJson(new ImmutableDateFieldChange.Json()).equals("another"));
   }
 
   @Test
@@ -58,17 +72,26 @@ public class ImmutableDateFieldChangeDiffblueTest {
   }
 
   @Test
-  public void withOldValTest() {
+  public void fromTest() {
     // Arrange
-    ImmutableDateFieldChange fromJsonResult = ImmutableDateFieldChange.fromJson(new ImmutableDateFieldChange.Json());
+    ImmutableDateFieldChange.Builder builderResult = ImmutableDateFieldChange.builder();
 
-    // Act
-    ImmutableDateFieldChange actualWithOldValResult = fromJsonResult.withOldVal(new Date(1L));
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from(new ImmutableDateFieldChange.Json());
+  }
 
-    // Assert
-    assertEquals("DateFieldChange{newVal=null, oldVal=Thu Jan 01" + " 01:00:00 GMT 1970, description=null}",
-        actualWithOldValResult.toString());
-    assertNull(actualWithOldValResult.description());
+  @Test
+  public void hashCodeTest() {
+    // Arrange, Act and Assert
+    assertEquals(193376997, ImmutableDateFieldChange.fromJson(new ImmutableDateFieldChange.Json()).hashCode());
+  }
+
+  @Test
+  public void newValTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableDateFieldChange.Json()).newVal();
   }
 
   @Test
@@ -78,15 +101,54 @@ public class ImmutableDateFieldChangeDiffblueTest {
   }
 
   @Test
-  public void descriptionTest2() {
+  public void oldValTest() {
     // Arrange, Act and Assert
-    assertNull(ImmutableDateFieldChange.fromJson(new ImmutableDateFieldChange.Json()).description());
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableDateFieldChange.Json()).oldVal();
   }
 
   @Test
-  public void hashCodeTest() {
+  public void oldValTest2() {
     // Arrange, Act and Assert
-    assertEquals(193376997, ImmutableDateFieldChange.fromJson(new ImmutableDateFieldChange.Json()).hashCode());
+    assertNull(ImmutableDateFieldChange.fromJson(new ImmutableDateFieldChange.Json()).oldVal());
+  }
+
+  @Test
+  public void setDescriptionTest() {
+    // Arrange
+    ImmutableDateFieldChange.Json json = new ImmutableDateFieldChange.Json();
+
+    // Act
+    json.setDescription("description");
+
+    // Assert
+    assertEquals("description", json.description);
+  }
+
+  @Test
+  public void setNewValTest() {
+    // Arrange
+    Date date = new Date(1L);
+    ImmutableDateFieldChange.Json json = new ImmutableDateFieldChange.Json();
+
+    // Act
+    json.setNewVal(date);
+
+    // Assert
+    assertSame(date, json.newVal);
+  }
+
+  @Test
+  public void setOldValTest() {
+    // Arrange
+    Date date = new Date(1L);
+    ImmutableDateFieldChange.Json json = new ImmutableDateFieldChange.Json();
+
+    // Act
+    json.setOldVal(date);
+
+    // Assert
+    assertSame(date, json.oldVal);
   }
 
   @Test
@@ -109,12 +171,6 @@ public class ImmutableDateFieldChangeDiffblueTest {
   }
 
   @Test
-  public void oldValTest2() {
-    // Arrange, Act and Assert
-    assertNull(ImmutableDateFieldChange.fromJson(new ImmutableDateFieldChange.Json()).oldVal());
-  }
-
-  @Test
   public void withNewValTest() {
     // Arrange
     ImmutableDateFieldChange fromJsonResult = ImmutableDateFieldChange.fromJson(new ImmutableDateFieldChange.Json());
@@ -129,73 +185,17 @@ public class ImmutableDateFieldChangeDiffblueTest {
   }
 
   @Test
-  public void newValTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableDateFieldChange.Json()).newVal();
-  }
-
-  @Test
-  public void setDescriptionTest() {
+  public void withOldValTest() {
     // Arrange
-    ImmutableDateFieldChange.Json json = new ImmutableDateFieldChange.Json();
+    ImmutableDateFieldChange fromJsonResult = ImmutableDateFieldChange.fromJson(new ImmutableDateFieldChange.Json());
 
     // Act
-    json.setDescription("description");
+    ImmutableDateFieldChange actualWithOldValResult = fromJsonResult.withOldVal(new Date(1L));
 
     // Assert
-    assertEquals("description", json.description);
-  }
-
-  @Test
-  public void descriptionTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableDateFieldChange.Json()).description();
-  }
-
-  @Test
-  public void setOldValTest() {
-    // Arrange
-    Date date = new Date(1L);
-    ImmutableDateFieldChange.Json json = new ImmutableDateFieldChange.Json();
-
-    // Act
-    json.setOldVal(date);
-
-    // Assert
-    assertSame(date, json.oldVal);
-  }
-
-  @Test
-  public void constructorTest() {
-    // Arrange and Act
-    ImmutableDateFieldChange.Json actualJson = new ImmutableDateFieldChange.Json();
-
-    // Assert
-    assertNull(actualJson.newVal);
-    assertNull(actualJson.oldVal);
-    assertNull(actualJson.description);
-  }
-
-  @Test
-  public void oldValTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableDateFieldChange.Json()).oldVal();
-  }
-
-  @Test
-  public void setNewValTest() {
-    // Arrange
-    Date date = new Date(1L);
-    ImmutableDateFieldChange.Json json = new ImmutableDateFieldChange.Json();
-
-    // Act
-    json.setNewVal(date);
-
-    // Assert
-    assertSame(date, json.newVal);
+    assertEquals("DateFieldChange{newVal=null, oldVal=Thu Jan 01" + " 01:00:00 GMT 1970, description=null}",
+        actualWithOldValResult.toString());
+    assertNull(actualWithOldValResult.description());
   }
 }
 

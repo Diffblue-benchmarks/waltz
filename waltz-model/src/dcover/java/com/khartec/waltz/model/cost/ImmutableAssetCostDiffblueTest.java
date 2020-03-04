@@ -13,47 +13,6 @@ public class ImmutableAssetCostDiffblueTest {
   public ExpectedException thrown = ExpectedException.none();
 
   @Test
-  public void buildTest() {
-    // Arrange, Act and Assert
-    thrown.expect(IllegalStateException.class);
-    ImmutableAssetCost.builder().build();
-  }
-
-  @Test
-  public void fromTest2() {
-    // Arrange
-    ImmutableAssetCost.Builder builderResult = ImmutableAssetCost.builder();
-
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from((ProvenanceProvider) new ImmutableAssetCost.Json());
-  }
-
-  @Test
-  public void fromTest() {
-    // Arrange
-    ImmutableAssetCost.Builder builderResult = ImmutableAssetCost.builder();
-
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from(new ImmutableAssetCost.Json());
-  }
-
-  @Test
-  public void copyOfTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    ImmutableAssetCost.copyOf(new ImmutableAssetCost.Json());
-  }
-
-  @Test
-  public void fromJsonTest() {
-    // Arrange, Act and Assert
-    thrown.expect(IllegalStateException.class);
-    ImmutableAssetCost.fromJson(new ImmutableAssetCost.Json());
-  }
-
-  @Test
   public void assetCodeTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
@@ -61,22 +20,10 @@ public class ImmutableAssetCostDiffblueTest {
   }
 
   @Test
-  public void setAssetCodeTest() {
-    // Arrange
-    ImmutableAssetCost.Json json = new ImmutableAssetCost.Json();
-
-    // Act
-    json.setAssetCode("foo");
-
-    // Assert
-    assertEquals("foo", json.assetCode);
-  }
-
-  @Test
-  public void provenanceTest() {
+  public void buildTest() {
     // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableAssetCost.Json()).provenance();
+    thrown.expect(IllegalStateException.class);
+    ImmutableAssetCost.builder().build();
   }
 
   @Test
@@ -91,10 +38,63 @@ public class ImmutableAssetCostDiffblueTest {
   }
 
   @Test
+  public void copyOfTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    ImmutableAssetCost.copyOf(new ImmutableAssetCost.Json());
+  }
+
+  @Test
   public void costTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
     (new ImmutableAssetCost.Json()).cost();
+  }
+
+  @Test
+  public void fromJsonTest() {
+    // Arrange, Act and Assert
+    thrown.expect(IllegalStateException.class);
+    ImmutableAssetCost.fromJson(new ImmutableAssetCost.Json());
+  }
+
+  @Test
+  public void fromTest() {
+    // Arrange
+    ImmutableAssetCost.Builder builderResult = ImmutableAssetCost.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from(new ImmutableAssetCost.Json());
+  }
+
+  @Test
+  public void fromTest2() {
+    // Arrange
+    ImmutableAssetCost.Builder builderResult = ImmutableAssetCost.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from((ProvenanceProvider) new ImmutableAssetCost.Json());
+  }
+
+  @Test
+  public void provenanceTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableAssetCost.Json()).provenance();
+  }
+
+  @Test
+  public void setAssetCodeTest() {
+    // Arrange
+    ImmutableAssetCost.Json json = new ImmutableAssetCost.Json();
+
+    // Act
+    json.setAssetCode("assetCode");
+
+    // Assert
+    assertEquals("assetCode", json.assetCode);
   }
 
   @Test
@@ -116,10 +116,10 @@ public class ImmutableAssetCostDiffblueTest {
     ImmutableAssetCost.Json json = new ImmutableAssetCost.Json();
 
     // Act
-    json.setProvenance("foo");
+    json.setProvenance("provenance");
 
     // Assert
-    assertEquals("foo", json.provenance);
+    assertEquals("provenance", json.provenance);
   }
 }
 

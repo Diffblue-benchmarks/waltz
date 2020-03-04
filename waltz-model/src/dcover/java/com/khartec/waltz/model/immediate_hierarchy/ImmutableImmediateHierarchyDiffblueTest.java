@@ -12,6 +12,35 @@ public class ImmutableImmediateHierarchyDiffblueTest {
   @Rule
   public ExpectedException thrown = ExpectedException.none();
   @Test
+  public void childrenTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableImmediateHierarchy.Json<Object>()).children();
+  }
+  @Test
+  public void constructorTest() {
+    // Arrange, Act and Assert
+    assertEquals(0, (new ImmutableImmediateHierarchy.Json<Object>()).children.size());
+  }
+  @Test
+  public void fromJsonTest() {
+    // Arrange, Act and Assert
+    thrown.expect(IllegalStateException.class);
+    ImmutableImmediateHierarchy.<Object>fromJson(new ImmutableImmediateHierarchy.Json<Object>());
+  }
+  @Test
+  public void parentTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableImmediateHierarchy.Json<Object>()).parent();
+  }
+  @Test
+  public void selfTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableImmediateHierarchy.Json<Object>()).self();
+  }
+  @Test
   public void setChildrenTest() {
     // Arrange
     ImmutableImmediateHierarchy.Json<Object> json = new ImmutableImmediateHierarchy.Json<Object>();
@@ -30,39 +59,10 @@ public class ImmutableImmediateHierarchyDiffblueTest {
     ImmutableImmediateHierarchy.Json<Object> json = new ImmutableImmediateHierarchy.Json<Object>();
 
     // Act
-    json.setSelf("foo");
+    json.setSelf("self");
 
     // Assert
     assertTrue(json.self instanceof String);
-  }
-  @Test
-  public void constructorTest() {
-    // Arrange, Act and Assert
-    assertEquals(0, (new ImmutableImmediateHierarchy.Json<Object>()).children.size());
-  }
-  @Test
-  public void childrenTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableImmediateHierarchy.Json<Object>()).children();
-  }
-  @Test
-  public void parentTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableImmediateHierarchy.Json<Object>()).parent();
-  }
-  @Test
-  public void selfTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableImmediateHierarchy.Json<Object>()).self();
-  }
-  @Test
-  public void fromJsonTest() {
-    // Arrange, Act and Assert
-    thrown.expect(IllegalStateException.class);
-    ImmutableImmediateHierarchy.<Object>fromJson(new ImmutableImmediateHierarchy.Json<Object>());
   }
 }
 

@@ -13,53 +13,9 @@ public class ImmutableStringChangeCommandDiffblueTest {
   public ExpectedException thrown = ExpectedException.none();
 
   @Test
-  public void fromJsonTest() {
+  public void buildTest() {
     // Arrange, Act and Assert
-    assertEquals("StringChangeCommand{}",
-        ImmutableStringChangeCommand.fromJson(new ImmutableStringChangeCommand.Json()).toString());
-  }
-
-  @Test
-  public void equalsTest() {
-    // Arrange, Act and Assert
-    assertFalse(
-        ImmutableStringChangeCommand.fromJson(new ImmutableStringChangeCommand.Json()).equals("StringChangeCommand{"));
-  }
-
-  @Test
-  public void withNewStringValTest() {
-    // Arrange, Act and Assert
-    assertEquals("StringChangeCommand{newStringVal=value}", ImmutableStringChangeCommand
-        .fromJson(new ImmutableStringChangeCommand.Json()).withNewStringVal("value").toString());
-  }
-
-  @Test
-  public void hashCodeTest() {
-    // Arrange, Act and Assert
-    assertEquals(177573, ImmutableStringChangeCommand.fromJson(new ImmutableStringChangeCommand.Json()).hashCode());
-  }
-
-  @Test
-  public void toStringTest() {
-    // Arrange, Act and Assert
-    assertEquals("StringChangeCommand{}",
-        ImmutableStringChangeCommand.fromJson(new ImmutableStringChangeCommand.Json()).toString());
-  }
-
-  @Test
-  public void newStringValTest2() {
-    // Arrange
-    ImmutableStringChangeCommand.Json json = new ImmutableStringChangeCommand.Json();
-
-    // Act and Assert
-    assertSame(json.newStringVal, ImmutableStringChangeCommand.fromJson(json).newStringVal());
-  }
-
-  @Test
-  public void copyOfTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    ImmutableStringChangeCommand.copyOf(new ImmutableStringChangeCommand.Json());
+    assertEquals("StringChangeCommand{}", ImmutableStringChangeCommand.builder().build().toString());
   }
 
   @Test
@@ -71,10 +27,24 @@ public class ImmutableStringChangeCommandDiffblueTest {
   }
 
   @Test
-  public void newStringValTest() {
+  public void copyOfTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableStringChangeCommand.Json()).newStringVal();
+    ImmutableStringChangeCommand.copyOf(new ImmutableStringChangeCommand.Json());
+  }
+
+  @Test
+  public void equalsTest() {
+    // Arrange, Act and Assert
+    assertFalse(
+        ImmutableStringChangeCommand.fromJson(new ImmutableStringChangeCommand.Json()).equals("StringChangeCommand{"));
+  }
+
+  @Test
+  public void fromJsonTest() {
+    // Arrange, Act and Assert
+    assertEquals("StringChangeCommand{}",
+        ImmutableStringChangeCommand.fromJson(new ImmutableStringChangeCommand.Json()).toString());
   }
 
   @Test
@@ -88,9 +58,39 @@ public class ImmutableStringChangeCommandDiffblueTest {
   }
 
   @Test
-  public void buildTest() {
+  public void hashCodeTest() {
     // Arrange, Act and Assert
-    assertEquals("StringChangeCommand{}", ImmutableStringChangeCommand.builder().build().toString());
+    assertEquals(177573, ImmutableStringChangeCommand.fromJson(new ImmutableStringChangeCommand.Json()).hashCode());
+  }
+
+  @Test
+  public void newStringValTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableStringChangeCommand.Json()).newStringVal();
+  }
+
+  @Test
+  public void newStringValTest2() {
+    // Arrange
+    ImmutableStringChangeCommand.Json json = new ImmutableStringChangeCommand.Json();
+
+    // Act and Assert
+    assertSame(json.newStringVal, ImmutableStringChangeCommand.fromJson(json).newStringVal());
+  }
+
+  @Test
+  public void toStringTest() {
+    // Arrange, Act and Assert
+    assertEquals("StringChangeCommand{}",
+        ImmutableStringChangeCommand.fromJson(new ImmutableStringChangeCommand.Json()).toString());
+  }
+
+  @Test
+  public void withNewStringValTest() {
+    // Arrange, Act and Assert
+    assertEquals("StringChangeCommand{newStringVal=value}", ImmutableStringChangeCommand
+        .fromJson(new ImmutableStringChangeCommand.Json()).withNewStringVal("value").toString());
   }
 }
 

@@ -14,10 +14,9 @@ public class ImmutableDateChangeCommandDiffblueTest {
   public ExpectedException thrown = ExpectedException.none();
 
   @Test
-  public void newDateValTest2() {
+  public void buildTest() {
     // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableDateChangeCommand.Json()).newDateVal();
+    assertEquals("DateChangeCommand{}", ImmutableDateChangeCommand.builder().build().toString());
   }
 
   @Test
@@ -29,22 +28,6 @@ public class ImmutableDateChangeCommandDiffblueTest {
   }
 
   @Test
-  public void equalsTest() {
-    // Arrange, Act and Assert
-    assertFalse(
-        ImmutableDateChangeCommand.fromJson(new ImmutableDateChangeCommand.Json()).equals("DateChangeCommand{"));
-  }
-
-  @Test
-  public void newDateValTest() {
-    // Arrange
-    ImmutableDateChangeCommand.Json json = new ImmutableDateChangeCommand.Json();
-
-    // Act and Assert
-    assertSame(json.newDateVal, ImmutableDateChangeCommand.fromJson(json).newDateVal());
-  }
-
-  @Test
   public void copyOfTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
@@ -52,16 +35,10 @@ public class ImmutableDateChangeCommandDiffblueTest {
   }
 
   @Test
-  public void hashCodeTest() {
+  public void equalsTest() {
     // Arrange, Act and Assert
-    assertEquals(177573, ImmutableDateChangeCommand.fromJson(new ImmutableDateChangeCommand.Json()).hashCode());
-  }
-
-  @Test
-  public void toStringTest() {
-    // Arrange, Act and Assert
-    assertEquals("DateChangeCommand{}",
-        ImmutableDateChangeCommand.fromJson(new ImmutableDateChangeCommand.Json()).toString());
+    assertFalse(
+        ImmutableDateChangeCommand.fromJson(new ImmutableDateChangeCommand.Json()).equals("DateChangeCommand{"));
   }
 
   @Test
@@ -82,9 +59,32 @@ public class ImmutableDateChangeCommandDiffblueTest {
   }
 
   @Test
-  public void buildTest() {
+  public void hashCodeTest() {
     // Arrange, Act and Assert
-    assertEquals("DateChangeCommand{}", ImmutableDateChangeCommand.builder().build().toString());
+    assertEquals(177573, ImmutableDateChangeCommand.fromJson(new ImmutableDateChangeCommand.Json()).hashCode());
+  }
+
+  @Test
+  public void newDateValTest() {
+    // Arrange
+    ImmutableDateChangeCommand.Json json = new ImmutableDateChangeCommand.Json();
+
+    // Act and Assert
+    assertSame(json.newDateVal, ImmutableDateChangeCommand.fromJson(json).newDateVal());
+  }
+
+  @Test
+  public void newDateValTest2() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableDateChangeCommand.Json()).newDateVal();
+  }
+
+  @Test
+  public void toStringTest() {
+    // Arrange, Act and Assert
+    assertEquals("DateChangeCommand{}",
+        ImmutableDateChangeCommand.fromJson(new ImmutableDateChangeCommand.Json()).toString());
   }
 }
 

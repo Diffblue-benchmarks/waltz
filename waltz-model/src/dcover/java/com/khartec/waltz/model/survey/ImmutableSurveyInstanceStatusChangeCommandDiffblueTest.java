@@ -10,6 +10,39 @@ public class ImmutableSurveyInstanceStatusChangeCommandDiffblueTest {
   @Rule
   public ExpectedException thrown = ExpectedException.none();
   @Test
+  public void buildTest() {
+    // Arrange, Act and Assert
+    thrown.expect(IllegalStateException.class);
+    ImmutableSurveyInstanceStatusChangeCommand.builder().build();
+  }
+  @Test
+  public void constructorTest() {
+    // Arrange, Act and Assert
+    assertNull((new ImmutableSurveyInstanceStatusChangeCommand.Json()).newStatus);
+  }
+  @Test
+  public void copyOfTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    ImmutableSurveyInstanceStatusChangeCommand.copyOf(new ImmutableSurveyInstanceStatusChangeCommand.Json());
+  }
+  @Test
+  public void fromJsonTest() {
+    // Arrange, Act and Assert
+    thrown.expect(IllegalStateException.class);
+    ImmutableSurveyInstanceStatusChangeCommand.fromJson(new ImmutableSurveyInstanceStatusChangeCommand.Json());
+  }
+  @Test
+  public void fromTest() {
+    // Arrange
+    ImmutableSurveyInstanceStatusChangeCommand.Builder builderResult = ImmutableSurveyInstanceStatusChangeCommand
+        .builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from(new ImmutableSurveyInstanceStatusChangeCommand.Json());
+  }
+  @Test
   public void newStatusTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
@@ -22,11 +55,6 @@ public class ImmutableSurveyInstanceStatusChangeCommandDiffblueTest {
     (new ImmutableSurveyInstanceStatusChangeCommand.Json()).reason();
   }
   @Test
-  public void constructorTest() {
-    // Arrange, Act and Assert
-    assertNull((new ImmutableSurveyInstanceStatusChangeCommand.Json()).newStatus);
-  }
-  @Test
   public void setNewStatusTest() {
     // Arrange
     ImmutableSurveyInstanceStatusChangeCommand.Json json = new ImmutableSurveyInstanceStatusChangeCommand.Json();
@@ -36,34 +64,6 @@ public class ImmutableSurveyInstanceStatusChangeCommandDiffblueTest {
 
     // Assert
     assertEquals(SurveyInstanceStatus.NOT_STARTED, json.newStatus);
-  }
-  @Test
-  public void fromJsonTest() {
-    // Arrange, Act and Assert
-    thrown.expect(IllegalStateException.class);
-    ImmutableSurveyInstanceStatusChangeCommand.fromJson(new ImmutableSurveyInstanceStatusChangeCommand.Json());
-  }
-  @Test
-  public void copyOfTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    ImmutableSurveyInstanceStatusChangeCommand.copyOf(new ImmutableSurveyInstanceStatusChangeCommand.Json());
-  }
-  @Test
-  public void buildTest() {
-    // Arrange, Act and Assert
-    thrown.expect(IllegalStateException.class);
-    ImmutableSurveyInstanceStatusChangeCommand.builder().build();
-  }
-  @Test
-  public void fromTest() {
-    // Arrange
-    ImmutableSurveyInstanceStatusChangeCommand.Builder builderResult = ImmutableSurveyInstanceStatusChangeCommand
-        .builder();
-
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from(new ImmutableSurveyInstanceStatusChangeCommand.Json());
   }
 }
 

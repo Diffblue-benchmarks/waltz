@@ -18,13 +18,14 @@ public class ImmutableSurveyInstanceCreateCommandDiffblueTest {
   }
 
   @Test
-  public void fromTest() {
-    // Arrange
-    ImmutableSurveyInstanceCreateCommand.Builder builderResult = ImmutableSurveyInstanceCreateCommand.builder();
+  public void constructorTest() {
+    // Arrange and Act
+    ImmutableSurveyInstanceCreateCommand.Json actualJson = new ImmutableSurveyInstanceCreateCommand.Json();
 
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from(new ImmutableSurveyInstanceCreateCommand.Json());
+    // Assert
+    assertNull(actualJson.surveyRunId);
+    assertNull(actualJson.status);
+    assertNull(actualJson.entityReference);
   }
 
   @Test
@@ -35,10 +36,34 @@ public class ImmutableSurveyInstanceCreateCommandDiffblueTest {
   }
 
   @Test
+  public void dueDateTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableSurveyInstanceCreateCommand.Json()).dueDate();
+  }
+
+  @Test
+  public void entityReferenceTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableSurveyInstanceCreateCommand.Json()).entityReference();
+  }
+
+  @Test
   public void fromJsonTest() {
     // Arrange, Act and Assert
     thrown.expect(IllegalStateException.class);
     ImmutableSurveyInstanceCreateCommand.fromJson(new ImmutableSurveyInstanceCreateCommand.Json());
+  }
+
+  @Test
+  public void fromTest() {
+    // Arrange
+    ImmutableSurveyInstanceCreateCommand.Builder builderResult = ImmutableSurveyInstanceCreateCommand.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from(new ImmutableSurveyInstanceCreateCommand.Json());
   }
 
   @Test
@@ -66,20 +91,6 @@ public class ImmutableSurveyInstanceCreateCommandDiffblueTest {
   }
 
   @Test
-  public void dueDateTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableSurveyInstanceCreateCommand.Json()).dueDate();
-  }
-
-  @Test
-  public void entityReferenceTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableSurveyInstanceCreateCommand.Json()).entityReference();
-  }
-
-  @Test
   public void statusTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
@@ -91,17 +102,6 @@ public class ImmutableSurveyInstanceCreateCommandDiffblueTest {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
     (new ImmutableSurveyInstanceCreateCommand.Json()).surveyRunId();
-  }
-
-  @Test
-  public void constructorTest() {
-    // Arrange and Act
-    ImmutableSurveyInstanceCreateCommand.Json actualJson = new ImmutableSurveyInstanceCreateCommand.Json();
-
-    // Assert
-    assertNull(actualJson.surveyRunId);
-    assertNull(actualJson.status);
-    assertNull(actualJson.entityReference);
   }
 }
 

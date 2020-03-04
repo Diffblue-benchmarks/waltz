@@ -21,73 +21,48 @@ public class ImmutableLogicalDataElementDiffblueTest {
   @Rule
   public ExpectedException thrown = ExpectedException.none();
   @Test
-  public void fromTest8() {
-    // Arrange
-    ImmutableLogicalDataElement.Builder builderResult = ImmutableLogicalDataElement.builder();
-
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from((EntityKindProvider) new ImmutableLogicalDataElement.Json());
-  }
-  @Test
-  public void fromTest7() {
-    // Arrange
-    ImmutableLogicalDataElement.Builder builderResult = ImmutableLogicalDataElement.builder();
-
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from((ProvenanceProvider) new ImmutableLogicalDataElement.Json());
-  }
-  @Test
-  public void fromTest6() {
-    // Arrange
-    ImmutableLogicalDataElement.Builder builderResult = ImmutableLogicalDataElement.builder();
-
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from((ExternalIdProvider) new ImmutableLogicalDataElement.Json());
-  }
-  @Test
-  public void fromTest5() {
-    // Arrange
-    ImmutableLogicalDataElement.Builder builderResult = ImmutableLogicalDataElement.builder();
-
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from((EntityLifecycleStatusProvider) new ImmutableLogicalDataElement.Json());
-  }
-  @Test
   public void buildTest() {
     // Arrange, Act and Assert
     thrown.expect(IllegalStateException.class);
     ImmutableLogicalDataElement.builder().build();
   }
   @Test
-  public void fromTest4() {
-    // Arrange
-    ImmutableLogicalDataElement.Builder builderResult = ImmutableLogicalDataElement.builder();
+  public void constructorTest() {
+    // Arrange and Act
+    ImmutableLogicalDataElement.Json actualJson = new ImmutableLogicalDataElement.Json();
 
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from((IdProvider) new ImmutableLogicalDataElement.Json());
+    // Assert
+    assertSame(actualJson.id, actualJson.externalId);
   }
   @Test
-  public void fromTest3() {
-    // Arrange
-    ImmutableLogicalDataElement.Builder builderResult = ImmutableLogicalDataElement.builder();
-
-    // Act and Assert
+  public void copyOfTest() {
+    // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    builderResult.from(new ImmutableLogicalDataElement.Json());
+    ImmutableLogicalDataElement.copyOf(new ImmutableLogicalDataElement.Json());
   }
   @Test
-  public void fromTest2() {
-    // Arrange
-    ImmutableLogicalDataElement.Builder builderResult = ImmutableLogicalDataElement.builder();
-
-    // Act and Assert
+  public void descriptionTest() {
+    // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    builderResult.from((NameProvider) new ImmutableLogicalDataElement.Json());
+    (new ImmutableLogicalDataElement.Json()).description();
+  }
+  @Test
+  public void entityLifecycleStatusTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableLogicalDataElement.Json()).entityLifecycleStatus();
+  }
+  @Test
+  public void externalIdTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableLogicalDataElement.Json()).externalId();
+  }
+  @Test
+  public void fromJsonTest() {
+    // Arrange, Act and Assert
+    thrown.expect(IllegalStateException.class);
+    ImmutableLogicalDataElement.fromJson(new ImmutableLogicalDataElement.Json());
   }
   @Test
   public void fromTest() {
@@ -99,10 +74,73 @@ public class ImmutableLogicalDataElementDiffblueTest {
     builderResult.from((DescriptionProvider) new ImmutableLogicalDataElement.Json());
   }
   @Test
-  public void parentDataTypeIdTest() {
+  public void fromTest2() {
+    // Arrange
+    ImmutableLogicalDataElement.Builder builderResult = ImmutableLogicalDataElement.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from((NameProvider) new ImmutableLogicalDataElement.Json());
+  }
+  @Test
+  public void fromTest3() {
+    // Arrange
+    ImmutableLogicalDataElement.Builder builderResult = ImmutableLogicalDataElement.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from(new ImmutableLogicalDataElement.Json());
+  }
+  @Test
+  public void fromTest4() {
+    // Arrange
+    ImmutableLogicalDataElement.Builder builderResult = ImmutableLogicalDataElement.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from((IdProvider) new ImmutableLogicalDataElement.Json());
+  }
+  @Test
+  public void fromTest5() {
+    // Arrange
+    ImmutableLogicalDataElement.Builder builderResult = ImmutableLogicalDataElement.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from((EntityLifecycleStatusProvider) new ImmutableLogicalDataElement.Json());
+  }
+  @Test
+  public void fromTest6() {
+    // Arrange
+    ImmutableLogicalDataElement.Builder builderResult = ImmutableLogicalDataElement.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from((ExternalIdProvider) new ImmutableLogicalDataElement.Json());
+  }
+  @Test
+  public void fromTest7() {
+    // Arrange
+    ImmutableLogicalDataElement.Builder builderResult = ImmutableLogicalDataElement.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from((ProvenanceProvider) new ImmutableLogicalDataElement.Json());
+  }
+  @Test
+  public void fromTest8() {
+    // Arrange
+    ImmutableLogicalDataElement.Builder builderResult = ImmutableLogicalDataElement.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from((EntityKindProvider) new ImmutableLogicalDataElement.Json());
+  }
+  @Test
+  public void idTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableLogicalDataElement.Json()).parentDataTypeId();
+    (new ImmutableLogicalDataElement.Json()).id();
   }
   @Test
   public void kindTest() {
@@ -111,10 +149,66 @@ public class ImmutableLogicalDataElementDiffblueTest {
     (new ImmutableLogicalDataElement.Json()).kind();
   }
   @Test
-  public void descriptionTest() {
+  public void nameTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableLogicalDataElement.Json()).description();
+    (new ImmutableLogicalDataElement.Json()).name();
+  }
+  @Test
+  public void parentDataTypeIdTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableLogicalDataElement.Json()).parentDataTypeId();
+  }
+  @Test
+  public void provenanceTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableLogicalDataElement.Json()).provenance();
+  }
+  @Test
+  public void setDescriptionTest() {
+    // Arrange
+    ImmutableLogicalDataElement.Json json = new ImmutableLogicalDataElement.Json();
+
+    // Act
+    json.setDescription("description");
+
+    // Assert
+    assertEquals("description", json.description);
+  }
+  @Test
+  public void setEntityLifecycleStatusTest() {
+    // Arrange
+    ImmutableLogicalDataElement.Json json = new ImmutableLogicalDataElement.Json();
+
+    // Act
+    json.setEntityLifecycleStatus(EntityLifecycleStatus.ACTIVE);
+
+    // Assert
+    assertEquals(EntityLifecycleStatus.ACTIVE, json.entityLifecycleStatus);
+  }
+  @Test
+  public void setKindTest() {
+    // Arrange
+    ImmutableLogicalDataElement.Json json = new ImmutableLogicalDataElement.Json();
+
+    // Act
+    json.setKind(EntityKind.ACTOR);
+
+    // Assert
+    assertEquals(EntityKind.ACTOR, json.kind);
+  }
+  @Test
+  public void setNameTest() {
+    // Arrange
+    ImmutableLogicalDataElement.Json json = new ImmutableLogicalDataElement.Json();
+
+    // Act
+    json.setName("name");
+
+    // Assert
+    assertEquals("name", json.name);
   }
   @Test
   public void setParentDataTypeIdTest() {
@@ -129,33 +223,15 @@ public class ImmutableLogicalDataElementDiffblueTest {
     assertTrue(json.parentDataTypeIdIsSet);
   }
   @Test
-  public void provenanceTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableLogicalDataElement.Json()).provenance();
-  }
-  @Test
-  public void idTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableLogicalDataElement.Json()).id();
-  }
-  @Test
-  public void entityLifecycleStatusTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableLogicalDataElement.Json()).entityLifecycleStatus();
-  }
-  @Test
-  public void setKindTest() {
+  public void setProvenanceTest() {
     // Arrange
     ImmutableLogicalDataElement.Json json = new ImmutableLogicalDataElement.Json();
 
     // Act
-    json.setKind(EntityKind.ACTOR);
+    json.setProvenance("provenance");
 
     // Assert
-    assertEquals(EntityKind.ACTOR, json.kind);
+    assertEquals("provenance", json.provenance);
   }
   @Test
   public void setTypeTest() {
@@ -169,86 +245,10 @@ public class ImmutableLogicalDataElementDiffblueTest {
     assertEquals(FieldDataType.DATE, json.type);
   }
   @Test
-  public void setEntityLifecycleStatusTest() {
-    // Arrange
-    ImmutableLogicalDataElement.Json json = new ImmutableLogicalDataElement.Json();
-
-    // Act
-    json.setEntityLifecycleStatus(EntityLifecycleStatus.ACTIVE);
-
-    // Assert
-    assertEquals(EntityLifecycleStatus.ACTIVE, json.entityLifecycleStatus);
-  }
-  @Test
-  public void setDescriptionTest() {
-    // Arrange
-    ImmutableLogicalDataElement.Json json = new ImmutableLogicalDataElement.Json();
-
-    // Act
-    json.setDescription("description");
-
-    // Assert
-    assertEquals("description", json.description);
-  }
-  @Test
-  public void nameTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableLogicalDataElement.Json()).name();
-  }
-  @Test
-  public void externalIdTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableLogicalDataElement.Json()).externalId();
-  }
-  @Test
-  public void setNameTest() {
-    // Arrange
-    ImmutableLogicalDataElement.Json json = new ImmutableLogicalDataElement.Json();
-
-    // Act
-    json.setName("name");
-
-    // Assert
-    assertEquals("name", json.name);
-  }
-  @Test
-  public void constructorTest() {
-    // Arrange and Act
-    ImmutableLogicalDataElement.Json actualJson = new ImmutableLogicalDataElement.Json();
-
-    // Assert
-    assertSame(actualJson.id, actualJson.externalId);
-  }
-  @Test
   public void typeTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
     (new ImmutableLogicalDataElement.Json()).type();
-  }
-  @Test
-  public void setProvenanceTest() {
-    // Arrange
-    ImmutableLogicalDataElement.Json json = new ImmutableLogicalDataElement.Json();
-
-    // Act
-    json.setProvenance("foo");
-
-    // Assert
-    assertEquals("foo", json.provenance);
-  }
-  @Test
-  public void copyOfTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    ImmutableLogicalDataElement.copyOf(new ImmutableLogicalDataElement.Json());
-  }
-  @Test
-  public void fromJsonTest() {
-    // Arrange, Act and Assert
-    thrown.expect(IllegalStateException.class);
-    ImmutableLogicalDataElement.fromJson(new ImmutableLogicalDataElement.Json());
   }
 }
 

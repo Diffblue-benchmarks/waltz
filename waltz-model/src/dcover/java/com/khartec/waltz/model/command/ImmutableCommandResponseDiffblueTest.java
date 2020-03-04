@@ -11,10 +11,14 @@ public class ImmutableCommandResponseDiffblueTest {
   public ExpectedException thrown = ExpectedException.none();
 
   @Test
-  public void fromJsonTest() {
-    // Arrange, Act and Assert
-    thrown.expect(IllegalStateException.class);
-    ImmutableCommandResponse.<Command>fromJson(new ImmutableCommandResponse.Json<Command>());
+  public void constructorTest() {
+    // Arrange and Act
+    ImmutableCommandResponse.Json<Command> actualJson = new ImmutableCommandResponse.Json<Command>();
+
+    // Assert
+    assertNull(actualJson.entityReference);
+    assertNull(actualJson.outcome);
+    assertNull(actualJson.originalCommand);
   }
 
   @Test
@@ -25,10 +29,10 @@ public class ImmutableCommandResponseDiffblueTest {
   }
 
   @Test
-  public void originalCommandTest() {
+  public void fromJsonTest() {
     // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableCommandResponse.Json<Command>()).originalCommand();
+    thrown.expect(IllegalStateException.class);
+    ImmutableCommandResponse.<Command>fromJson(new ImmutableCommandResponse.Json<Command>());
   }
 
   @Test
@@ -39,14 +43,10 @@ public class ImmutableCommandResponseDiffblueTest {
   }
 
   @Test
-  public void constructorTest() {
-    // Arrange and Act
-    ImmutableCommandResponse.Json<Command> actualJson = new ImmutableCommandResponse.Json<Command>();
-
-    // Assert
-    assertNull(actualJson.entityReference);
-    assertNull(actualJson.outcome);
-    assertNull(actualJson.originalCommand);
+  public void originalCommandTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableCommandResponse.Json<Command>()).originalCommand();
   }
 
   @Test

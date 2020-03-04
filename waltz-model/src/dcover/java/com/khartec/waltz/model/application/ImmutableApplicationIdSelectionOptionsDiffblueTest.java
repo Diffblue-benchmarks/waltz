@@ -16,40 +16,16 @@ public class ImmutableApplicationIdSelectionOptionsDiffblueTest {
   @Rule
   public ExpectedException thrown = ExpectedException.none();
   @Test
-  public void copyOfTest() {
+  public void applicationKindsTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    ImmutableApplicationIdSelectionOptions.copyOf(new ImmutableApplicationIdSelectionOptions.Json());
+    (new ImmutableApplicationIdSelectionOptions.Json()).applicationKinds();
   }
   @Test
-  public void fromJsonTest() {
+  public void buildTest() {
     // Arrange, Act and Assert
     thrown.expect(IllegalStateException.class);
-    ImmutableApplicationIdSelectionOptions.fromJson(new ImmutableApplicationIdSelectionOptions.Json());
-  }
-  @Test
-  public void filtersTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableApplicationIdSelectionOptions.Json()).filters();
-  }
-  @Test
-  public void entityReferenceTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableApplicationIdSelectionOptions.Json()).entityReference();
-  }
-  @Test
-  public void entityLifecycleStatusesTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableApplicationIdSelectionOptions.Json()).entityLifecycleStatuses();
-  }
-  @Test
-  public void scopeTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableApplicationIdSelectionOptions.Json()).scope();
+    ImmutableApplicationIdSelectionOptions.builder().build();
   }
   @Test
   public void constructorTest() {
@@ -63,15 +39,58 @@ public class ImmutableApplicationIdSelectionOptionsDiffblueTest {
     assertSame(entityLifecycleStatusSet, actualApplicationKindSet);
   }
   @Test
-  public void setScopeTest() {
+  public void copyOfTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    ImmutableApplicationIdSelectionOptions.copyOf(new ImmutableApplicationIdSelectionOptions.Json());
+  }
+  @Test
+  public void entityLifecycleStatusesTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableApplicationIdSelectionOptions.Json()).entityLifecycleStatuses();
+  }
+  @Test
+  public void entityReferenceTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableApplicationIdSelectionOptions.Json()).entityReference();
+  }
+  @Test
+  public void filtersTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableApplicationIdSelectionOptions.Json()).filters();
+  }
+  @Test
+  public void fromJsonTest() {
+    // Arrange, Act and Assert
+    thrown.expect(IllegalStateException.class);
+    ImmutableApplicationIdSelectionOptions.fromJson(new ImmutableApplicationIdSelectionOptions.Json());
+  }
+  @Test
+  public void fromTest() {
     // Arrange
-    ImmutableApplicationIdSelectionOptions.Json json = new ImmutableApplicationIdSelectionOptions.Json();
+    ImmutableApplicationIdSelectionOptions.Builder builderResult = ImmutableApplicationIdSelectionOptions.builder();
 
-    // Act
-    json.setScope(HierarchyQueryScope.EXACT);
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from(new ImmutableApplicationIdSelectionOptions.Json());
+  }
+  @Test
+  public void fromTest2() {
+    // Arrange
+    ImmutableApplicationIdSelectionOptions.Builder builderResult = ImmutableApplicationIdSelectionOptions.builder();
 
-    // Assert
-    assertEquals(HierarchyQueryScope.EXACT, json.scope);
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from((IdSelectionOptions) new ImmutableApplicationIdSelectionOptions.Json());
+  }
+  @Test
+  public void scopeTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableApplicationIdSelectionOptions.Json()).scope();
   }
   @Test
   public void setApplicationKindsTest() {
@@ -102,34 +121,15 @@ public class ImmutableApplicationIdSelectionOptionsDiffblueTest {
     assertSame(entityLifecycleStatusSet, json.entityLifecycleStatuses);
   }
   @Test
-  public void applicationKindsTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableApplicationIdSelectionOptions.Json()).applicationKinds();
-  }
-  @Test
-  public void fromTest2() {
+  public void setScopeTest() {
     // Arrange
-    ImmutableApplicationIdSelectionOptions.Builder builderResult = ImmutableApplicationIdSelectionOptions.builder();
+    ImmutableApplicationIdSelectionOptions.Json json = new ImmutableApplicationIdSelectionOptions.Json();
 
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from((IdSelectionOptions) new ImmutableApplicationIdSelectionOptions.Json());
-  }
-  @Test
-  public void fromTest() {
-    // Arrange
-    ImmutableApplicationIdSelectionOptions.Builder builderResult = ImmutableApplicationIdSelectionOptions.builder();
+    // Act
+    json.setScope(HierarchyQueryScope.EXACT);
 
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from(new ImmutableApplicationIdSelectionOptions.Json());
-  }
-  @Test
-  public void buildTest() {
-    // Arrange, Act and Assert
-    thrown.expect(IllegalStateException.class);
-    ImmutableApplicationIdSelectionOptions.builder().build();
+    // Assert
+    assertEquals(HierarchyQueryScope.EXACT, json.scope);
   }
 }
 

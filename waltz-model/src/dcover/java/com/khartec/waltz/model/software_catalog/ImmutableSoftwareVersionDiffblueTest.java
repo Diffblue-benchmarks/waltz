@@ -21,36 +21,6 @@ public class ImmutableSoftwareVersionDiffblueTest {
   public ExpectedException thrown = ExpectedException.none();
 
   @Test
-  public void fromTest8() {
-    // Arrange
-    ImmutableSoftwareVersion.Builder builderResult = ImmutableSoftwareVersion.builder();
-
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from((NameProvider) new ImmutableSoftwarePackage.Json());
-  }
-
-  @Test
-  public void fromTest7() {
-    // Arrange
-    ImmutableSoftwareVersion.Builder builderResult = ImmutableSoftwareVersion.builder();
-
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from((IdProvider) new ImmutableSoftwarePackage.Json());
-  }
-
-  @Test
-  public void fromTest6() {
-    // Arrange
-    ImmutableSoftwareVersion.Builder builderResult = ImmutableSoftwareVersion.builder();
-
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from(new ImmutableSoftwareVersion.Json());
-  }
-
-  @Test
   public void buildTest() {
     // Arrange, Act and Assert
     thrown.expect(IllegalStateException.class);
@@ -58,43 +28,49 @@ public class ImmutableSoftwareVersionDiffblueTest {
   }
 
   @Test
-  public void fromTest5() {
-    // Arrange
-    ImmutableSoftwareVersion.Builder builderResult = ImmutableSoftwareVersion.builder();
+  public void constructorTest() {
+    // Arrange and Act
+    ImmutableSoftwareVersion.Json actualJson = new ImmutableSoftwareVersion.Json();
 
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from((ProvenanceProvider) new ImmutableSoftwarePackage.Json());
+    // Assert
+    Optional<Long> optional = actualJson.id;
+    assertSame(optional, actualJson.externalId);
+    assertSame(optional, actualJson.created);
   }
 
   @Test
-  public void fromTest4() {
-    // Arrange
-    ImmutableSoftwareVersion.Builder builderResult = ImmutableSoftwareVersion.builder();
-
-    // Act and Assert
+  public void copyOfTest() {
+    // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    builderResult.from((DescriptionProvider) new ImmutableSoftwarePackage.Json());
+    ImmutableSoftwareVersion.copyOf(new ImmutableSoftwareVersion.Json());
   }
 
   @Test
-  public void fromTest3() {
-    // Arrange
-    ImmutableSoftwareVersion.Builder builderResult = ImmutableSoftwareVersion.builder();
-
-    // Act and Assert
+  public void createdTest() {
+    // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    builderResult.from((CreatedUserTimestampProvider) new ImmutableSoftwarePackage.Json());
+    (new ImmutableSoftwareVersion.Json()).created();
   }
 
   @Test
-  public void fromTest2() {
-    // Arrange
-    ImmutableSoftwareVersion.Builder builderResult = ImmutableSoftwareVersion.builder();
-
-    // Act and Assert
+  public void descriptionTest() {
+    // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    builderResult.from((EntityKindProvider) new ImmutableSoftwarePackage.Json());
+    (new ImmutableSoftwareVersion.Json()).description();
+  }
+
+  @Test
+  public void externalIdTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableSoftwareVersion.Json()).externalId();
+  }
+
+  @Test
+  public void fromJsonTest() {
+    // Arrange, Act and Assert
+    thrown.expect(IllegalStateException.class);
+    ImmutableSoftwareVersion.fromJson(new ImmutableSoftwareVersion.Json());
   }
 
   @Test
@@ -108,57 +84,73 @@ public class ImmutableSoftwareVersionDiffblueTest {
   }
 
   @Test
-  public void copyOfTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    ImmutableSoftwareVersion.copyOf(new ImmutableSoftwareVersion.Json());
-  }
-
-  @Test
-  public void fromJsonTest() {
-    // Arrange, Act and Assert
-    thrown.expect(IllegalStateException.class);
-    ImmutableSoftwareVersion.fromJson(new ImmutableSoftwareVersion.Json());
-  }
-
-  @Test
-  public void setVersionTest() {
+  public void fromTest2() {
     // Arrange
-    ImmutableSoftwareVersion.Json json = new ImmutableSoftwareVersion.Json();
+    ImmutableSoftwareVersion.Builder builderResult = ImmutableSoftwareVersion.builder();
 
-    // Act
-    json.setVersion("foo");
-
-    // Assert
-    assertEquals("foo", json.version);
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from((EntityKindProvider) new ImmutableSoftwarePackage.Json());
   }
 
   @Test
-  public void kindTest() {
-    // Arrange, Act and Assert
+  public void fromTest3() {
+    // Arrange
+    ImmutableSoftwareVersion.Builder builderResult = ImmutableSoftwareVersion.builder();
+
+    // Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableSoftwareVersion.Json()).kind();
+    builderResult.from((CreatedUserTimestampProvider) new ImmutableSoftwarePackage.Json());
   }
 
   @Test
-  public void descriptionTest() {
-    // Arrange, Act and Assert
+  public void fromTest4() {
+    // Arrange
+    ImmutableSoftwareVersion.Builder builderResult = ImmutableSoftwareVersion.builder();
+
+    // Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableSoftwareVersion.Json()).description();
+    builderResult.from((DescriptionProvider) new ImmutableSoftwarePackage.Json());
   }
 
   @Test
-  public void createdTest() {
-    // Arrange, Act and Assert
+  public void fromTest5() {
+    // Arrange
+    ImmutableSoftwareVersion.Builder builderResult = ImmutableSoftwareVersion.builder();
+
+    // Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableSoftwareVersion.Json()).created();
+    builderResult.from((ProvenanceProvider) new ImmutableSoftwarePackage.Json());
   }
 
   @Test
-  public void provenanceTest() {
-    // Arrange, Act and Assert
+  public void fromTest6() {
+    // Arrange
+    ImmutableSoftwareVersion.Builder builderResult = ImmutableSoftwareVersion.builder();
+
+    // Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableSoftwareVersion.Json()).provenance();
+    builderResult.from(new ImmutableSoftwareVersion.Json());
+  }
+
+  @Test
+  public void fromTest7() {
+    // Arrange
+    ImmutableSoftwareVersion.Builder builderResult = ImmutableSoftwareVersion.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from((IdProvider) new ImmutableSoftwarePackage.Json());
+  }
+
+  @Test
+  public void fromTest8() {
+    // Arrange
+    ImmutableSoftwareVersion.Builder builderResult = ImmutableSoftwareVersion.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from((NameProvider) new ImmutableSoftwarePackage.Json());
   }
 
   @Test
@@ -169,22 +161,24 @@ public class ImmutableSoftwareVersionDiffblueTest {
   }
 
   @Test
-  public void setKindTest() {
-    // Arrange
-    ImmutableSoftwareVersion.Json json = new ImmutableSoftwareVersion.Json();
-
-    // Act
-    json.setKind(EntityKind.ACTOR);
-
-    // Assert
-    assertEquals(EntityKind.ACTOR, json.kind);
+  public void kindTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableSoftwareVersion.Json()).kind();
   }
 
   @Test
-  public void softwarePackageIdTest() {
+  public void nameTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableSoftwareVersion.Json()).softwarePackageId();
+    (new ImmutableSoftwareVersion.Json()).name();
+  }
+
+  @Test
+  public void provenanceTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableSoftwareVersion.Json()).provenance();
   }
 
   @Test
@@ -207,24 +201,15 @@ public class ImmutableSoftwareVersionDiffblueTest {
   }
 
   @Test
-  public void nameTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableSoftwareVersion.Json()).name();
-  }
+  public void setKindTest() {
+    // Arrange
+    ImmutableSoftwareVersion.Json json = new ImmutableSoftwareVersion.Json();
 
-  @Test
-  public void versionTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableSoftwareVersion.Json()).version();
-  }
+    // Act
+    json.setKind(EntityKind.ACTOR);
 
-  @Test
-  public void externalIdTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableSoftwareVersion.Json()).externalId();
+    // Assert
+    assertEquals(EntityKind.ACTOR, json.kind);
   }
 
   @Test
@@ -240,14 +225,15 @@ public class ImmutableSoftwareVersionDiffblueTest {
   }
 
   @Test
-  public void constructorTest() {
-    // Arrange and Act
-    ImmutableSoftwareVersion.Json actualJson = new ImmutableSoftwareVersion.Json();
+  public void setProvenanceTest() {
+    // Arrange
+    ImmutableSoftwareVersion.Json json = new ImmutableSoftwareVersion.Json();
+
+    // Act
+    json.setProvenance("provenance");
 
     // Assert
-    Optional<Long> optional = actualJson.id;
-    assertSame(optional, actualJson.externalId);
-    assertSame(optional, actualJson.created);
+    assertEquals("provenance", json.provenance);
   }
 
   @Test
@@ -264,15 +250,29 @@ public class ImmutableSoftwareVersionDiffblueTest {
   }
 
   @Test
-  public void setProvenanceTest() {
+  public void setVersionTest() {
     // Arrange
     ImmutableSoftwareVersion.Json json = new ImmutableSoftwareVersion.Json();
 
     // Act
-    json.setProvenance("foo");
+    json.setVersion("version");
 
     // Assert
-    assertEquals("foo", json.provenance);
+    assertEquals("version", json.version);
+  }
+
+  @Test
+  public void softwarePackageIdTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableSoftwareVersion.Json()).softwarePackageId();
+  }
+
+  @Test
+  public void versionTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableSoftwareVersion.Json()).version();
   }
 }
 

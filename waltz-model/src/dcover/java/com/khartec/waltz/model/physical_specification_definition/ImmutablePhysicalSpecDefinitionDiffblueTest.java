@@ -17,50 +17,6 @@ public class ImmutablePhysicalSpecDefinitionDiffblueTest {
   public ExpectedException thrown = ExpectedException.none();
 
   @Test
-  public void copyOfTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    ImmutablePhysicalSpecDefinition.copyOf(new ImmutablePhysicalSpecDefinition.Json());
-  }
-
-  @Test
-  public void fromJsonTest() {
-    // Arrange, Act and Assert
-    thrown.expect(IllegalStateException.class);
-    ImmutablePhysicalSpecDefinition.fromJson(new ImmutablePhysicalSpecDefinition.Json());
-  }
-
-  @Test
-  public void fromTest5() {
-    // Arrange
-    ImmutablePhysicalSpecDefinition.Builder builderResult = ImmutablePhysicalSpecDefinition.builder();
-
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from(new ImmutablePhysicalSpecDefinition.Json());
-  }
-
-  @Test
-  public void fromTest4() {
-    // Arrange
-    ImmutablePhysicalSpecDefinition.Builder builderResult = ImmutablePhysicalSpecDefinition.builder();
-
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from((LastUpdatedProvider) new ImmutablePhysicalSpecDefinition.Json());
-  }
-
-  @Test
-  public void fromTest3() {
-    // Arrange
-    ImmutablePhysicalSpecDefinition.Builder builderResult = ImmutablePhysicalSpecDefinition.builder();
-
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from((ProvenanceProvider) new ImmutablePhysicalSpecDefinition.Json());
-  }
-
-  @Test
   public void buildTest() {
     // Arrange, Act and Assert
     thrown.expect(IllegalStateException.class);
@@ -68,13 +24,47 @@ public class ImmutablePhysicalSpecDefinitionDiffblueTest {
   }
 
   @Test
-  public void fromTest2() {
-    // Arrange
-    ImmutablePhysicalSpecDefinition.Builder builderResult = ImmutablePhysicalSpecDefinition.builder();
+  public void constructorTest() {
+    // Arrange and Act
+    ImmutablePhysicalSpecDefinition.Json actualJson = new ImmutablePhysicalSpecDefinition.Json();
 
-    // Act and Assert
+    // Assert
+    assertSame(actualJson.id, actualJson.delimiter);
+  }
+
+  @Test
+  public void copyOfTest() {
+    // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    builderResult.from((IdProvider) new ImmutablePhysicalSpecDefinition.Json());
+    ImmutablePhysicalSpecDefinition.copyOf(new ImmutablePhysicalSpecDefinition.Json());
+  }
+
+  @Test
+  public void createdAtTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutablePhysicalSpecDefinition.Json()).createdAt();
+  }
+
+  @Test
+  public void createdByTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutablePhysicalSpecDefinition.Json()).createdBy();
+  }
+
+  @Test
+  public void delimiterTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutablePhysicalSpecDefinition.Json()).delimiter();
+  }
+
+  @Test
+  public void fromJsonTest() {
+    // Arrange, Act and Assert
+    thrown.expect(IllegalStateException.class);
+    ImmutablePhysicalSpecDefinition.fromJson(new ImmutablePhysicalSpecDefinition.Json());
   }
 
   @Test
@@ -88,22 +78,83 @@ public class ImmutablePhysicalSpecDefinitionDiffblueTest {
   }
 
   @Test
-  public void createdByTest() {
-    // Arrange, Act and Assert
+  public void fromTest2() {
+    // Arrange
+    ImmutablePhysicalSpecDefinition.Builder builderResult = ImmutablePhysicalSpecDefinition.builder();
+
+    // Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    (new ImmutablePhysicalSpecDefinition.Json()).createdBy();
+    builderResult.from((IdProvider) new ImmutablePhysicalSpecDefinition.Json());
   }
 
   @Test
-  public void setVersionTest() {
+  public void fromTest3() {
+    // Arrange
+    ImmutablePhysicalSpecDefinition.Builder builderResult = ImmutablePhysicalSpecDefinition.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from((ProvenanceProvider) new ImmutablePhysicalSpecDefinition.Json());
+  }
+
+  @Test
+  public void fromTest4() {
+    // Arrange
+    ImmutablePhysicalSpecDefinition.Builder builderResult = ImmutablePhysicalSpecDefinition.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from((LastUpdatedProvider) new ImmutablePhysicalSpecDefinition.Json());
+  }
+
+  @Test
+  public void fromTest5() {
+    // Arrange
+    ImmutablePhysicalSpecDefinition.Builder builderResult = ImmutablePhysicalSpecDefinition.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from(new ImmutablePhysicalSpecDefinition.Json());
+  }
+
+  @Test
+  public void idTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutablePhysicalSpecDefinition.Json()).id();
+  }
+
+  @Test
+  public void lastUpdatedAtTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutablePhysicalSpecDefinition.Json()).lastUpdatedAt();
+  }
+
+  @Test
+  public void lastUpdatedByTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutablePhysicalSpecDefinition.Json()).lastUpdatedBy();
+  }
+
+  @Test
+  public void provenanceTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutablePhysicalSpecDefinition.Json()).provenance();
+  }
+
+  @Test
+  public void setCreatedByTest() {
     // Arrange
     ImmutablePhysicalSpecDefinition.Json json = new ImmutablePhysicalSpecDefinition.Json();
 
     // Act
-    json.setVersion("foo");
+    json.setCreatedBy("createdBy");
 
     // Assert
-    assertEquals("foo", json.version);
+    assertEquals("createdBy", json.createdBy);
   }
 
   @Test
@@ -112,24 +163,22 @@ public class ImmutablePhysicalSpecDefinitionDiffblueTest {
     ImmutablePhysicalSpecDefinition.Json json = new ImmutablePhysicalSpecDefinition.Json();
 
     // Act
-    json.setLastUpdatedBy("foo");
+    json.setLastUpdatedBy("lastUpdatedBy");
 
     // Assert
-    assertEquals("foo", json.lastUpdatedBy);
+    assertEquals("lastUpdatedBy", json.lastUpdatedBy);
   }
 
   @Test
-  public void createdAtTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutablePhysicalSpecDefinition.Json()).createdAt();
-  }
+  public void setProvenanceTest() {
+    // Arrange
+    ImmutablePhysicalSpecDefinition.Json json = new ImmutablePhysicalSpecDefinition.Json();
 
-  @Test
-  public void lastUpdatedByTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutablePhysicalSpecDefinition.Json()).lastUpdatedBy();
+    // Act
+    json.setProvenance("provenance");
+
+    // Assert
+    assertEquals("provenance", json.provenance);
   }
 
   @Test
@@ -146,29 +195,15 @@ public class ImmutablePhysicalSpecDefinitionDiffblueTest {
   }
 
   @Test
-  public void setCreatedByTest() {
+  public void setStatusTest() {
     // Arrange
     ImmutablePhysicalSpecDefinition.Json json = new ImmutablePhysicalSpecDefinition.Json();
 
     // Act
-    json.setCreatedBy("foo");
+    json.setStatus(ReleaseLifecycleStatus.DRAFT);
 
     // Assert
-    assertEquals("foo", json.createdBy);
-  }
-
-  @Test
-  public void provenanceTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutablePhysicalSpecDefinition.Json()).provenance();
-  }
-
-  @Test
-  public void idTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutablePhysicalSpecDefinition.Json()).id();
+    assertEquals(ReleaseLifecycleStatus.DRAFT, json.status);
   }
 
   @Test
@@ -184,29 +219,15 @@ public class ImmutablePhysicalSpecDefinitionDiffblueTest {
   }
 
   @Test
-  public void delimiterTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutablePhysicalSpecDefinition.Json()).delimiter();
-  }
-
-  @Test
-  public void setStatusTest() {
+  public void setVersionTest() {
     // Arrange
     ImmutablePhysicalSpecDefinition.Json json = new ImmutablePhysicalSpecDefinition.Json();
 
     // Act
-    json.setStatus(ReleaseLifecycleStatus.DRAFT);
+    json.setVersion("version");
 
     // Assert
-    assertEquals(ReleaseLifecycleStatus.DRAFT, json.status);
-  }
-
-  @Test
-  public void versionTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutablePhysicalSpecDefinition.Json()).version();
+    assertEquals("version", json.version);
   }
 
   @Test
@@ -217,10 +238,10 @@ public class ImmutablePhysicalSpecDefinitionDiffblueTest {
   }
 
   @Test
-  public void lastUpdatedAtTest() {
+  public void statusTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    (new ImmutablePhysicalSpecDefinition.Json()).lastUpdatedAt();
+    (new ImmutablePhysicalSpecDefinition.Json()).status();
   }
 
   @Test
@@ -231,31 +252,10 @@ public class ImmutablePhysicalSpecDefinitionDiffblueTest {
   }
 
   @Test
-  public void constructorTest() {
-    // Arrange and Act
-    ImmutablePhysicalSpecDefinition.Json actualJson = new ImmutablePhysicalSpecDefinition.Json();
-
-    // Assert
-    assertSame(actualJson.id, actualJson.delimiter);
-  }
-
-  @Test
-  public void statusTest() {
+  public void versionTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    (new ImmutablePhysicalSpecDefinition.Json()).status();
-  }
-
-  @Test
-  public void setProvenanceTest() {
-    // Arrange
-    ImmutablePhysicalSpecDefinition.Json json = new ImmutablePhysicalSpecDefinition.Json();
-
-    // Act
-    json.setProvenance("foo");
-
-    // Assert
-    assertEquals("foo", json.provenance);
+    (new ImmutablePhysicalSpecDefinition.Json()).version();
   }
 }
 

@@ -16,6 +16,23 @@ public class ImmutableUpdateNameCommandDiffblueTest {
     ImmutableUpdateNameCommand.builder().build();
   }
   @Test
+  public void constructorTest() {
+    // Arrange, Act and Assert
+    assertNull((new ImmutableUpdateNameCommand.Json()).newName);
+  }
+  @Test
+  public void copyOfTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    ImmutableUpdateNameCommand.copyOf(new ImmutableUpdateNameCommand.Json());
+  }
+  @Test
+  public void fromJsonTest() {
+    // Arrange, Act and Assert
+    thrown.expect(IllegalStateException.class);
+    ImmutableUpdateNameCommand.fromJson(new ImmutableUpdateNameCommand.Json());
+  }
+  @Test
   public void fromTest() {
     // Arrange
     ImmutableUpdateNameCommand.Builder builderResult = ImmutableUpdateNameCommand.builder();
@@ -31,32 +48,15 @@ public class ImmutableUpdateNameCommandDiffblueTest {
     (new ImmutableUpdateNameCommand.Json()).newName();
   }
   @Test
-  public void constructorTest() {
-    // Arrange, Act and Assert
-    assertNull((new ImmutableUpdateNameCommand.Json()).newName);
-  }
-  @Test
   public void setNewNameTest() {
     // Arrange
     ImmutableUpdateNameCommand.Json json = new ImmutableUpdateNameCommand.Json();
 
     // Act
-    json.setNewName("name");
+    json.setNewName("newName");
 
     // Assert
-    assertEquals("name", json.newName);
-  }
-  @Test
-  public void fromJsonTest() {
-    // Arrange, Act and Assert
-    thrown.expect(IllegalStateException.class);
-    ImmutableUpdateNameCommand.fromJson(new ImmutableUpdateNameCommand.Json());
-  }
-  @Test
-  public void copyOfTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    ImmutableUpdateNameCommand.copyOf(new ImmutableUpdateNameCommand.Json());
+    assertEquals("newName", json.newName);
   }
 }
 

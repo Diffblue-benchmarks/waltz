@@ -16,15 +16,155 @@ public class ImmutableServerInformationDiffblueTest {
   @Rule
   public ExpectedException thrown = ExpectedException.none();
   @Test
-  public void setHostnameTest() {
+  public void buildTest() {
+    // Arrange, Act and Assert
+    thrown.expect(IllegalStateException.class);
+    ImmutableServerInformation.builder().build();
+  }
+  @Test
+  public void constructorTest() {
+    // Arrange and Act
+    ImmutableServerInformation.Json actualJson = new ImmutableServerInformation.Json();
+
+    // Assert
+    assertSame(actualJson.externalId, actualJson.id);
+  }
+  @Test
+  public void copyOfTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    ImmutableServerInformation.copyOf(new ImmutableServerInformation.Json());
+  }
+  @Test
+  public void countryTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableServerInformation.Json()).country();
+  }
+  @Test
+  public void externalIdTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableServerInformation.Json()).externalId();
+  }
+  @Test
+  public void fromJsonTest() {
+    // Arrange, Act and Assert
+    thrown.expect(IllegalStateException.class);
+    ImmutableServerInformation.fromJson(new ImmutableServerInformation.Json());
+  }
+  @Test
+  public void fromTest() {
+    // Arrange
+    ImmutableServerInformation.Builder builderResult = ImmutableServerInformation.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from((IdProvider) new ImmutableServerInformation.Json());
+  }
+  @Test
+  public void fromTest2() {
+    // Arrange
+    ImmutableServerInformation.Builder builderResult = ImmutableServerInformation.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from(new ImmutableServerInformation.Json());
+  }
+  @Test
+  public void fromTest3() {
+    // Arrange
+    ImmutableServerInformation.Builder builderResult = ImmutableServerInformation.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from((ProvenanceProvider) new ImmutableServerInformation.Json());
+  }
+  @Test
+  public void fromTest4() {
+    // Arrange
+    ImmutableServerInformation.Builder builderResult = ImmutableServerInformation.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from((ExternalIdProvider) new ImmutableServerInformation.Json());
+  }
+  @Test
+  public void hardwareEndOfLifeDateTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableServerInformation.Json()).hardwareEndOfLifeDate();
+  }
+  @Test
+  public void hardwareEndOfLifeStatusTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableServerInformation.Json()).hardwareEndOfLifeStatus();
+  }
+  @Test
+  public void hostnameTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableServerInformation.Json()).hostname();
+  }
+  @Test
+  public void idTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableServerInformation.Json()).id();
+  }
+  @Test
+  public void lifecycleStatusTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableServerInformation.Json()).lifecycleStatus();
+  }
+  @Test
+  public void locationTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableServerInformation.Json()).location();
+  }
+  @Test
+  public void operatingSystemEndOfLifeDateTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableServerInformation.Json()).operatingSystemEndOfLifeDate();
+  }
+  @Test
+  public void operatingSystemEndOfLifeStatusTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableServerInformation.Json()).operatingSystemEndOfLifeStatus();
+  }
+  @Test
+  public void operatingSystemTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableServerInformation.Json()).operatingSystem();
+  }
+  @Test
+  public void operatingSystemVersionTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableServerInformation.Json()).operatingSystemVersion();
+  }
+  @Test
+  public void provenanceTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableServerInformation.Json()).provenance();
+  }
+  @Test
+  public void setCountryTest() {
     // Arrange
     ImmutableServerInformation.Json json = new ImmutableServerInformation.Json();
 
     // Act
-    json.setHostname("localhost");
+    json.setCountry("country");
 
     // Assert
-    assertEquals("localhost", json.hostname);
+    assertEquals("country", json.country);
   }
   @Test
   public void setHardwareEndOfLifeDateTest() {
@@ -39,117 +179,37 @@ public class ImmutableServerInformationDiffblueTest {
     assertSame(date, json.hardwareEndOfLifeDate);
   }
   @Test
-  public void setOperatingSystemVersionTest() {
+  public void setHostnameTest() {
     // Arrange
     ImmutableServerInformation.Json json = new ImmutableServerInformation.Json();
 
     // Act
-    json.setOperatingSystemVersion("foo");
+    json.setHostname("localhost");
 
     // Assert
-    assertEquals("foo", json.operatingSystemVersion);
+    assertEquals("localhost", json.hostname);
   }
   @Test
-  public void hardwareEndOfLifeStatusTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableServerInformation.Json()).hardwareEndOfLifeStatus();
-  }
-  @Test
-  public void operatingSystemEndOfLifeDateTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableServerInformation.Json()).operatingSystemEndOfLifeDate();
-  }
-  @Test
-  public void constructorTest() {
-    // Arrange and Act
-    ImmutableServerInformation.Json actualJson = new ImmutableServerInformation.Json();
-
-    // Assert
-    assertSame(actualJson.externalId, actualJson.id);
-  }
-  @Test
-  public void operatingSystemEndOfLifeStatusTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableServerInformation.Json()).operatingSystemEndOfLifeStatus();
-  }
-  @Test
-  public void hostnameTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableServerInformation.Json()).hostname();
-  }
-  @Test
-  public void setProvenanceTest() {
+  public void setLifecycleStatusTest() {
     // Arrange
     ImmutableServerInformation.Json json = new ImmutableServerInformation.Json();
 
     // Act
-    json.setProvenance("foo");
+    json.setLifecycleStatus(LifecycleStatus.ACTIVE);
 
     // Assert
-    assertEquals("foo", json.provenance);
+    assertEquals(LifecycleStatus.ACTIVE, json.lifecycleStatus);
   }
   @Test
-  public void operatingSystemTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableServerInformation.Json()).operatingSystem();
-  }
-  @Test
-  public void setVirtualTest() {
+  public void setLocationTest() {
     // Arrange
     ImmutableServerInformation.Json json = new ImmutableServerInformation.Json();
 
     // Act
-    json.setVirtual(true);
+    json.setLocation("location");
 
     // Assert
-    assertTrue(json.virtual);
-    assertTrue(json.virtualIsSet);
-  }
-  @Test
-  public void provenanceTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableServerInformation.Json()).provenance();
-  }
-  @Test
-  public void idTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableServerInformation.Json()).id();
-  }
-  @Test
-  public void operatingSystemVersionTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableServerInformation.Json()).operatingSystemVersion();
-  }
-  @Test
-  public void setCountryTest() {
-    // Arrange
-    ImmutableServerInformation.Json json = new ImmutableServerInformation.Json();
-
-    // Act
-    json.setCountry("foo");
-
-    // Assert
-    assertEquals("foo", json.country);
-  }
-  @Test
-  public void virtualTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableServerInformation.Json()).virtual();
-  }
-  @Test
-  public void countryTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableServerInformation.Json()).country();
+    assertEquals("location", json.location);
   }
   @Test
   public void setOperatingSystemEndOfLifeDateTest() {
@@ -164,115 +224,55 @@ public class ImmutableServerInformationDiffblueTest {
     assertSame(date, json.operatingSystemEndOfLifeDate);
   }
   @Test
-  public void setLocationTest() {
-    // Arrange
-    ImmutableServerInformation.Json json = new ImmutableServerInformation.Json();
-
-    // Act
-    json.setLocation("foo");
-
-    // Assert
-    assertEquals("foo", json.location);
-  }
-  @Test
-  public void lifecycleStatusTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableServerInformation.Json()).lifecycleStatus();
-  }
-  @Test
-  public void setLifecycleStatusTest() {
-    // Arrange
-    ImmutableServerInformation.Json json = new ImmutableServerInformation.Json();
-
-    // Act
-    json.setLifecycleStatus(LifecycleStatus.ACTIVE);
-
-    // Assert
-    assertEquals(LifecycleStatus.ACTIVE, json.lifecycleStatus);
-  }
-  @Test
   public void setOperatingSystemTest() {
     // Arrange
     ImmutableServerInformation.Json json = new ImmutableServerInformation.Json();
 
     // Act
-    json.setOperatingSystem("foo");
+    json.setOperatingSystem("operatingSystem");
 
     // Assert
-    assertEquals("foo", json.operatingSystem);
+    assertEquals("operatingSystem", json.operatingSystem);
   }
   @Test
-  public void externalIdTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableServerInformation.Json()).externalId();
-  }
-  @Test
-  public void hardwareEndOfLifeDateTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableServerInformation.Json()).hardwareEndOfLifeDate();
-  }
-  @Test
-  public void locationTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableServerInformation.Json()).location();
-  }
-  @Test
-  public void fromJsonTest() {
-    // Arrange, Act and Assert
-    thrown.expect(IllegalStateException.class);
-    ImmutableServerInformation.fromJson(new ImmutableServerInformation.Json());
-  }
-  @Test
-  public void copyOfTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    ImmutableServerInformation.copyOf(new ImmutableServerInformation.Json());
-  }
-  @Test
-  public void fromTest4() {
+  public void setOperatingSystemVersionTest() {
     // Arrange
-    ImmutableServerInformation.Builder builderResult = ImmutableServerInformation.builder();
+    ImmutableServerInformation.Json json = new ImmutableServerInformation.Json();
 
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from((ExternalIdProvider) new ImmutableServerInformation.Json());
+    // Act
+    json.setOperatingSystemVersion("operatingSystemVersion");
+
+    // Assert
+    assertEquals("operatingSystemVersion", json.operatingSystemVersion);
   }
   @Test
-  public void buildTest() {
+  public void setProvenanceTest() {
+    // Arrange
+    ImmutableServerInformation.Json json = new ImmutableServerInformation.Json();
+
+    // Act
+    json.setProvenance("provenance");
+
+    // Assert
+    assertEquals("provenance", json.provenance);
+  }
+  @Test
+  public void setVirtualTest() {
+    // Arrange
+    ImmutableServerInformation.Json json = new ImmutableServerInformation.Json();
+
+    // Act
+    json.setVirtual(true);
+
+    // Assert
+    assertTrue(json.virtual);
+    assertTrue(json.virtualIsSet);
+  }
+  @Test
+  public void virtualTest() {
     // Arrange, Act and Assert
-    thrown.expect(IllegalStateException.class);
-    ImmutableServerInformation.builder().build();
-  }
-  @Test
-  public void fromTest3() {
-    // Arrange
-    ImmutableServerInformation.Builder builderResult = ImmutableServerInformation.builder();
-
-    // Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    builderResult.from((ProvenanceProvider) new ImmutableServerInformation.Json());
-  }
-  @Test
-  public void fromTest2() {
-    // Arrange
-    ImmutableServerInformation.Builder builderResult = ImmutableServerInformation.builder();
-
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from(new ImmutableServerInformation.Json());
-  }
-  @Test
-  public void fromTest() {
-    // Arrange
-    ImmutableServerInformation.Builder builderResult = ImmutableServerInformation.builder();
-
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from((IdProvider) new ImmutableServerInformation.Json());
+    (new ImmutableServerInformation.Json()).virtual();
   }
 }
 

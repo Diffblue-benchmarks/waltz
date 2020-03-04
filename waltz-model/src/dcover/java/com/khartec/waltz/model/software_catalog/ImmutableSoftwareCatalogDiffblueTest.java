@@ -14,103 +14,10 @@ public class ImmutableSoftwareCatalogDiffblueTest {
   public ExpectedException thrown = ExpectedException.none();
 
   @Test
-  public void versionsTest2() {
-    // Arrange
-    ImmutableSoftwareCatalog.Json json = new ImmutableSoftwareCatalog.Json();
-
-    // Act
-    List<SoftwareVersion> actualVersionsResult = ImmutableSoftwareCatalog.fromJson(json).versions();
-
-    // Assert
-    assertSame(json.versions, actualVersionsResult);
-    assertEquals(0, actualVersionsResult.size());
-  }
-
-  @Test
-  public void copyOfTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    ImmutableSoftwareCatalog.copyOf(new ImmutableSoftwareCatalog.Json());
-  }
-
-  @Test
-  public void equalsTest() {
-    // Arrange, Act and Assert
-    assertFalse(ImmutableSoftwareCatalog.fromJson(new ImmutableSoftwareCatalog.Json()).equals("element"));
-  }
-
-  @Test
-  public void packagesTest2() {
-    // Arrange
-    ImmutableSoftwareCatalog.Json json = new ImmutableSoftwareCatalog.Json();
-
-    // Act
-    List<SoftwarePackage> actualPackagesResult = ImmutableSoftwareCatalog.fromJson(json).packages();
-
-    // Assert
-    assertSame(json.versions, actualPackagesResult);
-    assertEquals(0, actualPackagesResult.size());
-  }
-
-  @Test
-  public void hashCodeTest() {
-    // Arrange, Act and Assert
-    assertEquals(193378120, ImmutableSoftwareCatalog.fromJson(new ImmutableSoftwareCatalog.Json()).hashCode());
-  }
-
-  @Test
-  public void toStringTest() {
+  public void buildTest() {
     // Arrange, Act and Assert
     assertEquals("SoftwareCatalog{packages=[], usages=[]," + " versions=[]}",
-        ImmutableSoftwareCatalog.fromJson(new ImmutableSoftwareCatalog.Json()).toString());
-  }
-
-  @Test
-  public void usagesTest2() {
-    // Arrange
-    ImmutableSoftwareCatalog.Json json = new ImmutableSoftwareCatalog.Json();
-
-    // Act
-    List<SoftwareUsage> actualUsagesResult = ImmutableSoftwareCatalog.fromJson(json).usages();
-
-    // Assert
-    assertSame(json.versions, actualUsagesResult);
-    assertEquals(0, actualUsagesResult.size());
-  }
-
-  @Test
-  public void fromJsonTest() {
-    // Arrange, Act and Assert
-    assertEquals("SoftwareCatalog{packages=[], usages=[]," + " versions=[]}",
-        ImmutableSoftwareCatalog.fromJson(new ImmutableSoftwareCatalog.Json()).toString());
-  }
-
-  @Test
-  public void versionsTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableSoftwareCatalog.Json()).versions();
-  }
-
-  @Test
-  public void setPackagesTest() {
-    // Arrange
-    ImmutableSoftwareCatalog.Json json = new ImmutableSoftwareCatalog.Json();
-    ArrayList<SoftwarePackage> softwarePackageList = new ArrayList<SoftwarePackage>();
-    softwarePackageList.add(new ImmutableSoftwarePackage.Json());
-
-    // Act
-    json.setPackages(softwarePackageList);
-
-    // Assert
-    assertSame(softwarePackageList, json.packages);
-  }
-
-  @Test
-  public void packagesTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableSoftwareCatalog.Json()).packages();
+        ImmutableSoftwareCatalog.builder().build().toString());
   }
 
   @Test
@@ -128,17 +35,73 @@ public class ImmutableSoftwareCatalogDiffblueTest {
   }
 
   @Test
-  public void setVersionsTest() {
+  public void copyOfTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    ImmutableSoftwareCatalog.copyOf(new ImmutableSoftwareCatalog.Json());
+  }
+
+  @Test
+  public void equalsTest() {
+    // Arrange, Act and Assert
+    assertFalse(ImmutableSoftwareCatalog.fromJson(new ImmutableSoftwareCatalog.Json()).equals("element"));
+  }
+
+  @Test
+  public void fromJsonTest() {
+    // Arrange, Act and Assert
+    assertEquals("SoftwareCatalog{packages=[], usages=[]," + " versions=[]}",
+        ImmutableSoftwareCatalog.fromJson(new ImmutableSoftwareCatalog.Json()).toString());
+  }
+
+  @Test
+  public void fromTest() {
+    // Arrange
+    ImmutableSoftwareCatalog.Builder builderResult = ImmutableSoftwareCatalog.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from(new ImmutableSoftwareCatalog.Json());
+  }
+
+  @Test
+  public void hashCodeTest() {
+    // Arrange, Act and Assert
+    assertEquals(193378120, ImmutableSoftwareCatalog.fromJson(new ImmutableSoftwareCatalog.Json()).hashCode());
+  }
+
+  @Test
+  public void packagesTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableSoftwareCatalog.Json()).packages();
+  }
+
+  @Test
+  public void packagesTest2() {
     // Arrange
     ImmutableSoftwareCatalog.Json json = new ImmutableSoftwareCatalog.Json();
-    ArrayList<SoftwareVersion> softwareVersionList = new ArrayList<SoftwareVersion>();
-    softwareVersionList.add(new ImmutableSoftwareVersion.Json());
 
     // Act
-    json.setVersions(softwareVersionList);
+    List<SoftwarePackage> actualPackagesResult = ImmutableSoftwareCatalog.fromJson(json).packages();
 
     // Assert
-    assertSame(softwareVersionList, json.versions);
+    assertSame(json.versions, actualPackagesResult);
+    assertEquals(0, actualPackagesResult.size());
+  }
+
+  @Test
+  public void setPackagesTest() {
+    // Arrange
+    ImmutableSoftwareCatalog.Json json = new ImmutableSoftwareCatalog.Json();
+    ArrayList<SoftwarePackage> softwarePackageList = new ArrayList<SoftwarePackage>();
+    softwarePackageList.add(new ImmutableSoftwarePackage.Json());
+
+    // Act
+    json.setPackages(softwarePackageList);
+
+    // Assert
+    assertSame(softwarePackageList, json.packages);
   }
 
   @Test
@@ -156,6 +119,27 @@ public class ImmutableSoftwareCatalogDiffblueTest {
   }
 
   @Test
+  public void setVersionsTest() {
+    // Arrange
+    ImmutableSoftwareCatalog.Json json = new ImmutableSoftwareCatalog.Json();
+    ArrayList<SoftwareVersion> softwareVersionList = new ArrayList<SoftwareVersion>();
+    softwareVersionList.add(new ImmutableSoftwareVersion.Json());
+
+    // Act
+    json.setVersions(softwareVersionList);
+
+    // Assert
+    assertSame(softwareVersionList, json.versions);
+  }
+
+  @Test
+  public void toStringTest() {
+    // Arrange, Act and Assert
+    assertEquals("SoftwareCatalog{packages=[], usages=[]," + " versions=[]}",
+        ImmutableSoftwareCatalog.fromJson(new ImmutableSoftwareCatalog.Json()).toString());
+  }
+
+  @Test
   public void usagesTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
@@ -163,20 +147,36 @@ public class ImmutableSoftwareCatalogDiffblueTest {
   }
 
   @Test
-  public void fromTest() {
+  public void usagesTest2() {
     // Arrange
-    ImmutableSoftwareCatalog.Builder builderResult = ImmutableSoftwareCatalog.builder();
+    ImmutableSoftwareCatalog.Json json = new ImmutableSoftwareCatalog.Json();
 
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from(new ImmutableSoftwareCatalog.Json());
+    // Act
+    List<SoftwareUsage> actualUsagesResult = ImmutableSoftwareCatalog.fromJson(json).usages();
+
+    // Assert
+    assertSame(json.versions, actualUsagesResult);
+    assertEquals(0, actualUsagesResult.size());
   }
 
   @Test
-  public void buildTest() {
+  public void versionsTest() {
     // Arrange, Act and Assert
-    assertEquals("SoftwareCatalog{packages=[], usages=[]," + " versions=[]}",
-        ImmutableSoftwareCatalog.builder().build().toString());
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableSoftwareCatalog.Json()).versions();
+  }
+
+  @Test
+  public void versionsTest2() {
+    // Arrange
+    ImmutableSoftwareCatalog.Json json = new ImmutableSoftwareCatalog.Json();
+
+    // Act
+    List<SoftwareVersion> actualVersionsResult = ImmutableSoftwareCatalog.fromJson(json).versions();
+
+    // Assert
+    assertSame(json.versions, actualVersionsResult);
+    assertEquals(0, actualVersionsResult.size());
   }
 }
 

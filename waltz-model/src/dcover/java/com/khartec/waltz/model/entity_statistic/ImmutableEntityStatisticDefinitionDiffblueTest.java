@@ -17,6 +17,13 @@ public class ImmutableEntityStatisticDefinitionDiffblueTest {
   public ExpectedException thrown = ExpectedException.none();
 
   @Test
+  public void activeTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableEntityStatisticDefinition.Json()).active();
+  }
+
+  @Test
   public void buildTest() {
     // Arrange, Act and Assert
     thrown.expect(IllegalStateException.class);
@@ -24,53 +31,47 @@ public class ImmutableEntityStatisticDefinitionDiffblueTest {
   }
 
   @Test
-  public void fromTest6() {
-    // Arrange
-    ImmutableEntityStatisticDefinition.Builder builderResult = ImmutableEntityStatisticDefinition.builder();
-
-    // Act and Assert
+  public void categoryTest() {
+    // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    builderResult.from((ProvenanceProvider) new ImmutableEntityStatisticDefinition.Json());
+    (new ImmutableEntityStatisticDefinition.Json()).category();
   }
 
   @Test
-  public void fromTest5() {
-    // Arrange
-    ImmutableEntityStatisticDefinition.Builder builderResult = ImmutableEntityStatisticDefinition.builder();
+  public void constructorTest() {
+    // Arrange and Act
+    ImmutableEntityStatisticDefinition.Json actualJson = new ImmutableEntityStatisticDefinition.Json();
 
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from((NameProvider) new ImmutableEntityStatisticDefinition.Json());
+    // Assert
+    assertSame(actualJson.id, actualJson.parentId);
   }
 
   @Test
-  public void fromTest4() {
-    // Arrange
-    ImmutableEntityStatisticDefinition.Builder builderResult = ImmutableEntityStatisticDefinition.builder();
-
-    // Act and Assert
+  public void copyOfTest() {
+    // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    builderResult.from(new ImmutableEntityStatisticDefinition.Json());
+    ImmutableEntityStatisticDefinition.copyOf(new ImmutableEntityStatisticDefinition.Json());
   }
 
   @Test
-  public void fromTest3() {
-    // Arrange
-    ImmutableEntityStatisticDefinition.Builder builderResult = ImmutableEntityStatisticDefinition.builder();
-
-    // Act and Assert
+  public void descriptionTest() {
+    // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    builderResult.from((DescriptionProvider) new ImmutableEntityStatisticDefinition.Json());
+    (new ImmutableEntityStatisticDefinition.Json()).description();
   }
 
   @Test
-  public void fromTest2() {
-    // Arrange
-    ImmutableEntityStatisticDefinition.Builder builderResult = ImmutableEntityStatisticDefinition.builder();
-
-    // Act and Assert
+  public void entityVisibilityTest() {
+    // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    builderResult.from((IdProvider) new ImmutableEntityStatisticDefinition.Json());
+    (new ImmutableEntityStatisticDefinition.Json()).entityVisibility();
+  }
+
+  @Test
+  public void fromJsonTest() {
+    // Arrange, Act and Assert
+    thrown.expect(IllegalStateException.class);
+    ImmutableEntityStatisticDefinition.fromJson(new ImmutableEntityStatisticDefinition.Json());
   }
 
   @Test
@@ -84,45 +85,67 @@ public class ImmutableEntityStatisticDefinitionDiffblueTest {
   }
 
   @Test
-  public void fromJsonTest() {
-    // Arrange, Act and Assert
-    thrown.expect(IllegalStateException.class);
-    ImmutableEntityStatisticDefinition.fromJson(new ImmutableEntityStatisticDefinition.Json());
+  public void fromTest2() {
+    // Arrange
+    ImmutableEntityStatisticDefinition.Builder builderResult = ImmutableEntityStatisticDefinition.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from((IdProvider) new ImmutableEntityStatisticDefinition.Json());
   }
 
   @Test
-  public void copyOfTest() {
-    // Arrange, Act and Assert
+  public void fromTest3() {
+    // Arrange
+    ImmutableEntityStatisticDefinition.Builder builderResult = ImmutableEntityStatisticDefinition.builder();
+
+    // Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    ImmutableEntityStatisticDefinition.copyOf(new ImmutableEntityStatisticDefinition.Json());
+    builderResult.from((DescriptionProvider) new ImmutableEntityStatisticDefinition.Json());
   }
 
   @Test
-  public void typeTest() {
-    // Arrange, Act and Assert
+  public void fromTest4() {
+    // Arrange
+    ImmutableEntityStatisticDefinition.Builder builderResult = ImmutableEntityStatisticDefinition.builder();
+
+    // Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableEntityStatisticDefinition.Json()).type();
+    builderResult.from(new ImmutableEntityStatisticDefinition.Json());
   }
 
   @Test
-  public void activeTest() {
-    // Arrange, Act and Assert
+  public void fromTest5() {
+    // Arrange
+    ImmutableEntityStatisticDefinition.Builder builderResult = ImmutableEntityStatisticDefinition.builder();
+
+    // Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableEntityStatisticDefinition.Json()).active();
+    builderResult.from((NameProvider) new ImmutableEntityStatisticDefinition.Json());
   }
 
   @Test
-  public void rollupVisibilityTest() {
-    // Arrange, Act and Assert
+  public void fromTest6() {
+    // Arrange
+    ImmutableEntityStatisticDefinition.Builder builderResult = ImmutableEntityStatisticDefinition.builder();
+
+    // Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableEntityStatisticDefinition.Json()).rollupVisibility();
+    builderResult.from((ProvenanceProvider) new ImmutableEntityStatisticDefinition.Json());
   }
 
   @Test
-  public void entityVisibilityTest() {
+  public void historicRendererTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableEntityStatisticDefinition.Json()).entityVisibility();
+    (new ImmutableEntityStatisticDefinition.Json()).historicRenderer();
+  }
+
+  @Test
+  public void idTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableEntityStatisticDefinition.Json()).id();
   }
 
   @Test
@@ -130,6 +153,41 @@ public class ImmutableEntityStatisticDefinitionDiffblueTest {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
     (new ImmutableEntityStatisticDefinition.Json()).name();
+  }
+
+  @Test
+  public void parentIdTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableEntityStatisticDefinition.Json()).parentId();
+  }
+
+  @Test
+  public void provenanceTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableEntityStatisticDefinition.Json()).provenance();
+  }
+
+  @Test
+  public void rendererTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableEntityStatisticDefinition.Json()).renderer();
+  }
+
+  @Test
+  public void rollupKindTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableEntityStatisticDefinition.Json()).rollupKind();
+  }
+
+  @Test
+  public void rollupVisibilityTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableEntityStatisticDefinition.Json()).rollupVisibility();
   }
 
   @Test
@@ -146,140 +204,15 @@ public class ImmutableEntityStatisticDefinitionDiffblueTest {
   }
 
   @Test
-  public void parentIdTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableEntityStatisticDefinition.Json()).parentId();
-  }
-
-  @Test
-  public void setNameTest() {
+  public void setCategoryTest() {
     // Arrange
     ImmutableEntityStatisticDefinition.Json json = new ImmutableEntityStatisticDefinition.Json();
 
     // Act
-    json.setName("name");
+    json.setCategory(StatisticCategory.COMPLIANCE);
 
     // Assert
-    assertEquals("name", json.name);
-  }
-
-  @Test
-  public void historicRendererTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableEntityStatisticDefinition.Json()).historicRenderer();
-  }
-
-  @Test
-  public void constructorTest() {
-    // Arrange and Act
-    ImmutableEntityStatisticDefinition.Json actualJson = new ImmutableEntityStatisticDefinition.Json();
-
-    // Assert
-    assertSame(actualJson.id, actualJson.parentId);
-  }
-
-  @Test
-  public void setRollupVisibilityTest() {
-    // Arrange
-    ImmutableEntityStatisticDefinition.Json json = new ImmutableEntityStatisticDefinition.Json();
-
-    // Act
-    json.setRollupVisibility(Boolean.valueOf(true));
-
-    // Assert
-    assertEquals(Boolean.valueOf(true), json.rollupVisibility);
-  }
-
-  @Test
-  public void setRendererTest() {
-    // Arrange
-    ImmutableEntityStatisticDefinition.Json json = new ImmutableEntityStatisticDefinition.Json();
-
-    // Act
-    json.setRenderer("foo");
-
-    // Assert
-    assertEquals("foo", json.renderer);
-  }
-
-  @Test
-  public void setProvenanceTest() {
-    // Arrange
-    ImmutableEntityStatisticDefinition.Json json = new ImmutableEntityStatisticDefinition.Json();
-
-    // Act
-    json.setProvenance("foo");
-
-    // Assert
-    assertEquals("foo", json.provenance);
-  }
-
-  @Test
-  public void rendererTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableEntityStatisticDefinition.Json()).renderer();
-  }
-
-  @Test
-  public void descriptionTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableEntityStatisticDefinition.Json()).description();
-  }
-
-  @Test
-  public void setEntityVisibilityTest() {
-    // Arrange
-    ImmutableEntityStatisticDefinition.Json json = new ImmutableEntityStatisticDefinition.Json();
-
-    // Act
-    json.setEntityVisibility(Boolean.valueOf(true));
-
-    // Assert
-    assertEquals(Boolean.valueOf(true), json.entityVisibility);
-  }
-
-  @Test
-  public void provenanceTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableEntityStatisticDefinition.Json()).provenance();
-  }
-
-  @Test
-  public void idTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableEntityStatisticDefinition.Json()).id();
-  }
-
-  @Test
-  public void rollupKindTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableEntityStatisticDefinition.Json()).rollupKind();
-  }
-
-  @Test
-  public void setTypeTest() {
-    // Arrange
-    ImmutableEntityStatisticDefinition.Json json = new ImmutableEntityStatisticDefinition.Json();
-
-    // Act
-    json.setType(StatisticType.BOOLEAN);
-
-    // Assert
-    assertEquals(StatisticType.BOOLEAN, json.type);
-  }
-
-  @Test
-  public void categoryTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableEntityStatisticDefinition.Json()).category();
+    assertEquals(StatisticCategory.COMPLIANCE, json.category);
   }
 
   @Test
@@ -295,6 +228,66 @@ public class ImmutableEntityStatisticDefinitionDiffblueTest {
   }
 
   @Test
+  public void setEntityVisibilityTest() {
+    // Arrange
+    ImmutableEntityStatisticDefinition.Json json = new ImmutableEntityStatisticDefinition.Json();
+
+    // Act
+    json.setEntityVisibility(Boolean.valueOf(true));
+
+    // Assert
+    assertEquals(Boolean.valueOf(true), json.entityVisibility);
+  }
+
+  @Test
+  public void setHistoricRendererTest() {
+    // Arrange
+    ImmutableEntityStatisticDefinition.Json json = new ImmutableEntityStatisticDefinition.Json();
+
+    // Act
+    json.setHistoricRenderer("historicRenderer");
+
+    // Assert
+    assertEquals("historicRenderer", json.historicRenderer);
+  }
+
+  @Test
+  public void setNameTest() {
+    // Arrange
+    ImmutableEntityStatisticDefinition.Json json = new ImmutableEntityStatisticDefinition.Json();
+
+    // Act
+    json.setName("name");
+
+    // Assert
+    assertEquals("name", json.name);
+  }
+
+  @Test
+  public void setProvenanceTest() {
+    // Arrange
+    ImmutableEntityStatisticDefinition.Json json = new ImmutableEntityStatisticDefinition.Json();
+
+    // Act
+    json.setProvenance("provenance");
+
+    // Assert
+    assertEquals("provenance", json.provenance);
+  }
+
+  @Test
+  public void setRendererTest() {
+    // Arrange
+    ImmutableEntityStatisticDefinition.Json json = new ImmutableEntityStatisticDefinition.Json();
+
+    // Act
+    json.setRenderer("renderer");
+
+    // Assert
+    assertEquals("renderer", json.renderer);
+  }
+
+  @Test
   public void setRollupKindTest() {
     // Arrange
     ImmutableEntityStatisticDefinition.Json json = new ImmutableEntityStatisticDefinition.Json();
@@ -307,27 +300,34 @@ public class ImmutableEntityStatisticDefinitionDiffblueTest {
   }
 
   @Test
-  public void setCategoryTest() {
+  public void setRollupVisibilityTest() {
     // Arrange
     ImmutableEntityStatisticDefinition.Json json = new ImmutableEntityStatisticDefinition.Json();
 
     // Act
-    json.setCategory(StatisticCategory.COMPLIANCE);
+    json.setRollupVisibility(Boolean.valueOf(true));
 
     // Assert
-    assertEquals(StatisticCategory.COMPLIANCE, json.category);
+    assertEquals(Boolean.valueOf(true), json.rollupVisibility);
   }
 
   @Test
-  public void setHistoricRendererTest() {
+  public void setTypeTest() {
     // Arrange
     ImmutableEntityStatisticDefinition.Json json = new ImmutableEntityStatisticDefinition.Json();
 
     // Act
-    json.setHistoricRenderer("foo");
+    json.setType(StatisticType.BOOLEAN);
 
     // Assert
-    assertEquals("foo", json.historicRenderer);
+    assertEquals(StatisticType.BOOLEAN, json.type);
+  }
+
+  @Test
+  public void typeTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableEntityStatisticDefinition.Json()).type();
   }
 }
 

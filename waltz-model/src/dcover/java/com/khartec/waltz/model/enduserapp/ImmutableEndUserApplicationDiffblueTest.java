@@ -20,17 +20,10 @@ public class ImmutableEndUserApplicationDiffblueTest {
   public ExpectedException thrown = ExpectedException.none();
 
   @Test
-  public void fromJsonTest() {
-    // Arrange, Act and Assert
-    thrown.expect(IllegalStateException.class);
-    ImmutableEndUserApplication.fromJson(new ImmutableEndUserApplication.Json());
-  }
-
-  @Test
-  public void copyOfTest() {
+  public void applicationKindTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    ImmutableEndUserApplication.copyOf(new ImmutableEndUserApplication.Json());
+    (new ImmutableEndUserApplication.Json()).applicationKind();
   }
 
   @Test
@@ -41,63 +34,40 @@ public class ImmutableEndUserApplicationDiffblueTest {
   }
 
   @Test
-  public void fromTest7() {
-    // Arrange
-    ImmutableEndUserApplication.Builder builderResult = ImmutableEndUserApplication.builder();
+  public void constructorTest() {
+    // Arrange and Act
+    ImmutableEndUserApplication.Json actualJson = new ImmutableEndUserApplication.Json();
 
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from(new ImmutableEndUserApplication.Json());
+    // Assert
+    assertSame(actualJson.id, actualJson.externalId);
   }
 
   @Test
-  public void fromTest6() {
-    // Arrange
-    ImmutableEndUserApplication.Builder builderResult = ImmutableEndUserApplication.builder();
-
-    // Act and Assert
+  public void copyOfTest() {
+    // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    builderResult.from((IdProvider) new ImmutableEndUserApplication.Json());
+    ImmutableEndUserApplication.copyOf(new ImmutableEndUserApplication.Json());
   }
 
   @Test
-  public void fromTest5() {
-    // Arrange
-    ImmutableEndUserApplication.Builder builderResult = ImmutableEndUserApplication.builder();
-
-    // Act and Assert
+  public void descriptionTest() {
+    // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    builderResult.from((EntityKindProvider) new ImmutableEndUserApplication.Json());
+    (new ImmutableEndUserApplication.Json()).description();
   }
 
   @Test
-  public void fromTest4() {
-    // Arrange
-    ImmutableEndUserApplication.Builder builderResult = ImmutableEndUserApplication.builder();
-
-    // Act and Assert
+  public void externalIdTest() {
+    // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    builderResult.from((DescriptionProvider) new ImmutableEndUserApplication.Json());
+    (new ImmutableEndUserApplication.Json()).externalId();
   }
 
   @Test
-  public void fromTest3() {
-    // Arrange
-    ImmutableEndUserApplication.Builder builderResult = ImmutableEndUserApplication.builder();
-
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from((ProvenanceProvider) new ImmutableEndUserApplication.Json());
-  }
-
-  @Test
-  public void fromTest2() {
-    // Arrange
-    ImmutableEndUserApplication.Builder builderResult = ImmutableEndUserApplication.builder();
-
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from((NameProvider) new ImmutableEndUserApplication.Json());
+  public void fromJsonTest() {
+    // Arrange, Act and Assert
+    thrown.expect(IllegalStateException.class);
+    ImmutableEndUserApplication.fromJson(new ImmutableEndUserApplication.Json());
   }
 
   @Test
@@ -111,6 +81,80 @@ public class ImmutableEndUserApplicationDiffblueTest {
   }
 
   @Test
+  public void fromTest2() {
+    // Arrange
+    ImmutableEndUserApplication.Builder builderResult = ImmutableEndUserApplication.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from((NameProvider) new ImmutableEndUserApplication.Json());
+  }
+
+  @Test
+  public void fromTest3() {
+    // Arrange
+    ImmutableEndUserApplication.Builder builderResult = ImmutableEndUserApplication.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from((ProvenanceProvider) new ImmutableEndUserApplication.Json());
+  }
+
+  @Test
+  public void fromTest4() {
+    // Arrange
+    ImmutableEndUserApplication.Builder builderResult = ImmutableEndUserApplication.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from((DescriptionProvider) new ImmutableEndUserApplication.Json());
+  }
+
+  @Test
+  public void fromTest5() {
+    // Arrange
+    ImmutableEndUserApplication.Builder builderResult = ImmutableEndUserApplication.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from((EntityKindProvider) new ImmutableEndUserApplication.Json());
+  }
+
+  @Test
+  public void fromTest6() {
+    // Arrange
+    ImmutableEndUserApplication.Builder builderResult = ImmutableEndUserApplication.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from((IdProvider) new ImmutableEndUserApplication.Json());
+  }
+
+  @Test
+  public void fromTest7() {
+    // Arrange
+    ImmutableEndUserApplication.Builder builderResult = ImmutableEndUserApplication.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from(new ImmutableEndUserApplication.Json());
+  }
+
+  @Test
+  public void idTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableEndUserApplication.Json()).id();
+  }
+
+  @Test
+  public void isPromotedTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableEndUserApplication.Json()).isPromoted();
+  }
+
+  @Test
   public void kindTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
@@ -118,22 +162,24 @@ public class ImmutableEndUserApplicationDiffblueTest {
   }
 
   @Test
-  public void setOrganisationalUnitIdTest() {
-    // Arrange
-    ImmutableEndUserApplication.Json json = new ImmutableEndUserApplication.Json();
-
-    // Act
-    json.setOrganisationalUnitId(Long.valueOf(123L));
-
-    // Assert
-    assertEquals(Long.valueOf(123L), json.organisationalUnitId);
+  public void lifecyclePhaseTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableEndUserApplication.Json()).lifecyclePhase();
   }
 
   @Test
-  public void descriptionTest() {
+  public void nameTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableEndUserApplication.Json()).description();
+    (new ImmutableEndUserApplication.Json()).name();
+  }
+
+  @Test
+  public void organisationalUnitIdTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableEndUserApplication.Json()).organisationalUnitId();
   }
 
   @Test
@@ -151,48 +197,15 @@ public class ImmutableEndUserApplicationDiffblueTest {
   }
 
   @Test
-  public void idTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableEndUserApplication.Json()).id();
-  }
-
-  @Test
-  public void applicationKindTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableEndUserApplication.Json()).applicationKind();
-  }
-
-  @Test
-  public void organisationalUnitIdTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableEndUserApplication.Json()).organisationalUnitId();
-  }
-
-  @Test
-  public void setKindTest() {
+  public void setApplicationKindTest() {
     // Arrange
     ImmutableEndUserApplication.Json json = new ImmutableEndUserApplication.Json();
 
     // Act
-    json.setKind(EntityKind.ACTOR);
+    json.setApplicationKind("applicationKind");
 
     // Assert
-    assertEquals(EntityKind.ACTOR, json.kind);
-  }
-
-  @Test
-  public void setIsPromotedTest() {
-    // Arrange
-    ImmutableEndUserApplication.Json json = new ImmutableEndUserApplication.Json();
-
-    // Act
-    json.setIsPromoted(Boolean.valueOf(true));
-
-    // Assert
-    assertEquals(Boolean.valueOf(true), json.isPromoted);
+    assertEquals("applicationKind", json.applicationKind);
   }
 
   @Test
@@ -208,48 +221,27 @@ public class ImmutableEndUserApplicationDiffblueTest {
   }
 
   @Test
-  public void nameTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableEndUserApplication.Json()).name();
-  }
-
-  @Test
-  public void setApplicationKindTest() {
+  public void setIsPromotedTest() {
     // Arrange
     ImmutableEndUserApplication.Json json = new ImmutableEndUserApplication.Json();
 
     // Act
-    json.setApplicationKind("foo");
+    json.setIsPromoted(Boolean.valueOf(true));
 
     // Assert
-    assertEquals("foo", json.applicationKind);
+    assertEquals(Boolean.valueOf(true), json.isPromoted);
   }
 
   @Test
-  public void lifecyclePhaseTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableEndUserApplication.Json()).lifecyclePhase();
-  }
-
-  @Test
-  public void externalIdTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableEndUserApplication.Json()).externalId();
-  }
-
-  @Test
-  public void setNameTest() {
+  public void setKindTest() {
     // Arrange
     ImmutableEndUserApplication.Json json = new ImmutableEndUserApplication.Json();
 
     // Act
-    json.setName("name");
+    json.setKind(EntityKind.ACTOR);
 
     // Assert
-    assertEquals("name", json.name);
+    assertEquals(EntityKind.ACTOR, json.kind);
   }
 
   @Test
@@ -265,19 +257,27 @@ public class ImmutableEndUserApplicationDiffblueTest {
   }
 
   @Test
-  public void constructorTest() {
-    // Arrange and Act
-    ImmutableEndUserApplication.Json actualJson = new ImmutableEndUserApplication.Json();
+  public void setNameTest() {
+    // Arrange
+    ImmutableEndUserApplication.Json json = new ImmutableEndUserApplication.Json();
+
+    // Act
+    json.setName("name");
 
     // Assert
-    assertSame(actualJson.id, actualJson.externalId);
+    assertEquals("name", json.name);
   }
 
   @Test
-  public void isPromotedTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableEndUserApplication.Json()).isPromoted();
+  public void setOrganisationalUnitIdTest() {
+    // Arrange
+    ImmutableEndUserApplication.Json json = new ImmutableEndUserApplication.Json();
+
+    // Act
+    json.setOrganisationalUnitId(Long.valueOf(123L));
+
+    // Assert
+    assertEquals(Long.valueOf(123L), json.organisationalUnitId);
   }
 
   @Test
@@ -286,10 +286,10 @@ public class ImmutableEndUserApplicationDiffblueTest {
     ImmutableEndUserApplication.Json json = new ImmutableEndUserApplication.Json();
 
     // Act
-    json.setProvenance("foo");
+    json.setProvenance("provenance");
 
     // Assert
-    assertEquals("foo", json.provenance);
+    assertEquals("provenance", json.provenance);
   }
 
   @Test

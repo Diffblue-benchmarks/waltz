@@ -14,16 +14,69 @@ public class ImmutableInvolvementKindChangeCommandDiffblueTest {
   @Rule
   public ExpectedException thrown = ExpectedException.none();
   @Test
-  public void idTest() {
+  public void buildTest() {
+    // Arrange, Act and Assert
+    thrown.expect(IllegalStateException.class);
+    ImmutableInvolvementKindChangeCommand.builder().build();
+  }
+  @Test
+  public void constructorTest() {
+    // Arrange and Act
+    ImmutableInvolvementKindChangeCommand.Json actualJson = new ImmutableInvolvementKindChangeCommand.Json();
+
+    // Assert
+    Optional<FieldChange<String>> optional = actualJson.description;
+    assertSame(actualJson.lastUpdate, optional);
+    assertSame(optional, actualJson.name);
+    assertSame(optional, actualJson.lastUpdate);
+  }
+  @Test
+  public void copyOfTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableInvolvementKindChangeCommand.Json()).id();
+    ImmutableInvolvementKindChangeCommand.copyOf(new ImmutableInvolvementKindChangeCommand.Json());
   }
   @Test
   public void descriptionTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
     (new ImmutableInvolvementKindChangeCommand.Json()).description();
+  }
+  @Test
+  public void fromJsonTest() {
+    // Arrange, Act and Assert
+    thrown.expect(IllegalStateException.class);
+    ImmutableInvolvementKindChangeCommand.fromJson(new ImmutableInvolvementKindChangeCommand.Json());
+  }
+  @Test
+  public void fromTest() {
+    // Arrange
+    ImmutableInvolvementKindChangeCommand.Builder builderResult = ImmutableInvolvementKindChangeCommand.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from((EntityChangeCommand) new ImmutableInvolvementKindChangeCommand.Json());
+  }
+  @Test
+  public void fromTest2() {
+    // Arrange
+    ImmutableInvolvementKindChangeCommand.Builder builderResult = ImmutableInvolvementKindChangeCommand.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from(new ImmutableInvolvementKindChangeCommand.Json());
+  }
+  @Test
+  public void idTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableInvolvementKindChangeCommand.Json()).id();
+  }
+  @Test
+  public void lastUpdateTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableInvolvementKindChangeCommand.Json()).lastUpdate();
   }
   @Test
   public void nameTest() {
@@ -42,59 +95,6 @@ public class ImmutableInvolvementKindChangeCommandDiffblueTest {
     // Assert
     assertTrue(json.idIsSet);
     assertEquals(123L, json.id);
-  }
-  @Test
-  public void constructorTest() {
-    // Arrange and Act
-    ImmutableInvolvementKindChangeCommand.Json actualJson = new ImmutableInvolvementKindChangeCommand.Json();
-
-    // Assert
-    Optional<FieldChange<String>> optional = actualJson.description;
-    assertSame(actualJson.lastUpdate, optional);
-    assertSame(optional, actualJson.name);
-    assertSame(optional, actualJson.lastUpdate);
-  }
-  @Test
-  public void lastUpdateTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableInvolvementKindChangeCommand.Json()).lastUpdate();
-  }
-  @Test
-  public void buildTest() {
-    // Arrange, Act and Assert
-    thrown.expect(IllegalStateException.class);
-    ImmutableInvolvementKindChangeCommand.builder().build();
-  }
-  @Test
-  public void fromTest2() {
-    // Arrange
-    ImmutableInvolvementKindChangeCommand.Builder builderResult = ImmutableInvolvementKindChangeCommand.builder();
-
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from(new ImmutableInvolvementKindChangeCommand.Json());
-  }
-  @Test
-  public void fromTest() {
-    // Arrange
-    ImmutableInvolvementKindChangeCommand.Builder builderResult = ImmutableInvolvementKindChangeCommand.builder();
-
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from((EntityChangeCommand) new ImmutableInvolvementKindChangeCommand.Json());
-  }
-  @Test
-  public void copyOfTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    ImmutableInvolvementKindChangeCommand.copyOf(new ImmutableInvolvementKindChangeCommand.Json());
-  }
-  @Test
-  public void fromJsonTest() {
-    // Arrange, Act and Assert
-    thrown.expect(IllegalStateException.class);
-    ImmutableInvolvementKindChangeCommand.fromJson(new ImmutableInvolvementKindChangeCommand.Json());
   }
 }
 

@@ -11,16 +11,62 @@ public class ImmutableExternalIdentifierDiffblueTest {
   @Rule
   public ExpectedException thrown = ExpectedException.none();
   @Test
-  public void systemTest() {
+  public void buildTest() {
+    // Arrange, Act and Assert
+    thrown.expect(IllegalStateException.class);
+    ImmutableExternalIdentifier.builder().build();
+  }
+  @Test
+  public void constructorTest() {
+    // Arrange and Act
+    ImmutableExternalIdentifier.Json actualJson = new ImmutableExternalIdentifier.Json();
+
+    // Assert
+    assertNull(actualJson.externalId);
+    assertNull(actualJson.system);
+    assertNull(actualJson.entityReference);
+  }
+  @Test
+  public void copyOfTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableExternalIdentifier.Json()).system();
+    ImmutableExternalIdentifier.copyOf(new ImmutableExternalIdentifier.Json());
   }
   @Test
   public void entityReferenceTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
     (new ImmutableExternalIdentifier.Json()).entityReference();
+  }
+  @Test
+  public void externalIdTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableExternalIdentifier.Json()).externalId();
+  }
+  @Test
+  public void fromJsonTest() {
+    // Arrange, Act and Assert
+    thrown.expect(IllegalStateException.class);
+    ImmutableExternalIdentifier.fromJson(new ImmutableExternalIdentifier.Json());
+  }
+  @Test
+  public void fromTest() {
+    // Arrange
+    ImmutableExternalIdentifier.Builder builderResult = ImmutableExternalIdentifier.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from((WaltzEntity) new ImmutableExternalIdentifier.Json());
+  }
+  @Test
+  public void fromTest2() {
+    // Arrange
+    ImmutableExternalIdentifier.Builder builderResult = ImmutableExternalIdentifier.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from(new ImmutableExternalIdentifier.Json());
   }
   @Test
   public void setExternalIdTest() {
@@ -39,62 +85,16 @@ public class ImmutableExternalIdentifierDiffblueTest {
     ImmutableExternalIdentifier.Json json = new ImmutableExternalIdentifier.Json();
 
     // Act
-    json.setSystem("foo");
+    json.setSystem("system");
 
     // Assert
-    assertEquals("foo", json.system);
+    assertEquals("system", json.system);
   }
   @Test
-  public void constructorTest() {
-    // Arrange and Act
-    ImmutableExternalIdentifier.Json actualJson = new ImmutableExternalIdentifier.Json();
-
-    // Assert
-    assertNull(actualJson.externalId);
-    assertNull(actualJson.system);
-    assertNull(actualJson.entityReference);
-  }
-  @Test
-  public void externalIdTest() {
+  public void systemTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableExternalIdentifier.Json()).externalId();
-  }
-  @Test
-  public void fromJsonTest() {
-    // Arrange, Act and Assert
-    thrown.expect(IllegalStateException.class);
-    ImmutableExternalIdentifier.fromJson(new ImmutableExternalIdentifier.Json());
-  }
-  @Test
-  public void copyOfTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    ImmutableExternalIdentifier.copyOf(new ImmutableExternalIdentifier.Json());
-  }
-  @Test
-  public void fromTest2() {
-    // Arrange
-    ImmutableExternalIdentifier.Builder builderResult = ImmutableExternalIdentifier.builder();
-
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from(new ImmutableExternalIdentifier.Json());
-  }
-  @Test
-  public void buildTest() {
-    // Arrange, Act and Assert
-    thrown.expect(IllegalStateException.class);
-    ImmutableExternalIdentifier.builder().build();
-  }
-  @Test
-  public void fromTest() {
-    // Arrange
-    ImmutableExternalIdentifier.Builder builderResult = ImmutableExternalIdentifier.builder();
-
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from((WaltzEntity) new ImmutableExternalIdentifier.Json());
+    (new ImmutableExternalIdentifier.Json()).system();
   }
 }
 

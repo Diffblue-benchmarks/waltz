@@ -14,16 +14,78 @@ public class ImmutableActorCreateCommandDiffblueTest {
   @Rule
   public ExpectedException thrown = ExpectedException.none();
   @Test
+  public void buildTest() {
+    // Arrange, Act and Assert
+    thrown.expect(IllegalStateException.class);
+    ImmutableActorCreateCommand.builder().build();
+  }
+  @Test
+  public void constructorTest() {
+    // Arrange and Act
+    ImmutableActorCreateCommand.Json actualJson = new ImmutableActorCreateCommand.Json();
+
+    // Assert
+    assertFalse(actualJson.isExternalIsSet);
+    assertFalse(actualJson.isExternal);
+    assertNull(actualJson.name);
+    assertNull(actualJson.description);
+  }
+  @Test
   public void copyOfTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
     ImmutableActorCreateCommand.copyOf(new ImmutableActorCreateCommand.Json());
   }
   @Test
+  public void descriptionTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableActorCreateCommand.Json()).description();
+  }
+  @Test
   public void fromJsonTest() {
     // Arrange, Act and Assert
     thrown.expect(IllegalStateException.class);
     ImmutableActorCreateCommand.fromJson(new ImmutableActorCreateCommand.Json());
+  }
+  @Test
+  public void fromTest() {
+    // Arrange
+    ImmutableActorCreateCommand.Builder builderResult = ImmutableActorCreateCommand.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from((NameProvider) new ImmutableActor.Json());
+  }
+  @Test
+  public void fromTest2() {
+    // Arrange
+    ImmutableActorCreateCommand.Builder builderResult = ImmutableActorCreateCommand.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from((DescriptionProvider) new ImmutableActor.Json());
+  }
+  @Test
+  public void fromTest3() {
+    // Arrange
+    ImmutableActorCreateCommand.Builder builderResult = ImmutableActorCreateCommand.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from(new ImmutableActorCreateCommand.Json());
+  }
+  @Test
+  public void isExternalTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableActorCreateCommand.Json()).isExternal();
+  }
+  @Test
+  public void nameTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableActorCreateCommand.Json()).name();
   }
   @Test
   public void setDescriptionTest() {
@@ -35,29 +97,6 @@ public class ImmutableActorCreateCommandDiffblueTest {
 
     // Assert
     assertEquals("description", json.description);
-  }
-  @Test
-  public void nameTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableActorCreateCommand.Json()).name();
-  }
-  @Test
-  public void descriptionTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableActorCreateCommand.Json()).description();
-  }
-  @Test
-  public void setNameTest() {
-    // Arrange
-    ImmutableActorCreateCommand.Json json = new ImmutableActorCreateCommand.Json();
-
-    // Act
-    json.setName("name");
-
-    // Assert
-    assertEquals("name", json.name);
   }
   @Test
   public void setIsExternalTest() {
@@ -72,54 +111,15 @@ public class ImmutableActorCreateCommandDiffblueTest {
     assertTrue(json.isExternal);
   }
   @Test
-  public void constructorTest() {
-    // Arrange and Act
-    ImmutableActorCreateCommand.Json actualJson = new ImmutableActorCreateCommand.Json();
+  public void setNameTest() {
+    // Arrange
+    ImmutableActorCreateCommand.Json json = new ImmutableActorCreateCommand.Json();
+
+    // Act
+    json.setName("name");
 
     // Assert
-    assertFalse(actualJson.isExternalIsSet);
-    assertFalse(actualJson.isExternal);
-    assertNull(actualJson.name);
-    assertNull(actualJson.description);
-  }
-  @Test
-  public void isExternalTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableActorCreateCommand.Json()).isExternal();
-  }
-  @Test
-  public void fromTest3() {
-    // Arrange
-    ImmutableActorCreateCommand.Builder builderResult = ImmutableActorCreateCommand.builder();
-
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from(new ImmutableActorCreateCommand.Json());
-  }
-  @Test
-  public void fromTest2() {
-    // Arrange
-    ImmutableActorCreateCommand.Builder builderResult = ImmutableActorCreateCommand.builder();
-
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from((DescriptionProvider) new ImmutableActor.Json());
-  }
-  @Test
-  public void buildTest() {
-    // Arrange, Act and Assert
-    thrown.expect(IllegalStateException.class);
-    ImmutableActorCreateCommand.builder().build();
-  }
-  @Test
-  public void fromTest() {
-    // Arrange
-    ImmutableActorCreateCommand.Builder builderResult = ImmutableActorCreateCommand.builder();
-
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from((NameProvider) new ImmutableActor.Json());
+    assertEquals("name", json.name);
   }
 }
 

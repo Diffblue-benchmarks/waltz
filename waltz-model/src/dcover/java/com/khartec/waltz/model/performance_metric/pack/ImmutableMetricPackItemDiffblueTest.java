@@ -13,15 +13,87 @@ public class ImmutableMetricPackItemDiffblueTest {
   @Rule
   public ExpectedException thrown = ExpectedException.none();
   @Test
-  public void setSectionNameTest() {
+  public void baseLineTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableMetricPackItem.Json()).baseLine();
+  }
+  @Test
+  public void buildTest() {
+    // Arrange, Act and Assert
+    thrown.expect(IllegalStateException.class);
+    ImmutableMetricPackItem.builder().build();
+  }
+  @Test
+  public void constructorTest() {
+    // Arrange, Act and Assert
+    assertEquals(0, (new ImmutableMetricPackItem.Json()).goals.size());
+  }
+  @Test
+  public void copyOfTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    ImmutableMetricPackItem.copyOf(new ImmutableMetricPackItem.Json());
+  }
+  @Test
+  public void definitionIdTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableMetricPackItem.Json()).definitionId();
+  }
+  @Test
+  public void fromJsonTest() {
+    // Arrange, Act and Assert
+    thrown.expect(IllegalStateException.class);
+    ImmutableMetricPackItem.fromJson(new ImmutableMetricPackItem.Json());
+  }
+  @Test
+  public void fromTest() {
+    // Arrange
+    ImmutableMetricPackItem.Builder builderResult = ImmutableMetricPackItem.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from(new ImmutableMetricPack.Json());
+  }
+  @Test
+  public void fromTest2() {
+    // Arrange
+    ImmutableMetricPackItem.Builder builderResult = ImmutableMetricPackItem.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from(new ImmutableMetricPackItem.Json());
+  }
+  @Test
+  public void goalsTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableMetricPackItem.Json()).goals();
+  }
+  @Test
+  public void idTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableMetricPackItem.Json()).id();
+  }
+  @Test
+  public void sectionNameTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableMetricPackItem.Json()).sectionName();
+  }
+  @Test
+  public void setBaseLineTest() {
     // Arrange
     ImmutableMetricPackItem.Json json = new ImmutableMetricPackItem.Json();
 
     // Act
-    json.setSectionName("name");
+    json.setBaseLine(10.0);
 
     // Assert
-    assertEquals("name", json.sectionName);
+    assertTrue(json.baseLineIsSet);
+    assertEquals(10.0, json.baseLine, 0.0);
   }
   @Test
   public void setDefinitionIdTest() {
@@ -49,87 +121,15 @@ public class ImmutableMetricPackItemDiffblueTest {
     assertSame(checkpointGoalList, json.goals);
   }
   @Test
-  public void setBaseLineTest() {
+  public void setSectionNameTest() {
     // Arrange
     ImmutableMetricPackItem.Json json = new ImmutableMetricPackItem.Json();
 
     // Act
-    json.setBaseLine(10.0);
+    json.setSectionName("sectionName");
 
     // Assert
-    assertTrue(json.baseLineIsSet);
-    assertEquals(10.0, json.baseLine, 0.0);
-  }
-  @Test
-  public void definitionIdTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableMetricPackItem.Json()).definitionId();
-  }
-  @Test
-  public void idTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableMetricPackItem.Json()).id();
-  }
-  @Test
-  public void constructorTest() {
-    // Arrange, Act and Assert
-    assertEquals(0, (new ImmutableMetricPackItem.Json()).goals.size());
-  }
-  @Test
-  public void baseLineTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableMetricPackItem.Json()).baseLine();
-  }
-  @Test
-  public void sectionNameTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableMetricPackItem.Json()).sectionName();
-  }
-  @Test
-  public void goalsTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableMetricPackItem.Json()).goals();
-  }
-  @Test
-  public void fromJsonTest() {
-    // Arrange, Act and Assert
-    thrown.expect(IllegalStateException.class);
-    ImmutableMetricPackItem.fromJson(new ImmutableMetricPackItem.Json());
-  }
-  @Test
-  public void copyOfTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    ImmutableMetricPackItem.copyOf(new ImmutableMetricPackItem.Json());
-  }
-  @Test
-  public void fromTest2() {
-    // Arrange
-    ImmutableMetricPackItem.Builder builderResult = ImmutableMetricPackItem.builder();
-
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from(new ImmutableMetricPackItem.Json());
-  }
-  @Test
-  public void buildTest() {
-    // Arrange, Act and Assert
-    thrown.expect(IllegalStateException.class);
-    ImmutableMetricPackItem.builder().build();
-  }
-  @Test
-  public void fromTest() {
-    // Arrange
-    ImmutableMetricPackItem.Builder builderResult = ImmutableMetricPackItem.builder();
-
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from(new ImmutableMetricPack.Json());
+    assertEquals("sectionName", json.sectionName);
   }
 }
 

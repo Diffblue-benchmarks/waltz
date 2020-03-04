@@ -15,10 +15,27 @@ public class ImmutableSurveyRunDiffblueTest {
   @Rule
   public ExpectedException thrown = ExpectedException.none();
   @Test
-  public void fromJsonTest() {
+  public void buildTest() {
     // Arrange, Act and Assert
     thrown.expect(IllegalStateException.class);
-    ImmutableSurveyRun.fromJson(new ImmutableSurveyRun.Json());
+    ImmutableSurveyRun.builder().build();
+  }
+  @Test
+  public void constructorTest() {
+    // Arrange and Act
+    ImmutableSurveyRun.Json actualJson = new ImmutableSurveyRun.Json();
+
+    // Assert
+    Optional<Long> actualOptional = actualJson.id;
+    Optional<LocalDate> expectedOptional = actualJson.issuedOn;
+    assertEquals(0, actualJson.involvementKindIds.size());
+    assertSame(expectedOptional, actualOptional);
+  }
+  @Test
+  public void contactEmailTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableSurveyRun.Json()).contactEmail();
   }
   @Test
   public void copyOfTest() {
@@ -27,37 +44,22 @@ public class ImmutableSurveyRunDiffblueTest {
     ImmutableSurveyRun.copyOf(new ImmutableSurveyRun.Json());
   }
   @Test
-  public void fromTest4() {
-    // Arrange
-    ImmutableSurveyRun.Builder builderResult = ImmutableSurveyRun.builder();
-
-    // Act and Assert
+  public void descriptionTest() {
+    // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    builderResult.from((NameProvider) new ImmutableSurveyRun.Json());
+    (new ImmutableSurveyRun.Json()).description();
   }
   @Test
-  public void buildTest() {
+  public void dueDateTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableSurveyRun.Json()).dueDate();
+  }
+  @Test
+  public void fromJsonTest() {
     // Arrange, Act and Assert
     thrown.expect(IllegalStateException.class);
-    ImmutableSurveyRun.builder().build();
-  }
-  @Test
-  public void fromTest3() {
-    // Arrange
-    ImmutableSurveyRun.Builder builderResult = ImmutableSurveyRun.builder();
-
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from(new ImmutableSurveyRun.Json());
-  }
-  @Test
-  public void fromTest2() {
-    // Arrange
-    ImmutableSurveyRun.Builder builderResult = ImmutableSurveyRun.builder();
-
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from(new ImmutableSurveyInstance.Json());
+    ImmutableSurveyRun.fromJson(new ImmutableSurveyRun.Json());
   }
   @Test
   public void fromTest() {
@@ -69,39 +71,49 @@ public class ImmutableSurveyRunDiffblueTest {
     builderResult.from((DescriptionProvider) new ImmutableSurveyRun.Json());
   }
   @Test
-  public void contactEmailTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableSurveyRun.Json()).contactEmail();
-  }
-  @Test
-  public void dueDateTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableSurveyRun.Json()).dueDate();
-  }
-  @Test
-  public void ownerIdTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableSurveyRun.Json()).ownerId();
-  }
-  @Test
-  public void selectionOptionsTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableSurveyRun.Json()).selectionOptions();
-  }
-  @Test
-  public void setStatusTest() {
+  public void fromTest2() {
     // Arrange
-    ImmutableSurveyRun.Json json = new ImmutableSurveyRun.Json();
+    ImmutableSurveyRun.Builder builderResult = ImmutableSurveyRun.builder();
 
-    // Act
-    json.setStatus(SurveyRunStatus.DRAFT);
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from(new ImmutableSurveyInstance.Json());
+  }
+  @Test
+  public void fromTest3() {
+    // Arrange
+    ImmutableSurveyRun.Builder builderResult = ImmutableSurveyRun.builder();
 
-    // Assert
-    assertEquals(SurveyRunStatus.DRAFT, json.status);
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from(new ImmutableSurveyRun.Json());
+  }
+  @Test
+  public void fromTest4() {
+    // Arrange
+    ImmutableSurveyRun.Builder builderResult = ImmutableSurveyRun.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from((NameProvider) new ImmutableSurveyRun.Json());
+  }
+  @Test
+  public void idTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableSurveyRun.Json()).id();
+  }
+  @Test
+  public void involvementKindIdsTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableSurveyRun.Json()).involvementKindIds();
+  }
+  @Test
+  public void issuanceKindTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableSurveyRun.Json()).issuanceKind();
   }
   @Test
   public void issuedOnTest() {
@@ -116,37 +128,38 @@ public class ImmutableSurveyRunDiffblueTest {
     (new ImmutableSurveyRun.Json()).name();
   }
   @Test
+  public void ownerIdTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableSurveyRun.Json()).ownerId();
+  }
+  @Test
+  public void selectionOptionsTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableSurveyRun.Json()).selectionOptions();
+  }
+  @Test
   public void setContactEmailTest() {
     // Arrange
     ImmutableSurveyRun.Json json = new ImmutableSurveyRun.Json();
 
     // Act
-    json.setContactEmail("foo");
+    json.setContactEmail("contactEmail");
 
     // Assert
-    assertEquals("foo", json.contactEmail);
+    assertEquals("contactEmail", json.contactEmail);
   }
   @Test
-  public void setSurveyTemplateIdTest() {
+  public void setDescriptionTest() {
     // Arrange
     ImmutableSurveyRun.Json json = new ImmutableSurveyRun.Json();
 
     // Act
-    json.setSurveyTemplateId(Long.valueOf(123L));
+    json.setDescription("description");
 
     // Assert
-    assertEquals(Long.valueOf(123L), json.surveyTemplateId);
-  }
-  @Test
-  public void setNameTest() {
-    // Arrange
-    ImmutableSurveyRun.Json json = new ImmutableSurveyRun.Json();
-
-    // Act
-    json.setName("name");
-
-    // Assert
-    assertEquals("name", json.name);
+    assertEquals("description", json.description);
   }
   @Test
   public void setInvolvementKindIdsTest() {
@@ -162,41 +175,6 @@ public class ImmutableSurveyRunDiffblueTest {
     assertSame(resultLongSet, json.involvementKindIds);
   }
   @Test
-  public void constructorTest() {
-    // Arrange and Act
-    ImmutableSurveyRun.Json actualJson = new ImmutableSurveyRun.Json();
-
-    // Assert
-    Optional<Long> actualOptional = actualJson.id;
-    Optional<LocalDate> expectedOptional = actualJson.issuedOn;
-    assertEquals(0, actualJson.involvementKindIds.size());
-    assertSame(expectedOptional, actualOptional);
-  }
-  @Test
-  public void statusTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableSurveyRun.Json()).status();
-  }
-  @Test
-  public void descriptionTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableSurveyRun.Json()).description();
-  }
-  @Test
-  public void idTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableSurveyRun.Json()).id();
-  }
-  @Test
-  public void surveyTemplateIdTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableSurveyRun.Json()).surveyTemplateId();
-  }
-  @Test
   public void setIssuanceKindTest() {
     // Arrange
     ImmutableSurveyRun.Json json = new ImmutableSurveyRun.Json();
@@ -208,15 +186,15 @@ public class ImmutableSurveyRunDiffblueTest {
     assertEquals(SurveyIssuanceKind.GROUP, json.issuanceKind);
   }
   @Test
-  public void setDescriptionTest() {
+  public void setNameTest() {
     // Arrange
     ImmutableSurveyRun.Json json = new ImmutableSurveyRun.Json();
 
     // Act
-    json.setDescription("description");
+    json.setName("name");
 
     // Assert
-    assertEquals("description", json.description);
+    assertEquals("name", json.name);
   }
   @Test
   public void setOwnerIdTest() {
@@ -230,16 +208,38 @@ public class ImmutableSurveyRunDiffblueTest {
     assertEquals(Long.valueOf(123L), json.ownerId);
   }
   @Test
-  public void involvementKindIdsTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableSurveyRun.Json()).involvementKindIds();
+  public void setStatusTest() {
+    // Arrange
+    ImmutableSurveyRun.Json json = new ImmutableSurveyRun.Json();
+
+    // Act
+    json.setStatus(SurveyRunStatus.DRAFT);
+
+    // Assert
+    assertEquals(SurveyRunStatus.DRAFT, json.status);
   }
   @Test
-  public void issuanceKindTest() {
+  public void setSurveyTemplateIdTest() {
+    // Arrange
+    ImmutableSurveyRun.Json json = new ImmutableSurveyRun.Json();
+
+    // Act
+    json.setSurveyTemplateId(Long.valueOf(123L));
+
+    // Assert
+    assertEquals(Long.valueOf(123L), json.surveyTemplateId);
+  }
+  @Test
+  public void statusTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableSurveyRun.Json()).issuanceKind();
+    (new ImmutableSurveyRun.Json()).status();
+  }
+  @Test
+  public void surveyTemplateIdTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableSurveyRun.Json()).surveyTemplateId();
   }
 }
 

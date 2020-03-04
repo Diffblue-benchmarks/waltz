@@ -13,37 +13,39 @@ public class ImmutableDrillGridDefinitionDiffblueTest {
   @Rule
   public ExpectedException thrown = ExpectedException.none();
   @Test
-  public void fromTest4() {
-    // Arrange
-    ImmutableDrillGridDefinition.Builder builderResult = ImmutableDrillGridDefinition.builder();
-
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from((NameProvider) new ImmutableDrillGridDefinition.Json());
-  }
-  @Test
   public void buildTest() {
     // Arrange, Act and Assert
     thrown.expect(IllegalStateException.class);
     ImmutableDrillGridDefinition.builder().build();
   }
   @Test
-  public void fromTest3() {
-    // Arrange
-    ImmutableDrillGridDefinition.Builder builderResult = ImmutableDrillGridDefinition.builder();
+  public void constructorTest() {
+    // Arrange and Act
+    ImmutableDrillGridDefinition.Json actualJson = new ImmutableDrillGridDefinition.Json();
 
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from((IdProvider) new ImmutableDrillGridDefinition.Json());
+    // Assert
+    assertNull(actualJson.xAxis);
+    assertNull(actualJson.name);
+    assertNull(actualJson.yAxis);
+    assertNull(actualJson.description);
   }
   @Test
-  public void fromTest2() {
-    // Arrange
-    ImmutableDrillGridDefinition.Builder builderResult = ImmutableDrillGridDefinition.builder();
-
-    // Act and Assert
+  public void copyOfTest() {
+    // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    builderResult.from(new ImmutableDrillGridDefinition.Json());
+    ImmutableDrillGridDefinition.copyOf(new ImmutableDrillGridDefinition.Json());
+  }
+  @Test
+  public void descriptionTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableDrillGridDefinition.Json()).description();
+  }
+  @Test
+  public void fromJsonTest() {
+    // Arrange, Act and Assert
+    thrown.expect(IllegalStateException.class);
+    ImmutableDrillGridDefinition.fromJson(new ImmutableDrillGridDefinition.Json());
   }
   @Test
   public void fromTest() {
@@ -55,6 +57,45 @@ public class ImmutableDrillGridDefinitionDiffblueTest {
     builderResult.from((DescriptionProvider) new ImmutableDrillGridDefinition.Json());
   }
   @Test
+  public void fromTest2() {
+    // Arrange
+    ImmutableDrillGridDefinition.Builder builderResult = ImmutableDrillGridDefinition.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from(new ImmutableDrillGridDefinition.Json());
+  }
+  @Test
+  public void fromTest3() {
+    // Arrange
+    ImmutableDrillGridDefinition.Builder builderResult = ImmutableDrillGridDefinition.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from((IdProvider) new ImmutableDrillGridDefinition.Json());
+  }
+  @Test
+  public void fromTest4() {
+    // Arrange
+    ImmutableDrillGridDefinition.Builder builderResult = ImmutableDrillGridDefinition.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from((NameProvider) new ImmutableDrillGridDefinition.Json());
+  }
+  @Test
+  public void idTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableDrillGridDefinition.Json()).id();
+  }
+  @Test
+  public void nameTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableDrillGridDefinition.Json()).name();
+  }
+  @Test
   public void setDescriptionTest() {
     // Arrange
     ImmutableDrillGridDefinition.Json json = new ImmutableDrillGridDefinition.Json();
@@ -64,18 +105,6 @@ public class ImmutableDrillGridDefinitionDiffblueTest {
 
     // Assert
     assertEquals("description", json.description);
-  }
-  @Test
-  public void nameTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableDrillGridDefinition.Json()).name();
-  }
-  @Test
-  public void descriptionTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableDrillGridDefinition.Json()).description();
   }
   @Test
   public void setNameTest() {
@@ -95,39 +124,10 @@ public class ImmutableDrillGridDefinitionDiffblueTest {
     (new ImmutableDrillGridDefinition.Json()).xAxis();
   }
   @Test
-  public void idTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableDrillGridDefinition.Json()).id();
-  }
-  @Test
-  public void constructorTest() {
-    // Arrange and Act
-    ImmutableDrillGridDefinition.Json actualJson = new ImmutableDrillGridDefinition.Json();
-
-    // Assert
-    assertNull(actualJson.xAxis);
-    assertNull(actualJson.name);
-    assertNull(actualJson.yAxis);
-    assertNull(actualJson.description);
-  }
-  @Test
   public void yAxisTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
     (new ImmutableDrillGridDefinition.Json()).yAxis();
-  }
-  @Test
-  public void copyOfTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    ImmutableDrillGridDefinition.copyOf(new ImmutableDrillGridDefinition.Json());
-  }
-  @Test
-  public void fromJsonTest() {
-    // Arrange, Act and Assert
-    thrown.expect(IllegalStateException.class);
-    ImmutableDrillGridDefinition.fromJson(new ImmutableDrillGridDefinition.Json());
   }
 }
 

@@ -12,46 +12,10 @@ public class ImmutableRemoveMeasurableRatingCommandDiffblueTest {
   @Rule
   public ExpectedException thrown = ExpectedException.none();
   @Test
-  public void fromTest2() {
-    // Arrange
-    ImmutableRemoveMeasurableRatingCommand.Builder builderResult = ImmutableRemoveMeasurableRatingCommand.builder();
-
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from(new ImmutableRemoveMeasurableRatingCommand.Json());
-  }
-  @Test
-  public void fromTest() {
-    // Arrange
-    ImmutableRemoveMeasurableRatingCommand.Builder builderResult = ImmutableRemoveMeasurableRatingCommand.builder();
-
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from((MeasurableRatingCommand) new ImmutableRemoveMeasurableRatingCommand.Json());
-  }
-  @Test
   public void buildTest() {
     // Arrange, Act and Assert
     thrown.expect(IllegalStateException.class);
     ImmutableRemoveMeasurableRatingCommand.builder().build();
-  }
-  @Test
-  public void entityReferenceTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableRemoveMeasurableRatingCommand.Json()).entityReference();
-  }
-  @Test
-  public void setMeasurableIdTest() {
-    // Arrange
-    ImmutableRemoveMeasurableRatingCommand.Json json = new ImmutableRemoveMeasurableRatingCommand.Json();
-
-    // Act
-    json.setMeasurableId(123L);
-
-    // Assert
-    assertTrue(json.measurableIdIsSet);
-    assertEquals(123L, json.measurableId);
   }
   @Test
   public void constructorTest() {
@@ -65,10 +29,40 @@ public class ImmutableRemoveMeasurableRatingCommandDiffblueTest {
     assertEquals(0L, actualJson.measurableId);
   }
   @Test
-  public void measurableIdTest() {
+  public void copyOfTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableRemoveMeasurableRatingCommand.Json()).measurableId();
+    ImmutableRemoveMeasurableRatingCommand.copyOf(new ImmutableRemoveMeasurableRatingCommand.Json());
+  }
+  @Test
+  public void entityReferenceTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableRemoveMeasurableRatingCommand.Json()).entityReference();
+  }
+  @Test
+  public void fromJsonTest() {
+    // Arrange, Act and Assert
+    thrown.expect(IllegalStateException.class);
+    ImmutableRemoveMeasurableRatingCommand.fromJson(new ImmutableRemoveMeasurableRatingCommand.Json());
+  }
+  @Test
+  public void fromTest() {
+    // Arrange
+    ImmutableRemoveMeasurableRatingCommand.Builder builderResult = ImmutableRemoveMeasurableRatingCommand.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from((MeasurableRatingCommand) new ImmutableRemoveMeasurableRatingCommand.Json());
+  }
+  @Test
+  public void fromTest2() {
+    // Arrange
+    ImmutableRemoveMeasurableRatingCommand.Builder builderResult = ImmutableRemoveMeasurableRatingCommand.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from(new ImmutableRemoveMeasurableRatingCommand.Json());
   }
   @Test
   public void lastUpdateTest() {
@@ -77,16 +71,22 @@ public class ImmutableRemoveMeasurableRatingCommandDiffblueTest {
     (new ImmutableRemoveMeasurableRatingCommand.Json()).lastUpdate();
   }
   @Test
-  public void copyOfTest() {
+  public void measurableIdTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    ImmutableRemoveMeasurableRatingCommand.copyOf(new ImmutableRemoveMeasurableRatingCommand.Json());
+    (new ImmutableRemoveMeasurableRatingCommand.Json()).measurableId();
   }
   @Test
-  public void fromJsonTest() {
-    // Arrange, Act and Assert
-    thrown.expect(IllegalStateException.class);
-    ImmutableRemoveMeasurableRatingCommand.fromJson(new ImmutableRemoveMeasurableRatingCommand.Json());
+  public void setMeasurableIdTest() {
+    // Arrange
+    ImmutableRemoveMeasurableRatingCommand.Json json = new ImmutableRemoveMeasurableRatingCommand.Json();
+
+    // Act
+    json.setMeasurableId(123L);
+
+    // Assert
+    assertTrue(json.measurableIdIsSet);
+    assertEquals(123L, json.measurableId);
   }
 }
 

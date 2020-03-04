@@ -11,68 +11,16 @@ public class ImmutableSharedPreferenceDiffblueTest {
   @Rule
   public ExpectedException thrown = ExpectedException.none();
   @Test
-  public void copyOfTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    ImmutableSharedPreference.copyOf(new ImmutableSharedPreference.Json());
-  }
-  @Test
-  public void fromJsonTest() {
+  public void buildTest() {
     // Arrange, Act and Assert
     thrown.expect(IllegalStateException.class);
-    ImmutableSharedPreference.fromJson(new ImmutableSharedPreference.Json());
-  }
-  @Test
-  public void valueTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableSharedPreference.Json()).value();
+    ImmutableSharedPreference.builder().build();
   }
   @Test
   public void categoryTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
     (new ImmutableSharedPreference.Json()).category();
-  }
-  @Test
-  public void setLastUpdatedByTest() {
-    // Arrange
-    ImmutableSharedPreference.Json json = new ImmutableSharedPreference.Json();
-
-    // Act
-    json.setLastUpdatedBy("foo");
-
-    // Assert
-    assertEquals("foo", json.lastUpdatedBy);
-  }
-  @Test
-  public void keyTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableSharedPreference.Json()).key();
-  }
-  @Test
-  public void setCategoryTest() {
-    // Arrange
-    ImmutableSharedPreference.Json json = new ImmutableSharedPreference.Json();
-
-    // Act
-    json.setCategory("foo");
-
-    // Assert
-    assertEquals("foo", json.category);
-  }
-  @Test
-  public void lastUpdatedByTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableSharedPreference.Json()).lastUpdatedBy();
-  }
-  @Test
-  public void lastUpdatedAtTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableSharedPreference.Json()).lastUpdatedAt();
   }
   @Test
   public void constructorTest() {
@@ -87,35 +35,16 @@ public class ImmutableSharedPreferenceDiffblueTest {
     assertNull(actualJson.lastUpdatedAt);
   }
   @Test
-  public void setValueTest() {
-    // Arrange
-    ImmutableSharedPreference.Json json = new ImmutableSharedPreference.Json();
-
-    // Act
-    json.setValue("value");
-
-    // Assert
-    assertEquals("value", json.value);
-  }
-  @Test
-  public void setKeyTest() {
-    // Arrange
-    ImmutableSharedPreference.Json json = new ImmutableSharedPreference.Json();
-
-    // Act
-    json.setKey("foo");
-
-    // Assert
-    assertEquals("foo", json.key);
-  }
-  @Test
-  public void fromTest2() {
-    // Arrange
-    ImmutableSharedPreference.Builder builderResult = ImmutableSharedPreference.builder();
-
-    // Act and Assert
+  public void copyOfTest() {
+    // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    builderResult.from(new ImmutableSharedPreference.Json());
+    ImmutableSharedPreference.copyOf(new ImmutableSharedPreference.Json());
+  }
+  @Test
+  public void fromJsonTest() {
+    // Arrange, Act and Assert
+    thrown.expect(IllegalStateException.class);
+    ImmutableSharedPreference.fromJson(new ImmutableSharedPreference.Json());
   }
   @Test
   public void fromTest() {
@@ -127,10 +56,81 @@ public class ImmutableSharedPreferenceDiffblueTest {
     builderResult.from((LastUpdatedProvider) new ImmutableSharedPreference.Json());
   }
   @Test
-  public void buildTest() {
+  public void fromTest2() {
+    // Arrange
+    ImmutableSharedPreference.Builder builderResult = ImmutableSharedPreference.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from(new ImmutableSharedPreference.Json());
+  }
+  @Test
+  public void keyTest() {
     // Arrange, Act and Assert
-    thrown.expect(IllegalStateException.class);
-    ImmutableSharedPreference.builder().build();
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableSharedPreference.Json()).key();
+  }
+  @Test
+  public void lastUpdatedAtTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableSharedPreference.Json()).lastUpdatedAt();
+  }
+  @Test
+  public void lastUpdatedByTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableSharedPreference.Json()).lastUpdatedBy();
+  }
+  @Test
+  public void setCategoryTest() {
+    // Arrange
+    ImmutableSharedPreference.Json json = new ImmutableSharedPreference.Json();
+
+    // Act
+    json.setCategory("category");
+
+    // Assert
+    assertEquals("category", json.category);
+  }
+  @Test
+  public void setKeyTest() {
+    // Arrange
+    ImmutableSharedPreference.Json json = new ImmutableSharedPreference.Json();
+
+    // Act
+    json.setKey("key");
+
+    // Assert
+    assertEquals("key", json.key);
+  }
+  @Test
+  public void setLastUpdatedByTest() {
+    // Arrange
+    ImmutableSharedPreference.Json json = new ImmutableSharedPreference.Json();
+
+    // Act
+    json.setLastUpdatedBy("lastUpdatedBy");
+
+    // Assert
+    assertEquals("lastUpdatedBy", json.lastUpdatedBy);
+  }
+  @Test
+  public void setValueTest() {
+    // Arrange
+    ImmutableSharedPreference.Json json = new ImmutableSharedPreference.Json();
+
+    // Act
+    json.setValue("value");
+
+    // Assert
+    assertEquals("value", json.value);
+  }
+  @Test
+  public void valueTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableSharedPreference.Json()).value();
   }
 }
 

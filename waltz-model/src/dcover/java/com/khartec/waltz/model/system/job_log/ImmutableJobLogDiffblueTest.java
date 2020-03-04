@@ -13,55 +13,28 @@ public class ImmutableJobLogDiffblueTest {
   @Rule
   public ExpectedException thrown = ExpectedException.none();
   @Test
-  public void fromTest3() {
-    // Arrange
-    ImmutableJobLog.Builder builderResult = ImmutableJobLog.builder();
-
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from(new ImmutableJobLog.Json());
-  }
-  @Test
   public void buildTest() {
     // Arrange, Act and Assert
     thrown.expect(IllegalStateException.class);
     ImmutableJobLog.builder().build();
   }
   @Test
-  public void fromTest2() {
-    // Arrange
-    ImmutableJobLog.Builder builderResult = ImmutableJobLog.builder();
+  public void constructorTest() {
+    // Arrange and Act
+    ImmutableJobLog.Json actualJson = new ImmutableJobLog.Json();
 
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from((NameProvider) new ImmutableJobLog.Json());
-  }
-  @Test
-  public void fromTest() {
-    // Arrange
-    ImmutableJobLog.Builder builderResult = ImmutableJobLog.builder();
-
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from((DescriptionProvider) new ImmutableJobLog.Json());
+    // Assert
+    assertNull(actualJson.entityKind);
+    assertNull(actualJson.description);
+    assertNull(actualJson.start);
+    assertNull(actualJson.name);
+    assertNull(actualJson.status);
   }
   @Test
   public void copyOfTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
     ImmutableJobLog.copyOf(new ImmutableJobLog.Json());
-  }
-  @Test
-  public void fromJsonTest() {
-    // Arrange, Act and Assert
-    thrown.expect(IllegalStateException.class);
-    ImmutableJobLog.fromJson(new ImmutableJobLog.Json());
-  }
-  @Test
-  public void startTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableJobLog.Json()).start();
   }
   @Test
   public void descriptionTest() {
@@ -82,26 +55,43 @@ public class ImmutableJobLogDiffblueTest {
     (new ImmutableJobLog.Json()).entityKind();
   }
   @Test
-  public void setEntityKindTest() {
-    // Arrange
-    ImmutableJobLog.Json json = new ImmutableJobLog.Json();
-
-    // Act
-    json.setEntityKind(EntityKind.ACTOR);
-
-    // Assert
-    assertEquals(EntityKind.ACTOR, json.entityKind);
+  public void fromJsonTest() {
+    // Arrange, Act and Assert
+    thrown.expect(IllegalStateException.class);
+    ImmutableJobLog.fromJson(new ImmutableJobLog.Json());
   }
   @Test
-  public void setStatusTest() {
+  public void fromTest() {
     // Arrange
-    ImmutableJobLog.Json json = new ImmutableJobLog.Json();
+    ImmutableJobLog.Builder builderResult = ImmutableJobLog.builder();
 
-    // Act
-    json.setStatus(JobStatus.SUCCESS);
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from((DescriptionProvider) new ImmutableJobLog.Json());
+  }
+  @Test
+  public void fromTest2() {
+    // Arrange
+    ImmutableJobLog.Builder builderResult = ImmutableJobLog.builder();
 
-    // Assert
-    assertEquals(JobStatus.SUCCESS, json.status);
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from((NameProvider) new ImmutableJobLog.Json());
+  }
+  @Test
+  public void fromTest3() {
+    // Arrange
+    ImmutableJobLog.Builder builderResult = ImmutableJobLog.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from(new ImmutableJobLog.Json());
+  }
+  @Test
+  public void nameTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableJobLog.Json()).name();
   }
   @Test
   public void setDescriptionTest() {
@@ -115,10 +105,15 @@ public class ImmutableJobLogDiffblueTest {
     assertEquals("description", json.description);
   }
   @Test
-  public void nameTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableJobLog.Json()).name();
+  public void setEntityKindTest() {
+    // Arrange
+    ImmutableJobLog.Json json = new ImmutableJobLog.Json();
+
+    // Act
+    json.setEntityKind(EntityKind.ACTOR);
+
+    // Assert
+    assertEquals(EntityKind.ACTOR, json.entityKind);
   }
   @Test
   public void setNameTest() {
@@ -132,16 +127,21 @@ public class ImmutableJobLogDiffblueTest {
     assertEquals("name", json.name);
   }
   @Test
-  public void constructorTest() {
-    // Arrange and Act
-    ImmutableJobLog.Json actualJson = new ImmutableJobLog.Json();
+  public void setStatusTest() {
+    // Arrange
+    ImmutableJobLog.Json json = new ImmutableJobLog.Json();
+
+    // Act
+    json.setStatus(JobStatus.SUCCESS);
 
     // Assert
-    assertNull(actualJson.entityKind);
-    assertNull(actualJson.description);
-    assertNull(actualJson.start);
-    assertNull(actualJson.name);
-    assertNull(actualJson.status);
+    assertEquals(JobStatus.SUCCESS, json.status);
+  }
+  @Test
+  public void startTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableJobLog.Json()).start();
   }
   @Test
   public void statusTest() {

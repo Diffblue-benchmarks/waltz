@@ -10,6 +10,18 @@ public class ImmutableApplicationCostDiffblueTest {
   @Rule
   public ExpectedException thrown = ExpectedException.none();
   @Test
+  public void applicationTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableApplicationCost.Json()).application();
+  }
+  @Test
+  public void buildTest() {
+    // Arrange, Act and Assert
+    thrown.expect(IllegalStateException.class);
+    ImmutableApplicationCost.builder().build();
+  }
+  @Test
   public void constructorTest() {
     // Arrange and Act
     ImmutableApplicationCost.Json actualJson = new ImmutableApplicationCost.Json();
@@ -19,10 +31,31 @@ public class ImmutableApplicationCostDiffblueTest {
     assertNull(actualJson.application);
   }
   @Test
+  public void copyOfTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    ImmutableApplicationCost.copyOf(new ImmutableApplicationCost.Json());
+  }
+  @Test
   public void costTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
     (new ImmutableApplicationCost.Json()).cost();
+  }
+  @Test
+  public void fromJsonTest() {
+    // Arrange, Act and Assert
+    thrown.expect(IllegalStateException.class);
+    ImmutableApplicationCost.fromJson(new ImmutableApplicationCost.Json());
+  }
+  @Test
+  public void fromTest() {
+    // Arrange
+    ImmutableApplicationCost.Builder builderResult = ImmutableApplicationCost.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from(new ImmutableApplicationCost.Json());
   }
   @Test
   public void setCostTest() {
@@ -35,39 +68,6 @@ public class ImmutableApplicationCostDiffblueTest {
 
     // Assert
     assertSame(json1, json.cost);
-  }
-  @Test
-  public void applicationTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableApplicationCost.Json()).application();
-  }
-  @Test
-  public void fromJsonTest() {
-    // Arrange, Act and Assert
-    thrown.expect(IllegalStateException.class);
-    ImmutableApplicationCost.fromJson(new ImmutableApplicationCost.Json());
-  }
-  @Test
-  public void copyOfTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    ImmutableApplicationCost.copyOf(new ImmutableApplicationCost.Json());
-  }
-  @Test
-  public void fromTest() {
-    // Arrange
-    ImmutableApplicationCost.Builder builderResult = ImmutableApplicationCost.builder();
-
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from(new ImmutableApplicationCost.Json());
-  }
-  @Test
-  public void buildTest() {
-    // Arrange, Act and Assert
-    thrown.expect(IllegalStateException.class);
-    ImmutableApplicationCost.builder().build();
   }
 }
 

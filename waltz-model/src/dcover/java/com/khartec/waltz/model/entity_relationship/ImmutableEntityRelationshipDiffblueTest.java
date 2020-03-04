@@ -13,37 +13,54 @@ public class ImmutableEntityRelationshipDiffblueTest {
   @Rule
   public ExpectedException thrown = ExpectedException.none();
   @Test
+  public void aTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableEntityRelationship.Json()).a();
+  }
+  @Test
+  public void bTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableEntityRelationship.Json()).b();
+  }
+  @Test
   public void buildTest() {
     // Arrange, Act and Assert
     thrown.expect(IllegalStateException.class);
     ImmutableEntityRelationship.builder().build();
   }
   @Test
-  public void fromTest4() {
-    // Arrange
-    ImmutableEntityRelationship.Builder builderResult = ImmutableEntityRelationship.builder();
+  public void constructorTest() {
+    // Arrange and Act
+    ImmutableEntityRelationship.Json actualJson = new ImmutableEntityRelationship.Json();
 
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from((ProvenanceProvider) new ImmutableEntityRelationship.Json());
+    // Assert
+    assertNull(actualJson.relationship);
+    assertNull(actualJson.b);
+    assertNull(actualJson.provenance);
+    assertNull(actualJson.a);
+    assertNull(actualJson.lastUpdatedBy);
+    assertNull(actualJson.lastUpdatedAt);
+    assertNull(actualJson.description);
   }
   @Test
-  public void fromTest3() {
-    // Arrange
-    ImmutableEntityRelationship.Builder builderResult = ImmutableEntityRelationship.builder();
-
-    // Act and Assert
+  public void copyOfTest() {
+    // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    builderResult.from((LastUpdatedProvider) new ImmutableEntityRelationship.Json());
+    ImmutableEntityRelationship.copyOf(new ImmutableEntityRelationship.Json());
   }
   @Test
-  public void fromTest2() {
-    // Arrange
-    ImmutableEntityRelationship.Builder builderResult = ImmutableEntityRelationship.builder();
-
-    // Act and Assert
+  public void descriptionTest() {
+    // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    builderResult.from(new ImmutableEntityRelationship.Json());
+    (new ImmutableEntityRelationship.Json()).description();
+  }
+  @Test
+  public void fromJsonTest() {
+    // Arrange, Act and Assert
+    thrown.expect(IllegalStateException.class);
+    ImmutableEntityRelationship.fromJson(new ImmutableEntityRelationship.Json());
   }
   @Test
   public void fromTest() {
@@ -55,44 +72,37 @@ public class ImmutableEntityRelationshipDiffblueTest {
     builderResult.from((DescriptionProvider) new ImmutableEntityRelationship.Json());
   }
   @Test
-  public void aTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableEntityRelationship.Json()).a();
-  }
-  @Test
-  public void setLastUpdatedByTest() {
+  public void fromTest2() {
     // Arrange
-    ImmutableEntityRelationship.Json json = new ImmutableEntityRelationship.Json();
+    ImmutableEntityRelationship.Builder builderResult = ImmutableEntityRelationship.builder();
 
-    // Act
-    json.setLastUpdatedBy("foo");
-
-    // Assert
-    assertEquals("foo", json.lastUpdatedBy);
-  }
-  @Test
-  public void bTest() {
-    // Arrange, Act and Assert
+    // Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableEntityRelationship.Json()).b();
+    builderResult.from(new ImmutableEntityRelationship.Json());
   }
   @Test
-  public void descriptionTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableEntityRelationship.Json()).description();
-  }
-  @Test
-  public void setRelationshipTest() {
+  public void fromTest3() {
     // Arrange
-    ImmutableEntityRelationship.Json json = new ImmutableEntityRelationship.Json();
+    ImmutableEntityRelationship.Builder builderResult = ImmutableEntityRelationship.builder();
 
-    // Act
-    json.setRelationship(RelationshipKind.HAS);
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from((LastUpdatedProvider) new ImmutableEntityRelationship.Json());
+  }
+  @Test
+  public void fromTest4() {
+    // Arrange
+    ImmutableEntityRelationship.Builder builderResult = ImmutableEntityRelationship.builder();
 
-    // Assert
-    assertEquals(RelationshipKind.HAS, json.relationship);
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from((ProvenanceProvider) new ImmutableEntityRelationship.Json());
+  }
+  @Test
+  public void lastUpdatedAtTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableEntityRelationship.Json()).lastUpdatedAt();
   }
   @Test
   public void lastUpdatedByTest() {
@@ -124,24 +134,15 @@ public class ImmutableEntityRelationshipDiffblueTest {
     assertEquals("description", json.description);
   }
   @Test
-  public void lastUpdatedAtTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableEntityRelationship.Json()).lastUpdatedAt();
-  }
-  @Test
-  public void constructorTest() {
-    // Arrange and Act
-    ImmutableEntityRelationship.Json actualJson = new ImmutableEntityRelationship.Json();
+  public void setLastUpdatedByTest() {
+    // Arrange
+    ImmutableEntityRelationship.Json json = new ImmutableEntityRelationship.Json();
+
+    // Act
+    json.setLastUpdatedBy("lastUpdatedBy");
 
     // Assert
-    assertNull(actualJson.relationship);
-    assertNull(actualJson.b);
-    assertNull(actualJson.provenance);
-    assertNull(actualJson.a);
-    assertNull(actualJson.lastUpdatedBy);
-    assertNull(actualJson.lastUpdatedAt);
-    assertNull(actualJson.description);
+    assertEquals("lastUpdatedBy", json.lastUpdatedBy);
   }
   @Test
   public void setProvenanceTest() {
@@ -149,22 +150,21 @@ public class ImmutableEntityRelationshipDiffblueTest {
     ImmutableEntityRelationship.Json json = new ImmutableEntityRelationship.Json();
 
     // Act
-    json.setProvenance("foo");
+    json.setProvenance("provenance");
 
     // Assert
-    assertEquals("foo", json.provenance);
+    assertEquals("provenance", json.provenance);
   }
   @Test
-  public void fromJsonTest() {
-    // Arrange, Act and Assert
-    thrown.expect(IllegalStateException.class);
-    ImmutableEntityRelationship.fromJson(new ImmutableEntityRelationship.Json());
-  }
-  @Test
-  public void copyOfTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    ImmutableEntityRelationship.copyOf(new ImmutableEntityRelationship.Json());
+  public void setRelationshipTest() {
+    // Arrange
+    ImmutableEntityRelationship.Json json = new ImmutableEntityRelationship.Json();
+
+    // Act
+    json.setRelationship(RelationshipKind.HAS);
+
+    // Assert
+    assertEquals(RelationshipKind.HAS, json.relationship);
   }
 }
 

@@ -16,36 +16,6 @@ public class ImmutableEntityHierarchyItemDiffblueTest {
   public ExpectedException thrown = ExpectedException.none();
 
   @Test
-  public void fromTest4() {
-    // Arrange
-    ImmutableEntityHierarchyItem.Builder builderResult = ImmutableEntityHierarchyItem.builder();
-
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from((IdProvider) new ImmutableEntityHierarchyItem.Json());
-  }
-
-  @Test
-  public void fromTest3() {
-    // Arrange
-    ImmutableEntityHierarchyItem.Builder builderResult = ImmutableEntityHierarchyItem.builder();
-
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from(new ImmutableEntityHierarchyItem.Json());
-  }
-
-  @Test
-  public void fromTest2() {
-    // Arrange
-    ImmutableEntityHierarchyItem.Builder builderResult = ImmutableEntityHierarchyItem.builder();
-
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from((LevelProvider) new ImmutableEntityHierarchyItem.Json());
-  }
-
-  @Test
   public void buildTest() {
     // Arrange, Act and Assert
     thrown.expect(IllegalStateException.class);
@@ -53,13 +23,12 @@ public class ImmutableEntityHierarchyItemDiffblueTest {
   }
 
   @Test
-  public void fromTest() {
-    // Arrange
-    ImmutableEntityHierarchyItem.Builder builderResult = ImmutableEntityHierarchyItem.builder();
+  public void constructorTest() {
+    // Arrange and Act
+    ImmutableEntityHierarchyItem.Json actualJson = new ImmutableEntityHierarchyItem.Json();
 
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from((ParentIdProvider) new ImmutableEntityHierarchyItem.Json());
+    // Assert
+    assertSame(actualJson.id, actualJson.parentId);
   }
 
   @Test
@@ -77,10 +46,83 @@ public class ImmutableEntityHierarchyItemDiffblueTest {
   }
 
   @Test
+  public void fromTest() {
+    // Arrange
+    ImmutableEntityHierarchyItem.Builder builderResult = ImmutableEntityHierarchyItem.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from((ParentIdProvider) new ImmutableEntityHierarchyItem.Json());
+  }
+
+  @Test
+  public void fromTest2() {
+    // Arrange
+    ImmutableEntityHierarchyItem.Builder builderResult = ImmutableEntityHierarchyItem.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from((LevelProvider) new ImmutableEntityHierarchyItem.Json());
+  }
+
+  @Test
+  public void fromTest3() {
+    // Arrange
+    ImmutableEntityHierarchyItem.Builder builderResult = ImmutableEntityHierarchyItem.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from(new ImmutableEntityHierarchyItem.Json());
+  }
+
+  @Test
+  public void fromTest4() {
+    // Arrange
+    ImmutableEntityHierarchyItem.Builder builderResult = ImmutableEntityHierarchyItem.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from((IdProvider) new ImmutableEntityHierarchyItem.Json());
+  }
+
+  @Test
+  public void idTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableEntityHierarchyItem.Json()).id();
+  }
+
+  @Test
   public void kindTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
     (new ImmutableEntityHierarchyItem.Json()).kind();
+  }
+
+  @Test
+  public void levelTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableEntityHierarchyItem.Json()).level();
+  }
+
+  @Test
+  public void parentIdTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableEntityHierarchyItem.Json()).parentId();
+  }
+
+  @Test
+  public void setKindTest() {
+    // Arrange
+    ImmutableEntityHierarchyItem.Json json = new ImmutableEntityHierarchyItem.Json();
+
+    // Act
+    json.setKind(EntityKind.ACTOR);
+
+    // Assert
+    assertEquals(EntityKind.ACTOR, json.kind);
   }
 
   @Test
@@ -94,48 +136,6 @@ public class ImmutableEntityHierarchyItemDiffblueTest {
     // Assert
     assertEquals(1, json.level);
     assertTrue(json.levelIsSet);
-  }
-
-  @Test
-  public void parentIdTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableEntityHierarchyItem.Json()).parentId();
-  }
-
-  @Test
-  public void levelTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableEntityHierarchyItem.Json()).level();
-  }
-
-  @Test
-  public void idTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableEntityHierarchyItem.Json()).id();
-  }
-
-  @Test
-  public void constructorTest() {
-    // Arrange and Act
-    ImmutableEntityHierarchyItem.Json actualJson = new ImmutableEntityHierarchyItem.Json();
-
-    // Assert
-    assertSame(actualJson.id, actualJson.parentId);
-  }
-
-  @Test
-  public void setKindTest() {
-    // Arrange
-    ImmutableEntityHierarchyItem.Json json = new ImmutableEntityHierarchyItem.Json();
-
-    // Act
-    json.setKind(EntityKind.ACTOR);
-
-    // Assert
-    assertEquals(EntityKind.ACTOR, json.kind);
   }
 }
 

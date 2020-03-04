@@ -10,10 +10,10 @@ public class ImmutableLoginRequestDiffblueTest {
   @Rule
   public ExpectedException thrown = ExpectedException.none();
   @Test
-  public void passwordTest() {
+  public void buildTest() {
     // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableLoginRequest.Json()).password();
+    thrown.expect(IllegalStateException.class);
+    ImmutableLoginRequest.builder().build();
   }
   @Test
   public void constructorTest() {
@@ -25,10 +25,31 @@ public class ImmutableLoginRequestDiffblueTest {
     assertNull(actualJson.userName);
   }
   @Test
-  public void userNameTest() {
+  public void copyOfTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableLoginRequest.Json()).userName();
+    ImmutableLoginRequest.copyOf(new ImmutableLoginRequest.Json());
+  }
+  @Test
+  public void fromJsonTest() {
+    // Arrange, Act and Assert
+    thrown.expect(IllegalStateException.class);
+    ImmutableLoginRequest.fromJson(new ImmutableLoginRequest.Json());
+  }
+  @Test
+  public void fromTest() {
+    // Arrange
+    ImmutableLoginRequest.Builder builderResult = ImmutableLoginRequest.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from(new ImmutableLoginRequest.Json());
+  }
+  @Test
+  public void passwordTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableLoginRequest.Json()).password();
   }
   @Test
   public void setPasswordTest() {
@@ -53,31 +74,10 @@ public class ImmutableLoginRequestDiffblueTest {
     assertEquals("username", json.userName);
   }
   @Test
-  public void buildTest() {
-    // Arrange, Act and Assert
-    thrown.expect(IllegalStateException.class);
-    ImmutableLoginRequest.builder().build();
-  }
-  @Test
-  public void fromTest() {
-    // Arrange
-    ImmutableLoginRequest.Builder builderResult = ImmutableLoginRequest.builder();
-
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from(new ImmutableLoginRequest.Json());
-  }
-  @Test
-  public void fromJsonTest() {
-    // Arrange, Act and Assert
-    thrown.expect(IllegalStateException.class);
-    ImmutableLoginRequest.fromJson(new ImmutableLoginRequest.Json());
-  }
-  @Test
-  public void copyOfTest() {
+  public void userNameTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    ImmutableLoginRequest.copyOf(new ImmutableLoginRequest.Json());
+    (new ImmutableLoginRequest.Json()).userName();
   }
 }
 

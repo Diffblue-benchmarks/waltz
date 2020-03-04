@@ -10,6 +10,38 @@ public class ImmutableSurveyRunStatusChangeCommandDiffblueTest {
   @Rule
   public ExpectedException thrown = ExpectedException.none();
   @Test
+  public void buildTest() {
+    // Arrange, Act and Assert
+    thrown.expect(IllegalStateException.class);
+    ImmutableSurveyRunStatusChangeCommand.builder().build();
+  }
+  @Test
+  public void constructorTest() {
+    // Arrange, Act and Assert
+    assertNull((new ImmutableSurveyRunStatusChangeCommand.Json()).newStatus);
+  }
+  @Test
+  public void copyOfTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    ImmutableSurveyRunStatusChangeCommand.copyOf(new ImmutableSurveyRunStatusChangeCommand.Json());
+  }
+  @Test
+  public void fromJsonTest() {
+    // Arrange, Act and Assert
+    thrown.expect(IllegalStateException.class);
+    ImmutableSurveyRunStatusChangeCommand.fromJson(new ImmutableSurveyRunStatusChangeCommand.Json());
+  }
+  @Test
+  public void fromTest() {
+    // Arrange
+    ImmutableSurveyRunStatusChangeCommand.Builder builderResult = ImmutableSurveyRunStatusChangeCommand.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from(new ImmutableSurveyRunStatusChangeCommand.Json());
+  }
+  @Test
   public void newStatusTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
@@ -25,38 +57,6 @@ public class ImmutableSurveyRunStatusChangeCommandDiffblueTest {
 
     // Assert
     assertEquals(SurveyRunStatus.DRAFT, json.newStatus);
-  }
-  @Test
-  public void constructorTest() {
-    // Arrange, Act and Assert
-    assertNull((new ImmutableSurveyRunStatusChangeCommand.Json()).newStatus);
-  }
-  @Test
-  public void fromJsonTest() {
-    // Arrange, Act and Assert
-    thrown.expect(IllegalStateException.class);
-    ImmutableSurveyRunStatusChangeCommand.fromJson(new ImmutableSurveyRunStatusChangeCommand.Json());
-  }
-  @Test
-  public void copyOfTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    ImmutableSurveyRunStatusChangeCommand.copyOf(new ImmutableSurveyRunStatusChangeCommand.Json());
-  }
-  @Test
-  public void buildTest() {
-    // Arrange, Act and Assert
-    thrown.expect(IllegalStateException.class);
-    ImmutableSurveyRunStatusChangeCommand.builder().build();
-  }
-  @Test
-  public void fromTest() {
-    // Arrange
-    ImmutableSurveyRunStatusChangeCommand.Builder builderResult = ImmutableSurveyRunStatusChangeCommand.builder();
-
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from(new ImmutableSurveyRunStatusChangeCommand.Json());
   }
 }
 

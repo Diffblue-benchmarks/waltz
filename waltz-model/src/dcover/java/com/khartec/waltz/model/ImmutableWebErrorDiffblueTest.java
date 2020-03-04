@@ -11,20 +11,16 @@ public class ImmutableWebErrorDiffblueTest {
   public ExpectedException thrown = ExpectedException.none();
 
   @Test
-  public void fromTest() {
-    // Arrange
-    ImmutableWebError.Builder builderResult = ImmutableWebError.builder();
-
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from(new ImmutableWebError.Json());
-  }
-
-  @Test
   public void buildTest() {
     // Arrange, Act and Assert
     thrown.expect(IllegalStateException.class);
     ImmutableWebError.builder().build();
+  }
+
+  @Test
+  public void constructorTest() {
+    // Arrange, Act and Assert
+    assertNull((new ImmutableWebError.Json()).message);
   }
 
   @Test
@@ -42,16 +38,20 @@ public class ImmutableWebErrorDiffblueTest {
   }
 
   @Test
+  public void fromTest() {
+    // Arrange
+    ImmutableWebError.Builder builderResult = ImmutableWebError.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from(new ImmutableWebError.Json());
+  }
+
+  @Test
   public void idTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
     (new ImmutableWebError.Json()).id();
-  }
-
-  @Test
-  public void constructorTest() {
-    // Arrange, Act and Assert
-    assertNull((new ImmutableWebError.Json()).message);
   }
 
   @Test

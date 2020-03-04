@@ -25,96 +25,34 @@ public class ImmutableApplicationDiffblueTest {
   @Rule
   public ExpectedException thrown = ExpectedException.none();
   @Test
-  public void kindTest() {
+  public void actualRetirementDateTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableApplication.Json()).kind();
+    (new ImmutableApplication.Json()).actualRetirementDate();
   }
   @Test
-  public void setOrganisationalUnitIdTest() {
-    // Arrange
-    ImmutableApplication.Json json = new ImmutableApplication.Json();
-
-    // Act
-    json.setOrganisationalUnitId(Long.valueOf(123L));
-
-    // Assert
-    assertEquals(Long.valueOf(123L), json.organisationalUnitId);
-  }
-  @Test
-  public void entityLifecycleStatusTest() {
+  public void applicationKindTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableApplication.Json()).entityLifecycleStatus();
+    (new ImmutableApplication.Json()).applicationKind();
   }
   @Test
-  public void organisationalUnitIdTest() {
+  public void assetCodeTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableApplication.Json()).organisationalUnitId();
+    (new ImmutableApplication.Json()).assetCode();
   }
   @Test
-  public void setIsRemovedTest() {
-    // Arrange
-    ImmutableApplication.Json json = new ImmutableApplication.Json();
-
-    // Act
-    json.setIsRemoved(true);
-
-    // Assert
-    assertTrue(json.isRemoved);
-    assertTrue(json.isRemovedIsSet);
-  }
-  @Test
-  public void setEntityLifecycleStatusTest() {
-    // Arrange
-    ImmutableApplication.Json json = new ImmutableApplication.Json();
-
-    // Act
-    json.setEntityLifecycleStatus(EntityLifecycleStatus.ACTIVE);
-
-    // Assert
-    assertEquals(EntityLifecycleStatus.ACTIVE, json.entityLifecycleStatus);
+  public void buildTest() {
+    // Arrange, Act and Assert
+    thrown.expect(IllegalStateException.class);
+    ImmutableApplication.builder().build();
   }
   @Test
   public void businessCriticalityTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
     (new ImmutableApplication.Json()).businessCriticality();
-  }
-  @Test
-  public void nameTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableApplication.Json()).name();
-  }
-  @Test
-  public void parentAssetCodeTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableApplication.Json()).parentAssetCode();
-  }
-  @Test
-  public void setNameTest() {
-    // Arrange
-    ImmutableApplication.Json json = new ImmutableApplication.Json();
-
-    // Act
-    json.setName("name");
-
-    // Assert
-    assertEquals("name", json.name);
-  }
-  @Test
-  public void setLifecyclePhaseTest() {
-    // Arrange
-    ImmutableApplication.Json json = new ImmutableApplication.Json();
-
-    // Act
-    json.setLifecyclePhase(LifecyclePhase.PRODUCTION);
-
-    // Assert
-    assertEquals(LifecyclePhase.PRODUCTION, json.lifecyclePhase);
   }
   @Test
   public void constructorTest() {
@@ -129,27 +67,10 @@ public class ImmutableApplicationDiffblueTest {
     assertSame(optional, actualJson.actualRetirementDate);
   }
   @Test
-  public void setProvenanceTest() {
-    // Arrange
-    ImmutableApplication.Json json = new ImmutableApplication.Json();
-
-    // Act
-    json.setProvenance("foo");
-
-    // Assert
-    assertEquals("foo", json.provenance);
-  }
-  @Test
-  public void plannedRetirementDateTest() {
+  public void copyOfTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableApplication.Json()).plannedRetirementDate();
-  }
-  @Test
-  public void overallRatingTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableApplication.Json()).overallRating();
+    ImmutableApplication.copyOf(new ImmutableApplication.Json());
   }
   @Test
   public void descriptionTest() {
@@ -158,16 +79,103 @@ public class ImmutableApplicationDiffblueTest {
     (new ImmutableApplication.Json()).description();
   }
   @Test
-  public void assetCodeTest() {
+  public void entityLifecycleStatusTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableApplication.Json()).assetCode();
+    (new ImmutableApplication.Json()).entityLifecycleStatus();
   }
   @Test
-  public void provenanceTest() {
+  public void externalIdTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableApplication.Json()).provenance();
+    (new ImmutableApplication.Json()).externalId();
+  }
+  @Test
+  public void fromJsonTest() {
+    // Arrange, Act and Assert
+    thrown.expect(IllegalStateException.class);
+    ImmutableApplication.fromJson(new ImmutableApplication.Json());
+  }
+  @Test
+  public void fromTest() {
+    // Arrange
+    ImmutableApplication.Builder builderResult = ImmutableApplication.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from((EntityKindProvider) new ImmutableApplication.Json());
+  }
+  @Test
+  public void fromTest2() {
+    // Arrange
+    ImmutableApplication.Builder builderResult = ImmutableApplication.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from((EntityLifecycleStatusProvider) new ImmutableApplication.Json());
+  }
+  @Test
+  public void fromTest3() {
+    // Arrange
+    ImmutableApplication.Builder builderResult = ImmutableApplication.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from((OrganisationalUnitIdProvider) new ImmutableApplication.Json());
+  }
+  @Test
+  public void fromTest4() {
+    // Arrange
+    ImmutableApplication.Builder builderResult = ImmutableApplication.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from((NameProvider) new ImmutableApplication.Json());
+  }
+  @Test
+  public void fromTest5() {
+    // Arrange
+    ImmutableApplication.Builder builderResult = ImmutableApplication.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from((IdProvider) new ImmutableApplication.Json());
+  }
+  @Test
+  public void fromTest6() {
+    // Arrange
+    ImmutableApplication.Builder builderResult = ImmutableApplication.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from((ProvenanceProvider) new ImmutableApplication.Json());
+  }
+  @Test
+  public void fromTest7() {
+    // Arrange
+    ImmutableApplication.Builder builderResult = ImmutableApplication.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from((DescriptionProvider) new ImmutableApplication.Json());
+  }
+  @Test
+  public void fromTest8() {
+    // Arrange
+    ImmutableApplication.Builder builderResult = ImmutableApplication.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from((IsRemovedProvider) new ImmutableApplication.Json());
+  }
+  @Test
+  public void fromTest9() {
+    // Arrange
+    ImmutableApplication.Builder builderResult = ImmutableApplication.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from(new ImmutableApplication.Json());
   }
   @Test
   public void idTest() {
@@ -176,38 +184,58 @@ public class ImmutableApplicationDiffblueTest {
     (new ImmutableApplication.Json()).id();
   }
   @Test
-  public void applicationKindTest() {
+  public void isRemovedTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableApplication.Json()).applicationKind();
+    (new ImmutableApplication.Json()).isRemoved();
   }
   @Test
-  public void setKindTest() {
-    // Arrange
-    ImmutableApplication.Json json = new ImmutableApplication.Json();
-
-    // Act
-    json.setKind(EntityKind.ACTOR);
-
-    // Assert
-    assertEquals(EntityKind.ACTOR, json.kind);
-  }
-  @Test
-  public void actualRetirementDateTest() {
+  public void kindTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableApplication.Json()).actualRetirementDate();
+    (new ImmutableApplication.Json()).kind();
   }
   @Test
-  public void setDescriptionTest() {
-    // Arrange
-    ImmutableApplication.Json json = new ImmutableApplication.Json();
-
-    // Act
-    json.setDescription("description");
-
-    // Assert
-    assertEquals("description", json.description);
+  public void lifecyclePhaseTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableApplication.Json()).lifecyclePhase();
+  }
+  @Test
+  public void nameTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableApplication.Json()).name();
+  }
+  @Test
+  public void organisationalUnitIdTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableApplication.Json()).organisationalUnitId();
+  }
+  @Test
+  public void overallRatingTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableApplication.Json()).overallRating();
+  }
+  @Test
+  public void parentAssetCodeTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableApplication.Json()).parentAssetCode();
+  }
+  @Test
+  public void plannedRetirementDateTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableApplication.Json()).plannedRetirementDate();
+  }
+  @Test
+  public void provenanceTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableApplication.Json()).provenance();
   }
   @Test
   public void setApplicationKindTest() {
@@ -221,16 +249,93 @@ public class ImmutableApplicationDiffblueTest {
     assertEquals(ApplicationKind.IN_HOUSE, json.applicationKind);
   }
   @Test
-  public void lifecyclePhaseTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableApplication.Json()).lifecyclePhase();
+  public void setBusinessCriticalityTest() {
+    // Arrange
+    ImmutableApplication.Json json = new ImmutableApplication.Json();
+
+    // Act
+    json.setBusinessCriticality(Criticality.LOW);
+
+    // Assert
+    assertEquals(Criticality.LOW, json.businessCriticality);
   }
   @Test
-  public void externalIdTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableApplication.Json()).externalId();
+  public void setDescriptionTest() {
+    // Arrange
+    ImmutableApplication.Json json = new ImmutableApplication.Json();
+
+    // Act
+    json.setDescription("description");
+
+    // Assert
+    assertEquals("description", json.description);
+  }
+  @Test
+  public void setEntityLifecycleStatusTest() {
+    // Arrange
+    ImmutableApplication.Json json = new ImmutableApplication.Json();
+
+    // Act
+    json.setEntityLifecycleStatus(EntityLifecycleStatus.ACTIVE);
+
+    // Assert
+    assertEquals(EntityLifecycleStatus.ACTIVE, json.entityLifecycleStatus);
+  }
+  @Test
+  public void setIsRemovedTest() {
+    // Arrange
+    ImmutableApplication.Json json = new ImmutableApplication.Json();
+
+    // Act
+    json.setIsRemoved(true);
+
+    // Assert
+    assertTrue(json.isRemoved);
+    assertTrue(json.isRemovedIsSet);
+  }
+  @Test
+  public void setKindTest() {
+    // Arrange
+    ImmutableApplication.Json json = new ImmutableApplication.Json();
+
+    // Act
+    json.setKind(EntityKind.ACTOR);
+
+    // Assert
+    assertEquals(EntityKind.ACTOR, json.kind);
+  }
+  @Test
+  public void setLifecyclePhaseTest() {
+    // Arrange
+    ImmutableApplication.Json json = new ImmutableApplication.Json();
+
+    // Act
+    json.setLifecyclePhase(LifecyclePhase.PRODUCTION);
+
+    // Assert
+    assertEquals(LifecyclePhase.PRODUCTION, json.lifecyclePhase);
+  }
+  @Test
+  public void setNameTest() {
+    // Arrange
+    ImmutableApplication.Json json = new ImmutableApplication.Json();
+
+    // Act
+    json.setName("name");
+
+    // Assert
+    assertEquals("name", json.name);
+  }
+  @Test
+  public void setOrganisationalUnitIdTest() {
+    // Arrange
+    ImmutableApplication.Json json = new ImmutableApplication.Json();
+
+    // Act
+    json.setOrganisationalUnitId(Long.valueOf(123L));
+
+    // Assert
+    assertEquals(Long.valueOf(123L), json.organisationalUnitId);
   }
   @Test
   public void setOverallRatingTest() {
@@ -244,120 +349,15 @@ public class ImmutableApplicationDiffblueTest {
     assertEquals(RagRating.R, json.overallRating);
   }
   @Test
-  public void isRemovedTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableApplication.Json()).isRemoved();
-  }
-  @Test
-  public void setBusinessCriticalityTest() {
+  public void setProvenanceTest() {
     // Arrange
     ImmutableApplication.Json json = new ImmutableApplication.Json();
 
     // Act
-    json.setBusinessCriticality(Criticality.LOW);
+    json.setProvenance("provenance");
 
     // Assert
-    assertEquals(Criticality.LOW, json.businessCriticality);
-  }
-  @Test
-  public void fromTest9() {
-    // Arrange
-    ImmutableApplication.Builder builderResult = ImmutableApplication.builder();
-
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from(new ImmutableApplication.Json());
-  }
-  @Test
-  public void fromTest8() {
-    // Arrange
-    ImmutableApplication.Builder builderResult = ImmutableApplication.builder();
-
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from((IsRemovedProvider) new ImmutableApplication.Json());
-  }
-  @Test
-  public void fromTest7() {
-    // Arrange
-    ImmutableApplication.Builder builderResult = ImmutableApplication.builder();
-
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from((DescriptionProvider) new ImmutableApplication.Json());
-  }
-  @Test
-  public void buildTest() {
-    // Arrange, Act and Assert
-    thrown.expect(IllegalStateException.class);
-    ImmutableApplication.builder().build();
-  }
-  @Test
-  public void fromTest6() {
-    // Arrange
-    ImmutableApplication.Builder builderResult = ImmutableApplication.builder();
-
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from((ProvenanceProvider) new ImmutableApplication.Json());
-  }
-  @Test
-  public void fromTest5() {
-    // Arrange
-    ImmutableApplication.Builder builderResult = ImmutableApplication.builder();
-
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from((IdProvider) new ImmutableApplication.Json());
-  }
-  @Test
-  public void fromTest4() {
-    // Arrange
-    ImmutableApplication.Builder builderResult = ImmutableApplication.builder();
-
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from((NameProvider) new ImmutableApplication.Json());
-  }
-  @Test
-  public void fromTest3() {
-    // Arrange
-    ImmutableApplication.Builder builderResult = ImmutableApplication.builder();
-
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from((OrganisationalUnitIdProvider) new ImmutableApplication.Json());
-  }
-  @Test
-  public void fromTest2() {
-    // Arrange
-    ImmutableApplication.Builder builderResult = ImmutableApplication.builder();
-
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from((EntityLifecycleStatusProvider) new ImmutableApplication.Json());
-  }
-  @Test
-  public void fromTest() {
-    // Arrange
-    ImmutableApplication.Builder builderResult = ImmutableApplication.builder();
-
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from((EntityKindProvider) new ImmutableApplication.Json());
-  }
-  @Test
-  public void copyOfTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    ImmutableApplication.copyOf(new ImmutableApplication.Json());
-  }
-  @Test
-  public void fromJsonTest() {
-    // Arrange, Act and Assert
-    thrown.expect(IllegalStateException.class);
-    ImmutableApplication.fromJson(new ImmutableApplication.Json());
+    assertEquals("provenance", json.provenance);
   }
 }
 

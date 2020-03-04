@@ -12,16 +12,33 @@ public class ImmutableLogicalFlowStatisticsDiffblueTest {
   @Rule
   public ExpectedException thrown = ExpectedException.none();
   @Test
-  public void setFlowCountsTest() {
-    // Arrange
-    ImmutableLogicalFlowStatistics.Json json = new ImmutableLogicalFlowStatistics.Json();
-    ImmutableLogicalFlowMeasures.Json json1 = new ImmutableLogicalFlowMeasures.Json();
-
-    // Act
-    json.setFlowCounts(json1);
-
-    // Assert
-    assertSame(json1, json.flowCounts);
+  public void appCountsTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableLogicalFlowStatistics.Json()).appCounts();
+  }
+  @Test
+  public void buildTest() {
+    // Arrange, Act and Assert
+    thrown.expect(IllegalStateException.class);
+    ImmutableLogicalFlowStatistics.builder().build();
+  }
+  @Test
+  public void constructorTest() {
+    // Arrange, Act and Assert
+    assertEquals(0, (new ImmutableLogicalFlowStatistics.Json()).dataTypeCounts.size());
+  }
+  @Test
+  public void copyOfTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    ImmutableLogicalFlowStatistics.copyOf(new ImmutableLogicalFlowStatistics.Json());
+  }
+  @Test
+  public void dataTypeCountsTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableLogicalFlowStatistics.Json()).dataTypeCounts();
   }
   @Test
   public void flowCountsTest() {
@@ -30,10 +47,19 @@ public class ImmutableLogicalFlowStatisticsDiffblueTest {
     (new ImmutableLogicalFlowStatistics.Json()).flowCounts();
   }
   @Test
-  public void appCountsTest() {
+  public void fromJsonTest() {
     // Arrange, Act and Assert
+    thrown.expect(IllegalStateException.class);
+    ImmutableLogicalFlowStatistics.fromJson(new ImmutableLogicalFlowStatistics.Json());
+  }
+  @Test
+  public void fromTest() {
+    // Arrange
+    ImmutableLogicalFlowStatistics.Builder builderResult = ImmutableLogicalFlowStatistics.builder();
+
+    // Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableLogicalFlowStatistics.Json()).appCounts();
+    builderResult.from(new ImmutableLogicalFlowStatistics.Json());
   }
   @Test
   public void setAppCountsTest() {
@@ -48,17 +74,6 @@ public class ImmutableLogicalFlowStatisticsDiffblueTest {
     assertSame(json1, json.appCounts);
   }
   @Test
-  public void dataTypeCountsTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableLogicalFlowStatistics.Json()).dataTypeCounts();
-  }
-  @Test
-  public void constructorTest() {
-    // Arrange, Act and Assert
-    assertEquals(0, (new ImmutableLogicalFlowStatistics.Json()).dataTypeCounts.size());
-  }
-  @Test
   public void setDataTypeCountsTest() {
     // Arrange
     ImmutableLogicalFlowStatistics.Json json = new ImmutableLogicalFlowStatistics.Json();
@@ -71,31 +86,16 @@ public class ImmutableLogicalFlowStatisticsDiffblueTest {
     assertSame(tallyPackList, json.dataTypeCounts);
   }
   @Test
-  public void fromJsonTest() {
-    // Arrange, Act and Assert
-    thrown.expect(IllegalStateException.class);
-    ImmutableLogicalFlowStatistics.fromJson(new ImmutableLogicalFlowStatistics.Json());
-  }
-  @Test
-  public void copyOfTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    ImmutableLogicalFlowStatistics.copyOf(new ImmutableLogicalFlowStatistics.Json());
-  }
-  @Test
-  public void fromTest() {
+  public void setFlowCountsTest() {
     // Arrange
-    ImmutableLogicalFlowStatistics.Builder builderResult = ImmutableLogicalFlowStatistics.builder();
+    ImmutableLogicalFlowStatistics.Json json = new ImmutableLogicalFlowStatistics.Json();
+    ImmutableLogicalFlowMeasures.Json json1 = new ImmutableLogicalFlowMeasures.Json();
 
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from(new ImmutableLogicalFlowStatistics.Json());
-  }
-  @Test
-  public void buildTest() {
-    // Arrange, Act and Assert
-    thrown.expect(IllegalStateException.class);
-    ImmutableLogicalFlowStatistics.builder().build();
+    // Act
+    json.setFlowCounts(json1);
+
+    // Assert
+    assertSame(json1, json.flowCounts);
   }
 }
 

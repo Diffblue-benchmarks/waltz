@@ -19,19 +19,23 @@ public class ImmutableUpdateDescriptionCommandDiffblueTest {
   }
 
   @Test
-  public void fromTest() {
-    // Arrange
-    ImmutableUpdateDescriptionCommand.Builder builderResult = ImmutableUpdateDescriptionCommand.builder();
+  public void constructorTest() {
+    // Arrange, Act and Assert
+    assertNull((new ImmutableUpdateDescriptionCommand.Json()).newDescription);
+  }
 
-    // Act and Assert
+  @Test
+  public void copyOfTest() {
+    // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    builderResult.from(new ImmutableUpdateDescriptionCommand.Json());
+    ImmutableUpdateDescriptionCommand.copyOf(new ImmutableUpdateDescriptionCommand.Json());
   }
 
   @Test
   public void equalsTest() {
     // Arrange, Act and Assert
-    assertFalse(ImmutableUpdateDescriptionCommand.fromJson(new ImmutableUpdateDescriptionCommand.Json()).equals("foo"));
+    assertFalse(
+        ImmutableUpdateDescriptionCommand.fromJson(new ImmutableUpdateDescriptionCommand.Json()).equals("another"));
   }
 
   @Test
@@ -42,10 +46,27 @@ public class ImmutableUpdateDescriptionCommandDiffblueTest {
   }
 
   @Test
+  public void fromTest() {
+    // Arrange
+    ImmutableUpdateDescriptionCommand.Builder builderResult = ImmutableUpdateDescriptionCommand.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from(new ImmutableUpdateDescriptionCommand.Json());
+  }
+
+  @Test
   public void hashCodeTest() {
     // Arrange, Act and Assert
     assertEquals(177573,
         ImmutableUpdateDescriptionCommand.fromJson(new ImmutableUpdateDescriptionCommand.Json()).hashCode());
+  }
+
+  @Test
+  public void newDescriptionTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableUpdateDescriptionCommand.Json()).newDescription();
   }
 
   @Test
@@ -56,10 +77,15 @@ public class ImmutableUpdateDescriptionCommandDiffblueTest {
   }
 
   @Test
-  public void copyOfTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    ImmutableUpdateDescriptionCommand.copyOf(new ImmutableUpdateDescriptionCommand.Json());
+  public void setNewDescriptionTest() {
+    // Arrange
+    ImmutableUpdateDescriptionCommand.Json json = new ImmutableUpdateDescriptionCommand.Json();
+
+    // Act
+    json.setNewDescription("newDescription");
+
+    // Assert
+    assertEquals("newDescription", json.newDescription);
   }
 
   @Test
@@ -74,31 +100,6 @@ public class ImmutableUpdateDescriptionCommandDiffblueTest {
     // Arrange, Act and Assert
     assertEquals("UpdateDescriptionCommand{newDescription=value}", ImmutableUpdateDescriptionCommand
         .fromJson(new ImmutableUpdateDescriptionCommand.Json()).withNewDescription("value").toString());
-  }
-
-  @Test
-  public void constructorTest() {
-    // Arrange, Act and Assert
-    assertNull((new ImmutableUpdateDescriptionCommand.Json()).newDescription);
-  }
-
-  @Test
-  public void newDescriptionTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableUpdateDescriptionCommand.Json()).newDescription();
-  }
-
-  @Test
-  public void setNewDescriptionTest() {
-    // Arrange
-    ImmutableUpdateDescriptionCommand.Json json = new ImmutableUpdateDescriptionCommand.Json();
-
-    // Act
-    json.setNewDescription("foo");
-
-    // Assert
-    assertEquals("foo", json.newDescription);
   }
 }
 

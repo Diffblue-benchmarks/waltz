@@ -13,10 +13,53 @@ public class ImmutableMetricSampleDiffblueTest {
   public ExpectedException thrown = ExpectedException.none();
 
   @Test
+  public void buildTest() {
+    // Arrange, Act and Assert
+    thrown.expect(IllegalStateException.class);
+    ImmutableMetricSample.builder().build();
+  }
+
+  @Test
+  public void collectionDateTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableMetricSample.Json()).collectionDate();
+  }
+
+  @Test
+  public void constructorTest() {
+    // Arrange and Act
+    ImmutableMetricSample.Json actualJson = new ImmutableMetricSample.Json();
+
+    // Assert
+    assertNull(actualJson.effectiveDate);
+    assertEquals(0L, actualJson.metricId);
+    assertNull(actualJson.createdBy);
+    assertNull(actualJson.provenance);
+    assertNull(actualJson.sampleType);
+    assertFalse(actualJson.metricIdIsSet);
+    assertNull(actualJson.collectionDate);
+  }
+
+  @Test
   public void copyOfTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
     ImmutableMetricSample.copyOf(new ImmutableMetricSample.Json());
+  }
+
+  @Test
+  public void createdByTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableMetricSample.Json()).createdBy();
+  }
+
+  @Test
+  public void effectiveDateTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableMetricSample.Json()).effectiveDate();
   }
 
   @Test
@@ -37,17 +80,36 @@ public class ImmutableMetricSampleDiffblueTest {
   }
 
   @Test
-  public void buildTest() {
+  public void metricIdTest() {
     // Arrange, Act and Assert
-    thrown.expect(IllegalStateException.class);
-    ImmutableMetricSample.builder().build();
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableMetricSample.Json()).metricId();
   }
 
   @Test
-  public void createdByTest() {
+  public void provenanceTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableMetricSample.Json()).createdBy();
+    (new ImmutableMetricSample.Json()).provenance();
+  }
+
+  @Test
+  public void sampleTypeTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableMetricSample.Json()).sampleType();
+  }
+
+  @Test
+  public void setCreatedByTest() {
+    // Arrange
+    ImmutableMetricSample.Json json = new ImmutableMetricSample.Json();
+
+    // Act
+    json.setCreatedBy("createdBy");
+
+    // Assert
+    assertEquals("createdBy", json.createdBy);
   }
 
   @Test
@@ -64,43 +126,15 @@ public class ImmutableMetricSampleDiffblueTest {
   }
 
   @Test
-  public void setCreatedByTest() {
+  public void setProvenanceTest() {
     // Arrange
     ImmutableMetricSample.Json json = new ImmutableMetricSample.Json();
 
     // Act
-    json.setCreatedBy("foo");
+    json.setProvenance("provenance");
 
     // Assert
-    assertEquals("foo", json.createdBy);
-  }
-
-  @Test
-  public void provenanceTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableMetricSample.Json()).provenance();
-  }
-
-  @Test
-  public void metricIdTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableMetricSample.Json()).metricId();
-  }
-
-  @Test
-  public void sampleTypeTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableMetricSample.Json()).sampleType();
-  }
-
-  @Test
-  public void collectionDateTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableMetricSample.Json()).collectionDate();
+    assertEquals("provenance", json.provenance);
   }
 
   @Test
@@ -113,40 +147,6 @@ public class ImmutableMetricSampleDiffblueTest {
 
     // Assert
     assertEquals(SampleType.MANUAL, json.sampleType);
-  }
-
-  @Test
-  public void constructorTest() {
-    // Arrange and Act
-    ImmutableMetricSample.Json actualJson = new ImmutableMetricSample.Json();
-
-    // Assert
-    assertNull(actualJson.effectiveDate);
-    assertEquals(0L, actualJson.metricId);
-    assertNull(actualJson.createdBy);
-    assertNull(actualJson.provenance);
-    assertNull(actualJson.sampleType);
-    assertFalse(actualJson.metricIdIsSet);
-    assertNull(actualJson.collectionDate);
-  }
-
-  @Test
-  public void effectiveDateTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableMetricSample.Json()).effectiveDate();
-  }
-
-  @Test
-  public void setProvenanceTest() {
-    // Arrange
-    ImmutableMetricSample.Json json = new ImmutableMetricSample.Json();
-
-    // Act
-    json.setProvenance("foo");
-
-    // Assert
-    assertEquals("foo", json.provenance);
   }
 }
 

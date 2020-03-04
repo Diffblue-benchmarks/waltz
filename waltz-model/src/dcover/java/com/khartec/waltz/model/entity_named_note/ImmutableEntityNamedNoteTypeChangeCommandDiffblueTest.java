@@ -15,31 +15,26 @@ public class ImmutableEntityNamedNoteTypeChangeCommandDiffblueTest {
   public ExpectedException thrown = ExpectedException.none();
 
   @Test
-  public void isReadOnlyTest2() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableEntityNamedNoteTypeChangeCommand.Json()).isReadOnly();
+  public void applicableEntityKindsTest() {
+    // Arrange
+    ImmutableEntityNamedNoteTypeChangeCommand.Json json = new ImmutableEntityNamedNoteTypeChangeCommand.Json();
+
+    // Act and Assert
+    assertSame(json.position, ImmutableEntityNamedNoteTypeChangeCommand.fromJson(json).applicableEntityKinds());
   }
 
   @Test
-  public void descriptionTest2() {
+  public void applicableEntityKindsTest2() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableEntityNamedNoteTypeChangeCommand.Json()).description();
+    (new ImmutableEntityNamedNoteTypeChangeCommand.Json()).applicableEntityKinds();
   }
 
   @Test
-  public void nameTest2() {
+  public void buildTest() {
     // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableEntityNamedNoteTypeChangeCommand.Json()).name();
-  }
-
-  @Test
-  public void positionTest2() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableEntityNamedNoteTypeChangeCommand.Json()).position();
+    assertEquals("EntityNamedNoteTypeChangeCommand{}",
+        ImmutableEntityNamedNoteTypeChangeCommand.builder().build().toString());
   }
 
   @Test
@@ -57,88 +52,10 @@ public class ImmutableEntityNamedNoteTypeChangeCommandDiffblueTest {
   }
 
   @Test
-  public void applicableEntityKindsTest2() {
+  public void copyOfTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableEntityNamedNoteTypeChangeCommand.Json()).applicableEntityKinds();
-  }
-
-  @Test
-  public void withNameTest() {
-    // Arrange, Act and Assert
-    assertEquals("EntityNamedNoteTypeChangeCommand{name=value}", ImmutableEntityNamedNoteTypeChangeCommand
-        .fromJson(new ImmutableEntityNamedNoteTypeChangeCommand.Json()).withName("value").toString());
-  }
-
-  @Test
-  public void isReadOnlyTest() {
-    // Arrange
-    ImmutableEntityNamedNoteTypeChangeCommand.Json json = new ImmutableEntityNamedNoteTypeChangeCommand.Json();
-
-    // Act and Assert
-    assertSame(json.position, ImmutableEntityNamedNoteTypeChangeCommand.fromJson(json).isReadOnly());
-  }
-
-  @Test
-  public void nameTest() {
-    // Arrange
-    ImmutableEntityNamedNoteTypeChangeCommand.Json json = new ImmutableEntityNamedNoteTypeChangeCommand.Json();
-
-    // Act and Assert
-    assertSame(json.position, ImmutableEntityNamedNoteTypeChangeCommand.fromJson(json).name());
-  }
-
-  @Test
-  public void withPositionTest() {
-    // Arrange, Act and Assert
-    assertEquals("EntityNamedNoteTypeChangeCommand{position=42}", ImmutableEntityNamedNoteTypeChangeCommand
-        .fromJson(new ImmutableEntityNamedNoteTypeChangeCommand.Json()).withPosition(42).toString());
-  }
-
-  @Test
-  public void withIsReadOnlyTest() {
-    // Arrange, Act and Assert
-    assertEquals("EntityNamedNoteTypeChangeCommand{isReadOnly=true}", ImmutableEntityNamedNoteTypeChangeCommand
-        .fromJson(new ImmutableEntityNamedNoteTypeChangeCommand.Json()).withIsReadOnly(true).toString());
-  }
-
-  @Test
-  public void positionTest() {
-    // Arrange
-    ImmutableEntityNamedNoteTypeChangeCommand.Json json = new ImmutableEntityNamedNoteTypeChangeCommand.Json();
-
-    // Act and Assert
-    assertSame(json.position, ImmutableEntityNamedNoteTypeChangeCommand.fromJson(json).position());
-  }
-
-  @Test
-  public void withDescriptionTest() {
-    // Arrange, Act and Assert
-    assertEquals("EntityNamedNoteTypeChangeCommand{description" + "=value}", ImmutableEntityNamedNoteTypeChangeCommand
-        .fromJson(new ImmutableEntityNamedNoteTypeChangeCommand.Json()).withDescription("value").toString());
-  }
-
-  @Test
-  public void applicableEntityKindsTest() {
-    // Arrange
-    ImmutableEntityNamedNoteTypeChangeCommand.Json json = new ImmutableEntityNamedNoteTypeChangeCommand.Json();
-
-    // Act and Assert
-    assertSame(json.position, ImmutableEntityNamedNoteTypeChangeCommand.fromJson(json).applicableEntityKinds());
-  }
-
-  @Test
-  public void fromJsonTest() {
-    // Arrange, Act and Assert
-    assertEquals("EntityNamedNoteTypeChangeCommand{}", ImmutableEntityNamedNoteTypeChangeCommand
-        .fromJson(new ImmutableEntityNamedNoteTypeChangeCommand.Json()).toString());
-  }
-
-  @Test
-  public void equalsTest() {
-    // Arrange, Act and Assert
-    assertFalse(ImmutableEntityNamedNoteTypeChangeCommand.fromJson(new ImmutableEntityNamedNoteTypeChangeCommand.Json())
-        .equals("EntityNamedNoteTypeChangeCommand{"));
+    ImmutableEntityNamedNoteTypeChangeCommand.copyOf(new ImmutableEntityNamedNoteTypeChangeCommand.Json());
   }
 
   @Test
@@ -151,34 +68,21 @@ public class ImmutableEntityNamedNoteTypeChangeCommandDiffblueTest {
   }
 
   @Test
-  public void copyOfTest() {
+  public void descriptionTest2() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    ImmutableEntityNamedNoteTypeChangeCommand.copyOf(new ImmutableEntityNamedNoteTypeChangeCommand.Json());
+    (new ImmutableEntityNamedNoteTypeChangeCommand.Json()).description();
   }
 
   @Test
-  public void hashCodeTest() {
+  public void equalsTest() {
     // Arrange, Act and Assert
-    assertEquals(134152229, ImmutableEntityNamedNoteTypeChangeCommand
-        .fromJson(new ImmutableEntityNamedNoteTypeChangeCommand.Json()).hashCode());
+    assertFalse(ImmutableEntityNamedNoteTypeChangeCommand.fromJson(new ImmutableEntityNamedNoteTypeChangeCommand.Json())
+        .equals("EntityNamedNoteTypeChangeCommand{"));
   }
 
   @Test
-  public void withApplicableEntityKindsTest() {
-    // Arrange
-    ImmutableEntityNamedNoteTypeChangeCommand fromJsonResult = ImmutableEntityNamedNoteTypeChangeCommand
-        .fromJson(new ImmutableEntityNamedNoteTypeChangeCommand.Json());
-    HashSet<EntityKind> entityKindSet = new HashSet<EntityKind>();
-    entityKindSet.add(EntityKind.ACTOR);
-
-    // Act and Assert
-    assertEquals("EntityNamedNoteTypeChangeCommand{applicableEntityKinds" + "=[ACTOR]}",
-        fromJsonResult.withApplicableEntityKinds(entityKindSet).toString());
-  }
-
-  @Test
-  public void toStringTest() {
+  public void fromJsonTest() {
     // Arrange, Act and Assert
     assertEquals("EntityNamedNoteTypeChangeCommand{}", ImmutableEntityNamedNoteTypeChangeCommand
         .fromJson(new ImmutableEntityNamedNoteTypeChangeCommand.Json()).toString());
@@ -196,10 +100,106 @@ public class ImmutableEntityNamedNoteTypeChangeCommandDiffblueTest {
   }
 
   @Test
-  public void buildTest() {
+  public void hashCodeTest() {
     // Arrange, Act and Assert
-    assertEquals("EntityNamedNoteTypeChangeCommand{}",
-        ImmutableEntityNamedNoteTypeChangeCommand.builder().build().toString());
+    assertEquals(134152229, ImmutableEntityNamedNoteTypeChangeCommand
+        .fromJson(new ImmutableEntityNamedNoteTypeChangeCommand.Json()).hashCode());
+  }
+
+  @Test
+  public void isReadOnlyTest() {
+    // Arrange
+    ImmutableEntityNamedNoteTypeChangeCommand.Json json = new ImmutableEntityNamedNoteTypeChangeCommand.Json();
+
+    // Act and Assert
+    assertSame(json.position, ImmutableEntityNamedNoteTypeChangeCommand.fromJson(json).isReadOnly());
+  }
+
+  @Test
+  public void isReadOnlyTest2() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableEntityNamedNoteTypeChangeCommand.Json()).isReadOnly();
+  }
+
+  @Test
+  public void nameTest() {
+    // Arrange
+    ImmutableEntityNamedNoteTypeChangeCommand.Json json = new ImmutableEntityNamedNoteTypeChangeCommand.Json();
+
+    // Act and Assert
+    assertSame(json.position, ImmutableEntityNamedNoteTypeChangeCommand.fromJson(json).name());
+  }
+
+  @Test
+  public void nameTest2() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableEntityNamedNoteTypeChangeCommand.Json()).name();
+  }
+
+  @Test
+  public void positionTest() {
+    // Arrange
+    ImmutableEntityNamedNoteTypeChangeCommand.Json json = new ImmutableEntityNamedNoteTypeChangeCommand.Json();
+
+    // Act and Assert
+    assertSame(json.position, ImmutableEntityNamedNoteTypeChangeCommand.fromJson(json).position());
+  }
+
+  @Test
+  public void positionTest2() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableEntityNamedNoteTypeChangeCommand.Json()).position();
+  }
+
+  @Test
+  public void toStringTest() {
+    // Arrange, Act and Assert
+    assertEquals("EntityNamedNoteTypeChangeCommand{}", ImmutableEntityNamedNoteTypeChangeCommand
+        .fromJson(new ImmutableEntityNamedNoteTypeChangeCommand.Json()).toString());
+  }
+
+  @Test
+  public void withApplicableEntityKindsTest() {
+    // Arrange
+    ImmutableEntityNamedNoteTypeChangeCommand fromJsonResult = ImmutableEntityNamedNoteTypeChangeCommand
+        .fromJson(new ImmutableEntityNamedNoteTypeChangeCommand.Json());
+    HashSet<EntityKind> entityKindSet = new HashSet<EntityKind>();
+    entityKindSet.add(EntityKind.ACTOR);
+
+    // Act and Assert
+    assertEquals("EntityNamedNoteTypeChangeCommand{applicableEntityKinds" + "=[ACTOR]}",
+        fromJsonResult.withApplicableEntityKinds(entityKindSet).toString());
+  }
+
+  @Test
+  public void withDescriptionTest() {
+    // Arrange, Act and Assert
+    assertEquals("EntityNamedNoteTypeChangeCommand{description" + "=value}", ImmutableEntityNamedNoteTypeChangeCommand
+        .fromJson(new ImmutableEntityNamedNoteTypeChangeCommand.Json()).withDescription("value").toString());
+  }
+
+  @Test
+  public void withIsReadOnlyTest() {
+    // Arrange, Act and Assert
+    assertEquals("EntityNamedNoteTypeChangeCommand{isReadOnly=true}", ImmutableEntityNamedNoteTypeChangeCommand
+        .fromJson(new ImmutableEntityNamedNoteTypeChangeCommand.Json()).withIsReadOnly(true).toString());
+  }
+
+  @Test
+  public void withNameTest() {
+    // Arrange, Act and Assert
+    assertEquals("EntityNamedNoteTypeChangeCommand{name=value}", ImmutableEntityNamedNoteTypeChangeCommand
+        .fromJson(new ImmutableEntityNamedNoteTypeChangeCommand.Json()).withName("value").toString());
+  }
+
+  @Test
+  public void withPositionTest() {
+    // Arrange, Act and Assert
+    assertEquals("EntityNamedNoteTypeChangeCommand{position=42}", ImmutableEntityNamedNoteTypeChangeCommand
+        .fromJson(new ImmutableEntityNamedNoteTypeChangeCommand.Json()).withPosition(42).toString());
   }
 }
 

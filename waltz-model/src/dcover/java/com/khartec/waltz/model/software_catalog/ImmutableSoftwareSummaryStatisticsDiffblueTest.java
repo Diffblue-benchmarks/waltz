@@ -14,10 +14,104 @@ public class ImmutableSoftwareSummaryStatisticsDiffblueTest {
   @Rule
   public ExpectedException thrown = ExpectedException.none();
   @Test
-  public void vendorCountsTest2() {
+  public void buildTest() {
+    // Arrange, Act and Assert
+    assertEquals("SoftwareSummaryStatistics{vendorCounts=[], groupCounts=[]," + " nameCounts=[]}",
+        ImmutableSoftwareSummaryStatistics.builder().build().toString());
+  }
+  @Test
+  public void constructorTest() {
+    // Arrange and Act
+    ImmutableSoftwareSummaryStatistics.Json actualJson = new ImmutableSoftwareSummaryStatistics.Json();
+
+    // Assert
+    List<Tally<String>> tallyList = actualJson.nameCounts;
+    List<Tally<String>> actualTallyList = actualJson.groupCounts;
+    List<Tally<String>> actualTallyList1 = actualJson.vendorCounts;
+    assertEquals(0, tallyList.size());
+    assertSame(tallyList, actualTallyList1);
+    assertSame(tallyList, actualTallyList);
+  }
+  @Test
+  public void copyOfTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableSoftwareSummaryStatistics.Json()).vendorCounts();
+    ImmutableSoftwareSummaryStatistics.copyOf(new ImmutableSoftwareSummaryStatistics.Json());
+  }
+  @Test
+  public void equalsTest() {
+    // Arrange, Act and Assert
+    assertFalse(
+        ImmutableSoftwareSummaryStatistics.fromJson(new ImmutableSoftwareSummaryStatistics.Json()).equals("element"));
+  }
+  @Test
+  public void fromJsonTest() {
+    // Arrange, Act and Assert
+    assertEquals("SoftwareSummaryStatistics{vendorCounts=[], groupCounts=[]," + " nameCounts=[]}",
+        ImmutableSoftwareSummaryStatistics.fromJson(new ImmutableSoftwareSummaryStatistics.Json()).toString());
+  }
+  @Test
+  public void fromTest() {
+    // Arrange
+    ImmutableSoftwareSummaryStatistics.Builder builderResult = ImmutableSoftwareSummaryStatistics.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from(new ImmutableSoftwareSummaryStatistics.Json());
+  }
+  @Test
+  public void groupCountsTest() {
+    // Arrange
+    ImmutableSoftwareSummaryStatistics.Json json = new ImmutableSoftwareSummaryStatistics.Json();
+
+    // Act
+    List<Tally<String>> actualGroupCountsResult = ImmutableSoftwareSummaryStatistics.fromJson(json).groupCounts();
+
+    // Assert
+    assertSame(json.vendorCounts, actualGroupCountsResult);
+    assertEquals(0, actualGroupCountsResult.size());
+  }
+  @Test
+  public void groupCountsTest2() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableSoftwareSummaryStatistics.Json()).groupCounts();
+  }
+  @Test
+  public void hashCodeTest() {
+    // Arrange, Act and Assert
+    assertEquals(193378120,
+        ImmutableSoftwareSummaryStatistics.fromJson(new ImmutableSoftwareSummaryStatistics.Json()).hashCode());
+  }
+  @Test
+  public void nameCountsTest() {
+    // Arrange
+    ImmutableSoftwareSummaryStatistics.Json json = new ImmutableSoftwareSummaryStatistics.Json();
+
+    // Act
+    List<Tally<String>> actualNameCountsResult = ImmutableSoftwareSummaryStatistics.fromJson(json).nameCounts();
+
+    // Assert
+    assertSame(json.vendorCounts, actualNameCountsResult);
+    assertEquals(0, actualNameCountsResult.size());
+  }
+  @Test
+  public void nameCountsTest2() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableSoftwareSummaryStatistics.Json()).nameCounts();
+  }
+  @Test
+  public void setGroupCountsTest() {
+    // Arrange
+    ImmutableSoftwareSummaryStatistics.Json json = new ImmutableSoftwareSummaryStatistics.Json();
+    ArrayList<Tally<String>> tallyList = new ArrayList<Tally<String>>();
+
+    // Act
+    json.setGroupCounts(tallyList);
+
+    // Assert
+    assertSame(tallyList, json.groupCounts);
   }
   @Test
   public void setNameCountsTest() {
@@ -44,41 +138,10 @@ public class ImmutableSoftwareSummaryStatisticsDiffblueTest {
     assertSame(tallyList, json.vendorCounts);
   }
   @Test
-  public void nameCountsTest2() {
+  public void toStringTest() {
     // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableSoftwareSummaryStatistics.Json()).nameCounts();
-  }
-  @Test
-  public void setGroupCountsTest() {
-    // Arrange
-    ImmutableSoftwareSummaryStatistics.Json json = new ImmutableSoftwareSummaryStatistics.Json();
-    ArrayList<Tally<String>> tallyList = new ArrayList<Tally<String>>();
-
-    // Act
-    json.setGroupCounts(tallyList);
-
-    // Assert
-    assertSame(tallyList, json.groupCounts);
-  }
-  @Test
-  public void groupCountsTest2() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableSoftwareSummaryStatistics.Json()).groupCounts();
-  }
-  @Test
-  public void constructorTest() {
-    // Arrange and Act
-    ImmutableSoftwareSummaryStatistics.Json actualJson = new ImmutableSoftwareSummaryStatistics.Json();
-
-    // Assert
-    List<Tally<String>> tallyList = actualJson.nameCounts;
-    List<Tally<String>> actualTallyList = actualJson.groupCounts;
-    List<Tally<String>> actualTallyList1 = actualJson.vendorCounts;
-    assertEquals(0, tallyList.size());
-    assertSame(tallyList, actualTallyList1);
-    assertSame(tallyList, actualTallyList);
+    assertEquals("SoftwareSummaryStatistics{vendorCounts=[], groupCounts=[]," + " nameCounts=[]}",
+        ImmutableSoftwareSummaryStatistics.fromJson(new ImmutableSoftwareSummaryStatistics.Json()).toString());
   }
   @Test
   public void vendorCountsTest() {
@@ -93,14 +156,10 @@ public class ImmutableSoftwareSummaryStatisticsDiffblueTest {
     assertEquals(0, actualVendorCountsResult.size());
   }
   @Test
-  public void withNameCountsTest() {
-    // Arrange
-    ImmutableSoftwareSummaryStatistics fromJsonResult = ImmutableSoftwareSummaryStatistics
-        .fromJson(new ImmutableSoftwareSummaryStatistics.Json());
-
-    // Act and Assert
-    assertEquals("SoftwareSummaryStatistics{vendorCounts=[], groupCounts=[]," + " nameCounts=[]}",
-        fromJsonResult.withNameCounts(new ArrayList<Tally<String>>()).toString());
+  public void vendorCountsTest2() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableSoftwareSummaryStatistics.Json()).vendorCounts();
   }
   @Test
   public void withGroupCountsTest() {
@@ -113,40 +172,14 @@ public class ImmutableSoftwareSummaryStatisticsDiffblueTest {
         fromJsonResult.withGroupCounts(new ArrayList<Tally<String>>()).toString());
   }
   @Test
-  public void groupCountsTest() {
+  public void withNameCountsTest() {
     // Arrange
-    ImmutableSoftwareSummaryStatistics.Json json = new ImmutableSoftwareSummaryStatistics.Json();
+    ImmutableSoftwareSummaryStatistics fromJsonResult = ImmutableSoftwareSummaryStatistics
+        .fromJson(new ImmutableSoftwareSummaryStatistics.Json());
 
-    // Act
-    List<Tally<String>> actualGroupCountsResult = ImmutableSoftwareSummaryStatistics.fromJson(json).groupCounts();
-
-    // Assert
-    assertSame(json.vendorCounts, actualGroupCountsResult);
-    assertEquals(0, actualGroupCountsResult.size());
-  }
-  @Test
-  public void fromJsonTest() {
-    // Arrange, Act and Assert
+    // Act and Assert
     assertEquals("SoftwareSummaryStatistics{vendorCounts=[], groupCounts=[]," + " nameCounts=[]}",
-        ImmutableSoftwareSummaryStatistics.fromJson(new ImmutableSoftwareSummaryStatistics.Json()).toString());
-  }
-  @Test
-  public void equalsTest() {
-    // Arrange, Act and Assert
-    assertFalse(
-        ImmutableSoftwareSummaryStatistics.fromJson(new ImmutableSoftwareSummaryStatistics.Json()).equals("element"));
-  }
-  @Test
-  public void nameCountsTest() {
-    // Arrange
-    ImmutableSoftwareSummaryStatistics.Json json = new ImmutableSoftwareSummaryStatistics.Json();
-
-    // Act
-    List<Tally<String>> actualNameCountsResult = ImmutableSoftwareSummaryStatistics.fromJson(json).nameCounts();
-
-    // Assert
-    assertSame(json.vendorCounts, actualNameCountsResult);
-    assertEquals(0, actualNameCountsResult.size());
+        fromJsonResult.withNameCounts(new ArrayList<Tally<String>>()).toString());
   }
   @Test
   public void withVendorCountsTest() {
@@ -157,39 +190,6 @@ public class ImmutableSoftwareSummaryStatisticsDiffblueTest {
     // Act and Assert
     assertEquals("SoftwareSummaryStatistics{vendorCounts=[], groupCounts=[]," + " nameCounts=[]}",
         fromJsonResult.withVendorCounts(new ArrayList<Tally<String>>()).toString());
-  }
-  @Test
-  public void hashCodeTest() {
-    // Arrange, Act and Assert
-    assertEquals(193378120,
-        ImmutableSoftwareSummaryStatistics.fromJson(new ImmutableSoftwareSummaryStatistics.Json()).hashCode());
-  }
-  @Test
-  public void toStringTest() {
-    // Arrange, Act and Assert
-    assertEquals("SoftwareSummaryStatistics{vendorCounts=[], groupCounts=[]," + " nameCounts=[]}",
-        ImmutableSoftwareSummaryStatistics.fromJson(new ImmutableSoftwareSummaryStatistics.Json()).toString());
-  }
-  @Test
-  public void copyOfTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    ImmutableSoftwareSummaryStatistics.copyOf(new ImmutableSoftwareSummaryStatistics.Json());
-  }
-  @Test
-  public void buildTest() {
-    // Arrange, Act and Assert
-    assertEquals("SoftwareSummaryStatistics{vendorCounts=[], groupCounts=[]," + " nameCounts=[]}",
-        ImmutableSoftwareSummaryStatistics.builder().build().toString());
-  }
-  @Test
-  public void fromTest() {
-    // Arrange
-    ImmutableSoftwareSummaryStatistics.Builder builderResult = ImmutableSoftwareSummaryStatistics.builder();
-
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from(new ImmutableSoftwareSummaryStatistics.Json());
   }
 }
 

@@ -10,10 +10,15 @@ public class ImmutableSimpleDiffblueTest {
   @Rule
   public ExpectedException thrown = ExpectedException.none();
   @Test
-  public void fromJsonTest() {
+  public void buildTest() {
     // Arrange, Act and Assert
     thrown.expect(IllegalStateException.class);
-    ImmutableSimple.fromJson(new ImmutableSimple.Json());
+    ImmutableSimple.builder().build();
+  }
+  @Test
+  public void constructorTest() {
+    // Arrange, Act and Assert
+    assertNull((new ImmutableSimple.Json()).message);
   }
   @Test
   public void copyOfTest() {
@@ -22,32 +27,10 @@ public class ImmutableSimpleDiffblueTest {
     ImmutableSimple.copyOf(new ImmutableSimple.Json());
   }
   @Test
-  public void secretTest() {
+  public void fromJsonTest() {
     // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableSimple.Json()).secret();
-  }
-  @Test
-  public void constructorTest() {
-    // Arrange, Act and Assert
-    assertNull((new ImmutableSimple.Json()).message);
-  }
-  @Test
-  public void messageTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableSimple.Json()).message();
-  }
-  @Test
-  public void setMessageTest() {
-    // Arrange
-    ImmutableSimple.Json json = new ImmutableSimple.Json();
-
-    // Act
-    json.setMessage("message");
-
-    // Assert
-    assertEquals("message", json.message);
+    thrown.expect(IllegalStateException.class);
+    ImmutableSimple.fromJson(new ImmutableSimple.Json());
   }
   @Test
   public void fromTest() {
@@ -59,10 +42,27 @@ public class ImmutableSimpleDiffblueTest {
     builderResult.from(new ImmutableSimple.Json());
   }
   @Test
-  public void buildTest() {
+  public void messageTest() {
     // Arrange, Act and Assert
-    thrown.expect(IllegalStateException.class);
-    ImmutableSimple.builder().build();
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableSimple.Json()).message();
+  }
+  @Test
+  public void secretTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableSimple.Json()).secret();
+  }
+  @Test
+  public void setMessageTest() {
+    // Arrange
+    ImmutableSimple.Json json = new ImmutableSimple.Json();
+
+    // Act
+    json.setMessage("message");
+
+    // Assert
+    assertEquals("message", json.message);
   }
 }
 

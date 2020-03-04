@@ -15,84 +15,10 @@ public class ImmutableAppGroupBulkAddRequestDiffblueTest {
   public ExpectedException thrown = ExpectedException.none();
 
   @Test
-  public void equalsTest() {
-    // Arrange, Act and Assert
-    assertFalse(ImmutableAppGroupBulkAddRequest.fromJson(new ImmutableAppGroupBulkAddRequest.Json()).equals("element"));
-  }
-
-  @Test
-  public void fromJsonTest() {
-    // Arrange, Act and Assert
-    assertEquals("AppGroupBulkAddRequest{applicationIds=[]," + " unknownIdentifiers=[]}",
-        ImmutableAppGroupBulkAddRequest.fromJson(new ImmutableAppGroupBulkAddRequest.Json()).toString());
-  }
-
-  @Test
-  public void withUnknownIdentifiersTest2() {
-    // Arrange, Act and Assert
-    assertEquals("AppGroupBulkAddRequest{applicationIds=[]," + " unknownIdentifiers=[foo, foo, foo]}",
-        ImmutableAppGroupBulkAddRequest.fromJson(new ImmutableAppGroupBulkAddRequest.Json())
-            .withUnknownIdentifiers("foo", "foo", "foo").toString());
-  }
-
-  @Test
-  public void withApplicationIdsTest2() {
-    // Arrange
-    ImmutableAppGroupBulkAddRequest fromJsonResult = ImmutableAppGroupBulkAddRequest
-        .fromJson(new ImmutableAppGroupBulkAddRequest.Json());
-    long[] longArray = new long[8];
-    Arrays.fill(longArray, 1L);
-
-    // Act and Assert
-    assertEquals("AppGroupBulkAddRequest{applicationIds=[1, 1, 1, 1," + " 1, 1, 1, 1], unknownIdentifiers=[]}",
-        fromJsonResult.withApplicationIds(longArray).toString());
-  }
-
-  @Test
-  public void hashCodeTest() {
-    // Arrange, Act and Assert
-    assertEquals(5859943,
-        ImmutableAppGroupBulkAddRequest.fromJson(new ImmutableAppGroupBulkAddRequest.Json()).hashCode());
-  }
-
-  @Test
-  public void withApplicationIdsTest() {
-    // Arrange
-    ImmutableAppGroupBulkAddRequest fromJsonResult = ImmutableAppGroupBulkAddRequest
-        .fromJson(new ImmutableAppGroupBulkAddRequest.Json());
-    ArrayList<Long> resultLongList = new ArrayList<Long>();
-    resultLongList.add(Long.valueOf(1L));
-
-    // Act and Assert
-    assertEquals("AppGroupBulkAddRequest{applicationIds=[1]," + " unknownIdentifiers=[]}",
-        fromJsonResult.withApplicationIds(resultLongList).toString());
-  }
-
-  @Test
-  public void unknownIdentifiersTest2() {
-    // Arrange
-    ImmutableAppGroupBulkAddRequest.Json json = new ImmutableAppGroupBulkAddRequest.Json();
-
-    // Act
-    List<String> actualUnknownIdentifiersResult = ImmutableAppGroupBulkAddRequest.fromJson(json).unknownIdentifiers();
-
-    // Assert
-    assertSame(json.unknownIdentifiers, actualUnknownIdentifiersResult);
-    assertEquals(0, actualUnknownIdentifiersResult.size());
-  }
-
-  @Test
-  public void copyOfTest() {
+  public void applicationIdsTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    ImmutableAppGroupBulkAddRequest.copyOf(new ImmutableAppGroupBulkAddRequest.Json());
-  }
-
-  @Test
-  public void toStringTest() {
-    // Arrange, Act and Assert
-    assertEquals("AppGroupBulkAddRequest{applicationIds=[]," + " unknownIdentifiers=[]}",
-        ImmutableAppGroupBulkAddRequest.fromJson(new ImmutableAppGroupBulkAddRequest.Json()).toString());
+    (new ImmutableAppGroupBulkAddRequest.Json()).applicationIds();
   }
 
   @Test
@@ -109,30 +35,59 @@ public class ImmutableAppGroupBulkAddRequestDiffblueTest {
   }
 
   @Test
-  public void withUnknownIdentifiersTest() {
-    // Arrange
-    ImmutableAppGroupBulkAddRequest fromJsonResult = ImmutableAppGroupBulkAddRequest
-        .fromJson(new ImmutableAppGroupBulkAddRequest.Json());
-    ArrayList<String> stringList = new ArrayList<String>();
-    stringList.add("foo");
-
-    // Act and Assert
-    assertEquals("AppGroupBulkAddRequest{applicationIds=[]," + " unknownIdentifiers=[foo]}",
-        fromJsonResult.withUnknownIdentifiers(stringList).toString());
+  public void buildTest() {
+    // Arrange, Act and Assert
+    assertEquals("AppGroupBulkAddRequest{applicationIds=[]," + " unknownIdentifiers=[]}",
+        ImmutableAppGroupBulkAddRequest.builder().build().toString());
   }
 
   @Test
-  public void setUnknownIdentifiersTest() {
-    // Arrange
-    ImmutableAppGroupBulkAddRequest.Json json = new ImmutableAppGroupBulkAddRequest.Json();
-    ArrayList<String> stringList = new ArrayList<String>();
-    stringList.add("foo");
-
-    // Act
-    json.setUnknownIdentifiers(stringList);
+  public void constructorTest() {
+    // Arrange and Act
+    ImmutableAppGroupBulkAddRequest.Json actualJson = new ImmutableAppGroupBulkAddRequest.Json();
 
     // Assert
-    assertSame(stringList, json.unknownIdentifiers);
+    List<Long> resultLongList = actualJson.applicationIds;
+    List<String> actualStringList = actualJson.unknownIdentifiers;
+    assertEquals(0, resultLongList.size());
+    assertSame(resultLongList, actualStringList);
+  }
+
+  @Test
+  public void copyOfTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    ImmutableAppGroupBulkAddRequest.copyOf(new ImmutableAppGroupBulkAddRequest.Json());
+  }
+
+  @Test
+  public void equalsTest() {
+    // Arrange, Act and Assert
+    assertFalse(ImmutableAppGroupBulkAddRequest.fromJson(new ImmutableAppGroupBulkAddRequest.Json()).equals("element"));
+  }
+
+  @Test
+  public void fromJsonTest() {
+    // Arrange, Act and Assert
+    assertEquals("AppGroupBulkAddRequest{applicationIds=[]," + " unknownIdentifiers=[]}",
+        ImmutableAppGroupBulkAddRequest.fromJson(new ImmutableAppGroupBulkAddRequest.Json()).toString());
+  }
+
+  @Test
+  public void fromTest() {
+    // Arrange
+    ImmutableAppGroupBulkAddRequest.Builder builderResult = ImmutableAppGroupBulkAddRequest.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from(new ImmutableAppGroupBulkAddRequest.Json());
+  }
+
+  @Test
+  public void hashCodeTest() {
+    // Arrange, Act and Assert
+    assertEquals(5859943,
+        ImmutableAppGroupBulkAddRequest.fromJson(new ImmutableAppGroupBulkAddRequest.Json()).hashCode());
   }
 
   @Test
@@ -150,6 +105,27 @@ public class ImmutableAppGroupBulkAddRequestDiffblueTest {
   }
 
   @Test
+  public void setUnknownIdentifiersTest() {
+    // Arrange
+    ImmutableAppGroupBulkAddRequest.Json json = new ImmutableAppGroupBulkAddRequest.Json();
+    ArrayList<String> stringList = new ArrayList<String>();
+    stringList.add("foo");
+
+    // Act
+    json.setUnknownIdentifiers(stringList);
+
+    // Assert
+    assertSame(stringList, json.unknownIdentifiers);
+  }
+
+  @Test
+  public void toStringTest() {
+    // Arrange, Act and Assert
+    assertEquals("AppGroupBulkAddRequest{applicationIds=[]," + " unknownIdentifiers=[]}",
+        ImmutableAppGroupBulkAddRequest.fromJson(new ImmutableAppGroupBulkAddRequest.Json()).toString());
+  }
+
+  @Test
   public void unknownIdentifiersTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
@@ -157,39 +133,63 @@ public class ImmutableAppGroupBulkAddRequestDiffblueTest {
   }
 
   @Test
-  public void constructorTest() {
-    // Arrange and Act
-    ImmutableAppGroupBulkAddRequest.Json actualJson = new ImmutableAppGroupBulkAddRequest.Json();
+  public void unknownIdentifiersTest2() {
+    // Arrange
+    ImmutableAppGroupBulkAddRequest.Json json = new ImmutableAppGroupBulkAddRequest.Json();
+
+    // Act
+    List<String> actualUnknownIdentifiersResult = ImmutableAppGroupBulkAddRequest.fromJson(json).unknownIdentifiers();
 
     // Assert
-    List<Long> resultLongList = actualJson.applicationIds;
-    List<String> actualStringList = actualJson.unknownIdentifiers;
-    assertEquals(0, resultLongList.size());
-    assertSame(resultLongList, actualStringList);
+    assertSame(json.unknownIdentifiers, actualUnknownIdentifiersResult);
+    assertEquals(0, actualUnknownIdentifiersResult.size());
   }
 
   @Test
-  public void applicationIdsTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableAppGroupBulkAddRequest.Json()).applicationIds();
-  }
-
-  @Test
-  public void fromTest() {
+  public void withApplicationIdsTest() {
     // Arrange
-    ImmutableAppGroupBulkAddRequest.Builder builderResult = ImmutableAppGroupBulkAddRequest.builder();
+    ImmutableAppGroupBulkAddRequest fromJsonResult = ImmutableAppGroupBulkAddRequest
+        .fromJson(new ImmutableAppGroupBulkAddRequest.Json());
+    ArrayList<Long> resultLongList = new ArrayList<Long>();
+    resultLongList.add(Long.valueOf(1L));
 
     // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from(new ImmutableAppGroupBulkAddRequest.Json());
+    assertEquals("AppGroupBulkAddRequest{applicationIds=[1]," + " unknownIdentifiers=[]}",
+        fromJsonResult.withApplicationIds(resultLongList).toString());
   }
 
   @Test
-  public void buildTest() {
+  public void withApplicationIdsTest2() {
+    // Arrange
+    ImmutableAppGroupBulkAddRequest fromJsonResult = ImmutableAppGroupBulkAddRequest
+        .fromJson(new ImmutableAppGroupBulkAddRequest.Json());
+    long[] longArray = new long[8];
+    Arrays.fill(longArray, 1L);
+
+    // Act and Assert
+    assertEquals("AppGroupBulkAddRequest{applicationIds=[1, 1, 1, 1," + " 1, 1, 1, 1], unknownIdentifiers=[]}",
+        fromJsonResult.withApplicationIds(longArray).toString());
+  }
+
+  @Test
+  public void withUnknownIdentifiersTest() {
+    // Arrange
+    ImmutableAppGroupBulkAddRequest fromJsonResult = ImmutableAppGroupBulkAddRequest
+        .fromJson(new ImmutableAppGroupBulkAddRequest.Json());
+    ArrayList<String> stringList = new ArrayList<String>();
+    stringList.add("foo");
+
+    // Act and Assert
+    assertEquals("AppGroupBulkAddRequest{applicationIds=[]," + " unknownIdentifiers=[foo]}",
+        fromJsonResult.withUnknownIdentifiers(stringList).toString());
+  }
+
+  @Test
+  public void withUnknownIdentifiersTest2() {
     // Arrange, Act and Assert
-    assertEquals("AppGroupBulkAddRequest{applicationIds=[]," + " unknownIdentifiers=[]}",
-        ImmutableAppGroupBulkAddRequest.builder().build().toString());
+    assertEquals("AppGroupBulkAddRequest{applicationIds=[]," + " unknownIdentifiers=[foo, foo, foo]}",
+        ImmutableAppGroupBulkAddRequest.fromJson(new ImmutableAppGroupBulkAddRequest.Json())
+            .withUnknownIdentifiers("foo", "foo", "foo").toString());
   }
 }
 

@@ -13,33 +13,16 @@ public class ImmutableScenarioAxisItemDiffblueTest {
   @Rule
   public ExpectedException thrown = ExpectedException.none();
   @Test
-  public void setAxisOrientationTest() {
-    // Arrange
-    ImmutableScenarioAxisItem.Json json = new ImmutableScenarioAxisItem.Json();
-
-    // Act
-    json.setAxisOrientation(AxisOrientation.ROW);
-
-    // Assert
-    assertEquals(AxisOrientation.ROW, json.axisOrientation);
-  }
-  @Test
   public void axisOrientationTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
     (new ImmutableScenarioAxisItem.Json()).axisOrientation();
   }
   @Test
-  public void scenarioIdTest() {
+  public void buildTest() {
     // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableScenarioAxisItem.Json()).scenarioId();
-  }
-  @Test
-  public void idTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableScenarioAxisItem.Json()).id();
+    thrown.expect(IllegalStateException.class);
+    ImmutableScenarioAxisItem.builder().build();
   }
   @Test
   public void constructorTest() {
@@ -55,16 +38,69 @@ public class ImmutableScenarioAxisItemDiffblueTest {
     assertFalse(actualJson.positionIsSet);
   }
   @Test
+  public void copyOfTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    ImmutableScenarioAxisItem.copyOf(new ImmutableScenarioAxisItem.Json());
+  }
+  @Test
   public void domainItemTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
     (new ImmutableScenarioAxisItem.Json()).domainItem();
   }
   @Test
+  public void fromJsonTest() {
+    // Arrange, Act and Assert
+    thrown.expect(IllegalStateException.class);
+    ImmutableScenarioAxisItem.fromJson(new ImmutableScenarioAxisItem.Json());
+  }
+  @Test
+  public void fromTest() {
+    // Arrange
+    ImmutableScenarioAxisItem.Builder builderResult = ImmutableScenarioAxisItem.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from(new ImmutableScenarioAxisItem.Json());
+  }
+  @Test
+  public void fromTest2() {
+    // Arrange
+    ImmutableScenarioAxisItem.Builder builderResult = ImmutableScenarioAxisItem.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from(new ImmutableScenario.Json());
+  }
+  @Test
+  public void idTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableScenarioAxisItem.Json()).id();
+  }
+  @Test
   public void positionTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
     (new ImmutableScenarioAxisItem.Json()).position();
+  }
+  @Test
+  public void scenarioIdTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableScenarioAxisItem.Json()).scenarioId();
+  }
+  @Test
+  public void setAxisOrientationTest() {
+    // Arrange
+    ImmutableScenarioAxisItem.Json json = new ImmutableScenarioAxisItem.Json();
+
+    // Act
+    json.setAxisOrientation(AxisOrientation.ROW);
+
+    // Assert
+    assertEquals(AxisOrientation.ROW, json.axisOrientation);
   }
   @Test
   public void setPositionTest() {
@@ -89,42 +125,6 @@ public class ImmutableScenarioAxisItemDiffblueTest {
     // Assert
     assertTrue(json.scenarioIdIsSet);
     assertEquals(123L, json.scenarioId);
-  }
-  @Test
-  public void fromTest2() {
-    // Arrange
-    ImmutableScenarioAxisItem.Builder builderResult = ImmutableScenarioAxisItem.builder();
-
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from(new ImmutableScenario.Json());
-  }
-  @Test
-  public void buildTest() {
-    // Arrange, Act and Assert
-    thrown.expect(IllegalStateException.class);
-    ImmutableScenarioAxisItem.builder().build();
-  }
-  @Test
-  public void fromTest() {
-    // Arrange
-    ImmutableScenarioAxisItem.Builder builderResult = ImmutableScenarioAxisItem.builder();
-
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from(new ImmutableScenarioAxisItem.Json());
-  }
-  @Test
-  public void copyOfTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    ImmutableScenarioAxisItem.copyOf(new ImmutableScenarioAxisItem.Json());
-  }
-  @Test
-  public void fromJsonTest() {
-    // Arrange, Act and Assert
-    thrown.expect(IllegalStateException.class);
-    ImmutableScenarioAxisItem.fromJson(new ImmutableScenarioAxisItem.Json());
   }
 }
 

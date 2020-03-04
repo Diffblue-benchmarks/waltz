@@ -11,16 +11,52 @@ public class ImmutableDataTypeDirectionKeyDiffblueTest {
   @Rule
   public ExpectedException thrown = ExpectedException.none();
   @Test
+  public void DatatypeIdTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableDataTypeDirectionKey.Json()).DatatypeId();
+  }
+  @Test
+  public void buildTest() {
+    // Arrange, Act and Assert
+    thrown.expect(IllegalStateException.class);
+    ImmutableDataTypeDirectionKey.builder().build();
+  }
+  @Test
+  public void constructorTest() {
+    // Arrange and Act
+    ImmutableDataTypeDirectionKey.Json actualJson = new ImmutableDataTypeDirectionKey.Json();
+
+    // Assert
+    assertNull(actualJson.flowDirection);
+    assertNull(actualJson.DatatypeId);
+  }
+  @Test
   public void copyOfTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
     ImmutableDataTypeDirectionKey.copyOf(new ImmutableDataTypeDirectionKey.Json());
   }
   @Test
+  public void flowDirectionTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableDataTypeDirectionKey.Json()).flowDirection();
+  }
+  @Test
   public void fromJsonTest() {
     // Arrange, Act and Assert
     thrown.expect(IllegalStateException.class);
     ImmutableDataTypeDirectionKey.fromJson(new ImmutableDataTypeDirectionKey.Json());
+  }
+  @Test
+  public void fromTest() {
+    // Arrange
+    ImmutableDataTypeDirectionKey.Builder builderResult = ImmutableDataTypeDirectionKey.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from(new ImmutableDataTypeDirectionKey.Json());
   }
   @Test
   public void setDatatypeIdTest() {
@@ -34,18 +70,6 @@ public class ImmutableDataTypeDirectionKeyDiffblueTest {
     assertEquals(Long.valueOf(123L), json.DatatypeId);
   }
   @Test
-  public void flowDirectionTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableDataTypeDirectionKey.Json()).flowDirection();
-  }
-  @Test
-  public void DatatypeIdTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableDataTypeDirectionKey.Json()).DatatypeId();
-  }
-  @Test
   public void setFlowDirectionTest() {
     // Arrange
     ImmutableDataTypeDirectionKey.Json json = new ImmutableDataTypeDirectionKey.Json();
@@ -55,30 +79,6 @@ public class ImmutableDataTypeDirectionKeyDiffblueTest {
 
     // Assert
     assertEquals(FlowDirection.INBOUND, json.flowDirection);
-  }
-  @Test
-  public void constructorTest() {
-    // Arrange and Act
-    ImmutableDataTypeDirectionKey.Json actualJson = new ImmutableDataTypeDirectionKey.Json();
-
-    // Assert
-    assertNull(actualJson.flowDirection);
-    assertNull(actualJson.DatatypeId);
-  }
-  @Test
-  public void fromTest() {
-    // Arrange
-    ImmutableDataTypeDirectionKey.Builder builderResult = ImmutableDataTypeDirectionKey.builder();
-
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from(new ImmutableDataTypeDirectionKey.Json());
-  }
-  @Test
-  public void buildTest() {
-    // Arrange, Act and Assert
-    thrown.expect(IllegalStateException.class);
-    ImmutableDataTypeDirectionKey.builder().build();
   }
 }
 

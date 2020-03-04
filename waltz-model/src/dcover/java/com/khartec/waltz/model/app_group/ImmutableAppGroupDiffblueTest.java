@@ -18,64 +18,48 @@ public class ImmutableAppGroupDiffblueTest {
   @Rule
   public ExpectedException thrown = ExpectedException.none();
   @Test
-  public void fromTest7() {
-    // Arrange
-    ImmutableAppGroup.Builder builderResult = ImmutableAppGroup.builder();
-
-    // Act and Assert
+  public void appGroupKindTest() {
+    // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    builderResult.from((EntityKindProvider) new ImmutableAppGroup.Json());
-  }
-  @Test
-  public void fromTest6() {
-    // Arrange
-    ImmutableAppGroup.Builder builderResult = ImmutableAppGroup.builder();
-
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from(new ImmutableAppGroup.Json());
-  }
-  @Test
-  public void fromTest5() {
-    // Arrange
-    ImmutableAppGroup.Builder builderResult = ImmutableAppGroup.builder();
-
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from((ExternalIdProvider) new ImmutableAppGroup.Json());
-  }
-  @Test
-  public void fromTest4() {
-    // Arrange
-    ImmutableAppGroup.Builder builderResult = ImmutableAppGroup.builder();
-
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from((IdProvider) new ImmutableAppGroup.Json());
-  }
-  @Test
-  public void fromTest3() {
-    // Arrange
-    ImmutableAppGroup.Builder builderResult = ImmutableAppGroup.builder();
-
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from((IsRemovedProvider) new ImmutableAppGroup.Json());
-  }
-  @Test
-  public void fromTest2() {
-    // Arrange
-    ImmutableAppGroup.Builder builderResult = ImmutableAppGroup.builder();
-
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from((NameProvider) new ImmutableAppGroup.Json());
+    (new ImmutableAppGroup.Json()).appGroupKind();
   }
   @Test
   public void buildTest() {
     // Arrange, Act and Assert
     thrown.expect(IllegalStateException.class);
     ImmutableAppGroup.builder().build();
+  }
+  @Test
+  public void constructorTest() {
+    // Arrange and Act
+    ImmutableAppGroup.Json actualJson = new ImmutableAppGroup.Json();
+
+    // Assert
+    assertSame(actualJson.externalId, actualJson.id);
+  }
+  @Test
+  public void copyOfTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    ImmutableAppGroup.copyOf(new ImmutableAppGroup.Json());
+  }
+  @Test
+  public void descriptionTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableAppGroup.Json()).description();
+  }
+  @Test
+  public void externalIdTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableAppGroup.Json()).externalId();
+  }
+  @Test
+  public void fromJsonTest() {
+    // Arrange, Act and Assert
+    thrown.expect(IllegalStateException.class);
+    ImmutableAppGroup.fromJson(new ImmutableAppGroup.Json());
   }
   @Test
   public void fromTest() {
@@ -87,34 +71,58 @@ public class ImmutableAppGroupDiffblueTest {
     builderResult.from((DescriptionProvider) new ImmutableAppGroup.Json());
   }
   @Test
-  public void fromJsonTest() {
-    // Arrange, Act and Assert
-    thrown.expect(IllegalStateException.class);
-    ImmutableAppGroup.fromJson(new ImmutableAppGroup.Json());
+  public void fromTest2() {
+    // Arrange
+    ImmutableAppGroup.Builder builderResult = ImmutableAppGroup.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from((NameProvider) new ImmutableAppGroup.Json());
   }
   @Test
-  public void copyOfTest() {
-    // Arrange, Act and Assert
+  public void fromTest3() {
+    // Arrange
+    ImmutableAppGroup.Builder builderResult = ImmutableAppGroup.builder();
+
+    // Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    ImmutableAppGroup.copyOf(new ImmutableAppGroup.Json());
+    builderResult.from((IsRemovedProvider) new ImmutableAppGroup.Json());
   }
   @Test
-  public void kindTest() {
-    // Arrange, Act and Assert
+  public void fromTest4() {
+    // Arrange
+    ImmutableAppGroup.Builder builderResult = ImmutableAppGroup.builder();
+
+    // Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableAppGroup.Json()).kind();
+    builderResult.from((IdProvider) new ImmutableAppGroup.Json());
   }
   @Test
-  public void descriptionTest() {
-    // Arrange, Act and Assert
+  public void fromTest5() {
+    // Arrange
+    ImmutableAppGroup.Builder builderResult = ImmutableAppGroup.builder();
+
+    // Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableAppGroup.Json()).description();
+    builderResult.from((ExternalIdProvider) new ImmutableAppGroup.Json());
   }
   @Test
-  public void appGroupKindTest() {
-    // Arrange, Act and Assert
+  public void fromTest6() {
+    // Arrange
+    ImmutableAppGroup.Builder builderResult = ImmutableAppGroup.builder();
+
+    // Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableAppGroup.Json()).appGroupKind();
+    builderResult.from(new ImmutableAppGroup.Json());
+  }
+  @Test
+  public void fromTest7() {
+    // Arrange
+    ImmutableAppGroup.Builder builderResult = ImmutableAppGroup.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from((EntityKindProvider) new ImmutableAppGroup.Json());
   }
   @Test
   public void idTest() {
@@ -123,27 +131,22 @@ public class ImmutableAppGroupDiffblueTest {
     (new ImmutableAppGroup.Json()).id();
   }
   @Test
-  public void setKindTest() {
-    // Arrange
-    ImmutableAppGroup.Json json = new ImmutableAppGroup.Json();
-
-    // Act
-    json.setKind(EntityKind.ACTOR);
-
-    // Assert
-    assertEquals(EntityKind.ACTOR, json.kind);
+  public void isRemovedTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableAppGroup.Json()).isRemoved();
   }
   @Test
-  public void setIsRemovedTest() {
-    // Arrange
-    ImmutableAppGroup.Json json = new ImmutableAppGroup.Json();
-
-    // Act
-    json.setIsRemoved(true);
-
-    // Assert
-    assertTrue(json.isRemoved);
-    assertTrue(json.isRemovedIsSet);
+  public void kindTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableAppGroup.Json()).kind();
+  }
+  @Test
+  public void nameTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableAppGroup.Json()).name();
   }
   @Test
   public void setAppGroupKindTest() {
@@ -168,16 +171,27 @@ public class ImmutableAppGroupDiffblueTest {
     assertEquals("description", json.description);
   }
   @Test
-  public void nameTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableAppGroup.Json()).name();
+  public void setIsRemovedTest() {
+    // Arrange
+    ImmutableAppGroup.Json json = new ImmutableAppGroup.Json();
+
+    // Act
+    json.setIsRemoved(true);
+
+    // Assert
+    assertTrue(json.isRemoved);
+    assertTrue(json.isRemovedIsSet);
   }
   @Test
-  public void externalIdTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableAppGroup.Json()).externalId();
+  public void setKindTest() {
+    // Arrange
+    ImmutableAppGroup.Json json = new ImmutableAppGroup.Json();
+
+    // Act
+    json.setKind(EntityKind.ACTOR);
+
+    // Assert
+    assertEquals(EntityKind.ACTOR, json.kind);
   }
   @Test
   public void setNameTest() {
@@ -189,20 +203,6 @@ public class ImmutableAppGroupDiffblueTest {
 
     // Assert
     assertEquals("name", json.name);
-  }
-  @Test
-  public void constructorTest() {
-    // Arrange and Act
-    ImmutableAppGroup.Json actualJson = new ImmutableAppGroup.Json();
-
-    // Assert
-    assertSame(actualJson.externalId, actualJson.id);
-  }
-  @Test
-  public void isRemovedTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableAppGroup.Json()).isRemoved();
   }
 }
 

@@ -10,6 +10,22 @@ public class ImmutableSurveyInstanceRecipientUpdateCommandDiffblueTest {
   @Rule
   public ExpectedException thrown = ExpectedException.none();
   @Test
+  public void buildTest() {
+    // Arrange, Act and Assert
+    thrown.expect(IllegalStateException.class);
+    ImmutableSurveyInstanceRecipientUpdateCommand.builder().build();
+  }
+  @Test
+  public void constructorTest() {
+    // Arrange and Act
+    ImmutableSurveyInstanceRecipientUpdateCommand.Json actualJson = new ImmutableSurveyInstanceRecipientUpdateCommand.Json();
+
+    // Assert
+    assertNull(actualJson.instanceRecipientId);
+    assertNull(actualJson.surveyInstanceId);
+    assertNull(actualJson.personId);
+  }
+  @Test
   public void copyOfTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
@@ -22,21 +38,26 @@ public class ImmutableSurveyInstanceRecipientUpdateCommandDiffblueTest {
     ImmutableSurveyInstanceRecipientUpdateCommand.fromJson(new ImmutableSurveyInstanceRecipientUpdateCommand.Json());
   }
   @Test
-  public void setPersonIdTest() {
+  public void fromTest() {
     // Arrange
-    ImmutableSurveyInstanceRecipientUpdateCommand.Json json = new ImmutableSurveyInstanceRecipientUpdateCommand.Json();
+    ImmutableSurveyInstanceRecipientUpdateCommand.Builder builderResult = ImmutableSurveyInstanceRecipientUpdateCommand
+        .builder();
 
-    // Act
-    json.setPersonId(Long.valueOf(123L));
-
-    // Assert
-    assertEquals(Long.valueOf(123L), json.personId);
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from(new ImmutableSurveyInstanceRecipientUpdateCommand.Json());
   }
   @Test
   public void instanceRecipientIdTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
     (new ImmutableSurveyInstanceRecipientUpdateCommand.Json()).instanceRecipientId();
+  }
+  @Test
+  public void personIdTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableSurveyInstanceRecipientUpdateCommand.Json()).personId();
   }
   @Test
   public void setInstanceRecipientIdTest() {
@@ -50,26 +71,15 @@ public class ImmutableSurveyInstanceRecipientUpdateCommandDiffblueTest {
     assertEquals(Long.valueOf(123L), json.instanceRecipientId);
   }
   @Test
-  public void constructorTest() {
-    // Arrange and Act
-    ImmutableSurveyInstanceRecipientUpdateCommand.Json actualJson = new ImmutableSurveyInstanceRecipientUpdateCommand.Json();
+  public void setPersonIdTest() {
+    // Arrange
+    ImmutableSurveyInstanceRecipientUpdateCommand.Json json = new ImmutableSurveyInstanceRecipientUpdateCommand.Json();
+
+    // Act
+    json.setPersonId(Long.valueOf(123L));
 
     // Assert
-    assertNull(actualJson.instanceRecipientId);
-    assertNull(actualJson.surveyInstanceId);
-    assertNull(actualJson.personId);
-  }
-  @Test
-  public void personIdTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableSurveyInstanceRecipientUpdateCommand.Json()).personId();
-  }
-  @Test
-  public void surveyInstanceIdTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableSurveyInstanceRecipientUpdateCommand.Json()).surveyInstanceId();
+    assertEquals(Long.valueOf(123L), json.personId);
   }
   @Test
   public void setSurveyInstanceIdTest() {
@@ -83,20 +93,10 @@ public class ImmutableSurveyInstanceRecipientUpdateCommandDiffblueTest {
     assertEquals(Long.valueOf(123L), json.surveyInstanceId);
   }
   @Test
-  public void fromTest() {
-    // Arrange
-    ImmutableSurveyInstanceRecipientUpdateCommand.Builder builderResult = ImmutableSurveyInstanceRecipientUpdateCommand
-        .builder();
-
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from(new ImmutableSurveyInstanceRecipientUpdateCommand.Json());
-  }
-  @Test
-  public void buildTest() {
+  public void surveyInstanceIdTest() {
     // Arrange, Act and Assert
-    thrown.expect(IllegalStateException.class);
-    ImmutableSurveyInstanceRecipientUpdateCommand.builder().build();
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableSurveyInstanceRecipientUpdateCommand.Json()).surveyInstanceId();
   }
 }
 

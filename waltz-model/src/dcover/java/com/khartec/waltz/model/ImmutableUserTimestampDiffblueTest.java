@@ -11,37 +11,6 @@ public class ImmutableUserTimestampDiffblueTest {
   public ExpectedException thrown = ExpectedException.none();
 
   @Test
-  public void copyOfTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    ImmutableUserTimestamp.copyOf(new ImmutableUserTimestamp.Json());
-  }
-
-  @Test
-  public void fromJsonTest() {
-    // Arrange, Act and Assert
-    thrown.expect(IllegalStateException.class);
-    ImmutableUserTimestamp.fromJson(new ImmutableUserTimestamp.Json());
-  }
-
-  @Test
-  public void buildTest() {
-    // Arrange, Act and Assert
-    thrown.expect(IllegalStateException.class);
-    ImmutableUserTimestamp.builder().build();
-  }
-
-  @Test
-  public void fromTest() {
-    // Arrange
-    ImmutableUserTimestamp.Builder builderResult = ImmutableUserTimestamp.builder();
-
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from(new ImmutableUserTimestamp.Json());
-  }
-
-  @Test
   public void atTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
@@ -56,13 +25,10 @@ public class ImmutableUserTimestampDiffblueTest {
   }
 
   @Test
-  public void constructorTest() {
-    // Arrange and Act
-    ImmutableUserTimestamp.Json actualJson = new ImmutableUserTimestamp.Json();
-
-    // Assert
-    assertNull(actualJson.by);
-    assertNull(actualJson.at);
+  public void buildTest() {
+    // Arrange, Act and Assert
+    thrown.expect(IllegalStateException.class);
+    ImmutableUserTimestamp.builder().build();
   }
 
   @Test
@@ -73,15 +39,49 @@ public class ImmutableUserTimestampDiffblueTest {
   }
 
   @Test
+  public void constructorTest() {
+    // Arrange and Act
+    ImmutableUserTimestamp.Json actualJson = new ImmutableUserTimestamp.Json();
+
+    // Assert
+    assertNull(actualJson.by);
+    assertNull(actualJson.at);
+  }
+
+  @Test
+  public void copyOfTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    ImmutableUserTimestamp.copyOf(new ImmutableUserTimestamp.Json());
+  }
+
+  @Test
+  public void fromJsonTest() {
+    // Arrange, Act and Assert
+    thrown.expect(IllegalStateException.class);
+    ImmutableUserTimestamp.fromJson(new ImmutableUserTimestamp.Json());
+  }
+
+  @Test
+  public void fromTest() {
+    // Arrange
+    ImmutableUserTimestamp.Builder builderResult = ImmutableUserTimestamp.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from(new ImmutableUserTimestamp.Json());
+  }
+
+  @Test
   public void setByTest() {
     // Arrange
     ImmutableUserTimestamp.Json json = new ImmutableUserTimestamp.Json();
 
     // Act
-    json.setBy("foo");
+    json.setBy("by");
 
     // Assert
-    assertEquals("foo", json.by);
+    assertEquals("by", json.by);
   }
 }
 

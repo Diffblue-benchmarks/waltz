@@ -13,16 +13,6 @@ public class ImmutableCheckpointGoalDiffblueTest {
   public ExpectedException thrown = ExpectedException.none();
 
   @Test
-  public void fromTest() {
-    // Arrange
-    ImmutableCheckpointGoal.Builder builderResult = ImmutableCheckpointGoal.builder();
-
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from(new ImmutableCheckpointGoal.Json());
-  }
-
-  @Test
   public void buildTest() {
     // Arrange, Act and Assert
     thrown.expect(IllegalStateException.class);
@@ -30,50 +20,10 @@ public class ImmutableCheckpointGoalDiffblueTest {
   }
 
   @Test
-  public void fromJsonTest() {
-    // Arrange, Act and Assert
-    thrown.expect(IllegalStateException.class);
-    ImmutableCheckpointGoal.fromJson(new ImmutableCheckpointGoal.Json());
-  }
-
-  @Test
-  public void copyOfTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    ImmutableCheckpointGoal.copyOf(new ImmutableCheckpointGoal.Json());
-  }
-
-  @Test
-  public void setValueTest() {
-    // Arrange
-    ImmutableCheckpointGoal.Json json = new ImmutableCheckpointGoal.Json();
-
-    // Act
-    json.setValue(10.0);
-
-    // Assert
-    assertEquals(10.0, json.value, 0.0);
-    assertTrue(json.valueIsSet);
-  }
-
-  @Test
   public void checkpointIdTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
     (new ImmutableCheckpointGoal.Json()).checkpointId();
-  }
-
-  @Test
-  public void setCheckpointIdTest() {
-    // Arrange
-    ImmutableCheckpointGoal.Json json = new ImmutableCheckpointGoal.Json();
-
-    // Act
-    json.setCheckpointId(123L);
-
-    // Assert
-    assertTrue(json.checkpointIdIsSet);
-    assertEquals(123L, json.checkpointId);
   }
 
   @Test
@@ -90,6 +40,30 @@ public class ImmutableCheckpointGoalDiffblueTest {
   }
 
   @Test
+  public void copyOfTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    ImmutableCheckpointGoal.copyOf(new ImmutableCheckpointGoal.Json());
+  }
+
+  @Test
+  public void fromJsonTest() {
+    // Arrange, Act and Assert
+    thrown.expect(IllegalStateException.class);
+    ImmutableCheckpointGoal.fromJson(new ImmutableCheckpointGoal.Json());
+  }
+
+  @Test
+  public void fromTest() {
+    // Arrange
+    ImmutableCheckpointGoal.Builder builderResult = ImmutableCheckpointGoal.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from(new ImmutableCheckpointGoal.Json());
+  }
+
+  @Test
   public void goalTypeTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
@@ -97,10 +71,16 @@ public class ImmutableCheckpointGoalDiffblueTest {
   }
 
   @Test
-  public void valueTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableCheckpointGoal.Json()).value();
+  public void setCheckpointIdTest() {
+    // Arrange
+    ImmutableCheckpointGoal.Json json = new ImmutableCheckpointGoal.Json();
+
+    // Act
+    json.setCheckpointId(123L);
+
+    // Assert
+    assertTrue(json.checkpointIdIsSet);
+    assertEquals(123L, json.checkpointId);
   }
 
   @Test
@@ -113,6 +93,26 @@ public class ImmutableCheckpointGoalDiffblueTest {
 
     // Assert
     assertEquals(GoalType.ABOVE_THRESHOLD, json.goalType);
+  }
+
+  @Test
+  public void setValueTest() {
+    // Arrange
+    ImmutableCheckpointGoal.Json json = new ImmutableCheckpointGoal.Json();
+
+    // Act
+    json.setValue(10.0);
+
+    // Assert
+    assertEquals(10.0, json.value, 0.0);
+    assertTrue(json.valueIsSet);
+  }
+
+  @Test
+  public void valueTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableCheckpointGoal.Json()).value();
   }
 }
 

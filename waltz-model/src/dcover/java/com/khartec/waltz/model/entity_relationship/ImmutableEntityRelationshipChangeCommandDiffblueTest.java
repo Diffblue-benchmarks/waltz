@@ -11,27 +11,10 @@ public class ImmutableEntityRelationshipChangeCommandDiffblueTest {
   @Rule
   public ExpectedException thrown = ExpectedException.none();
   @Test
-  public void relationshipTest() {
+  public void buildTest() {
     // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableEntityRelationshipChangeCommand.Json()).relationship();
-  }
-  @Test
-  public void entityReferenceTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableEntityRelationshipChangeCommand.Json()).entityReference();
-  }
-  @Test
-  public void setRelationshipTest() {
-    // Arrange
-    ImmutableEntityRelationshipChangeCommand.Json json = new ImmutableEntityRelationshipChangeCommand.Json();
-
-    // Act
-    json.setRelationship(RelationshipKind.HAS);
-
-    // Assert
-    assertEquals(RelationshipKind.HAS, json.relationship);
+    thrown.expect(IllegalStateException.class);
+    ImmutableEntityRelationshipChangeCommand.builder().build();
   }
   @Test
   public void constructorTest() {
@@ -44,10 +27,43 @@ public class ImmutableEntityRelationshipChangeCommandDiffblueTest {
     assertNull(actualJson.operation);
   }
   @Test
+  public void copyOfTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    ImmutableEntityRelationshipChangeCommand.copyOf(new ImmutableEntityRelationshipChangeCommand.Json());
+  }
+  @Test
+  public void entityReferenceTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableEntityRelationshipChangeCommand.Json()).entityReference();
+  }
+  @Test
+  public void fromJsonTest() {
+    // Arrange, Act and Assert
+    thrown.expect(IllegalStateException.class);
+    ImmutableEntityRelationshipChangeCommand.fromJson(new ImmutableEntityRelationshipChangeCommand.Json());
+  }
+  @Test
+  public void fromTest() {
+    // Arrange
+    ImmutableEntityRelationshipChangeCommand.Builder builderResult = ImmutableEntityRelationshipChangeCommand.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from(new ImmutableEntityRelationshipChangeCommand.Json());
+  }
+  @Test
   public void operationTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
     (new ImmutableEntityRelationshipChangeCommand.Json()).operation();
+  }
+  @Test
+  public void relationshipTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableEntityRelationshipChangeCommand.Json()).relationship();
   }
   @Test
   public void setOperationTest() {
@@ -61,31 +77,15 @@ public class ImmutableEntityRelationshipChangeCommandDiffblueTest {
     assertEquals(Operation.ADD, json.operation);
   }
   @Test
-  public void copyOfTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    ImmutableEntityRelationshipChangeCommand.copyOf(new ImmutableEntityRelationshipChangeCommand.Json());
-  }
-  @Test
-  public void fromJsonTest() {
-    // Arrange, Act and Assert
-    thrown.expect(IllegalStateException.class);
-    ImmutableEntityRelationshipChangeCommand.fromJson(new ImmutableEntityRelationshipChangeCommand.Json());
-  }
-  @Test
-  public void buildTest() {
-    // Arrange, Act and Assert
-    thrown.expect(IllegalStateException.class);
-    ImmutableEntityRelationshipChangeCommand.builder().build();
-  }
-  @Test
-  public void fromTest() {
+  public void setRelationshipTest() {
     // Arrange
-    ImmutableEntityRelationshipChangeCommand.Builder builderResult = ImmutableEntityRelationshipChangeCommand.builder();
+    ImmutableEntityRelationshipChangeCommand.Json json = new ImmutableEntityRelationshipChangeCommand.Json();
 
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from(new ImmutableEntityRelationshipChangeCommand.Json());
+    // Act
+    json.setRelationship(RelationshipKind.HAS);
+
+    // Assert
+    assertEquals(RelationshipKind.HAS, json.relationship);
   }
 }
 

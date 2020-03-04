@@ -15,10 +15,22 @@ public class ImmutableInvolvementKindDiffblueTest {
   public ExpectedException thrown = ExpectedException.none();
 
   @Test
-  public void fromJsonTest() {
+  public void buildTest() {
     // Arrange, Act and Assert
     thrown.expect(IllegalStateException.class);
-    ImmutableInvolvementKind.fromJson(new ImmutableInvolvementKind.Json());
+    ImmutableInvolvementKind.builder().build();
+  }
+
+  @Test
+  public void constructorTest() {
+    // Arrange and Act
+    ImmutableInvolvementKind.Json actualJson = new ImmutableInvolvementKind.Json();
+
+    // Assert
+    assertNull(actualJson.lastUpdatedAt);
+    assertNull(actualJson.description);
+    assertNull(actualJson.lastUpdatedBy);
+    assertNull(actualJson.name);
   }
 
   @Test
@@ -29,50 +41,17 @@ public class ImmutableInvolvementKindDiffblueTest {
   }
 
   @Test
-  public void fromTest5() {
-    // Arrange
-    ImmutableInvolvementKind.Builder builderResult = ImmutableInvolvementKind.builder();
-
-    // Act and Assert
+  public void descriptionTest() {
+    // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    builderResult.from(new ImmutableInvolvementKind.Json());
+    (new ImmutableInvolvementKind.Json()).description();
   }
 
   @Test
-  public void fromTest4() {
-    // Arrange
-    ImmutableInvolvementKind.Builder builderResult = ImmutableInvolvementKind.builder();
-
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from((LastUpdatedProvider) new ImmutableInvolvementKind.Json());
-  }
-
-  @Test
-  public void fromTest3() {
-    // Arrange
-    ImmutableInvolvementKind.Builder builderResult = ImmutableInvolvementKind.builder();
-
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from((NameProvider) new ImmutableInvolvementKind.Json());
-  }
-
-  @Test
-  public void buildTest() {
+  public void fromJsonTest() {
     // Arrange, Act and Assert
     thrown.expect(IllegalStateException.class);
-    ImmutableInvolvementKind.builder().build();
-  }
-
-  @Test
-  public void fromTest2() {
-    // Arrange
-    ImmutableInvolvementKind.Builder builderResult = ImmutableInvolvementKind.builder();
-
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from((IdProvider) new ImmutableInvolvementKind.Json());
+    ImmutableInvolvementKind.fromJson(new ImmutableInvolvementKind.Json());
   }
 
   @Test
@@ -86,15 +65,71 @@ public class ImmutableInvolvementKindDiffblueTest {
   }
 
   @Test
-  public void setLastUpdatedByTest() {
+  public void fromTest2() {
     // Arrange
-    ImmutableInvolvementKind.Json json = new ImmutableInvolvementKind.Json();
+    ImmutableInvolvementKind.Builder builderResult = ImmutableInvolvementKind.builder();
 
-    // Act
-    json.setLastUpdatedBy("foo");
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from((IdProvider) new ImmutableInvolvementKind.Json());
+  }
 
-    // Assert
-    assertEquals("foo", json.lastUpdatedBy);
+  @Test
+  public void fromTest3() {
+    // Arrange
+    ImmutableInvolvementKind.Builder builderResult = ImmutableInvolvementKind.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from((NameProvider) new ImmutableInvolvementKind.Json());
+  }
+
+  @Test
+  public void fromTest4() {
+    // Arrange
+    ImmutableInvolvementKind.Builder builderResult = ImmutableInvolvementKind.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from((LastUpdatedProvider) new ImmutableInvolvementKind.Json());
+  }
+
+  @Test
+  public void fromTest5() {
+    // Arrange
+    ImmutableInvolvementKind.Builder builderResult = ImmutableInvolvementKind.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from(new ImmutableInvolvementKind.Json());
+  }
+
+  @Test
+  public void idTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableInvolvementKind.Json()).id();
+  }
+
+  @Test
+  public void lastUpdatedAtTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableInvolvementKind.Json()).lastUpdatedAt();
+  }
+
+  @Test
+  public void lastUpdatedByTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableInvolvementKind.Json()).lastUpdatedBy();
+  }
+
+  @Test
+  public void nameTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableInvolvementKind.Json()).name();
   }
 
   @Test
@@ -110,31 +145,15 @@ public class ImmutableInvolvementKindDiffblueTest {
   }
 
   @Test
-  public void nameTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableInvolvementKind.Json()).name();
-  }
+  public void setLastUpdatedByTest() {
+    // Arrange
+    ImmutableInvolvementKind.Json json = new ImmutableInvolvementKind.Json();
 
-  @Test
-  public void descriptionTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableInvolvementKind.Json()).description();
-  }
+    // Act
+    json.setLastUpdatedBy("lastUpdatedBy");
 
-  @Test
-  public void lastUpdatedByTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableInvolvementKind.Json()).lastUpdatedBy();
-  }
-
-  @Test
-  public void lastUpdatedAtTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableInvolvementKind.Json()).lastUpdatedAt();
+    // Assert
+    assertEquals("lastUpdatedBy", json.lastUpdatedBy);
   }
 
   @Test
@@ -147,25 +166,6 @@ public class ImmutableInvolvementKindDiffblueTest {
 
     // Assert
     assertEquals("name", json.name);
-  }
-
-  @Test
-  public void idTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableInvolvementKind.Json()).id();
-  }
-
-  @Test
-  public void constructorTest() {
-    // Arrange and Act
-    ImmutableInvolvementKind.Json actualJson = new ImmutableInvolvementKind.Json();
-
-    // Assert
-    assertNull(actualJson.lastUpdatedAt);
-    assertNull(actualJson.description);
-    assertNull(actualJson.lastUpdatedBy);
-    assertNull(actualJson.name);
   }
 }
 

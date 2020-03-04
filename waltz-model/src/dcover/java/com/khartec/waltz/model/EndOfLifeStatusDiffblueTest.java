@@ -8,6 +8,13 @@ public class EndOfLifeStatusDiffblueTest {
   @Test
   public void calculateEndOfLifeStatusTest() {
     // Arrange, Act and Assert
+    assertEquals(EndOfLifeStatus.NOT_END_OF_LIFE,
+        EndOfLifeStatus.calculateEndOfLifeStatus(new Date((long) Long.valueOf(9223372036854775807L))));
+  }
+
+  @Test
+  public void calculateEndOfLifeStatusTest2() {
+    // Arrange, Act and Assert
     assertEquals(EndOfLifeStatus.END_OF_LIFE, EndOfLifeStatus.calculateEndOfLifeStatus(new Date(1L)));
   }
 }

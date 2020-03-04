@@ -14,6 +14,13 @@ public class ImmutableLogicalDataElementChangeCommandDiffblueTest {
   public ExpectedException thrown = ExpectedException.none();
 
   @Test
+  public void buildTest() {
+    // Arrange, Act and Assert
+    assertEquals("LogicalDataElementChangeCommand{}",
+        ImmutableLogicalDataElementChangeCommand.builder().build().toString());
+  }
+
+  @Test
   public void constructorTest() {
     // Arrange, Act and Assert
     Optional<EntityReference> optional = (new ImmutableLogicalDataElementChangeCommand.Json()).newLogicalDataElement;
@@ -22,27 +29,10 @@ public class ImmutableLogicalDataElementChangeCommandDiffblueTest {
   }
 
   @Test
-  public void newLogicalDataElementTest2() {
+  public void copyOfTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableLogicalDataElementChangeCommand.Json()).newLogicalDataElement();
-  }
-
-  @Test
-  public void buildTest() {
-    // Arrange, Act and Assert
-    assertEquals("LogicalDataElementChangeCommand{}",
-        ImmutableLogicalDataElementChangeCommand.builder().build().toString());
-  }
-
-  @Test
-  public void fromTest() {
-    // Arrange
-    ImmutableLogicalDataElementChangeCommand.Builder builderResult = ImmutableLogicalDataElementChangeCommand.builder();
-
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from(new ImmutableLogicalDataElementChangeCommand.Json());
+    ImmutableLogicalDataElementChangeCommand.copyOf(new ImmutableLogicalDataElementChangeCommand.Json());
   }
 
   @Test
@@ -53,10 +43,20 @@ public class ImmutableLogicalDataElementChangeCommandDiffblueTest {
   }
 
   @Test
-  public void copyOfTest() {
+  public void fromJsonTest() {
     // Arrange, Act and Assert
+    assertEquals("LogicalDataElementChangeCommand{}", ImmutableLogicalDataElementChangeCommand
+        .fromJson(new ImmutableLogicalDataElementChangeCommand.Json()).toString());
+  }
+
+  @Test
+  public void fromTest() {
+    // Arrange
+    ImmutableLogicalDataElementChangeCommand.Builder builderResult = ImmutableLogicalDataElementChangeCommand.builder();
+
+    // Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    ImmutableLogicalDataElementChangeCommand.copyOf(new ImmutableLogicalDataElementChangeCommand.Json());
+    builderResult.from(new ImmutableLogicalDataElementChangeCommand.Json());
   }
 
   @Test
@@ -77,14 +77,14 @@ public class ImmutableLogicalDataElementChangeCommandDiffblueTest {
   }
 
   @Test
-  public void toStringTest() {
+  public void newLogicalDataElementTest2() {
     // Arrange, Act and Assert
-    assertEquals("LogicalDataElementChangeCommand{}", ImmutableLogicalDataElementChangeCommand
-        .fromJson(new ImmutableLogicalDataElementChangeCommand.Json()).toString());
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableLogicalDataElementChangeCommand.Json()).newLogicalDataElement();
   }
 
   @Test
-  public void fromJsonTest() {
+  public void toStringTest() {
     // Arrange, Act and Assert
     assertEquals("LogicalDataElementChangeCommand{}", ImmutableLogicalDataElementChangeCommand
         .fromJson(new ImmutableLogicalDataElementChangeCommand.Json()).toString());

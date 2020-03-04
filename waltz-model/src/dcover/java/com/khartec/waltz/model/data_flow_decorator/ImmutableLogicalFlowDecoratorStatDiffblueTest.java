@@ -12,34 +12,10 @@ public class ImmutableLogicalFlowDecoratorStatDiffblueTest {
   @Rule
   public ExpectedException thrown = ExpectedException.none();
   @Test
-  public void logicalFlowMeasuresTest() {
+  public void buildTest() {
     // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableLogicalFlowDecoratorStat.Json()).logicalFlowMeasures();
-  }
-  @Test
-  public void totalCountTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableLogicalFlowDecoratorStat.Json()).totalCount();
-  }
-  @Test
-  public void setTotalCountTest() {
-    // Arrange
-    ImmutableLogicalFlowDecoratorStat.Json json = new ImmutableLogicalFlowDecoratorStat.Json();
-
-    // Act
-    json.setTotalCount(3);
-
-    // Assert
-    assertEquals(3, json.totalCount);
-    assertTrue(json.totalCountIsSet);
-  }
-  @Test
-  public void dataTypeIdTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableLogicalFlowDecoratorStat.Json()).dataTypeId();
+    thrown.expect(IllegalStateException.class);
+    ImmutableLogicalFlowDecoratorStat.builder().build();
   }
   @Test
   public void constructorTest() {
@@ -54,6 +30,39 @@ public class ImmutableLogicalFlowDecoratorStatDiffblueTest {
     assertFalse(actualJson.totalCountIsSet);
   }
   @Test
+  public void copyOfTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    ImmutableLogicalFlowDecoratorStat.copyOf(new ImmutableLogicalFlowDecoratorStat.Json());
+  }
+  @Test
+  public void dataTypeIdTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableLogicalFlowDecoratorStat.Json()).dataTypeId();
+  }
+  @Test
+  public void fromJsonTest() {
+    // Arrange, Act and Assert
+    thrown.expect(IllegalStateException.class);
+    ImmutableLogicalFlowDecoratorStat.fromJson(new ImmutableLogicalFlowDecoratorStat.Json());
+  }
+  @Test
+  public void fromTest() {
+    // Arrange
+    ImmutableLogicalFlowDecoratorStat.Builder builderResult = ImmutableLogicalFlowDecoratorStat.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from(new ImmutableLogicalFlowDecoratorStat.Json());
+  }
+  @Test
+  public void logicalFlowMeasuresTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableLogicalFlowDecoratorStat.Json()).logicalFlowMeasures();
+  }
+  @Test
   public void setDataTypeIdTest() {
     // Arrange
     ImmutableLogicalFlowDecoratorStat.Json json = new ImmutableLogicalFlowDecoratorStat.Json();
@@ -66,31 +75,22 @@ public class ImmutableLogicalFlowDecoratorStatDiffblueTest {
     assertEquals(123L, json.dataTypeId);
   }
   @Test
-  public void fromTest() {
+  public void setTotalCountTest() {
     // Arrange
-    ImmutableLogicalFlowDecoratorStat.Builder builderResult = ImmutableLogicalFlowDecoratorStat.builder();
+    ImmutableLogicalFlowDecoratorStat.Json json = new ImmutableLogicalFlowDecoratorStat.Json();
 
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from(new ImmutableLogicalFlowDecoratorStat.Json());
+    // Act
+    json.setTotalCount(3);
+
+    // Assert
+    assertEquals(3, json.totalCount);
+    assertTrue(json.totalCountIsSet);
   }
   @Test
-  public void buildTest() {
-    // Arrange, Act and Assert
-    thrown.expect(IllegalStateException.class);
-    ImmutableLogicalFlowDecoratorStat.builder().build();
-  }
-  @Test
-  public void copyOfTest() {
+  public void totalCountTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    ImmutableLogicalFlowDecoratorStat.copyOf(new ImmutableLogicalFlowDecoratorStat.Json());
-  }
-  @Test
-  public void fromJsonTest() {
-    // Arrange, Act and Assert
-    thrown.expect(IllegalStateException.class);
-    ImmutableLogicalFlowDecoratorStat.fromJson(new ImmutableLogicalFlowDecoratorStat.Json());
+    (new ImmutableLogicalFlowDecoratorStat.Json()).totalCount();
   }
 }
 

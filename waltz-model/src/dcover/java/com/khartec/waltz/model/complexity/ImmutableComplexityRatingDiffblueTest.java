@@ -13,6 +13,32 @@ public class ImmutableComplexityRatingDiffblueTest {
   public ExpectedException thrown = ExpectedException.none();
 
   @Test
+  public void buildTest() {
+    // Arrange, Act and Assert
+    thrown.expect(IllegalStateException.class);
+    ImmutableComplexityRating.builder().build();
+  }
+
+  @Test
+  public void connectionComplexityTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableComplexityRating.Json()).connectionComplexity();
+  }
+
+  @Test
+  public void constructorTest() {
+    // Arrange and Act
+    ImmutableComplexityRating.Json actualJson = new ImmutableComplexityRating.Json();
+
+    // Assert
+    Optional<ComplexityScore> optional = actualJson.serverComplexity;
+    assertSame(actualJson.measurableComplexity, optional);
+    assertSame(optional, actualJson.connectionComplexity);
+    assertSame(optional, actualJson.measurableComplexity);
+  }
+
+  @Test
   public void copyOfTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
@@ -37,10 +63,10 @@ public class ImmutableComplexityRatingDiffblueTest {
   }
 
   @Test
-  public void buildTest() {
+  public void idTest() {
     // Arrange, Act and Assert
-    thrown.expect(IllegalStateException.class);
-    ImmutableComplexityRating.builder().build();
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableComplexityRating.Json()).id();
   }
 
   @Test
@@ -51,17 +77,10 @@ public class ImmutableComplexityRatingDiffblueTest {
   }
 
   @Test
-  public void idTest() {
+  public void overallScoreTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableComplexityRating.Json()).id();
-  }
-
-  @Test
-  public void connectionComplexityTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableComplexityRating.Json()).connectionComplexity();
+    (new ImmutableComplexityRating.Json()).overallScore();
   }
 
   @Test
@@ -69,13 +88,6 @@ public class ImmutableComplexityRatingDiffblueTest {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
     (new ImmutableComplexityRating.Json()).serverComplexity();
-  }
-
-  @Test
-  public void overallScoreTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableComplexityRating.Json()).overallScore();
   }
 
   @Test
@@ -89,18 +101,6 @@ public class ImmutableComplexityRatingDiffblueTest {
     // Assert
     assertTrue(json.idIsSet);
     assertEquals(123L, json.id);
-  }
-
-  @Test
-  public void constructorTest() {
-    // Arrange and Act
-    ImmutableComplexityRating.Json actualJson = new ImmutableComplexityRating.Json();
-
-    // Assert
-    Optional<ComplexityScore> optional = actualJson.serverComplexity;
-    assertSame(actualJson.measurableComplexity, optional);
-    assertSame(optional, actualJson.connectionComplexity);
-    assertSame(optional, actualJson.measurableComplexity);
   }
 }
 

@@ -12,10 +12,33 @@ public class ImmutableSurveyRunCompletionRateDiffblueTest {
   public ExpectedException thrown = ExpectedException.none();
 
   @Test
-  public void fromJsonTest() {
+  public void buildTest() {
     // Arrange, Act and Assert
     thrown.expect(IllegalStateException.class);
-    ImmutableSurveyRunCompletionRate.fromJson(new ImmutableSurveyRunCompletionRate.Json());
+    ImmutableSurveyRunCompletionRate.builder().build();
+  }
+
+  @Test
+  public void completedCountTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableSurveyRunCompletionRate.Json()).completedCount();
+  }
+
+  @Test
+  public void constructorTest() {
+    // Arrange and Act
+    ImmutableSurveyRunCompletionRate.Json actualJson = new ImmutableSurveyRunCompletionRate.Json();
+
+    // Assert
+    assertFalse(actualJson.inProgressCountIsSet);
+    assertFalse(actualJson.surveyRunIdIsSet);
+    assertEquals(0L, actualJson.surveyRunId);
+    assertEquals(0, actualJson.inProgressCount);
+    assertFalse(actualJson.notStartedCountIsSet);
+    assertEquals(0, actualJson.completedCount);
+    assertEquals(0, actualJson.notStartedCount);
+    assertFalse(actualJson.completedCountIsSet);
   }
 
   @Test
@@ -23,6 +46,13 @@ public class ImmutableSurveyRunCompletionRateDiffblueTest {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
     ImmutableSurveyRunCompletionRate.copyOf(new ImmutableSurveyRunCompletionRate.Json());
+  }
+
+  @Test
+  public void fromJsonTest() {
+    // Arrange, Act and Assert
+    thrown.expect(IllegalStateException.class);
+    ImmutableSurveyRunCompletionRate.fromJson(new ImmutableSurveyRunCompletionRate.Json());
   }
 
   @Test
@@ -36,10 +66,10 @@ public class ImmutableSurveyRunCompletionRateDiffblueTest {
   }
 
   @Test
-  public void buildTest() {
+  public void inProgressCountTest() {
     // Arrange, Act and Assert
-    thrown.expect(IllegalStateException.class);
-    ImmutableSurveyRunCompletionRate.builder().build();
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableSurveyRunCompletionRate.Json()).inProgressCount();
   }
 
   @Test
@@ -60,6 +90,19 @@ public class ImmutableSurveyRunCompletionRateDiffblueTest {
     // Assert
     assertEquals(3, json.completedCount);
     assertTrue(json.completedCountIsSet);
+  }
+
+  @Test
+  public void setInProgressCountTest() {
+    // Arrange
+    ImmutableSurveyRunCompletionRate.Json json = new ImmutableSurveyRunCompletionRate.Json();
+
+    // Act
+    json.setInProgressCount(3);
+
+    // Assert
+    assertTrue(json.inProgressCountIsSet);
+    assertEquals(3, json.inProgressCount);
   }
 
   @Test
@@ -89,36 +132,6 @@ public class ImmutableSurveyRunCompletionRateDiffblueTest {
   }
 
   @Test
-  public void completedCountTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableSurveyRunCompletionRate.Json()).completedCount();
-  }
-
-  @Test
-  public void totalCountTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableSurveyRunCompletionRate.Json()).totalCount();
-  }
-
-  @Test
-  public void constructorTest() {
-    // Arrange and Act
-    ImmutableSurveyRunCompletionRate.Json actualJson = new ImmutableSurveyRunCompletionRate.Json();
-
-    // Assert
-    assertFalse(actualJson.inProgressCountIsSet);
-    assertFalse(actualJson.surveyRunIdIsSet);
-    assertEquals(0L, actualJson.surveyRunId);
-    assertEquals(0, actualJson.inProgressCount);
-    assertFalse(actualJson.notStartedCountIsSet);
-    assertEquals(0, actualJson.completedCount);
-    assertEquals(0, actualJson.notStartedCount);
-    assertFalse(actualJson.completedCountIsSet);
-  }
-
-  @Test
   public void surveyRunIdTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
@@ -126,23 +139,10 @@ public class ImmutableSurveyRunCompletionRateDiffblueTest {
   }
 
   @Test
-  public void inProgressCountTest() {
+  public void totalCountTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableSurveyRunCompletionRate.Json()).inProgressCount();
-  }
-
-  @Test
-  public void setInProgressCountTest() {
-    // Arrange
-    ImmutableSurveyRunCompletionRate.Json json = new ImmutableSurveyRunCompletionRate.Json();
-
-    // Act
-    json.setInProgressCount(3);
-
-    // Assert
-    assertTrue(json.inProgressCountIsSet);
-    assertEquals(3, json.inProgressCount);
+    (new ImmutableSurveyRunCompletionRate.Json()).totalCount();
   }
 }
 

@@ -19,13 +19,17 @@ public class ImmutableLogicalFlowMeasuresDiffblueTest {
   }
 
   @Test
-  public void fromTest() {
-    // Arrange
-    ImmutableLogicalFlowMeasures.Builder builderResult = ImmutableLogicalFlowMeasures.builder();
+  public void constructorTest() {
+    // Arrange and Act
+    ImmutableLogicalFlowMeasures.Json actualJson = new ImmutableLogicalFlowMeasures.Json();
 
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from(new ImmutableLogicalFlowMeasures.Json());
+    // Assert
+    assertFalse(actualJson.inboundIsSet);
+    assertEquals(0.0, actualJson.intra, 0.0);
+    assertEquals(0.0, actualJson.inbound, 0.0);
+    assertEquals(0.0, actualJson.outbound, 0.0);
+    assertFalse(actualJson.outboundIsSet);
+    assertFalse(actualJson.intraIsSet);
   }
 
   @Test
@@ -40,6 +44,37 @@ public class ImmutableLogicalFlowMeasuresDiffblueTest {
     // Arrange, Act and Assert
     thrown.expect(IllegalStateException.class);
     ImmutableLogicalFlowMeasures.fromJson(new ImmutableLogicalFlowMeasures.Json());
+  }
+
+  @Test
+  public void fromTest() {
+    // Arrange
+    ImmutableLogicalFlowMeasures.Builder builderResult = ImmutableLogicalFlowMeasures.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from(new ImmutableLogicalFlowMeasures.Json());
+  }
+
+  @Test
+  public void inboundTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableLogicalFlowMeasures.Json()).inbound();
+  }
+
+  @Test
+  public void intraTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableLogicalFlowMeasures.Json()).intra();
+  }
+
+  @Test
+  public void outboundTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableLogicalFlowMeasures.Json()).outbound();
   }
 
   @Test
@@ -66,41 +101,6 @@ public class ImmutableLogicalFlowMeasuresDiffblueTest {
     // Assert
     assertEquals(10.0, json.intra, 0.0);
     assertTrue(json.intraIsSet);
-  }
-
-  @Test
-  public void inboundTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableLogicalFlowMeasures.Json()).inbound();
-  }
-
-  @Test
-  public void constructorTest() {
-    // Arrange and Act
-    ImmutableLogicalFlowMeasures.Json actualJson = new ImmutableLogicalFlowMeasures.Json();
-
-    // Assert
-    assertFalse(actualJson.inboundIsSet);
-    assertEquals(0.0, actualJson.intra, 0.0);
-    assertEquals(0.0, actualJson.inbound, 0.0);
-    assertEquals(0.0, actualJson.outbound, 0.0);
-    assertFalse(actualJson.outboundIsSet);
-    assertFalse(actualJson.intraIsSet);
-  }
-
-  @Test
-  public void intraTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableLogicalFlowMeasures.Json()).intra();
-  }
-
-  @Test
-  public void outboundTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableLogicalFlowMeasures.Json()).outbound();
   }
 
   @Test

@@ -11,6 +11,19 @@ public class ImmutableReleaseLifecycleStatusChangeCommandDiffblueTest {
   public ExpectedException thrown = ExpectedException.none();
 
   @Test
+  public void buildTest() {
+    // Arrange, Act and Assert
+    thrown.expect(IllegalStateException.class);
+    ImmutableReleaseLifecycleStatusChangeCommand.builder().build();
+  }
+
+  @Test
+  public void constructorTest() {
+    // Arrange, Act and Assert
+    assertNull((new ImmutableReleaseLifecycleStatusChangeCommand.Json()).newStatus);
+  }
+
+  @Test
   public void copyOfTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
@@ -22,13 +35,6 @@ public class ImmutableReleaseLifecycleStatusChangeCommandDiffblueTest {
     // Arrange, Act and Assert
     thrown.expect(IllegalStateException.class);
     ImmutableReleaseLifecycleStatusChangeCommand.fromJson(new ImmutableReleaseLifecycleStatusChangeCommand.Json());
-  }
-
-  @Test
-  public void buildTest() {
-    // Arrange, Act and Assert
-    thrown.expect(IllegalStateException.class);
-    ImmutableReleaseLifecycleStatusChangeCommand.builder().build();
   }
 
   @Test
@@ -59,12 +65,6 @@ public class ImmutableReleaseLifecycleStatusChangeCommandDiffblueTest {
 
     // Assert
     assertEquals(ReleaseLifecycleStatus.DRAFT, json.newStatus);
-  }
-
-  @Test
-  public void constructorTest() {
-    // Arrange, Act and Assert
-    assertNull((new ImmutableReleaseLifecycleStatusChangeCommand.Json()).newStatus);
   }
 }
 

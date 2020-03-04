@@ -12,6 +12,19 @@ public class ImmutableIdGroupDiffblueTest {
   public ExpectedException thrown = ExpectedException.none();
 
   @Test
+  public void buildTest() {
+    // Arrange, Act and Assert
+    thrown.expect(IllegalStateException.class);
+    ImmutableIdGroup.builder().build();
+  }
+
+  @Test
+  public void constructorTest() {
+    // Arrange, Act and Assert
+    assertEquals(0, (new ImmutableIdGroup.Json()).values.size());
+  }
+
+  @Test
   public void copyOfTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
@@ -26,13 +39,6 @@ public class ImmutableIdGroupDiffblueTest {
   }
 
   @Test
-  public void buildTest() {
-    // Arrange, Act and Assert
-    thrown.expect(IllegalStateException.class);
-    ImmutableIdGroup.builder().build();
-  }
-
-  @Test
   public void fromTest() {
     // Arrange
     ImmutableIdGroup.Builder builderResult = ImmutableIdGroup.builder();
@@ -40,6 +46,25 @@ public class ImmutableIdGroupDiffblueTest {
     // Act and Assert
     thrown.expect(UnsupportedOperationException.class);
     builderResult.from(new ImmutableIdGroup.Json());
+  }
+
+  @Test
+  public void keyTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableIdGroup.Json()).key();
+  }
+
+  @Test
+  public void setKeyTest() {
+    // Arrange
+    ImmutableIdGroup.Json json = new ImmutableIdGroup.Json();
+
+    // Act
+    json.setKey(Long.valueOf(1L));
+
+    // Assert
+    assertEquals(Long.valueOf(1L), json.key);
   }
 
   @Test
@@ -57,35 +82,10 @@ public class ImmutableIdGroupDiffblueTest {
   }
 
   @Test
-  public void keyTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableIdGroup.Json()).key();
-  }
-
-  @Test
-  public void constructorTest() {
-    // Arrange, Act and Assert
-    assertEquals(0, (new ImmutableIdGroup.Json()).values.size());
-  }
-
-  @Test
   public void valuesTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
     (new ImmutableIdGroup.Json()).values();
-  }
-
-  @Test
-  public void setKeyTest() {
-    // Arrange
-    ImmutableIdGroup.Json json = new ImmutableIdGroup.Json();
-
-    // Act
-    json.setKey(Long.valueOf(1L));
-
-    // Assert
-    assertEquals(Long.valueOf(1L), json.key);
   }
 }
 

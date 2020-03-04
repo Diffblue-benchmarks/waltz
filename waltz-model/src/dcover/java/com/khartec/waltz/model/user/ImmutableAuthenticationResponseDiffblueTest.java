@@ -13,10 +13,22 @@ public class ImmutableAuthenticationResponseDiffblueTest {
   public ExpectedException thrown = ExpectedException.none();
 
   @Test
-  public void fromJsonTest() {
+  public void buildTest() {
     // Arrange, Act and Assert
     thrown.expect(IllegalStateException.class);
-    ImmutableAuthenticationResponse.fromJson(new ImmutableAuthenticationResponse.Json());
+    ImmutableAuthenticationResponse.builder().build();
+  }
+
+  @Test
+  public void constructorTest() {
+    // Arrange and Act
+    ImmutableAuthenticationResponse.Json actualJson = new ImmutableAuthenticationResponse.Json();
+
+    // Assert
+    assertNull(actualJson.waltzUserName);
+    assertFalse(actualJson.successIsSet);
+    assertNull(actualJson.errorMessage);
+    assertFalse(actualJson.success);
   }
 
   @Test
@@ -27,10 +39,17 @@ public class ImmutableAuthenticationResponseDiffblueTest {
   }
 
   @Test
-  public void buildTest() {
+  public void errorMessageTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableAuthenticationResponse.Json()).errorMessage();
+  }
+
+  @Test
+  public void fromJsonTest() {
     // Arrange, Act and Assert
     thrown.expect(IllegalStateException.class);
-    ImmutableAuthenticationResponse.builder().build();
+    ImmutableAuthenticationResponse.fromJson(new ImmutableAuthenticationResponse.Json());
   }
 
   @Test
@@ -44,29 +63,15 @@ public class ImmutableAuthenticationResponseDiffblueTest {
   }
 
   @Test
-  public void setWaltzUserNameTest() {
+  public void setErrorMessageTest() {
     // Arrange
     ImmutableAuthenticationResponse.Json json = new ImmutableAuthenticationResponse.Json();
 
     // Act
-    json.setWaltzUserName("username");
+    json.setErrorMessage("An error occurred");
 
     // Assert
-    assertEquals("username", json.waltzUserName);
-  }
-
-  @Test
-  public void errorMessageTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableAuthenticationResponse.Json()).errorMessage();
-  }
-
-  @Test
-  public void waltzUserNameTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableAuthenticationResponse.Json()).waltzUserName();
+    assertEquals("An error occurred", json.errorMessage);
   }
 
   @Test
@@ -83,15 +88,15 @@ public class ImmutableAuthenticationResponseDiffblueTest {
   }
 
   @Test
-  public void constructorTest() {
-    // Arrange and Act
-    ImmutableAuthenticationResponse.Json actualJson = new ImmutableAuthenticationResponse.Json();
+  public void setWaltzUserNameTest() {
+    // Arrange
+    ImmutableAuthenticationResponse.Json json = new ImmutableAuthenticationResponse.Json();
+
+    // Act
+    json.setWaltzUserName("username");
 
     // Assert
-    assertNull(actualJson.waltzUserName);
-    assertFalse(actualJson.successIsSet);
-    assertNull(actualJson.errorMessage);
-    assertFalse(actualJson.success);
+    assertEquals("username", json.waltzUserName);
   }
 
   @Test
@@ -102,15 +107,10 @@ public class ImmutableAuthenticationResponseDiffblueTest {
   }
 
   @Test
-  public void setErrorMessageTest() {
-    // Arrange
-    ImmutableAuthenticationResponse.Json json = new ImmutableAuthenticationResponse.Json();
-
-    // Act
-    json.setErrorMessage("An error occurred");
-
-    // Assert
-    assertEquals("An error occurred", json.errorMessage);
+  public void waltzUserNameTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableAuthenticationResponse.Json()).waltzUserName();
   }
 }
 

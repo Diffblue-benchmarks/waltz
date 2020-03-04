@@ -11,6 +11,23 @@ public class ImmutableUpdateEntityRelationshipParamsDiffblueTest {
   public ExpectedException thrown = ExpectedException.none();
 
   @Test
+  public void buildTest() {
+    // Arrange, Act and Assert
+    thrown.expect(IllegalStateException.class);
+    ImmutableUpdateEntityRelationshipParams.builder().build();
+  }
+
+  @Test
+  public void constructorTest() {
+    // Arrange and Act
+    ImmutableUpdateEntityRelationshipParams.Json actualJson = new ImmutableUpdateEntityRelationshipParams.Json();
+
+    // Assert
+    assertNull(actualJson.relationshipKind);
+    assertNull(actualJson.description);
+  }
+
+  @Test
   public void copyOfTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
@@ -18,20 +35,17 @@ public class ImmutableUpdateEntityRelationshipParamsDiffblueTest {
   }
 
   @Test
+  public void descriptionTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableUpdateEntityRelationshipParams.Json()).description();
+  }
+
+  @Test
   public void fromJsonTest() {
     // Arrange, Act and Assert
     thrown.expect(IllegalStateException.class);
     ImmutableUpdateEntityRelationshipParams.fromJson(new ImmutableUpdateEntityRelationshipParams.Json());
-  }
-
-  @Test
-  public void fromTest2() {
-    // Arrange
-    ImmutableUpdateEntityRelationshipParams.Builder builderResult = ImmutableUpdateEntityRelationshipParams.builder();
-
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from(new ImmutableUpdateEntityRelationshipParams.Json());
   }
 
   @Test
@@ -45,10 +59,20 @@ public class ImmutableUpdateEntityRelationshipParamsDiffblueTest {
   }
 
   @Test
-  public void buildTest() {
+  public void fromTest2() {
+    // Arrange
+    ImmutableUpdateEntityRelationshipParams.Builder builderResult = ImmutableUpdateEntityRelationshipParams.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from(new ImmutableUpdateEntityRelationshipParams.Json());
+  }
+
+  @Test
+  public void relationshipKindTest() {
     // Arrange, Act and Assert
-    thrown.expect(IllegalStateException.class);
-    ImmutableUpdateEntityRelationshipParams.builder().build();
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableUpdateEntityRelationshipParams.Json()).relationshipKind();
   }
 
   @Test
@@ -61,30 +85,6 @@ public class ImmutableUpdateEntityRelationshipParamsDiffblueTest {
 
     // Assert
     assertEquals("description", json.description);
-  }
-
-  @Test
-  public void descriptionTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableUpdateEntityRelationshipParams.Json()).description();
-  }
-
-  @Test
-  public void relationshipKindTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableUpdateEntityRelationshipParams.Json()).relationshipKind();
-  }
-
-  @Test
-  public void constructorTest() {
-    // Arrange and Act
-    ImmutableUpdateEntityRelationshipParams.Json actualJson = new ImmutableUpdateEntityRelationshipParams.Json();
-
-    // Assert
-    assertNull(actualJson.relationshipKind);
-    assertNull(actualJson.description);
   }
 
   @Test

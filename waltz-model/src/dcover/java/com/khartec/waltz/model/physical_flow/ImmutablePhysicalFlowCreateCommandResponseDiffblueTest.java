@@ -13,6 +13,24 @@ public class ImmutablePhysicalFlowCreateCommandResponseDiffblueTest {
   public ExpectedException thrown = ExpectedException.none();
 
   @Test
+  public void buildTest() {
+    // Arrange, Act and Assert
+    thrown.expect(IllegalStateException.class);
+    ImmutablePhysicalFlowCreateCommandResponse.builder().build();
+  }
+
+  @Test
+  public void constructorTest() {
+    // Arrange and Act
+    ImmutablePhysicalFlowCreateCommandResponse.Json actualJson = new ImmutablePhysicalFlowCreateCommandResponse.Json();
+
+    // Assert
+    assertNull(actualJson.outcome);
+    assertNull(actualJson.entityReference);
+    assertNull(actualJson.originalCommand);
+  }
+
+  @Test
   public void copyOfTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
@@ -20,17 +38,17 @@ public class ImmutablePhysicalFlowCreateCommandResponseDiffblueTest {
   }
 
   @Test
+  public void entityReferenceTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutablePhysicalFlowCreateCommandResponse.Json()).entityReference();
+  }
+
+  @Test
   public void fromJsonTest() {
     // Arrange, Act and Assert
     thrown.expect(IllegalStateException.class);
     ImmutablePhysicalFlowCreateCommandResponse.fromJson(new ImmutablePhysicalFlowCreateCommandResponse.Json());
-  }
-
-  @Test
-  public void buildTest() {
-    // Arrange, Act and Assert
-    thrown.expect(IllegalStateException.class);
-    ImmutablePhysicalFlowCreateCommandResponse.builder().build();
   }
 
   @Test
@@ -45,13 +63,6 @@ public class ImmutablePhysicalFlowCreateCommandResponseDiffblueTest {
   }
 
   @Test
-  public void entityReferenceTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutablePhysicalFlowCreateCommandResponse.Json()).entityReference();
-  }
-
-  @Test
   public void messageTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
@@ -63,17 +74,6 @@ public class ImmutablePhysicalFlowCreateCommandResponseDiffblueTest {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
     (new ImmutablePhysicalFlowCreateCommandResponse.Json()).originalCommand();
-  }
-
-  @Test
-  public void constructorTest() {
-    // Arrange and Act
-    ImmutablePhysicalFlowCreateCommandResponse.Json actualJson = new ImmutablePhysicalFlowCreateCommandResponse.Json();
-
-    // Assert
-    assertNull(actualJson.outcome);
-    assertNull(actualJson.entityReference);
-    assertNull(actualJson.originalCommand);
   }
 
   @Test

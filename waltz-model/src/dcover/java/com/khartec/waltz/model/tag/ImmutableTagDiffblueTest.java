@@ -22,33 +22,9 @@ public class ImmutableTagDiffblueTest {
   }
 
   @Test
-  public void fromTest3() {
-    // Arrange
-    ImmutableTag.Builder builderResult = ImmutableTag.builder();
-
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from((IdProvider) new ImmutableTag.Json());
-  }
-
-  @Test
-  public void fromTest2() {
-    // Arrange
-    ImmutableTag.Builder builderResult = ImmutableTag.builder();
-
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from((NameProvider) new ImmutableTag.Json());
-  }
-
-  @Test
-  public void fromTest() {
-    // Arrange
-    ImmutableTag.Builder builderResult = ImmutableTag.builder();
-
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from(new ImmutableTag.Json());
+  public void constructorTest() {
+    // Arrange, Act and Assert
+    assertEquals(0, (new ImmutableTag.Json()).tagUsages.size());
   }
 
   @Test
@@ -66,22 +42,40 @@ public class ImmutableTagDiffblueTest {
   }
 
   @Test
-  public void tagUsagesTest() {
-    // Arrange, Act and Assert
+  public void fromTest() {
+    // Arrange
+    ImmutableTag.Builder builderResult = ImmutableTag.builder();
+
+    // Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableTag.Json()).tagUsages();
+    builderResult.from(new ImmutableTag.Json());
   }
 
   @Test
-  public void setTargetKindTest() {
+  public void fromTest2() {
     // Arrange
-    ImmutableTag.Json json = new ImmutableTag.Json();
+    ImmutableTag.Builder builderResult = ImmutableTag.builder();
 
-    // Act
-    json.setTargetKind(EntityKind.ACTOR);
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from((NameProvider) new ImmutableTag.Json());
+  }
 
-    // Assert
-    assertEquals(EntityKind.ACTOR, json.targetKind);
+  @Test
+  public void fromTest3() {
+    // Arrange
+    ImmutableTag.Builder builderResult = ImmutableTag.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from((IdProvider) new ImmutableTag.Json());
+  }
+
+  @Test
+  public void idTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableTag.Json()).id();
   }
 
   @Test
@@ -104,26 +98,6 @@ public class ImmutableTagDiffblueTest {
   }
 
   @Test
-  public void targetKindTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableTag.Json()).targetKind();
-  }
-
-  @Test
-  public void idTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableTag.Json()).id();
-  }
-
-  @Test
-  public void constructorTest() {
-    // Arrange, Act and Assert
-    assertEquals(0, (new ImmutableTag.Json()).tagUsages.size());
-  }
-
-  @Test
   public void setTagUsagesTest() {
     // Arrange
     ImmutableTag.Json json = new ImmutableTag.Json();
@@ -135,6 +109,32 @@ public class ImmutableTagDiffblueTest {
 
     // Assert
     assertSame(tagUsageSet, json.tagUsages);
+  }
+
+  @Test
+  public void setTargetKindTest() {
+    // Arrange
+    ImmutableTag.Json json = new ImmutableTag.Json();
+
+    // Act
+    json.setTargetKind(EntityKind.ACTOR);
+
+    // Assert
+    assertEquals(EntityKind.ACTOR, json.targetKind);
+  }
+
+  @Test
+  public void tagUsagesTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableTag.Json()).tagUsages();
+  }
+
+  @Test
+  public void targetKindTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableTag.Json()).targetKind();
   }
 }
 

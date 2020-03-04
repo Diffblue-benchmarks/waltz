@@ -11,46 +11,10 @@ public class ImmutableMeasurableRatingTallyDiffblueTest {
   @Rule
   public ExpectedException thrown = ExpectedException.none();
   @Test
-  public void idTest() {
+  public void buildTest() {
     // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableMeasurableRatingTally.Json()).id();
-  }
-  @Test
-  public void countTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableMeasurableRatingTally.Json()).count();
-  }
-  @Test
-  public void setRatingTest() {
-    // Arrange
-    ImmutableMeasurableRatingTally.Json json = new ImmutableMeasurableRatingTally.Json();
-
-    // Act
-    json.setRating('A');
-
-    // Assert
-    assertTrue(json.ratingIsSet);
-    assertEquals('A', json.rating);
-  }
-  @Test
-  public void ratingTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableMeasurableRatingTally.Json()).rating();
-  }
-  @Test
-  public void setIdTest() {
-    // Arrange
-    ImmutableMeasurableRatingTally.Json json = new ImmutableMeasurableRatingTally.Json();
-
-    // Act
-    json.setId(123L);
-
-    // Assert
-    assertTrue(json.idIsSet);
-    assertEquals(123L, json.id);
+    thrown.expect(IllegalStateException.class);
+    ImmutableMeasurableRatingTally.builder().build();
   }
   @Test
   public void constructorTest() {
@@ -66,6 +30,45 @@ public class ImmutableMeasurableRatingTallyDiffblueTest {
     assertEquals(0L, actualJson.id);
   }
   @Test
+  public void copyOfTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    ImmutableMeasurableRatingTally.copyOf(new ImmutableMeasurableRatingTally.Json());
+  }
+  @Test
+  public void countTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableMeasurableRatingTally.Json()).count();
+  }
+  @Test
+  public void fromJsonTest() {
+    // Arrange, Act and Assert
+    thrown.expect(IllegalStateException.class);
+    ImmutableMeasurableRatingTally.fromJson(new ImmutableMeasurableRatingTally.Json());
+  }
+  @Test
+  public void fromTest() {
+    // Arrange
+    ImmutableMeasurableRatingTally.Builder builderResult = ImmutableMeasurableRatingTally.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from(new ImmutableMeasurableRatingTally.Json());
+  }
+  @Test
+  public void idTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableMeasurableRatingTally.Json()).id();
+  }
+  @Test
+  public void ratingTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableMeasurableRatingTally.Json()).rating();
+  }
+  @Test
   public void setCountTest() {
     // Arrange
     ImmutableMeasurableRatingTally.Json json = new ImmutableMeasurableRatingTally.Json();
@@ -78,31 +81,28 @@ public class ImmutableMeasurableRatingTallyDiffblueTest {
     assertEquals(3L, json.count);
   }
   @Test
-  public void buildTest() {
-    // Arrange, Act and Assert
-    thrown.expect(IllegalStateException.class);
-    ImmutableMeasurableRatingTally.builder().build();
-  }
-  @Test
-  public void fromTest() {
+  public void setIdTest() {
     // Arrange
-    ImmutableMeasurableRatingTally.Builder builderResult = ImmutableMeasurableRatingTally.builder();
+    ImmutableMeasurableRatingTally.Json json = new ImmutableMeasurableRatingTally.Json();
 
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from(new ImmutableMeasurableRatingTally.Json());
+    // Act
+    json.setId(123L);
+
+    // Assert
+    assertTrue(json.idIsSet);
+    assertEquals(123L, json.id);
   }
   @Test
-  public void copyOfTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    ImmutableMeasurableRatingTally.copyOf(new ImmutableMeasurableRatingTally.Json());
-  }
-  @Test
-  public void fromJsonTest() {
-    // Arrange, Act and Assert
-    thrown.expect(IllegalStateException.class);
-    ImmutableMeasurableRatingTally.fromJson(new ImmutableMeasurableRatingTally.Json());
+  public void setRatingTest() {
+    // Arrange
+    ImmutableMeasurableRatingTally.Json json = new ImmutableMeasurableRatingTally.Json();
+
+    // Act
+    json.setRating('A');
+
+    // Assert
+    assertTrue(json.ratingIsSet);
+    assertEquals('A', json.rating);
   }
 }
 

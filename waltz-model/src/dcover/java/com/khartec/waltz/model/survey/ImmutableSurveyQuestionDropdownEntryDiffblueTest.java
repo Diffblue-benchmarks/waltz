@@ -11,22 +11,10 @@ public class ImmutableSurveyQuestionDropdownEntryDiffblueTest {
   @Rule
   public ExpectedException thrown = ExpectedException.none();
   @Test
-  public void valueTest() {
+  public void buildTest() {
     // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableSurveyQuestionDropdownEntry.Json()).value();
-  }
-  @Test
-  public void questionIdTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableSurveyQuestionDropdownEntry.Json()).questionId();
-  }
-  @Test
-  public void idTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableSurveyQuestionDropdownEntry.Json()).id();
+    thrown.expect(IllegalStateException.class);
+    ImmutableSurveyQuestionDropdownEntry.builder().build();
   }
   @Test
   public void constructorTest() {
@@ -35,35 +23,6 @@ public class ImmutableSurveyQuestionDropdownEntryDiffblueTest {
 
     // Assert
     assertSame(actualJson.questionId, actualJson.id);
-  }
-  @Test
-  public void setValueTest() {
-    // Arrange
-    ImmutableSurveyQuestionDropdownEntry.Json json = new ImmutableSurveyQuestionDropdownEntry.Json();
-
-    // Act
-    json.setValue("value");
-
-    // Assert
-    assertEquals("value", json.value);
-  }
-  @Test
-  public void positionTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableSurveyQuestionDropdownEntry.Json()).position();
-  }
-  @Test
-  public void setPositionTest() {
-    // Arrange
-    ImmutableSurveyQuestionDropdownEntry.Json json = new ImmutableSurveyQuestionDropdownEntry.Json();
-
-    // Act
-    json.setPosition(1);
-
-    // Assert
-    assertTrue(json.positionIsSet);
-    assertEquals(1, json.position);
   }
   @Test
   public void copyOfTest() {
@@ -78,10 +37,13 @@ public class ImmutableSurveyQuestionDropdownEntryDiffblueTest {
     ImmutableSurveyQuestionDropdownEntry.fromJson(new ImmutableSurveyQuestionDropdownEntry.Json());
   }
   @Test
-  public void buildTest() {
-    // Arrange, Act and Assert
-    thrown.expect(IllegalStateException.class);
-    ImmutableSurveyQuestionDropdownEntry.builder().build();
+  public void fromTest() {
+    // Arrange
+    ImmutableSurveyQuestionDropdownEntry.Builder builderResult = ImmutableSurveyQuestionDropdownEntry.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from(new ImmutableSurveyQuestionDropdownEntry.Json());
   }
   @Test
   public void fromTest2() {
@@ -93,13 +55,51 @@ public class ImmutableSurveyQuestionDropdownEntryDiffblueTest {
     builderResult.from(new ImmutableSurveyInstance.Json());
   }
   @Test
-  public void fromTest() {
-    // Arrange
-    ImmutableSurveyQuestionDropdownEntry.Builder builderResult = ImmutableSurveyQuestionDropdownEntry.builder();
-
-    // Act and Assert
+  public void idTest() {
+    // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    builderResult.from(new ImmutableSurveyQuestionDropdownEntry.Json());
+    (new ImmutableSurveyQuestionDropdownEntry.Json()).id();
+  }
+  @Test
+  public void positionTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableSurveyQuestionDropdownEntry.Json()).position();
+  }
+  @Test
+  public void questionIdTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableSurveyQuestionDropdownEntry.Json()).questionId();
+  }
+  @Test
+  public void setPositionTest() {
+    // Arrange
+    ImmutableSurveyQuestionDropdownEntry.Json json = new ImmutableSurveyQuestionDropdownEntry.Json();
+
+    // Act
+    json.setPosition(1);
+
+    // Assert
+    assertTrue(json.positionIsSet);
+    assertEquals(1, json.position);
+  }
+  @Test
+  public void setValueTest() {
+    // Arrange
+    ImmutableSurveyQuestionDropdownEntry.Json json = new ImmutableSurveyQuestionDropdownEntry.Json();
+
+    // Act
+    json.setValue("value");
+
+    // Assert
+    assertEquals("value", json.value);
+  }
+  @Test
+  public void valueTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableSurveyQuestionDropdownEntry.Json()).value();
   }
 }
 

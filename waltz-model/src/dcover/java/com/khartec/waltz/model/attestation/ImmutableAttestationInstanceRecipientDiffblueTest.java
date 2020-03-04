@@ -11,6 +11,27 @@ public class ImmutableAttestationInstanceRecipientDiffblueTest {
   @Rule
   public ExpectedException thrown = ExpectedException.none();
   @Test
+  public void attestationInstanceTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableAttestationInstanceRecipient.Json()).attestationInstance();
+  }
+  @Test
+  public void buildTest() {
+    // Arrange, Act and Assert
+    thrown.expect(IllegalStateException.class);
+    ImmutableAttestationInstanceRecipient.builder().build();
+  }
+  @Test
+  public void constructorTest() {
+    // Arrange and Act
+    ImmutableAttestationInstanceRecipient.Json actualJson = new ImmutableAttestationInstanceRecipient.Json();
+
+    // Assert
+    assertNull(actualJson.attestationInstance);
+    assertNull(actualJson.userId);
+  }
+  @Test
   public void copyOfTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
@@ -23,42 +44,28 @@ public class ImmutableAttestationInstanceRecipientDiffblueTest {
     ImmutableAttestationInstanceRecipient.fromJson(new ImmutableAttestationInstanceRecipient.Json());
   }
   @Test
-  public void userIdTest() {
-    // Arrange, Act and Assert
+  public void fromTest() {
+    // Arrange
+    ImmutableAttestationInstanceRecipient.Builder builderResult = ImmutableAttestationInstanceRecipient.builder();
+
+    // Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableAttestationInstanceRecipient.Json()).userId();
+    builderResult.from(new ImmutableAttestationInstance.Json());
+  }
+  @Test
+  public void fromTest2() {
+    // Arrange
+    ImmutableAttestationInstanceRecipient.Builder builderResult = ImmutableAttestationInstanceRecipient.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from(new ImmutableAttestationInstanceRecipient.Json());
   }
   @Test
   public void idTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
     (new ImmutableAttestationInstanceRecipient.Json()).id();
-  }
-  @Test
-  public void constructorTest() {
-    // Arrange and Act
-    ImmutableAttestationInstanceRecipient.Json actualJson = new ImmutableAttestationInstanceRecipient.Json();
-
-    // Assert
-    assertNull(actualJson.attestationInstance);
-    assertNull(actualJson.userId);
-  }
-  @Test
-  public void setUserIdTest() {
-    // Arrange
-    ImmutableAttestationInstanceRecipient.Json json = new ImmutableAttestationInstanceRecipient.Json();
-
-    // Act
-    json.setUserId("123");
-
-    // Assert
-    assertEquals("123", json.userId);
-  }
-  @Test
-  public void attestationInstanceTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableAttestationInstanceRecipient.Json()).attestationInstance();
   }
   @Test
   public void setAttestationInstanceTest() {
@@ -73,28 +80,21 @@ public class ImmutableAttestationInstanceRecipientDiffblueTest {
     assertSame(json1, json.attestationInstance);
   }
   @Test
-  public void buildTest() {
+  public void setUserIdTest() {
+    // Arrange
+    ImmutableAttestationInstanceRecipient.Json json = new ImmutableAttestationInstanceRecipient.Json();
+
+    // Act
+    json.setUserId("123");
+
+    // Assert
+    assertEquals("123", json.userId);
+  }
+  @Test
+  public void userIdTest() {
     // Arrange, Act and Assert
-    thrown.expect(IllegalStateException.class);
-    ImmutableAttestationInstanceRecipient.builder().build();
-  }
-  @Test
-  public void fromTest2() {
-    // Arrange
-    ImmutableAttestationInstanceRecipient.Builder builderResult = ImmutableAttestationInstanceRecipient.builder();
-
-    // Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    builderResult.from(new ImmutableAttestationInstanceRecipient.Json());
-  }
-  @Test
-  public void fromTest() {
-    // Arrange
-    ImmutableAttestationInstanceRecipient.Builder builderResult = ImmutableAttestationInstanceRecipient.builder();
-
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from(new ImmutableAttestationInstance.Json());
+    (new ImmutableAttestationInstanceRecipient.Json()).userId();
   }
 }
 

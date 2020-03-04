@@ -15,37 +15,10 @@ public class ImmutableFlowAttributesDiffblueTest {
   public ExpectedException thrown = ExpectedException.none();
 
   @Test
-  public void copyOfTest() {
+  public void basisOffsetTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    ImmutableFlowAttributes.copyOf(new ImmutableFlowAttributes.Json());
-  }
-
-  @Test
-  public void fromJsonTest() {
-    // Arrange, Act and Assert
-    thrown.expect(IllegalStateException.class);
-    ImmutableFlowAttributes.fromJson(new ImmutableFlowAttributes.Json());
-  }
-
-  @Test
-  public void fromTest2() {
-    // Arrange
-    ImmutableFlowAttributes.Builder builderResult = ImmutableFlowAttributes.builder();
-
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from(new ImmutableFlowAttributes.Json());
-  }
-
-  @Test
-  public void fromTest() {
-    // Arrange
-    ImmutableFlowAttributes.Builder builderResult = ImmutableFlowAttributes.builder();
-
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from((DescriptionProvider) new ImmutableFlowAttributes.Json());
+    (new ImmutableFlowAttributes.Json()).basisOffset();
   }
 
   @Test
@@ -53,71 +26,6 @@ public class ImmutableFlowAttributesDiffblueTest {
     // Arrange, Act and Assert
     thrown.expect(IllegalStateException.class);
     ImmutableFlowAttributes.builder().build();
-  }
-
-  @Test
-  public void criticalityTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableFlowAttributes.Json()).criticality();
-  }
-
-  @Test
-  public void setTransportTest() {
-    // Arrange
-    ImmutableFlowAttributes.Json json = new ImmutableFlowAttributes.Json();
-
-    // Act
-    json.setTransport("foo");
-
-    // Assert
-    assertEquals("foo", json.transport);
-  }
-
-  @Test
-  public void setBasisOffsetTest() {
-    // Arrange
-    ImmutableFlowAttributes.Json json = new ImmutableFlowAttributes.Json();
-
-    // Act
-    json.setBasisOffset(1);
-
-    // Assert
-    assertEquals(1, json.basisOffset);
-    assertTrue(json.basisOffsetIsSet);
-  }
-
-  @Test
-  public void setDescriptionTest() {
-    // Arrange
-    ImmutableFlowAttributes.Json json = new ImmutableFlowAttributes.Json();
-
-    // Act
-    json.setDescription("description");
-
-    // Assert
-    assertEquals("description", json.description);
-  }
-
-  @Test
-  public void descriptionTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableFlowAttributes.Json()).description();
-  }
-
-  @Test
-  public void transportTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableFlowAttributes.Json()).transport();
-  }
-
-  @Test
-  public void frequencyTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableFlowAttributes.Json()).frequency();
   }
 
   @Test
@@ -135,10 +43,71 @@ public class ImmutableFlowAttributesDiffblueTest {
   }
 
   @Test
-  public void basisOffsetTest() {
+  public void copyOfTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableFlowAttributes.Json()).basisOffset();
+    ImmutableFlowAttributes.copyOf(new ImmutableFlowAttributes.Json());
+  }
+
+  @Test
+  public void criticalityTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableFlowAttributes.Json()).criticality();
+  }
+
+  @Test
+  public void descriptionTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableFlowAttributes.Json()).description();
+  }
+
+  @Test
+  public void frequencyTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableFlowAttributes.Json()).frequency();
+  }
+
+  @Test
+  public void fromJsonTest() {
+    // Arrange, Act and Assert
+    thrown.expect(IllegalStateException.class);
+    ImmutableFlowAttributes.fromJson(new ImmutableFlowAttributes.Json());
+  }
+
+  @Test
+  public void fromTest() {
+    // Arrange
+    ImmutableFlowAttributes.Builder builderResult = ImmutableFlowAttributes.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from((DescriptionProvider) new ImmutableFlowAttributes.Json());
+  }
+
+  @Test
+  public void fromTest2() {
+    // Arrange
+    ImmutableFlowAttributes.Builder builderResult = ImmutableFlowAttributes.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from(new ImmutableFlowAttributes.Json());
+  }
+
+  @Test
+  public void setBasisOffsetTest() {
+    // Arrange
+    ImmutableFlowAttributes.Json json = new ImmutableFlowAttributes.Json();
+
+    // Act
+    json.setBasisOffset(1);
+
+    // Assert
+    assertEquals(1, json.basisOffset);
+    assertTrue(json.basisOffsetIsSet);
   }
 
   @Test
@@ -154,6 +123,18 @@ public class ImmutableFlowAttributesDiffblueTest {
   }
 
   @Test
+  public void setDescriptionTest() {
+    // Arrange
+    ImmutableFlowAttributes.Json json = new ImmutableFlowAttributes.Json();
+
+    // Act
+    json.setDescription("description");
+
+    // Assert
+    assertEquals("description", json.description);
+  }
+
+  @Test
   public void setFrequencyTest() {
     // Arrange
     ImmutableFlowAttributes.Json json = new ImmutableFlowAttributes.Json();
@@ -163,6 +144,25 @@ public class ImmutableFlowAttributesDiffblueTest {
 
     // Assert
     assertEquals(FrequencyKind.ON_DEMAND, json.frequency);
+  }
+
+  @Test
+  public void setTransportTest() {
+    // Arrange
+    ImmutableFlowAttributes.Json json = new ImmutableFlowAttributes.Json();
+
+    // Act
+    json.setTransport("transport");
+
+    // Assert
+    assertEquals("transport", json.transport);
+  }
+
+  @Test
+  public void transportTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableFlowAttributes.Json()).transport();
   }
 }
 

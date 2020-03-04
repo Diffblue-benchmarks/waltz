@@ -14,15 +14,10 @@ public class ImmutableScenarioRatingItemDiffblueTest {
   @Rule
   public ExpectedException thrown = ExpectedException.none();
   @Test
-  public void setLastUpdatedByTest() {
-    // Arrange
-    ImmutableScenarioRatingItem.Json json = new ImmutableScenarioRatingItem.Json();
-
-    // Act
-    json.setLastUpdatedBy("foo");
-
-    // Assert
-    assertEquals("foo", json.lastUpdatedBy);
+  public void buildTest() {
+    // Arrange, Act and Assert
+    thrown.expect(IllegalStateException.class);
+    ImmutableScenarioRatingItem.builder().build();
   }
   @Test
   public void columnTest() {
@@ -31,10 +26,27 @@ public class ImmutableScenarioRatingItemDiffblueTest {
     (new ImmutableScenarioRatingItem.Json()).column();
   }
   @Test
-  public void scenarioIdTest() {
+  public void constructorTest() {
+    // Arrange and Act
+    ImmutableScenarioRatingItem.Json actualJson = new ImmutableScenarioRatingItem.Json();
+
+    // Assert
+    assertNull(actualJson.lastUpdatedAt);
+    assertNull(actualJson.row);
+    assertNull(actualJson.column);
+    assertEquals('\u0000', actualJson.rating);
+    assertNull(actualJson.description);
+    assertFalse(actualJson.ratingIsSet);
+    assertFalse(actualJson.scenarioIdIsSet);
+    assertEquals(0L, actualJson.scenarioId);
+    assertNull(actualJson.item);
+    assertNull(actualJson.lastUpdatedBy);
+  }
+  @Test
+  public void copyOfTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableScenarioRatingItem.Json()).scenarioId();
+    ImmutableScenarioRatingItem.copyOf(new ImmutableScenarioRatingItem.Json());
   }
   @Test
   public void descriptionTest() {
@@ -43,10 +55,95 @@ public class ImmutableScenarioRatingItemDiffblueTest {
     (new ImmutableScenarioRatingItem.Json()).description();
   }
   @Test
+  public void fromJsonTest() {
+    // Arrange, Act and Assert
+    thrown.expect(IllegalStateException.class);
+    ImmutableScenarioRatingItem.fromJson(new ImmutableScenarioRatingItem.Json());
+  }
+  @Test
+  public void fromTest() {
+    // Arrange
+    ImmutableScenarioRatingItem.Builder builderResult = ImmutableScenarioRatingItem.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from((DescriptionProvider) new ImmutableScenario.Json());
+  }
+  @Test
+  public void fromTest2() {
+    // Arrange
+    ImmutableScenarioRatingItem.Builder builderResult = ImmutableScenarioRatingItem.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from(new ImmutableScenarioRatingItem.Json());
+  }
+  @Test
+  public void fromTest3() {
+    // Arrange
+    ImmutableScenarioRatingItem.Builder builderResult = ImmutableScenarioRatingItem.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from((LastUpdatedProvider) new ImmutableScenario.Json());
+  }
+  @Test
+  public void itemTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableScenarioRatingItem.Json()).item();
+  }
+  @Test
+  public void lastUpdatedAtTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableScenarioRatingItem.Json()).lastUpdatedAt();
+  }
+  @Test
   public void lastUpdatedByTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
     (new ImmutableScenarioRatingItem.Json()).lastUpdatedBy();
+  }
+  @Test
+  public void ratingTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableScenarioRatingItem.Json()).rating();
+  }
+  @Test
+  public void rowTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableScenarioRatingItem.Json()).row();
+  }
+  @Test
+  public void scenarioIdTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableScenarioRatingItem.Json()).scenarioId();
+  }
+  @Test
+  public void setDescriptionTest() {
+    // Arrange
+    ImmutableScenarioRatingItem.Json json = new ImmutableScenarioRatingItem.Json();
+
+    // Act
+    json.setDescription("description");
+
+    // Assert
+    assertEquals("description", json.description);
+  }
+  @Test
+  public void setLastUpdatedByTest() {
+    // Arrange
+    ImmutableScenarioRatingItem.Json json = new ImmutableScenarioRatingItem.Json();
+
+    // Act
+    json.setLastUpdatedBy("lastUpdatedBy");
+
+    // Assert
+    assertEquals("lastUpdatedBy", json.lastUpdatedBy);
   }
   @Test
   public void setRatingTest() {
@@ -71,103 +168,6 @@ public class ImmutableScenarioRatingItemDiffblueTest {
     // Assert
     assertTrue(json.scenarioIdIsSet);
     assertEquals(123L, json.scenarioId);
-  }
-  @Test
-  public void setDescriptionTest() {
-    // Arrange
-    ImmutableScenarioRatingItem.Json json = new ImmutableScenarioRatingItem.Json();
-
-    // Act
-    json.setDescription("description");
-
-    // Assert
-    assertEquals("description", json.description);
-  }
-  @Test
-  public void lastUpdatedAtTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableScenarioRatingItem.Json()).lastUpdatedAt();
-  }
-  @Test
-  public void ratingTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableScenarioRatingItem.Json()).rating();
-  }
-  @Test
-  public void constructorTest() {
-    // Arrange and Act
-    ImmutableScenarioRatingItem.Json actualJson = new ImmutableScenarioRatingItem.Json();
-
-    // Assert
-    assertNull(actualJson.lastUpdatedAt);
-    assertNull(actualJson.row);
-    assertNull(actualJson.column);
-    assertEquals('\u0000', actualJson.rating);
-    assertNull(actualJson.description);
-    assertFalse(actualJson.ratingIsSet);
-    assertFalse(actualJson.scenarioIdIsSet);
-    assertEquals(0L, actualJson.scenarioId);
-    assertNull(actualJson.item);
-    assertNull(actualJson.lastUpdatedBy);
-  }
-  @Test
-  public void rowTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableScenarioRatingItem.Json()).row();
-  }
-  @Test
-  public void itemTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableScenarioRatingItem.Json()).item();
-  }
-  @Test
-  public void fromTest3() {
-    // Arrange
-    ImmutableScenarioRatingItem.Builder builderResult = ImmutableScenarioRatingItem.builder();
-
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from((LastUpdatedProvider) new ImmutableScenario.Json());
-  }
-  @Test
-  public void fromTest2() {
-    // Arrange
-    ImmutableScenarioRatingItem.Builder builderResult = ImmutableScenarioRatingItem.builder();
-
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from(new ImmutableScenarioRatingItem.Json());
-  }
-  @Test
-  public void buildTest() {
-    // Arrange, Act and Assert
-    thrown.expect(IllegalStateException.class);
-    ImmutableScenarioRatingItem.builder().build();
-  }
-  @Test
-  public void fromTest() {
-    // Arrange
-    ImmutableScenarioRatingItem.Builder builderResult = ImmutableScenarioRatingItem.builder();
-
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from((DescriptionProvider) new ImmutableScenario.Json());
-  }
-  @Test
-  public void copyOfTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    ImmutableScenarioRatingItem.copyOf(new ImmutableScenarioRatingItem.Json());
-  }
-  @Test
-  public void fromJsonTest() {
-    // Arrange, Act and Assert
-    thrown.expect(IllegalStateException.class);
-    ImmutableScenarioRatingItem.fromJson(new ImmutableScenarioRatingItem.Json());
   }
 }
 

@@ -11,6 +11,17 @@ public class ImmutableEntityReferenceKeyedGroupDiffblueTest {
   @Rule
   public ExpectedException thrown = ExpectedException.none();
   @Test
+  public void buildTest() {
+    // Arrange, Act and Assert
+    thrown.expect(IllegalStateException.class);
+    ImmutableEntityReferenceKeyedGroup.builder().build();
+  }
+  @Test
+  public void constructorTest() {
+    // Arrange, Act and Assert
+    assertEquals(0, (new ImmutableEntityReferenceKeyedGroup.Json()).values.size());
+  }
+  @Test
   public void copyOfTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
@@ -23,6 +34,21 @@ public class ImmutableEntityReferenceKeyedGroupDiffblueTest {
     ImmutableEntityReferenceKeyedGroup.fromJson(new ImmutableEntityReferenceKeyedGroup.Json());
   }
   @Test
+  public void fromTest() {
+    // Arrange
+    ImmutableEntityReferenceKeyedGroup.Builder builderResult = ImmutableEntityReferenceKeyedGroup.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from(new ImmutableEntityReferenceKeyedGroup.Json());
+  }
+  @Test
+  public void keyTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableEntityReferenceKeyedGroup.Json()).key();
+  }
+  @Test
   public void setKeyTest() {
     // Arrange
     ImmutableEntityReferenceKeyedGroup.Json json = new ImmutableEntityReferenceKeyedGroup.Json();
@@ -33,12 +59,6 @@ public class ImmutableEntityReferenceKeyedGroupDiffblueTest {
 
     // Assert
     assertSame(json1, json.key);
-  }
-  @Test
-  public void keyTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableEntityReferenceKeyedGroup.Json()).key();
   }
   @Test
   public void setValuesTest() {
@@ -54,30 +74,10 @@ public class ImmutableEntityReferenceKeyedGroupDiffblueTest {
     assertSame(entityReferenceList, json.values);
   }
   @Test
-  public void constructorTest() {
-    // Arrange, Act and Assert
-    assertEquals(0, (new ImmutableEntityReferenceKeyedGroup.Json()).values.size());
-  }
-  @Test
   public void valuesTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
     (new ImmutableEntityReferenceKeyedGroup.Json()).values();
-  }
-  @Test
-  public void fromTest() {
-    // Arrange
-    ImmutableEntityReferenceKeyedGroup.Builder builderResult = ImmutableEntityReferenceKeyedGroup.builder();
-
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from(new ImmutableEntityReferenceKeyedGroup.Json());
-  }
-  @Test
-  public void buildTest() {
-    // Arrange, Act and Assert
-    thrown.expect(IllegalStateException.class);
-    ImmutableEntityReferenceKeyedGroup.builder().build();
   }
 }
 

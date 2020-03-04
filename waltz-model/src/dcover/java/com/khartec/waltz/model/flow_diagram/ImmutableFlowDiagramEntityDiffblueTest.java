@@ -11,22 +11,10 @@ public class ImmutableFlowDiagramEntityDiffblueTest {
   @Rule
   public ExpectedException thrown = ExpectedException.none();
   @Test
-  public void fromJsonTest() {
+  public void buildTest() {
     // Arrange, Act and Assert
     thrown.expect(IllegalStateException.class);
-    ImmutableFlowDiagramEntity.fromJson(new ImmutableFlowDiagramEntity.Json());
-  }
-  @Test
-  public void copyOfTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    ImmutableFlowDiagramEntity.copyOf(new ImmutableFlowDiagramEntity.Json());
-  }
-  @Test
-  public void entityReferenceTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableFlowDiagramEntity.Json()).entityReference();
+    ImmutableFlowDiagramEntity.builder().build();
   }
   @Test
   public void constructorTest() {
@@ -39,10 +27,37 @@ public class ImmutableFlowDiagramEntityDiffblueTest {
     assertFalse(actualJson.isNotableIsSet);
   }
   @Test
+  public void copyOfTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    ImmutableFlowDiagramEntity.copyOf(new ImmutableFlowDiagramEntity.Json());
+  }
+  @Test
   public void diagramIdTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
     (new ImmutableFlowDiagramEntity.Json()).diagramId();
+  }
+  @Test
+  public void entityReferenceTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableFlowDiagramEntity.Json()).entityReference();
+  }
+  @Test
+  public void fromJsonTest() {
+    // Arrange, Act and Assert
+    thrown.expect(IllegalStateException.class);
+    ImmutableFlowDiagramEntity.fromJson(new ImmutableFlowDiagramEntity.Json());
+  }
+  @Test
+  public void fromTest() {
+    // Arrange
+    ImmutableFlowDiagramEntity.Builder builderResult = ImmutableFlowDiagramEntity.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from(new ImmutableFlowDiagramEntity.Json());
   }
   @Test
   public void isNotableTest() {
@@ -61,21 +76,6 @@ public class ImmutableFlowDiagramEntityDiffblueTest {
     // Assert
     assertTrue(json.isNotable);
     assertTrue(json.isNotableIsSet);
-  }
-  @Test
-  public void fromTest() {
-    // Arrange
-    ImmutableFlowDiagramEntity.Builder builderResult = ImmutableFlowDiagramEntity.builder();
-
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from(new ImmutableFlowDiagramEntity.Json());
-  }
-  @Test
-  public void buildTest() {
-    // Arrange, Act and Assert
-    thrown.expect(IllegalStateException.class);
-    ImmutableFlowDiagramEntity.builder().build();
   }
 }
 

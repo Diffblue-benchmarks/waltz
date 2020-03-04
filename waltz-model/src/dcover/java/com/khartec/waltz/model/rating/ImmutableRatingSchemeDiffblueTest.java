@@ -13,16 +13,6 @@ public class ImmutableRatingSchemeDiffblueTest {
   public ExpectedException thrown = ExpectedException.none();
 
   @Test
-  public void fromTest4() {
-    // Arrange
-    ImmutableRatingScheme.Builder builderResult = ImmutableRatingScheme.builder();
-
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from((DescriptionProvider) new ImmutableRagName.Json());
-  }
-
-  @Test
   public void buildTest() {
     // Arrange, Act and Assert
     thrown.expect(IllegalStateException.class);
@@ -30,23 +20,30 @@ public class ImmutableRatingSchemeDiffblueTest {
   }
 
   @Test
-  public void fromTest3() {
-    // Arrange
-    ImmutableRatingScheme.Builder builderResult = ImmutableRatingScheme.builder();
-
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from(new ImmutableRatingScheme.Json());
+  public void constructorTest() {
+    // Arrange, Act and Assert
+    assertEquals(0, (new ImmutableRatingScheme.Json()).ratings.size());
   }
 
   @Test
-  public void fromTest2() {
-    // Arrange
-    ImmutableRatingScheme.Builder builderResult = ImmutableRatingScheme.builder();
-
-    // Act and Assert
+  public void copyOfTest() {
+    // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    builderResult.from((NameProvider) new ImmutableRagName.Json());
+    ImmutableRatingScheme.copyOf(new ImmutableRatingScheme.Json());
+  }
+
+  @Test
+  public void descriptionTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableRatingScheme.Json()).description();
+  }
+
+  @Test
+  public void fromJsonTest() {
+    // Arrange, Act and Assert
+    thrown.expect(IllegalStateException.class);
+    ImmutableRatingScheme.fromJson(new ImmutableRatingScheme.Json());
   }
 
   @Test
@@ -60,17 +57,54 @@ public class ImmutableRatingSchemeDiffblueTest {
   }
 
   @Test
-  public void copyOfTest() {
-    // Arrange, Act and Assert
+  public void fromTest2() {
+    // Arrange
+    ImmutableRatingScheme.Builder builderResult = ImmutableRatingScheme.builder();
+
+    // Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    ImmutableRatingScheme.copyOf(new ImmutableRatingScheme.Json());
+    builderResult.from((NameProvider) new ImmutableRagName.Json());
   }
 
   @Test
-  public void fromJsonTest() {
+  public void fromTest3() {
+    // Arrange
+    ImmutableRatingScheme.Builder builderResult = ImmutableRatingScheme.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from(new ImmutableRatingScheme.Json());
+  }
+
+  @Test
+  public void fromTest4() {
+    // Arrange
+    ImmutableRatingScheme.Builder builderResult = ImmutableRatingScheme.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from((DescriptionProvider) new ImmutableRagName.Json());
+  }
+
+  @Test
+  public void idTest() {
     // Arrange, Act and Assert
-    thrown.expect(IllegalStateException.class);
-    ImmutableRatingScheme.fromJson(new ImmutableRatingScheme.Json());
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableRatingScheme.Json()).id();
+  }
+
+  @Test
+  public void nameTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableRatingScheme.Json()).name();
+  }
+
+  @Test
+  public void ratingsTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableRatingScheme.Json()).ratings();
   }
 
   @Test
@@ -86,27 +120,6 @@ public class ImmutableRatingSchemeDiffblueTest {
   }
 
   @Test
-  public void ratingsTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableRatingScheme.Json()).ratings();
-  }
-
-  @Test
-  public void nameTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableRatingScheme.Json()).name();
-  }
-
-  @Test
-  public void descriptionTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableRatingScheme.Json()).description();
-  }
-
-  @Test
   public void setNameTest() {
     // Arrange
     ImmutableRatingScheme.Json json = new ImmutableRatingScheme.Json();
@@ -116,19 +129,6 @@ public class ImmutableRatingSchemeDiffblueTest {
 
     // Assert
     assertEquals("name", json.name);
-  }
-
-  @Test
-  public void idTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableRatingScheme.Json()).id();
-  }
-
-  @Test
-  public void constructorTest() {
-    // Arrange, Act and Assert
-    assertEquals(0, (new ImmutableRatingScheme.Json()).ratings.size());
   }
 }
 

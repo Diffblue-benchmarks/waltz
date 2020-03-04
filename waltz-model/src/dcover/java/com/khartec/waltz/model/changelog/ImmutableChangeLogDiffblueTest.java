@@ -12,73 +12,16 @@ public class ImmutableChangeLogDiffblueTest {
   @Rule
   public ExpectedException thrown = ExpectedException.none();
   @Test
-  public void fromJsonTest() {
+  public void buildTest() {
     // Arrange, Act and Assert
     thrown.expect(IllegalStateException.class);
-    ImmutableChangeLog.fromJson(new ImmutableChangeLog.Json());
+    ImmutableChangeLog.builder().build();
   }
   @Test
-  public void copyOfTest() {
+  public void childKindTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    ImmutableChangeLog.copyOf(new ImmutableChangeLog.Json());
-  }
-  @Test
-  public void setSeverityTest() {
-    // Arrange
-    ImmutableChangeLog.Json json = new ImmutableChangeLog.Json();
-
-    // Act
-    json.setSeverity(Severity.INFORMATION);
-
-    // Assert
-    assertEquals(Severity.INFORMATION, json.severity);
-  }
-  @Test
-  public void severityTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableChangeLog.Json()).severity();
-  }
-  @Test
-  public void createdAtTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableChangeLog.Json()).createdAt();
-  }
-  @Test
-  public void setOperationTest() {
-    // Arrange
-    ImmutableChangeLog.Json json = new ImmutableChangeLog.Json();
-
-    // Act
-    json.setOperation(Operation.ADD);
-
-    // Assert
-    assertEquals(Operation.ADD, json.operation);
-  }
-  @Test
-  public void setUserIdTest() {
-    // Arrange
-    ImmutableChangeLog.Json json = new ImmutableChangeLog.Json();
-
-    // Act
-    json.setUserId("123");
-
-    // Assert
-    assertEquals("123", json.userId);
-  }
-  @Test
-  public void parentReferenceTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableChangeLog.Json()).parentReference();
-  }
-  @Test
-  public void userIdTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableChangeLog.Json()).userId();
+    (new ImmutableChangeLog.Json()).childKind();
   }
   @Test
   public void constructorTest() {
@@ -94,22 +37,49 @@ public class ImmutableChangeLogDiffblueTest {
     assertNull(actualJson.createdAt);
   }
   @Test
-  public void operationTest() {
+  public void copyOfTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableChangeLog.Json()).operation();
+    ImmutableChangeLog.copyOf(new ImmutableChangeLog.Json());
   }
   @Test
-  public void childKindTest() {
+  public void createdAtTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableChangeLog.Json()).childKind();
+    (new ImmutableChangeLog.Json()).createdAt();
+  }
+  @Test
+  public void fromJsonTest() {
+    // Arrange, Act and Assert
+    thrown.expect(IllegalStateException.class);
+    ImmutableChangeLog.fromJson(new ImmutableChangeLog.Json());
+  }
+  @Test
+  public void fromTest() {
+    // Arrange
+    ImmutableChangeLog.Builder builderResult = ImmutableChangeLog.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from(new ImmutableChangeLog.Json());
   }
   @Test
   public void messageTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
     (new ImmutableChangeLog.Json()).message();
+  }
+  @Test
+  public void operationTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableChangeLog.Json()).operation();
+  }
+  @Test
+  public void parentReferenceTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableChangeLog.Json()).parentReference();
   }
   @Test
   public void setMessageTest() {
@@ -123,19 +93,49 @@ public class ImmutableChangeLogDiffblueTest {
     assertEquals("message", json.message);
   }
   @Test
-  public void fromTest() {
+  public void setOperationTest() {
     // Arrange
-    ImmutableChangeLog.Builder builderResult = ImmutableChangeLog.builder();
+    ImmutableChangeLog.Json json = new ImmutableChangeLog.Json();
 
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from(new ImmutableChangeLog.Json());
+    // Act
+    json.setOperation(Operation.ADD);
+
+    // Assert
+    assertEquals(Operation.ADD, json.operation);
   }
   @Test
-  public void buildTest() {
+  public void setSeverityTest() {
+    // Arrange
+    ImmutableChangeLog.Json json = new ImmutableChangeLog.Json();
+
+    // Act
+    json.setSeverity(Severity.INFORMATION);
+
+    // Assert
+    assertEquals(Severity.INFORMATION, json.severity);
+  }
+  @Test
+  public void setUserIdTest() {
+    // Arrange
+    ImmutableChangeLog.Json json = new ImmutableChangeLog.Json();
+
+    // Act
+    json.setUserId("123");
+
+    // Assert
+    assertEquals("123", json.userId);
+  }
+  @Test
+  public void severityTest() {
     // Arrange, Act and Assert
-    thrown.expect(IllegalStateException.class);
-    ImmutableChangeLog.builder().build();
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableChangeLog.Json()).severity();
+  }
+  @Test
+  public void userIdTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableChangeLog.Json()).userId();
   }
 }
 

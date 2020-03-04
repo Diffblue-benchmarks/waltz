@@ -10,10 +10,25 @@ public class ImmutableEntryDiffblueTest {
   @Rule
   public ExpectedException thrown = ExpectedException.none();
   @Test
-  public void valueTest() {
+  public void constructorTest() {
+    // Arrange and Act
+    ImmutableEntry.Json<Object, Object> actualJson = new ImmutableEntry.Json<Object, Object>();
+
+    // Assert
+    assertNull(actualJson.key);
+    assertNull(actualJson.value);
+  }
+  @Test
+  public void fromJsonTest() {
+    // Arrange, Act and Assert
+    thrown.expect(IllegalStateException.class);
+    ImmutableEntry.<Object, Object>fromJson(new ImmutableEntry.Json<Object, Object>());
+  }
+  @Test
+  public void keyTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableEntry.Json<Object, Object>()).value();
+    (new ImmutableEntry.Json<Object, Object>()).key();
   }
   @Test
   public void setKeyTest() {
@@ -21,7 +36,7 @@ public class ImmutableEntryDiffblueTest {
     ImmutableEntry.Json<Object, Object> json = new ImmutableEntry.Json<Object, Object>();
 
     // Act
-    json.setKey("foo");
+    json.setKey("key");
 
     // Assert
     assertTrue(json.key instanceof String);
@@ -38,25 +53,10 @@ public class ImmutableEntryDiffblueTest {
     assertTrue(json.value instanceof String);
   }
   @Test
-  public void constructorTest() {
-    // Arrange and Act
-    ImmutableEntry.Json<Object, Object> actualJson = new ImmutableEntry.Json<Object, Object>();
-
-    // Assert
-    assertNull(actualJson.key);
-    assertNull(actualJson.value);
-  }
-  @Test
-  public void keyTest() {
+  public void valueTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableEntry.Json<Object, Object>()).key();
-  }
-  @Test
-  public void fromJsonTest() {
-    // Arrange, Act and Assert
-    thrown.expect(IllegalStateException.class);
-    ImmutableEntry.<Object, Object>fromJson(new ImmutableEntry.Json<Object, Object>());
+    (new ImmutableEntry.Json<Object, Object>()).value();
   }
 }
 

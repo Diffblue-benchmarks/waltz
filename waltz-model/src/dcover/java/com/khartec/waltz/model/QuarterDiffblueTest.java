@@ -10,13 +10,6 @@ public class QuarterDiffblueTest {
   public ExpectedException thrown = ExpectedException.none();
 
   @Test
-  public void fromIntTest2() {
-    // Arrange, Act and Assert
-    thrown.expect(IllegalArgumentException.class);
-    Quarter.fromInt(Integer.valueOf(0));
-  }
-
-  @Test
   public void fromIntTest() {
     // Arrange
     Quarter actualFromIntResult = Quarter.fromInt(Integer.valueOf(1));
@@ -28,6 +21,13 @@ public class QuarterDiffblueTest {
     assertEquals(Quarter.Q2, actualFromIntResult1);
     assertEquals(Quarter.Q3, actualFromIntResult2);
     assertEquals(Quarter.Q4, Quarter.fromInt(Integer.valueOf(4)));
+  }
+
+  @Test
+  public void fromIntTest2() {
+    // Arrange, Act and Assert
+    thrown.expect(IllegalArgumentException.class);
+    Quarter.fromInt(Integer.valueOf(0));
   }
 }
 

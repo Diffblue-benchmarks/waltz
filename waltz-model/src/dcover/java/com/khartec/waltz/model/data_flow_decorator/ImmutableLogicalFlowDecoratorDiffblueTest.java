@@ -16,126 +16,10 @@ public class ImmutableLogicalFlowDecoratorDiffblueTest {
   public ExpectedException thrown = ExpectedException.none();
 
   @Test
-  public void fromTest3() {
-    // Arrange
-    ImmutableLogicalFlowDecorator.Builder builderResult = ImmutableLogicalFlowDecorator.builder();
-
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from((LastUpdatedProvider) new ImmutableLogicalFlowDecorator.Json());
-  }
-
-  @Test
-  public void fromTest2() {
-    // Arrange
-    ImmutableLogicalFlowDecorator.Builder builderResult = ImmutableLogicalFlowDecorator.builder();
-
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from((ProvenanceProvider) new ImmutableLogicalFlowDecorator.Json());
-  }
-
-  @Test
-  public void fromTest() {
-    // Arrange
-    ImmutableLogicalFlowDecorator.Builder builderResult = ImmutableLogicalFlowDecorator.builder();
-
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from(new ImmutableLogicalFlowDecorator.Json());
-  }
-
-  @Test
   public void buildTest() {
     // Arrange, Act and Assert
     thrown.expect(IllegalStateException.class);
     ImmutableLogicalFlowDecorator.builder().build();
-  }
-
-  @Test
-  public void copyOfTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    ImmutableLogicalFlowDecorator.copyOf(new ImmutableLogicalFlowDecorator.Json());
-  }
-
-  @Test
-  public void fromJsonTest() {
-    // Arrange, Act and Assert
-    thrown.expect(IllegalStateException.class);
-    ImmutableLogicalFlowDecorator.fromJson(new ImmutableLogicalFlowDecorator.Json());
-  }
-
-  @Test
-  public void setLastUpdatedByTest() {
-    // Arrange
-    ImmutableLogicalFlowDecorator.Json json = new ImmutableLogicalFlowDecorator.Json();
-
-    // Act
-    json.setLastUpdatedBy("foo");
-
-    // Assert
-    assertEquals("foo", json.lastUpdatedBy);
-  }
-
-  @Test
-  public void setDataFlowIdTest() {
-    // Arrange
-    ImmutableLogicalFlowDecorator.Json json = new ImmutableLogicalFlowDecorator.Json();
-
-    // Act
-    json.setDataFlowId(123L);
-
-    // Assert
-    assertEquals(123L, json.dataFlowId);
-    assertTrue(json.dataFlowIdIsSet);
-  }
-
-  @Test
-  public void lastUpdatedByTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableLogicalFlowDecorator.Json()).lastUpdatedBy();
-  }
-
-  @Test
-  public void provenanceTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableLogicalFlowDecorator.Json()).provenance();
-  }
-
-  @Test
-  public void setRatingTest() {
-    // Arrange
-    ImmutableLogicalFlowDecorator.Json json = new ImmutableLogicalFlowDecorator.Json();
-
-    // Act
-    json.setRating(AuthoritativenessRating.PRIMARY);
-
-    // Assert
-    assertEquals(AuthoritativenessRating.PRIMARY, json.rating);
-  }
-
-  @Test
-  public void decoratorEntityTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableLogicalFlowDecorator.Json()).decoratorEntity();
-  }
-
-  @Test
-  public void lastUpdatedAtTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableLogicalFlowDecorator.Json()).lastUpdatedAt();
-  }
-
-  @Test
-  public void dataFlowIdTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableLogicalFlowDecorator.Json()).dataFlowId();
   }
 
   @Test
@@ -154,10 +38,114 @@ public class ImmutableLogicalFlowDecoratorDiffblueTest {
   }
 
   @Test
+  public void copyOfTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    ImmutableLogicalFlowDecorator.copyOf(new ImmutableLogicalFlowDecorator.Json());
+  }
+
+  @Test
+  public void dataFlowIdTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableLogicalFlowDecorator.Json()).dataFlowId();
+  }
+
+  @Test
+  public void decoratorEntityTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableLogicalFlowDecorator.Json()).decoratorEntity();
+  }
+
+  @Test
+  public void fromJsonTest() {
+    // Arrange, Act and Assert
+    thrown.expect(IllegalStateException.class);
+    ImmutableLogicalFlowDecorator.fromJson(new ImmutableLogicalFlowDecorator.Json());
+  }
+
+  @Test
+  public void fromTest() {
+    // Arrange
+    ImmutableLogicalFlowDecorator.Builder builderResult = ImmutableLogicalFlowDecorator.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from(new ImmutableLogicalFlowDecorator.Json());
+  }
+
+  @Test
+  public void fromTest2() {
+    // Arrange
+    ImmutableLogicalFlowDecorator.Builder builderResult = ImmutableLogicalFlowDecorator.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from((ProvenanceProvider) new ImmutableLogicalFlowDecorator.Json());
+  }
+
+  @Test
+  public void fromTest3() {
+    // Arrange
+    ImmutableLogicalFlowDecorator.Builder builderResult = ImmutableLogicalFlowDecorator.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from((LastUpdatedProvider) new ImmutableLogicalFlowDecorator.Json());
+  }
+
+  @Test
+  public void lastUpdatedAtTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableLogicalFlowDecorator.Json()).lastUpdatedAt();
+  }
+
+  @Test
+  public void lastUpdatedByTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableLogicalFlowDecorator.Json()).lastUpdatedBy();
+  }
+
+  @Test
+  public void provenanceTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableLogicalFlowDecorator.Json()).provenance();
+  }
+
+  @Test
   public void ratingTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
     (new ImmutableLogicalFlowDecorator.Json()).rating();
+  }
+
+  @Test
+  public void setDataFlowIdTest() {
+    // Arrange
+    ImmutableLogicalFlowDecorator.Json json = new ImmutableLogicalFlowDecorator.Json();
+
+    // Act
+    json.setDataFlowId(123L);
+
+    // Assert
+    assertEquals(123L, json.dataFlowId);
+    assertTrue(json.dataFlowIdIsSet);
+  }
+
+  @Test
+  public void setLastUpdatedByTest() {
+    // Arrange
+    ImmutableLogicalFlowDecorator.Json json = new ImmutableLogicalFlowDecorator.Json();
+
+    // Act
+    json.setLastUpdatedBy("lastUpdatedBy");
+
+    // Assert
+    assertEquals("lastUpdatedBy", json.lastUpdatedBy);
   }
 
   @Test
@@ -166,10 +154,22 @@ public class ImmutableLogicalFlowDecoratorDiffblueTest {
     ImmutableLogicalFlowDecorator.Json json = new ImmutableLogicalFlowDecorator.Json();
 
     // Act
-    json.setProvenance("foo");
+    json.setProvenance("provenance");
 
     // Assert
-    assertEquals("foo", json.provenance);
+    assertEquals("provenance", json.provenance);
+  }
+
+  @Test
+  public void setRatingTest() {
+    // Arrange
+    ImmutableLogicalFlowDecorator.Json json = new ImmutableLogicalFlowDecorator.Json();
+
+    // Act
+    json.setRating(AuthoritativenessRating.PRIMARY);
+
+    // Assert
+    assertEquals(AuthoritativenessRating.PRIMARY, json.rating);
   }
 }
 

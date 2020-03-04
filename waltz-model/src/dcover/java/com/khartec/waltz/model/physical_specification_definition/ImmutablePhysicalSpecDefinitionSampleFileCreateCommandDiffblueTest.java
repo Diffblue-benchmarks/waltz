@@ -11,56 +11,10 @@ public class ImmutablePhysicalSpecDefinitionSampleFileCreateCommandDiffblueTest 
   public ExpectedException thrown = ExpectedException.none();
 
   @Test
-  public void fromTest() {
-    // Arrange
-    ImmutablePhysicalSpecDefinitionSampleFileCreateCommand.Builder builderResult = ImmutablePhysicalSpecDefinitionSampleFileCreateCommand
-        .builder();
-
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from(new ImmutablePhysicalSpecDefinitionSampleFileCreateCommand.Json());
-  }
-
-  @Test
   public void buildTest() {
     // Arrange, Act and Assert
     thrown.expect(IllegalStateException.class);
     ImmutablePhysicalSpecDefinitionSampleFileCreateCommand.builder().build();
-  }
-
-  @Test
-  public void copyOfTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    ImmutablePhysicalSpecDefinitionSampleFileCreateCommand
-        .copyOf(new ImmutablePhysicalSpecDefinitionSampleFileCreateCommand.Json());
-  }
-
-  @Test
-  public void fromJsonTest() {
-    // Arrange, Act and Assert
-    thrown.expect(IllegalStateException.class);
-    ImmutablePhysicalSpecDefinitionSampleFileCreateCommand
-        .fromJson(new ImmutablePhysicalSpecDefinitionSampleFileCreateCommand.Json());
-  }
-
-  @Test
-  public void nameTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutablePhysicalSpecDefinitionSampleFileCreateCommand.Json()).name();
-  }
-
-  @Test
-  public void setNameTest() {
-    // Arrange
-    ImmutablePhysicalSpecDefinitionSampleFileCreateCommand.Json json = new ImmutablePhysicalSpecDefinitionSampleFileCreateCommand.Json();
-
-    // Act
-    json.setName("name");
-
-    // Assert
-    assertEquals("name", json.name);
   }
 
   @Test
@@ -74,10 +28,44 @@ public class ImmutablePhysicalSpecDefinitionSampleFileCreateCommandDiffblueTest 
   }
 
   @Test
+  public void copyOfTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    ImmutablePhysicalSpecDefinitionSampleFileCreateCommand
+        .copyOf(new ImmutablePhysicalSpecDefinitionSampleFileCreateCommand.Json());
+  }
+
+  @Test
   public void fileDataTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
     (new ImmutablePhysicalSpecDefinitionSampleFileCreateCommand.Json()).fileData();
+  }
+
+  @Test
+  public void fromJsonTest() {
+    // Arrange, Act and Assert
+    thrown.expect(IllegalStateException.class);
+    ImmutablePhysicalSpecDefinitionSampleFileCreateCommand
+        .fromJson(new ImmutablePhysicalSpecDefinitionSampleFileCreateCommand.Json());
+  }
+
+  @Test
+  public void fromTest() {
+    // Arrange
+    ImmutablePhysicalSpecDefinitionSampleFileCreateCommand.Builder builderResult = ImmutablePhysicalSpecDefinitionSampleFileCreateCommand
+        .builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from(new ImmutablePhysicalSpecDefinitionSampleFileCreateCommand.Json());
+  }
+
+  @Test
+  public void nameTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutablePhysicalSpecDefinitionSampleFileCreateCommand.Json()).name();
   }
 
   @Test
@@ -86,10 +74,22 @@ public class ImmutablePhysicalSpecDefinitionSampleFileCreateCommandDiffblueTest 
     ImmutablePhysicalSpecDefinitionSampleFileCreateCommand.Json json = new ImmutablePhysicalSpecDefinitionSampleFileCreateCommand.Json();
 
     // Act
-    json.setFileData("foo");
+    json.setFileData("fileData");
 
     // Assert
-    assertEquals("foo", json.fileData);
+    assertEquals("fileData", json.fileData);
+  }
+
+  @Test
+  public void setNameTest() {
+    // Arrange
+    ImmutablePhysicalSpecDefinitionSampleFileCreateCommand.Json json = new ImmutablePhysicalSpecDefinitionSampleFileCreateCommand.Json();
+
+    // Act
+    json.setName("name");
+
+    // Assert
+    assertEquals("name", json.name);
   }
 }
 

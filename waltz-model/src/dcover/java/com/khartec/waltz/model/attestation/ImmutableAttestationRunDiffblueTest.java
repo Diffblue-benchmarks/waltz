@@ -15,16 +15,43 @@ public class ImmutableAttestationRunDiffblueTest {
   @Rule
   public ExpectedException thrown = ExpectedException.none();
   @Test
+  public void attestedEntityKindTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableAttestationRun.Json()).attestedEntityKind();
+  }
+  @Test
+  public void attestedEntityRefTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableAttestationRun.Json()).attestedEntityRef();
+  }
+  @Test
+  public void buildTest() {
+    // Arrange, Act and Assert
+    thrown.expect(IllegalStateException.class);
+    ImmutableAttestationRun.builder().build();
+  }
+  @Test
+  public void constructorTest() {
+    // Arrange and Act
+    ImmutableAttestationRun.Json actualJson = new ImmutableAttestationRun.Json();
+
+    // Assert
+    assertSame(actualJson.id, actualJson.attestedEntityRef);
+    assertEquals(0, actualJson.involvementKindIds.size());
+  }
+  @Test
   public void copyOfTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
     ImmutableAttestationRun.copyOf(new ImmutableAttestationRun.Json());
   }
   @Test
-  public void fromJsonTest() {
+  public void descriptionTest() {
     // Arrange, Act and Assert
-    thrown.expect(IllegalStateException.class);
-    ImmutableAttestationRun.fromJson(new ImmutableAttestationRun.Json());
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableAttestationRun.Json()).description();
   }
   @Test
   public void dueDateTest() {
@@ -33,22 +60,73 @@ public class ImmutableAttestationRunDiffblueTest {
     (new ImmutableAttestationRun.Json()).dueDate();
   }
   @Test
-  public void targetEntityKindTest() {
+  public void entityReferenceTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableAttestationRun.Json()).targetEntityKind();
+    (new ImmutableAttestationRun.Json()).entityReference();
   }
   @Test
-  public void attestedEntityKindTest() {
+  public void fromJsonTest() {
     // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableAttestationRun.Json()).attestedEntityKind();
+    thrown.expect(IllegalStateException.class);
+    ImmutableAttestationRun.fromJson(new ImmutableAttestationRun.Json());
   }
   @Test
-  public void selectionOptionsTest() {
+  public void fromTest() {
+    // Arrange
+    ImmutableAttestationRun.Builder builderResult = ImmutableAttestationRun.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from(new ImmutableAttestationInstance.Json());
+  }
+  @Test
+  public void fromTest2() {
+    // Arrange
+    ImmutableAttestationRun.Builder builderResult = ImmutableAttestationRun.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from((NameProvider) new ImmutableAttestationRun.Json());
+  }
+  @Test
+  public void fromTest3() {
+    // Arrange
+    ImmutableAttestationRun.Builder builderResult = ImmutableAttestationRun.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from((WaltzEntity) new ImmutableAttestationRun.Json());
+  }
+  @Test
+  public void fromTest4() {
+    // Arrange
+    ImmutableAttestationRun.Builder builderResult = ImmutableAttestationRun.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from((DescriptionProvider) new ImmutableAttestationRun.Json());
+  }
+  @Test
+  public void fromTest5() {
+    // Arrange
+    ImmutableAttestationRun.Builder builderResult = ImmutableAttestationRun.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from(new ImmutableAttestationRun.Json());
+  }
+  @Test
+  public void idTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableAttestationRun.Json()).selectionOptions();
+    (new ImmutableAttestationRun.Json()).id();
+  }
+  @Test
+  public void involvementKindIdsTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableAttestationRun.Json()).involvementKindIds();
   }
   @Test
   public void issuedByTest() {
@@ -57,21 +135,44 @@ public class ImmutableAttestationRunDiffblueTest {
     (new ImmutableAttestationRun.Json()).issuedBy();
   }
   @Test
+  public void issuedOnTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableAttestationRun.Json()).issuedOn();
+  }
+  @Test
   public void nameTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
     (new ImmutableAttestationRun.Json()).name();
   }
   @Test
-  public void setNameTest() {
+  public void selectionOptionsTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableAttestationRun.Json()).selectionOptions();
+  }
+  @Test
+  public void setAttestedEntityKindTest() {
     // Arrange
     ImmutableAttestationRun.Json json = new ImmutableAttestationRun.Json();
 
     // Act
-    json.setName("name");
+    json.setAttestedEntityKind(EntityKind.ACTOR);
 
     // Assert
-    assertEquals("name", json.name);
+    assertEquals(EntityKind.ACTOR, json.attestedEntityKind);
+  }
+  @Test
+  public void setDescriptionTest() {
+    // Arrange
+    ImmutableAttestationRun.Json json = new ImmutableAttestationRun.Json();
+
+    // Act
+    json.setDescription("description");
+
+    // Assert
+    assertEquals("description", json.description);
   }
   @Test
   public void setInvolvementKindIdsTest() {
@@ -87,71 +188,26 @@ public class ImmutableAttestationRunDiffblueTest {
     assertSame(resultLongSet, json.involvementKindIds);
   }
   @Test
-  public void constructorTest() {
-    // Arrange and Act
-    ImmutableAttestationRun.Json actualJson = new ImmutableAttestationRun.Json();
-
-    // Assert
-    assertSame(actualJson.id, actualJson.attestedEntityRef);
-    assertEquals(0, actualJson.involvementKindIds.size());
-  }
-  @Test
-  public void entityReferenceTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableAttestationRun.Json()).entityReference();
-  }
-  @Test
-  public void attestedEntityRefTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableAttestationRun.Json()).attestedEntityRef();
-  }
-  @Test
-  public void descriptionTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableAttestationRun.Json()).description();
-  }
-  @Test
-  public void idTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableAttestationRun.Json()).id();
-  }
-  @Test
-  public void setAttestedEntityKindTest() {
+  public void setIssuedByTest() {
     // Arrange
     ImmutableAttestationRun.Json json = new ImmutableAttestationRun.Json();
 
     // Act
-    json.setAttestedEntityKind(EntityKind.ACTOR);
+    json.setIssuedBy("issuedBy");
 
     // Assert
-    assertEquals(EntityKind.ACTOR, json.attestedEntityKind);
+    assertEquals("issuedBy", json.issuedBy);
   }
   @Test
-  public void issuedOnTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableAttestationRun.Json()).issuedOn();
-  }
-  @Test
-  public void setDescriptionTest() {
+  public void setNameTest() {
     // Arrange
     ImmutableAttestationRun.Json json = new ImmutableAttestationRun.Json();
 
     // Act
-    json.setDescription("description");
+    json.setName("name");
 
     // Assert
-    assertEquals("description", json.description);
-  }
-  @Test
-  public void involvementKindIdsTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableAttestationRun.Json()).involvementKindIds();
+    assertEquals("name", json.name);
   }
   @Test
   public void setTargetEntityKindTest() {
@@ -165,66 +221,10 @@ public class ImmutableAttestationRunDiffblueTest {
     assertEquals(EntityKind.ACTOR, json.targetEntityKind);
   }
   @Test
-  public void setIssuedByTest() {
-    // Arrange
-    ImmutableAttestationRun.Json json = new ImmutableAttestationRun.Json();
-
-    // Act
-    json.setIssuedBy("foo");
-
-    // Assert
-    assertEquals("foo", json.issuedBy);
-  }
-  @Test
-  public void fromTest5() {
-    // Arrange
-    ImmutableAttestationRun.Builder builderResult = ImmutableAttestationRun.builder();
-
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from(new ImmutableAttestationRun.Json());
-  }
-  @Test
-  public void fromTest4() {
-    // Arrange
-    ImmutableAttestationRun.Builder builderResult = ImmutableAttestationRun.builder();
-
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from((DescriptionProvider) new ImmutableAttestationRun.Json());
-  }
-  @Test
-  public void buildTest() {
+  public void targetEntityKindTest() {
     // Arrange, Act and Assert
-    thrown.expect(IllegalStateException.class);
-    ImmutableAttestationRun.builder().build();
-  }
-  @Test
-  public void fromTest3() {
-    // Arrange
-    ImmutableAttestationRun.Builder builderResult = ImmutableAttestationRun.builder();
-
-    // Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    builderResult.from((WaltzEntity) new ImmutableAttestationRun.Json());
-  }
-  @Test
-  public void fromTest2() {
-    // Arrange
-    ImmutableAttestationRun.Builder builderResult = ImmutableAttestationRun.builder();
-
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from((NameProvider) new ImmutableAttestationRun.Json());
-  }
-  @Test
-  public void fromTest() {
-    // Arrange
-    ImmutableAttestationRun.Builder builderResult = ImmutableAttestationRun.builder();
-
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from(new ImmutableAttestationInstance.Json());
+    (new ImmutableAttestationRun.Json()).targetEntityKind();
   }
 }
 

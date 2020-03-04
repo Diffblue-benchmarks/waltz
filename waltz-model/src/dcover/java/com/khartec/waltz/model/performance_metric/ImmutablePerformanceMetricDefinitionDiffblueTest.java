@@ -13,73 +13,22 @@ public class ImmutablePerformanceMetricDefinitionDiffblueTest {
   @Rule
   public ExpectedException thrown = ExpectedException.none();
   @Test
-  public void fromJsonTest() {
+  public void buildTest() {
     // Arrange, Act and Assert
     thrown.expect(IllegalStateException.class);
-    ImmutablePerformanceMetricDefinition.fromJson(new ImmutablePerformanceMetricDefinition.Json());
+    ImmutablePerformanceMetricDefinition.builder().build();
   }
   @Test
-  public void copyOfTest() {
+  public void categoryDescriptionTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    ImmutablePerformanceMetricDefinition.copyOf(new ImmutablePerformanceMetricDefinition.Json());
-  }
-  @Test
-  public void setDescriptionTest() {
-    // Arrange
-    ImmutablePerformanceMetricDefinition.Json json = new ImmutablePerformanceMetricDefinition.Json();
-
-    // Act
-    json.setDescription("description");
-
-    // Assert
-    assertEquals("description", json.description);
-  }
-  @Test
-  public void nameTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutablePerformanceMetricDefinition.Json()).name();
+    (new ImmutablePerformanceMetricDefinition.Json()).categoryDescription();
   }
   @Test
   public void categoryNameTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
     (new ImmutablePerformanceMetricDefinition.Json()).categoryName();
-  }
-  @Test
-  public void descriptionTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutablePerformanceMetricDefinition.Json()).description();
-  }
-  @Test
-  public void setNameTest() {
-    // Arrange
-    ImmutablePerformanceMetricDefinition.Json json = new ImmutablePerformanceMetricDefinition.Json();
-
-    // Act
-    json.setName("name");
-
-    // Assert
-    assertEquals("name", json.name);
-  }
-  @Test
-  public void idTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutablePerformanceMetricDefinition.Json()).id();
-  }
-  @Test
-  public void setCategoryDescriptionTest() {
-    // Arrange
-    ImmutablePerformanceMetricDefinition.Json json = new ImmutablePerformanceMetricDefinition.Json();
-
-    // Act
-    json.setCategoryDescription("foo");
-
-    // Assert
-    assertEquals("foo", json.categoryDescription);
   }
   @Test
   public void constructorTest() {
@@ -93,45 +42,31 @@ public class ImmutablePerformanceMetricDefinitionDiffblueTest {
     assertNull(actualJson.description);
   }
   @Test
-  public void setCategoryNameTest() {
-    // Arrange
-    ImmutablePerformanceMetricDefinition.Json json = new ImmutablePerformanceMetricDefinition.Json();
-
-    // Act
-    json.setCategoryName("name");
-
-    // Assert
-    assertEquals("name", json.categoryName);
-  }
-  @Test
-  public void categoryDescriptionTest() {
+  public void copyOfTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    (new ImmutablePerformanceMetricDefinition.Json()).categoryDescription();
+    ImmutablePerformanceMetricDefinition.copyOf(new ImmutablePerformanceMetricDefinition.Json());
   }
   @Test
-  public void fromTest4() {
-    // Arrange
-    ImmutablePerformanceMetricDefinition.Builder builderResult = ImmutablePerformanceMetricDefinition.builder();
-
-    // Act and Assert
+  public void descriptionTest() {
+    // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    builderResult.from((NameProvider) new ImmutablePerformanceMetricDefinition.Json());
+    (new ImmutablePerformanceMetricDefinition.Json()).description();
   }
   @Test
-  public void buildTest() {
+  public void fromJsonTest() {
     // Arrange, Act and Assert
     thrown.expect(IllegalStateException.class);
-    ImmutablePerformanceMetricDefinition.builder().build();
+    ImmutablePerformanceMetricDefinition.fromJson(new ImmutablePerformanceMetricDefinition.Json());
   }
   @Test
-  public void fromTest3() {
+  public void fromTest() {
     // Arrange
     ImmutablePerformanceMetricDefinition.Builder builderResult = ImmutablePerformanceMetricDefinition.builder();
 
     // Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    builderResult.from((DescriptionProvider) new ImmutablePerformanceMetricDefinition.Json());
+    builderResult.from(new ImmutablePerformanceMetricDefinition.Json());
   }
   @Test
   public void fromTest2() {
@@ -143,13 +78,78 @@ public class ImmutablePerformanceMetricDefinitionDiffblueTest {
     builderResult.from((IdProvider) new ImmutablePerformanceMetricDefinition.Json());
   }
   @Test
-  public void fromTest() {
+  public void fromTest3() {
     // Arrange
     ImmutablePerformanceMetricDefinition.Builder builderResult = ImmutablePerformanceMetricDefinition.builder();
 
     // Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    builderResult.from(new ImmutablePerformanceMetricDefinition.Json());
+    builderResult.from((DescriptionProvider) new ImmutablePerformanceMetricDefinition.Json());
+  }
+  @Test
+  public void fromTest4() {
+    // Arrange
+    ImmutablePerformanceMetricDefinition.Builder builderResult = ImmutablePerformanceMetricDefinition.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from((NameProvider) new ImmutablePerformanceMetricDefinition.Json());
+  }
+  @Test
+  public void idTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutablePerformanceMetricDefinition.Json()).id();
+  }
+  @Test
+  public void nameTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutablePerformanceMetricDefinition.Json()).name();
+  }
+  @Test
+  public void setCategoryDescriptionTest() {
+    // Arrange
+    ImmutablePerformanceMetricDefinition.Json json = new ImmutablePerformanceMetricDefinition.Json();
+
+    // Act
+    json.setCategoryDescription("categoryDescription");
+
+    // Assert
+    assertEquals("categoryDescription", json.categoryDescription);
+  }
+  @Test
+  public void setCategoryNameTest() {
+    // Arrange
+    ImmutablePerformanceMetricDefinition.Json json = new ImmutablePerformanceMetricDefinition.Json();
+
+    // Act
+    json.setCategoryName("categoryName");
+
+    // Assert
+    assertEquals("categoryName", json.categoryName);
+  }
+  @Test
+  public void setDescriptionTest() {
+    // Arrange
+    ImmutablePerformanceMetricDefinition.Json json = new ImmutablePerformanceMetricDefinition.Json();
+
+    // Act
+    json.setDescription("description");
+
+    // Assert
+    assertEquals("description", json.description);
+  }
+  @Test
+  public void setNameTest() {
+    // Arrange
+    ImmutablePerformanceMetricDefinition.Json json = new ImmutablePerformanceMetricDefinition.Json();
+
+    // Act
+    json.setName("name");
+
+    // Assert
+    assertEquals("name", json.name);
   }
 }
 

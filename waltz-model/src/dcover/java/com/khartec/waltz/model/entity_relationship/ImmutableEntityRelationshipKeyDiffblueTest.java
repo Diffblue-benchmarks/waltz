@@ -22,10 +22,10 @@ public class ImmutableEntityRelationshipKeyDiffblueTest {
     (new ImmutableEntityRelationshipKey.Json()).b();
   }
   @Test
-  public void relationshipKindTest() {
+  public void buildTest() {
     // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableEntityRelationshipKey.Json()).relationshipKind();
+    thrown.expect(IllegalStateException.class);
+    ImmutableEntityRelationshipKey.builder().build();
   }
   @Test
   public void constructorTest() {
@@ -36,17 +36,6 @@ public class ImmutableEntityRelationshipKeyDiffblueTest {
     assertNull(actualJson.b);
     assertNull(actualJson.relationshipKind);
     assertNull(actualJson.a);
-  }
-  @Test
-  public void setRelationshipKindTest() {
-    // Arrange
-    ImmutableEntityRelationshipKey.Json json = new ImmutableEntityRelationshipKey.Json();
-
-    // Act
-    json.setRelationshipKind(RelationshipKind.HAS);
-
-    // Assert
-    assertEquals(RelationshipKind.HAS, json.relationshipKind);
   }
   @Test
   public void copyOfTest() {
@@ -70,10 +59,21 @@ public class ImmutableEntityRelationshipKeyDiffblueTest {
     builderResult.from(new ImmutableEntityRelationshipKey.Json());
   }
   @Test
-  public void buildTest() {
+  public void relationshipKindTest() {
     // Arrange, Act and Assert
-    thrown.expect(IllegalStateException.class);
-    ImmutableEntityRelationshipKey.builder().build();
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableEntityRelationshipKey.Json()).relationshipKind();
+  }
+  @Test
+  public void setRelationshipKindTest() {
+    // Arrange
+    ImmutableEntityRelationshipKey.Json json = new ImmutableEntityRelationshipKey.Json();
+
+    // Act
+    json.setRelationshipKind(RelationshipKind.HAS);
+
+    // Assert
+    assertEquals(RelationshipKind.HAS, json.relationshipKind);
   }
 }
 

@@ -18,6 +18,28 @@ public class ImmutableAssetCostQueryOptionsDiffblueTest {
     ImmutableAssetCostQueryOptions.builder().build();
   }
   @Test
+  public void constructorTest() {
+    // Arrange and Act
+    ImmutableAssetCostQueryOptions.Json actualJson = new ImmutableAssetCostQueryOptions.Json();
+
+    // Assert
+    assertEquals(0, actualJson.year);
+    assertNull(actualJson.idSelectionOptions);
+    assertFalse(actualJson.yearIsSet);
+  }
+  @Test
+  public void copyOfTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    ImmutableAssetCostQueryOptions.copyOf(new ImmutableAssetCostQueryOptions.Json());
+  }
+  @Test
+  public void fromJsonTest() {
+    // Arrange, Act and Assert
+    thrown.expect(IllegalStateException.class);
+    ImmutableAssetCostQueryOptions.fromJson(new ImmutableAssetCostQueryOptions.Json());
+  }
+  @Test
   public void fromTest() {
     // Arrange
     ImmutableAssetCostQueryOptions.Builder builderResult = ImmutableAssetCostQueryOptions.builder();
@@ -45,32 +67,10 @@ public class ImmutableAssetCostQueryOptionsDiffblueTest {
     assertTrue(json.yearIsSet);
   }
   @Test
-  public void constructorTest() {
-    // Arrange and Act
-    ImmutableAssetCostQueryOptions.Json actualJson = new ImmutableAssetCostQueryOptions.Json();
-
-    // Assert
-    assertEquals(0, actualJson.year);
-    assertNull(actualJson.idSelectionOptions);
-    assertFalse(actualJson.yearIsSet);
-  }
-  @Test
   public void yearTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
     (new ImmutableAssetCostQueryOptions.Json()).year();
-  }
-  @Test
-  public void fromJsonTest() {
-    // Arrange, Act and Assert
-    thrown.expect(IllegalStateException.class);
-    ImmutableAssetCostQueryOptions.fromJson(new ImmutableAssetCostQueryOptions.Json());
-  }
-  @Test
-  public void copyOfTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    ImmutableAssetCostQueryOptions.copyOf(new ImmutableAssetCostQueryOptions.Json());
   }
 }
 

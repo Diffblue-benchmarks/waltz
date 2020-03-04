@@ -10,6 +10,28 @@ public class ImmutableSharedPreferenceSaveCommandDiffblueTest {
   @Rule
   public ExpectedException thrown = ExpectedException.none();
   @Test
+  public void buildTest() {
+    // Arrange, Act and Assert
+    thrown.expect(IllegalStateException.class);
+    ImmutableSharedPreferenceSaveCommand.builder().build();
+  }
+  @Test
+  public void categoryTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableSharedPreferenceSaveCommand.Json()).category();
+  }
+  @Test
+  public void constructorTest() {
+    // Arrange and Act
+    ImmutableSharedPreferenceSaveCommand.Json actualJson = new ImmutableSharedPreferenceSaveCommand.Json();
+
+    // Assert
+    assertNull(actualJson.key);
+    assertNull(actualJson.value);
+    assertNull(actualJson.category);
+  }
+  @Test
   public void copyOfTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
@@ -22,16 +44,13 @@ public class ImmutableSharedPreferenceSaveCommandDiffblueTest {
     ImmutableSharedPreferenceSaveCommand.fromJson(new ImmutableSharedPreferenceSaveCommand.Json());
   }
   @Test
-  public void valueTest() {
-    // Arrange, Act and Assert
+  public void fromTest() {
+    // Arrange
+    ImmutableSharedPreferenceSaveCommand.Builder builderResult = ImmutableSharedPreferenceSaveCommand.builder();
+
+    // Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableSharedPreferenceSaveCommand.Json()).value();
-  }
-  @Test
-  public void categoryTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableSharedPreferenceSaveCommand.Json()).category();
+    builderResult.from(new ImmutableSharedPreferenceSaveCommand.Json());
   }
   @Test
   public void keyTest() {
@@ -45,20 +64,21 @@ public class ImmutableSharedPreferenceSaveCommandDiffblueTest {
     ImmutableSharedPreferenceSaveCommand.Json json = new ImmutableSharedPreferenceSaveCommand.Json();
 
     // Act
-    json.setCategory("foo");
+    json.setCategory("category");
 
     // Assert
-    assertEquals("foo", json.category);
+    assertEquals("category", json.category);
   }
   @Test
-  public void constructorTest() {
-    // Arrange and Act
-    ImmutableSharedPreferenceSaveCommand.Json actualJson = new ImmutableSharedPreferenceSaveCommand.Json();
+  public void setKeyTest() {
+    // Arrange
+    ImmutableSharedPreferenceSaveCommand.Json json = new ImmutableSharedPreferenceSaveCommand.Json();
+
+    // Act
+    json.setKey("key");
 
     // Assert
-    assertNull(actualJson.key);
-    assertNull(actualJson.value);
-    assertNull(actualJson.category);
+    assertEquals("key", json.key);
   }
   @Test
   public void setValueTest() {
@@ -72,30 +92,10 @@ public class ImmutableSharedPreferenceSaveCommandDiffblueTest {
     assertEquals("value", json.value);
   }
   @Test
-  public void setKeyTest() {
-    // Arrange
-    ImmutableSharedPreferenceSaveCommand.Json json = new ImmutableSharedPreferenceSaveCommand.Json();
-
-    // Act
-    json.setKey("foo");
-
-    // Assert
-    assertEquals("foo", json.key);
-  }
-  @Test
-  public void buildTest() {
+  public void valueTest() {
     // Arrange, Act and Assert
-    thrown.expect(IllegalStateException.class);
-    ImmutableSharedPreferenceSaveCommand.builder().build();
-  }
-  @Test
-  public void fromTest() {
-    // Arrange
-    ImmutableSharedPreferenceSaveCommand.Builder builderResult = ImmutableSharedPreferenceSaveCommand.builder();
-
-    // Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    builderResult.from(new ImmutableSharedPreferenceSaveCommand.Json());
+    (new ImmutableSharedPreferenceSaveCommand.Json()).value();
   }
 }
 

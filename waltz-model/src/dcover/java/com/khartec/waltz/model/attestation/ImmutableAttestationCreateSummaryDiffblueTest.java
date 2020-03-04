@@ -17,6 +17,37 @@ public class ImmutableAttestationCreateSummaryDiffblueTest {
     ImmutableAttestationCreateSummary.builder().build();
   }
   @Test
+  public void constructorTest() {
+    // Arrange and Act
+    ImmutableAttestationCreateSummary.Json actualJson = new ImmutableAttestationCreateSummary.Json();
+
+    // Assert
+    assertFalse(actualJson.instanceCountIsSet);
+    assertEquals(0L, actualJson.recipientCount);
+    assertEquals(0, actualJson.entityCount);
+    assertEquals(0, actualJson.instanceCount);
+    assertFalse(actualJson.recipientCountIsSet);
+    assertFalse(actualJson.entityCountIsSet);
+  }
+  @Test
+  public void copyOfTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    ImmutableAttestationCreateSummary.copyOf(new ImmutableAttestationCreateSummary.Json());
+  }
+  @Test
+  public void entityCountTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableAttestationCreateSummary.Json()).entityCount();
+  }
+  @Test
+  public void fromJsonTest() {
+    // Arrange, Act and Assert
+    thrown.expect(IllegalStateException.class);
+    ImmutableAttestationCreateSummary.fromJson(new ImmutableAttestationCreateSummary.Json());
+  }
+  @Test
   public void fromTest() {
     // Arrange
     ImmutableAttestationCreateSummary.Builder builderResult = ImmutableAttestationCreateSummary.builder();
@@ -38,22 +69,16 @@ public class ImmutableAttestationCreateSummaryDiffblueTest {
     (new ImmutableAttestationCreateSummary.Json()).recipientCount();
   }
   @Test
-  public void entityCountTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableAttestationCreateSummary.Json()).entityCount();
-  }
-  @Test
-  public void setRecipientCountTest() {
+  public void setEntityCountTest() {
     // Arrange
     ImmutableAttestationCreateSummary.Json json = new ImmutableAttestationCreateSummary.Json();
 
     // Act
-    json.setRecipientCount(3L);
+    json.setEntityCount(3);
 
     // Assert
-    assertEquals(3L, json.recipientCount);
-    assertTrue(json.recipientCountIsSet);
+    assertEquals(3, json.entityCount);
+    assertTrue(json.entityCountIsSet);
   }
   @Test
   public void setInstanceCountTest() {
@@ -68,41 +93,16 @@ public class ImmutableAttestationCreateSummaryDiffblueTest {
     assertEquals(3, json.instanceCount);
   }
   @Test
-  public void constructorTest() {
-    // Arrange and Act
-    ImmutableAttestationCreateSummary.Json actualJson = new ImmutableAttestationCreateSummary.Json();
-
-    // Assert
-    assertFalse(actualJson.instanceCountIsSet);
-    assertEquals(0L, actualJson.recipientCount);
-    assertEquals(0, actualJson.entityCount);
-    assertEquals(0, actualJson.instanceCount);
-    assertFalse(actualJson.recipientCountIsSet);
-    assertFalse(actualJson.entityCountIsSet);
-  }
-  @Test
-  public void setEntityCountTest() {
+  public void setRecipientCountTest() {
     // Arrange
     ImmutableAttestationCreateSummary.Json json = new ImmutableAttestationCreateSummary.Json();
 
     // Act
-    json.setEntityCount(3);
+    json.setRecipientCount(3L);
 
     // Assert
-    assertEquals(3, json.entityCount);
-    assertTrue(json.entityCountIsSet);
-  }
-  @Test
-  public void copyOfTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    ImmutableAttestationCreateSummary.copyOf(new ImmutableAttestationCreateSummary.Json());
-  }
-  @Test
-  public void fromJsonTest() {
-    // Arrange, Act and Assert
-    thrown.expect(IllegalStateException.class);
-    ImmutableAttestationCreateSummary.fromJson(new ImmutableAttestationCreateSummary.Json());
+    assertEquals(3L, json.recipientCount);
+    assertTrue(json.recipientCountIsSet);
   }
 }
 

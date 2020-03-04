@@ -12,22 +12,46 @@ public class ImmutableEntityReferenceDiffblueTest {
   @Rule
   public ExpectedException thrown = ExpectedException.none();
   @Test
-  public void fromTest3() {
-    // Arrange
-    ImmutableEntityReference.Builder builderResult = ImmutableEntityReference.builder();
-
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from((DescriptionProvider) new ImmutableEntityReference.Json());
+  public void buildTest() {
+    // Arrange, Act and Assert
+    thrown.expect(IllegalStateException.class);
+    ImmutableEntityReference.builder().build();
   }
   @Test
-  public void fromTest2() {
-    // Arrange
-    ImmutableEntityReference.Builder builderResult = ImmutableEntityReference.builder();
+  public void constructorTest() {
+    // Arrange and Act
+    ImmutableEntityReference.Json actualJson = new ImmutableEntityReference.Json();
 
-    // Act and Assert
+    // Assert
+    assertFalse(actualJson.idIsSet);
+    assertNull(actualJson.description);
+    assertEquals(0L, actualJson.id);
+    assertNull(actualJson.kind);
+    assertNull(actualJson.entityLifecycleStatus);
+  }
+  @Test
+  public void copyOfTest() {
+    // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    builderResult.from(new ImmutableEntityReference.Json());
+    ImmutableEntityReference.copyOf(new ImmutableEntityReference.Json());
+  }
+  @Test
+  public void descriptionTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableEntityReference.Json()).description();
+  }
+  @Test
+  public void entityLifecycleStatusTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableEntityReference.Json()).entityLifecycleStatus();
+  }
+  @Test
+  public void fromJsonTest() {
+    // Arrange, Act and Assert
+    thrown.expect(IllegalStateException.class);
+    ImmutableEntityReference.fromJson(new ImmutableEntityReference.Json());
   }
   @Test
   public void fromTest() {
@@ -39,10 +63,22 @@ public class ImmutableEntityReferenceDiffblueTest {
     builderResult.from((EntityLifecycleStatusProvider) new ImmutableEntityReference.Json());
   }
   @Test
-  public void buildTest() {
-    // Arrange, Act and Assert
-    thrown.expect(IllegalStateException.class);
-    ImmutableEntityReference.builder().build();
+  public void fromTest2() {
+    // Arrange
+    ImmutableEntityReference.Builder builderResult = ImmutableEntityReference.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from(new ImmutableEntityReference.Json());
+  }
+  @Test
+  public void fromTest3() {
+    // Arrange
+    ImmutableEntityReference.Builder builderResult = ImmutableEntityReference.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from((DescriptionProvider) new ImmutableEntityReference.Json());
   }
   @Test
   public void idTest() {
@@ -74,10 +110,15 @@ public class ImmutableEntityReferenceDiffblueTest {
     assertEquals("description", json.description);
   }
   @Test
-  public void descriptionTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableEntityReference.Json()).description();
+  public void setEntityLifecycleStatusTest() {
+    // Arrange
+    ImmutableEntityReference.Json json = new ImmutableEntityReference.Json();
+
+    // Act
+    json.setEntityLifecycleStatus(EntityLifecycleStatus.ACTIVE);
+
+    // Assert
+    assertEquals(EntityLifecycleStatus.ACTIVE, json.entityLifecycleStatus);
   }
   @Test
   public void setIdTest() {
@@ -92,24 +133,6 @@ public class ImmutableEntityReferenceDiffblueTest {
     assertEquals(123L, json.id);
   }
   @Test
-  public void constructorTest() {
-    // Arrange and Act
-    ImmutableEntityReference.Json actualJson = new ImmutableEntityReference.Json();
-
-    // Assert
-    assertFalse(actualJson.idIsSet);
-    assertNull(actualJson.description);
-    assertEquals(0L, actualJson.id);
-    assertNull(actualJson.kind);
-    assertNull(actualJson.entityLifecycleStatus);
-  }
-  @Test
-  public void entityLifecycleStatusTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableEntityReference.Json()).entityLifecycleStatus();
-  }
-  @Test
   public void setKindTest() {
     // Arrange
     ImmutableEntityReference.Json json = new ImmutableEntityReference.Json();
@@ -119,29 +142,6 @@ public class ImmutableEntityReferenceDiffblueTest {
 
     // Assert
     assertEquals(EntityKind.ACTOR, json.kind);
-  }
-  @Test
-  public void setEntityLifecycleStatusTest() {
-    // Arrange
-    ImmutableEntityReference.Json json = new ImmutableEntityReference.Json();
-
-    // Act
-    json.setEntityLifecycleStatus(EntityLifecycleStatus.ACTIVE);
-
-    // Assert
-    assertEquals(EntityLifecycleStatus.ACTIVE, json.entityLifecycleStatus);
-  }
-  @Test
-  public void fromJsonTest() {
-    // Arrange, Act and Assert
-    thrown.expect(IllegalStateException.class);
-    ImmutableEntityReference.fromJson(new ImmutableEntityReference.Json());
-  }
-  @Test
-  public void copyOfTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    ImmutableEntityReference.copyOf(new ImmutableEntityReference.Json());
   }
 }
 

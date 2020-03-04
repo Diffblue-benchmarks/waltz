@@ -14,52 +14,23 @@ public class ImmutableSurveyTemplateDiffblueTest {
   @Rule
   public ExpectedException thrown = ExpectedException.none();
   @Test
-  public void fromTest4() {
-    // Arrange
-    ImmutableSurveyTemplate.Builder builderResult = ImmutableSurveyTemplate.builder();
-
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from((DescriptionProvider) new ImmutableSurveyRun.Json());
-  }
-  @Test
-  public void fromTest3() {
-    // Arrange
-    ImmutableSurveyTemplate.Builder builderResult = ImmutableSurveyTemplate.builder();
-
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from(new ImmutableSurveyInstance.Json());
-  }
-  @Test
-  public void fromTest2() {
-    // Arrange
-    ImmutableSurveyTemplate.Builder builderResult = ImmutableSurveyTemplate.builder();
-
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from(new ImmutableSurveyTemplate.Json());
-  }
-  @Test
   public void buildTest() {
     // Arrange, Act and Assert
     thrown.expect(IllegalStateException.class);
     ImmutableSurveyTemplate.builder().build();
   }
   @Test
-  public void fromTest() {
-    // Arrange
-    ImmutableSurveyTemplate.Builder builderResult = ImmutableSurveyTemplate.builder();
+  public void constructorTest() {
+    // Arrange and Act
+    ImmutableSurveyTemplate.Json actualJson = new ImmutableSurveyTemplate.Json();
 
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from((NameProvider) new ImmutableSurveyRun.Json());
-  }
-  @Test
-  public void fromJsonTest() {
-    // Arrange, Act and Assert
-    thrown.expect(IllegalStateException.class);
-    ImmutableSurveyTemplate.fromJson(new ImmutableSurveyTemplate.Json());
+    // Assert
+    assertNull(actualJson.createdAt);
+    assertNull(actualJson.name);
+    assertNull(actualJson.description);
+    assertNull(actualJson.ownerId);
+    assertNull(actualJson.targetEntityKind);
+    assertNull(actualJson.status);
   }
   @Test
   public void copyOfTest() {
@@ -74,16 +45,52 @@ public class ImmutableSurveyTemplateDiffblueTest {
     (new ImmutableSurveyTemplate.Json()).createdAt();
   }
   @Test
-  public void targetEntityKindTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableSurveyTemplate.Json()).targetEntityKind();
-  }
-  @Test
   public void descriptionTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
     (new ImmutableSurveyTemplate.Json()).description();
+  }
+  @Test
+  public void fromJsonTest() {
+    // Arrange, Act and Assert
+    thrown.expect(IllegalStateException.class);
+    ImmutableSurveyTemplate.fromJson(new ImmutableSurveyTemplate.Json());
+  }
+  @Test
+  public void fromTest() {
+    // Arrange
+    ImmutableSurveyTemplate.Builder builderResult = ImmutableSurveyTemplate.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from((NameProvider) new ImmutableSurveyRun.Json());
+  }
+  @Test
+  public void fromTest2() {
+    // Arrange
+    ImmutableSurveyTemplate.Builder builderResult = ImmutableSurveyTemplate.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from(new ImmutableSurveyTemplate.Json());
+  }
+  @Test
+  public void fromTest3() {
+    // Arrange
+    ImmutableSurveyTemplate.Builder builderResult = ImmutableSurveyTemplate.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from(new ImmutableSurveyInstance.Json());
+  }
+  @Test
+  public void fromTest4() {
+    // Arrange
+    ImmutableSurveyTemplate.Builder builderResult = ImmutableSurveyTemplate.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from((DescriptionProvider) new ImmutableSurveyRun.Json());
   }
   @Test
   public void idTest() {
@@ -92,21 +99,16 @@ public class ImmutableSurveyTemplateDiffblueTest {
     (new ImmutableSurveyTemplate.Json()).id();
   }
   @Test
+  public void nameTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableSurveyTemplate.Json()).name();
+  }
+  @Test
   public void ownerIdTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
     (new ImmutableSurveyTemplate.Json()).ownerId();
-  }
-  @Test
-  public void setStatusTest() {
-    // Arrange
-    ImmutableSurveyTemplate.Json json = new ImmutableSurveyTemplate.Json();
-
-    // Act
-    json.setStatus(ReleaseLifecycleStatus.DRAFT);
-
-    // Assert
-    assertEquals(ReleaseLifecycleStatus.DRAFT, json.status);
   }
   @Test
   public void setDescriptionTest() {
@@ -120,10 +122,15 @@ public class ImmutableSurveyTemplateDiffblueTest {
     assertEquals("description", json.description);
   }
   @Test
-  public void nameTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableSurveyTemplate.Json()).name();
+  public void setNameTest() {
+    // Arrange
+    ImmutableSurveyTemplate.Json json = new ImmutableSurveyTemplate.Json();
+
+    // Act
+    json.setName("name");
+
+    // Assert
+    assertEquals("name", json.name);
   }
   @Test
   public void setOwnerIdTest() {
@@ -137,28 +144,15 @@ public class ImmutableSurveyTemplateDiffblueTest {
     assertEquals(Long.valueOf(123L), json.ownerId);
   }
   @Test
-  public void setNameTest() {
+  public void setStatusTest() {
     // Arrange
     ImmutableSurveyTemplate.Json json = new ImmutableSurveyTemplate.Json();
 
     // Act
-    json.setName("name");
+    json.setStatus(ReleaseLifecycleStatus.DRAFT);
 
     // Assert
-    assertEquals("name", json.name);
-  }
-  @Test
-  public void constructorTest() {
-    // Arrange and Act
-    ImmutableSurveyTemplate.Json actualJson = new ImmutableSurveyTemplate.Json();
-
-    // Assert
-    assertNull(actualJson.createdAt);
-    assertNull(actualJson.name);
-    assertNull(actualJson.description);
-    assertNull(actualJson.ownerId);
-    assertNull(actualJson.targetEntityKind);
-    assertNull(actualJson.status);
+    assertEquals(ReleaseLifecycleStatus.DRAFT, json.status);
   }
   @Test
   public void setTargetEntityKindTest() {
@@ -176,6 +170,12 @@ public class ImmutableSurveyTemplateDiffblueTest {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
     (new ImmutableSurveyTemplate.Json()).status();
+  }
+  @Test
+  public void targetEntityKindTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableSurveyTemplate.Json()).targetEntityKind();
   }
 }
 

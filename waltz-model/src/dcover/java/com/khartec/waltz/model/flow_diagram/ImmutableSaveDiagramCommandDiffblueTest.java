@@ -14,13 +14,66 @@ public class ImmutableSaveDiagramCommandDiffblueTest {
   @Rule
   public ExpectedException thrown = ExpectedException.none();
   @Test
-  public void fromTest3() {
+  public void annotationsTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableSaveDiagramCommand.Json()).annotations();
+  }
+  @Test
+  public void buildTest() {
+    // Arrange, Act and Assert
+    thrown.expect(IllegalStateException.class);
+    ImmutableSaveDiagramCommand.builder().build();
+  }
+  @Test
+  public void constructorTest() {
+    // Arrange and Act
+    ImmutableSaveDiagramCommand.Json actualJson = new ImmutableSaveDiagramCommand.Json();
+
+    // Assert
+    List<FlowDiagramAnnotation> actualFlowDiagramAnnotationList = actualJson.annotations;
+    List<FlowDiagramEntity> flowDiagramEntityList = actualJson.entities;
+    assertEquals(0, flowDiagramEntityList.size());
+    assertSame(flowDiagramEntityList, actualFlowDiagramAnnotationList);
+  }
+  @Test
+  public void copyOfTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    ImmutableSaveDiagramCommand.copyOf(new ImmutableSaveDiagramCommand.Json());
+  }
+  @Test
+  public void descriptionTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableSaveDiagramCommand.Json()).description();
+  }
+  @Test
+  public void diagramIdTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableSaveDiagramCommand.Json()).diagramId();
+  }
+  @Test
+  public void entitiesTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableSaveDiagramCommand.Json()).entities();
+  }
+  @Test
+  public void fromJsonTest() {
+    // Arrange, Act and Assert
+    thrown.expect(IllegalStateException.class);
+    ImmutableSaveDiagramCommand.fromJson(new ImmutableSaveDiagramCommand.Json());
+  }
+  @Test
+  public void fromTest() {
     // Arrange
     ImmutableSaveDiagramCommand.Builder builderResult = ImmutableSaveDiagramCommand.builder();
 
     // Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    builderResult.from(new ImmutableSaveDiagramCommand.Json());
+    builderResult.from((DescriptionProvider) new ImmutableFlowDiagram.Json());
   }
   @Test
   public void fromTest2() {
@@ -32,19 +85,25 @@ public class ImmutableSaveDiagramCommandDiffblueTest {
     builderResult.from((NameProvider) new ImmutableFlowDiagram.Json());
   }
   @Test
-  public void buildTest() {
-    // Arrange, Act and Assert
-    thrown.expect(IllegalStateException.class);
-    ImmutableSaveDiagramCommand.builder().build();
-  }
-  @Test
-  public void fromTest() {
+  public void fromTest3() {
     // Arrange
     ImmutableSaveDiagramCommand.Builder builderResult = ImmutableSaveDiagramCommand.builder();
 
     // Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    builderResult.from((DescriptionProvider) new ImmutableFlowDiagram.Json());
+    builderResult.from(new ImmutableSaveDiagramCommand.Json());
+  }
+  @Test
+  public void layoutDataTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableSaveDiagramCommand.Json()).layoutData();
+  }
+  @Test
+  public void nameTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableSaveDiagramCommand.Json()).name();
   }
   @Test
   public void setAnnotationsTest() {
@@ -60,21 +119,15 @@ public class ImmutableSaveDiagramCommandDiffblueTest {
     assertSame(flowDiagramAnnotationList, json.annotations);
   }
   @Test
-  public void descriptionTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableSaveDiagramCommand.Json()).description();
-  }
-  @Test
-  public void setLayoutDataTest() {
+  public void setDescriptionTest() {
     // Arrange
     ImmutableSaveDiagramCommand.Json json = new ImmutableSaveDiagramCommand.Json();
 
     // Act
-    json.setLayoutData("foo");
+    json.setDescription("description");
 
     // Assert
-    assertEquals("foo", json.layoutData);
+    assertEquals("description", json.description);
   }
   @Test
   public void setEntitiesTest() {
@@ -90,33 +143,15 @@ public class ImmutableSaveDiagramCommandDiffblueTest {
     assertSame(flowDiagramEntityList, json.entities);
   }
   @Test
-  public void setDescriptionTest() {
+  public void setLayoutDataTest() {
     // Arrange
     ImmutableSaveDiagramCommand.Json json = new ImmutableSaveDiagramCommand.Json();
 
     // Act
-    json.setDescription("description");
+    json.setLayoutData("layoutData");
 
     // Assert
-    assertEquals("description", json.description);
-  }
-  @Test
-  public void nameTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableSaveDiagramCommand.Json()).name();
-  }
-  @Test
-  public void entitiesTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableSaveDiagramCommand.Json()).entities();
-  }
-  @Test
-  public void layoutDataTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableSaveDiagramCommand.Json()).layoutData();
+    assertEquals("layoutData", json.layoutData);
   }
   @Test
   public void setNameTest() {
@@ -128,41 +163,6 @@ public class ImmutableSaveDiagramCommandDiffblueTest {
 
     // Assert
     assertEquals("name", json.name);
-  }
-  @Test
-  public void annotationsTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableSaveDiagramCommand.Json()).annotations();
-  }
-  @Test
-  public void constructorTest() {
-    // Arrange and Act
-    ImmutableSaveDiagramCommand.Json actualJson = new ImmutableSaveDiagramCommand.Json();
-
-    // Assert
-    List<FlowDiagramAnnotation> actualFlowDiagramAnnotationList = actualJson.annotations;
-    List<FlowDiagramEntity> flowDiagramEntityList = actualJson.entities;
-    assertEquals(0, flowDiagramEntityList.size());
-    assertSame(flowDiagramEntityList, actualFlowDiagramAnnotationList);
-  }
-  @Test
-  public void diagramIdTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableSaveDiagramCommand.Json()).diagramId();
-  }
-  @Test
-  public void copyOfTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    ImmutableSaveDiagramCommand.copyOf(new ImmutableSaveDiagramCommand.Json());
-  }
-  @Test
-  public void fromJsonTest() {
-    // Arrange, Act and Assert
-    thrown.expect(IllegalStateException.class);
-    ImmutableSaveDiagramCommand.fromJson(new ImmutableSaveDiagramCommand.Json());
   }
 }
 

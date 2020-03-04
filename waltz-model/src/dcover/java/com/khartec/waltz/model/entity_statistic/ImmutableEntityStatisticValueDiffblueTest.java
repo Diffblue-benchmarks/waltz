@@ -15,166 +15,10 @@ public class ImmutableEntityStatisticValueDiffblueTest {
   public ExpectedException thrown = ExpectedException.none();
 
   @Test
-  public void fromTest3() {
-    // Arrange
-    ImmutableEntityStatisticValue.Builder builderResult = ImmutableEntityStatisticValue.builder();
-
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from(new ImmutableEntityStatisticValue.Json());
-  }
-
-  @Test
   public void buildTest() {
     // Arrange, Act and Assert
     thrown.expect(IllegalStateException.class);
     ImmutableEntityStatisticValue.builder().build();
-  }
-
-  @Test
-  public void fromTest2() {
-    // Arrange
-    ImmutableEntityStatisticValue.Builder builderResult = ImmutableEntityStatisticValue.builder();
-
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from((ProvenanceProvider) new ImmutableEntityStatisticDefinition.Json());
-  }
-
-  @Test
-  public void fromTest() {
-    // Arrange
-    ImmutableEntityStatisticValue.Builder builderResult = ImmutableEntityStatisticValue.builder();
-
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from((IdProvider) new ImmutableEntityStatisticDefinition.Json());
-  }
-
-  @Test
-  public void copyOfTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    ImmutableEntityStatisticValue.copyOf(new ImmutableEntityStatisticValue.Json());
-  }
-
-  @Test
-  public void fromJsonTest() {
-    // Arrange, Act and Assert
-    thrown.expect(IllegalStateException.class);
-    ImmutableEntityStatisticValue.fromJson(new ImmutableEntityStatisticValue.Json());
-  }
-
-  @Test
-  public void createdAtTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableEntityStatisticValue.Json()).createdAt();
-  }
-
-  @Test
-  public void setCurrentTest() {
-    // Arrange
-    ImmutableEntityStatisticValue.Json json = new ImmutableEntityStatisticValue.Json();
-
-    // Act
-    json.setCurrent(true);
-
-    // Assert
-    assertTrue(json.currentIsSet);
-    assertTrue(json.current);
-  }
-
-  @Test
-  public void outcomeTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableEntityStatisticValue.Json()).outcome();
-  }
-
-  @Test
-  public void provenanceTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableEntityStatisticValue.Json()).provenance();
-  }
-
-  @Test
-  public void idTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableEntityStatisticValue.Json()).id();
-  }
-
-  @Test
-  public void entityTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableEntityStatisticValue.Json()).entity();
-  }
-
-  @Test
-  public void setValueTest() {
-    // Arrange
-    ImmutableEntityStatisticValue.Json json = new ImmutableEntityStatisticValue.Json();
-
-    // Act
-    json.setValue("value");
-
-    // Assert
-    assertEquals("value", json.value);
-  }
-
-  @Test
-  public void reasonTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableEntityStatisticValue.Json()).reason();
-  }
-
-  @Test
-  public void valueTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableEntityStatisticValue.Json()).value();
-  }
-
-  @Test
-  public void setStateTest() {
-    // Arrange
-    ImmutableEntityStatisticValue.Json json = new ImmutableEntityStatisticValue.Json();
-
-    // Act
-    json.setState(StatisticValueState.EXEMPT);
-
-    // Assert
-    assertEquals(StatisticValueState.EXEMPT, json.state);
-  }
-
-  @Test
-  public void currentTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableEntityStatisticValue.Json()).current();
-  }
-
-  @Test
-  public void setOutcomeTest() {
-    // Arrange
-    ImmutableEntityStatisticValue.Json json = new ImmutableEntityStatisticValue.Json();
-
-    // Act
-    json.setOutcome("foo");
-
-    // Assert
-    assertEquals("foo", json.outcome);
-  }
-
-  @Test
-  public void statisticIdTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableEntityStatisticValue.Json()).statisticId();
   }
 
   @Test
@@ -197,6 +41,136 @@ public class ImmutableEntityStatisticValueDiffblueTest {
   }
 
   @Test
+  public void copyOfTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    ImmutableEntityStatisticValue.copyOf(new ImmutableEntityStatisticValue.Json());
+  }
+
+  @Test
+  public void createdAtTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableEntityStatisticValue.Json()).createdAt();
+  }
+
+  @Test
+  public void currentTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableEntityStatisticValue.Json()).current();
+  }
+
+  @Test
+  public void entityTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableEntityStatisticValue.Json()).entity();
+  }
+
+  @Test
+  public void fromJsonTest() {
+    // Arrange, Act and Assert
+    thrown.expect(IllegalStateException.class);
+    ImmutableEntityStatisticValue.fromJson(new ImmutableEntityStatisticValue.Json());
+  }
+
+  @Test
+  public void fromTest() {
+    // Arrange
+    ImmutableEntityStatisticValue.Builder builderResult = ImmutableEntityStatisticValue.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from((IdProvider) new ImmutableEntityStatisticDefinition.Json());
+  }
+
+  @Test
+  public void fromTest2() {
+    // Arrange
+    ImmutableEntityStatisticValue.Builder builderResult = ImmutableEntityStatisticValue.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from((ProvenanceProvider) new ImmutableEntityStatisticDefinition.Json());
+  }
+
+  @Test
+  public void fromTest3() {
+    // Arrange
+    ImmutableEntityStatisticValue.Builder builderResult = ImmutableEntityStatisticValue.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from(new ImmutableEntityStatisticValue.Json());
+  }
+
+  @Test
+  public void idTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableEntityStatisticValue.Json()).id();
+  }
+
+  @Test
+  public void outcomeTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableEntityStatisticValue.Json()).outcome();
+  }
+
+  @Test
+  public void provenanceTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableEntityStatisticValue.Json()).provenance();
+  }
+
+  @Test
+  public void reasonTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableEntityStatisticValue.Json()).reason();
+  }
+
+  @Test
+  public void setCurrentTest() {
+    // Arrange
+    ImmutableEntityStatisticValue.Json json = new ImmutableEntityStatisticValue.Json();
+
+    // Act
+    json.setCurrent(true);
+
+    // Assert
+    assertTrue(json.currentIsSet);
+    assertTrue(json.current);
+  }
+
+  @Test
+  public void setOutcomeTest() {
+    // Arrange
+    ImmutableEntityStatisticValue.Json json = new ImmutableEntityStatisticValue.Json();
+
+    // Act
+    json.setOutcome("outcome");
+
+    // Assert
+    assertEquals("outcome", json.outcome);
+  }
+
+  @Test
+  public void setProvenanceTest() {
+    // Arrange
+    ImmutableEntityStatisticValue.Json json = new ImmutableEntityStatisticValue.Json();
+
+    // Act
+    json.setProvenance("provenance");
+
+    // Assert
+    assertEquals("provenance", json.provenance);
+  }
+
+  @Test
   public void setReasonTest() {
     // Arrange
     ImmutableEntityStatisticValue.Json json = new ImmutableEntityStatisticValue.Json();
@@ -206,6 +180,18 @@ public class ImmutableEntityStatisticValueDiffblueTest {
 
     // Assert
     assertEquals("because", json.reason);
+  }
+
+  @Test
+  public void setStateTest() {
+    // Arrange
+    ImmutableEntityStatisticValue.Json json = new ImmutableEntityStatisticValue.Json();
+
+    // Act
+    json.setState(StatisticValueState.EXEMPT);
+
+    // Assert
+    assertEquals(StatisticValueState.EXEMPT, json.state);
   }
 
   @Test
@@ -222,6 +208,18 @@ public class ImmutableEntityStatisticValueDiffblueTest {
   }
 
   @Test
+  public void setValueTest() {
+    // Arrange
+    ImmutableEntityStatisticValue.Json json = new ImmutableEntityStatisticValue.Json();
+
+    // Act
+    json.setValue("value");
+
+    // Assert
+    assertEquals("value", json.value);
+  }
+
+  @Test
   public void stateTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
@@ -229,15 +227,17 @@ public class ImmutableEntityStatisticValueDiffblueTest {
   }
 
   @Test
-  public void setProvenanceTest() {
-    // Arrange
-    ImmutableEntityStatisticValue.Json json = new ImmutableEntityStatisticValue.Json();
+  public void statisticIdTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableEntityStatisticValue.Json()).statisticId();
+  }
 
-    // Act
-    json.setProvenance("foo");
-
-    // Assert
-    assertEquals("foo", json.provenance);
+  @Test
+  public void valueTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableEntityStatisticValue.Json()).value();
   }
 }
 

@@ -10,16 +10,10 @@ public class ImmutableUserPreferenceDiffblueTest {
   @Rule
   public ExpectedException thrown = ExpectedException.none();
   @Test
-  public void valueTest() {
+  public void buildTest() {
     // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableUserPreference.Json()).value();
-  }
-  @Test
-  public void keyTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableUserPreference.Json()).key();
+    thrown.expect(IllegalStateException.class);
+    ImmutableUserPreference.builder().build();
   }
   @Test
   public void constructorTest() {
@@ -29,6 +23,44 @@ public class ImmutableUserPreferenceDiffblueTest {
     // Assert
     assertNull(actualJson.value);
     assertNull(actualJson.key);
+  }
+  @Test
+  public void copyOfTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    ImmutableUserPreference.copyOf(new ImmutableUserPreference.Json());
+  }
+  @Test
+  public void fromJsonTest() {
+    // Arrange, Act and Assert
+    thrown.expect(IllegalStateException.class);
+    ImmutableUserPreference.fromJson(new ImmutableUserPreference.Json());
+  }
+  @Test
+  public void fromTest() {
+    // Arrange
+    ImmutableUserPreference.Builder builderResult = ImmutableUserPreference.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from(new ImmutableUserPreference.Json());
+  }
+  @Test
+  public void keyTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableUserPreference.Json()).key();
+  }
+  @Test
+  public void setKeyTest() {
+    // Arrange
+    ImmutableUserPreference.Json json = new ImmutableUserPreference.Json();
+
+    // Act
+    json.setKey("key");
+
+    // Assert
+    assertEquals("key", json.key);
   }
   @Test
   public void setValueTest() {
@@ -42,42 +74,10 @@ public class ImmutableUserPreferenceDiffblueTest {
     assertEquals("value", json.value);
   }
   @Test
-  public void setKeyTest() {
-    // Arrange
-    ImmutableUserPreference.Json json = new ImmutableUserPreference.Json();
-
-    // Act
-    json.setKey("foo");
-
-    // Assert
-    assertEquals("foo", json.key);
-  }
-  @Test
-  public void buildTest() {
-    // Arrange, Act and Assert
-    thrown.expect(IllegalStateException.class);
-    ImmutableUserPreference.builder().build();
-  }
-  @Test
-  public void fromTest() {
-    // Arrange
-    ImmutableUserPreference.Builder builderResult = ImmutableUserPreference.builder();
-
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from(new ImmutableUserPreference.Json());
-  }
-  @Test
-  public void copyOfTest() {
+  public void valueTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    ImmutableUserPreference.copyOf(new ImmutableUserPreference.Json());
-  }
-  @Test
-  public void fromJsonTest() {
-    // Arrange, Act and Assert
-    thrown.expect(IllegalStateException.class);
-    ImmutableUserPreference.fromJson(new ImmutableUserPreference.Json());
+    (new ImmutableUserPreference.Json()).value();
   }
 }
 

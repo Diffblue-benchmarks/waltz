@@ -12,13 +12,42 @@ public class ImmutableSetAttributeCommandDiffblueTest {
   public ExpectedException thrown = ExpectedException.none();
 
   @Test
-  public void fromTest2() {
-    // Arrange
-    ImmutableSetAttributeCommand.Builder builderResult = ImmutableSetAttributeCommand.builder();
+  public void buildTest() {
+    // Arrange, Act and Assert
+    thrown.expect(IllegalStateException.class);
+    ImmutableSetAttributeCommand.builder().build();
+  }
 
-    // Act and Assert
+  @Test
+  public void constructorTest() {
+    // Arrange and Act
+    ImmutableSetAttributeCommand.Json actualJson = new ImmutableSetAttributeCommand.Json();
+
+    // Assert
+    assertNull(actualJson.value);
+    assertNull(actualJson.entityReference);
+    assertNull(actualJson.name);
+  }
+
+  @Test
+  public void copyOfTest() {
+    // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    builderResult.from(new ImmutableCodedReference.Json());
+    ImmutableSetAttributeCommand.copyOf(new ImmutableSetAttributeCommand.Json());
+  }
+
+  @Test
+  public void entityReferenceTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableSetAttributeCommand.Json()).entityReference();
+  }
+
+  @Test
+  public void fromJsonTest() {
+    // Arrange, Act and Assert
+    thrown.expect(IllegalStateException.class);
+    ImmutableSetAttributeCommand.fromJson(new ImmutableSetAttributeCommand.Json());
   }
 
   @Test
@@ -32,38 +61,13 @@ public class ImmutableSetAttributeCommandDiffblueTest {
   }
 
   @Test
-  public void buildTest() {
-    // Arrange, Act and Assert
-    thrown.expect(IllegalStateException.class);
-    ImmutableSetAttributeCommand.builder().build();
-  }
+  public void fromTest2() {
+    // Arrange
+    ImmutableSetAttributeCommand.Builder builderResult = ImmutableSetAttributeCommand.builder();
 
-  @Test
-  public void fromJsonTest() {
-    // Arrange, Act and Assert
-    thrown.expect(IllegalStateException.class);
-    ImmutableSetAttributeCommand.fromJson(new ImmutableSetAttributeCommand.Json());
-  }
-
-  @Test
-  public void copyOfTest() {
-    // Arrange, Act and Assert
+    // Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    ImmutableSetAttributeCommand.copyOf(new ImmutableSetAttributeCommand.Json());
-  }
-
-  @Test
-  public void valueTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableSetAttributeCommand.Json()).value();
-  }
-
-  @Test
-  public void entityReferenceTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableSetAttributeCommand.Json()).entityReference();
+    builderResult.from(new ImmutableCodedReference.Json());
   }
 
   @Test
@@ -71,6 +75,19 @@ public class ImmutableSetAttributeCommandDiffblueTest {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
     (new ImmutableSetAttributeCommand.Json()).name();
+  }
+
+  @Test
+  public void setEntityReferenceTest() {
+    // Arrange
+    ImmutableSetAttributeCommand.Json json = new ImmutableSetAttributeCommand.Json();
+    ImmutableEntityReference.Json json1 = new ImmutableEntityReference.Json();
+
+    // Act
+    json.setEntityReference(json1);
+
+    // Assert
+    assertSame(json1, json.entityReference);
   }
 
   @Test
@@ -86,17 +103,6 @@ public class ImmutableSetAttributeCommandDiffblueTest {
   }
 
   @Test
-  public void constructorTest() {
-    // Arrange and Act
-    ImmutableSetAttributeCommand.Json actualJson = new ImmutableSetAttributeCommand.Json();
-
-    // Assert
-    assertNull(actualJson.value);
-    assertNull(actualJson.entityReference);
-    assertNull(actualJson.name);
-  }
-
-  @Test
   public void setValueTest() {
     // Arrange
     ImmutableSetAttributeCommand.Json json = new ImmutableSetAttributeCommand.Json();
@@ -109,16 +115,10 @@ public class ImmutableSetAttributeCommandDiffblueTest {
   }
 
   @Test
-  public void setEntityReferenceTest() {
-    // Arrange
-    ImmutableSetAttributeCommand.Json json = new ImmutableSetAttributeCommand.Json();
-    ImmutableEntityReference.Json json1 = new ImmutableEntityReference.Json();
-
-    // Act
-    json.setEntityReference(json1);
-
-    // Assert
-    assertSame(json1, json.entityReference);
+  public void valueTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableSetAttributeCommand.Json()).value();
   }
 }
 

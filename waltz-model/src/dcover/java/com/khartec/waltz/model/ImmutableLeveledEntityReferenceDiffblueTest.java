@@ -13,43 +13,10 @@ public class ImmutableLeveledEntityReferenceDiffblueTest {
   @Rule
   public ExpectedException thrown = ExpectedException.none();
   @Test
-  public void fromTest() {
-    // Arrange
-    ImmutableLeveledEntityReference.Builder builderResult = ImmutableLeveledEntityReference.builder();
-
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from(new ImmutableLeveledEntityReference.Json());
-  }
-  @Test
   public void buildTest() {
     // Arrange, Act and Assert
     thrown.expect(IllegalStateException.class);
     ImmutableLeveledEntityReference.builder().build();
-  }
-  @Test
-  public void entityReferenceTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableLeveledEntityReference.Json()).entityReference();
-  }
-  @Test
-  public void setLevelTest() {
-    // Arrange
-    ImmutableLeveledEntityReference.Json json = new ImmutableLeveledEntityReference.Json();
-
-    // Act
-    json.setLevel(1);
-
-    // Assert
-    assertTrue(json.levelIsSet);
-    assertEquals(1, json.level);
-  }
-  @Test
-  public void levelTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableLeveledEntityReference.Json()).level();
   }
   @Test
   public void constructorTest() {
@@ -60,6 +27,39 @@ public class ImmutableLeveledEntityReferenceDiffblueTest {
     assertNull(actualJson.entityReference);
     assertFalse(actualJson.levelIsSet);
     assertEquals(0, actualJson.level);
+  }
+  @Test
+  public void copyOfTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    ImmutableLeveledEntityReference.copyOf(new ImmutableLeveledEntityReference.Json());
+  }
+  @Test
+  public void entityReferenceTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableLeveledEntityReference.Json()).entityReference();
+  }
+  @Test
+  public void fromJsonTest() {
+    // Arrange, Act and Assert
+    thrown.expect(IllegalStateException.class);
+    ImmutableLeveledEntityReference.fromJson(new ImmutableLeveledEntityReference.Json());
+  }
+  @Test
+  public void fromTest() {
+    // Arrange
+    ImmutableLeveledEntityReference.Builder builderResult = ImmutableLeveledEntityReference.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from(new ImmutableLeveledEntityReference.Json());
+  }
+  @Test
+  public void levelTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableLeveledEntityReference.Json()).level();
   }
   @Test
   public void setEntityReferenceTest() {
@@ -74,16 +74,16 @@ public class ImmutableLeveledEntityReferenceDiffblueTest {
     assertSame(json1, json.entityReference);
   }
   @Test
-  public void copyOfTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    ImmutableLeveledEntityReference.copyOf(new ImmutableLeveledEntityReference.Json());
-  }
-  @Test
-  public void fromJsonTest() {
-    // Arrange, Act and Assert
-    thrown.expect(IllegalStateException.class);
-    ImmutableLeveledEntityReference.fromJson(new ImmutableLeveledEntityReference.Json());
+  public void setLevelTest() {
+    // Arrange
+    ImmutableLeveledEntityReference.Json json = new ImmutableLeveledEntityReference.Json();
+
+    // Act
+    json.setLevel(1);
+
+    // Assert
+    assertTrue(json.levelIsSet);
+    assertEquals(1, json.level);
   }
 }
 

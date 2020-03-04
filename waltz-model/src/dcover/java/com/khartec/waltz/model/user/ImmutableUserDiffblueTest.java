@@ -20,13 +20,23 @@ public class ImmutableUserDiffblueTest {
   }
 
   @Test
-  public void fromTest2() {
-    // Arrange
-    ImmutableUser.Builder builderResult = ImmutableUser.builder();
+  public void constructorTest() {
+    // Arrange, Act and Assert
+    assertEquals(0, (new ImmutableUser.Json()).roles.size());
+  }
 
-    // Act and Assert
+  @Test
+  public void copyOfTest() {
+    // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    builderResult.from(new ImmutableUser.Json());
+    ImmutableUser.copyOf(new ImmutableUser.Json());
+  }
+
+  @Test
+  public void fromJsonTest() {
+    // Arrange, Act and Assert
+    thrown.expect(IllegalStateException.class);
+    ImmutableUser.fromJson(new ImmutableUser.Json());
   }
 
   @Test
@@ -40,17 +50,20 @@ public class ImmutableUserDiffblueTest {
   }
 
   @Test
-  public void fromJsonTest() {
-    // Arrange, Act and Assert
-    thrown.expect(IllegalStateException.class);
-    ImmutableUser.fromJson(new ImmutableUser.Json());
+  public void fromTest2() {
+    // Arrange
+    ImmutableUser.Builder builderResult = ImmutableUser.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from(new ImmutableUser.Json());
   }
 
   @Test
-  public void copyOfTest() {
+  public void rolesTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    ImmutableUser.copyOf(new ImmutableUser.Json());
+    (new ImmutableUser.Json()).roles();
   }
 
   @Test
@@ -68,26 +81,6 @@ public class ImmutableUserDiffblueTest {
   }
 
   @Test
-  public void constructorTest() {
-    // Arrange, Act and Assert
-    assertEquals(0, (new ImmutableUser.Json()).roles.size());
-  }
-
-  @Test
-  public void userNameTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableUser.Json()).userName();
-  }
-
-  @Test
-  public void rolesTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableUser.Json()).roles();
-  }
-
-  @Test
   public void setUserNameTest() {
     // Arrange
     ImmutableUser.Json json = new ImmutableUser.Json();
@@ -97,6 +90,13 @@ public class ImmutableUserDiffblueTest {
 
     // Assert
     assertEquals("username", json.userName);
+  }
+
+  @Test
+  public void userNameTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableUser.Json()).userName();
   }
 }
 

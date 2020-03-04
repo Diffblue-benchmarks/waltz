@@ -21,6 +21,13 @@ public class ImmutableLicenceDiffblueTest {
   public ExpectedException thrown = ExpectedException.none();
 
   @Test
+  public void approvalStatusTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableLicence.Json()).approvalStatus();
+  }
+
+  @Test
   public void buildTest() {
     // Arrange, Act and Assert
     thrown.expect(IllegalStateException.class);
@@ -28,73 +35,51 @@ public class ImmutableLicenceDiffblueTest {
   }
 
   @Test
-  public void fromTest8() {
-    // Arrange
-    ImmutableLicence.Builder builderResult = ImmutableLicence.builder();
+  public void constructorTest() {
+    // Arrange and Act
+    ImmutableLicence.Json actualJson = new ImmutableLicence.Json();
 
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from((IdProvider) new ImmutableLicence.Json());
+    // Assert
+    Optional<UserTimestamp> optional = actualJson.created;
+    assertSame(actualJson.id, optional);
+    assertSame(optional, actualJson.id);
+    assertSame(optional, actualJson.lastUpdated);
+    assertSame(optional, actualJson.externalId);
   }
 
   @Test
-  public void fromTest7() {
-    // Arrange
-    ImmutableLicence.Builder builderResult = ImmutableLicence.builder();
-
-    // Act and Assert
+  public void copyOfTest() {
+    // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    builderResult.from((CreatedUserTimestampProvider) new ImmutableLicence.Json());
+    ImmutableLicence.copyOf(new ImmutableLicence.Json());
   }
 
   @Test
-  public void fromTest6() {
-    // Arrange
-    ImmutableLicence.Builder builderResult = ImmutableLicence.builder();
-
-    // Act and Assert
+  public void createdTest() {
+    // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    builderResult.from((NameProvider) new ImmutableLicence.Json());
+    (new ImmutableLicence.Json()).created();
   }
 
   @Test
-  public void fromTest5() {
-    // Arrange
-    ImmutableLicence.Builder builderResult = ImmutableLicence.builder();
-
-    // Act and Assert
+  public void descriptionTest() {
+    // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    builderResult.from(new ImmutableLicence.Json());
+    (new ImmutableLicence.Json()).description();
   }
 
   @Test
-  public void fromTest4() {
-    // Arrange
-    ImmutableLicence.Builder builderResult = ImmutableLicence.builder();
-
-    // Act and Assert
+  public void externalIdTest() {
+    // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    builderResult.from((LastUpdatedUserTimestampProvider) new ImmutableLicence.Json());
+    (new ImmutableLicence.Json()).externalId();
   }
 
   @Test
-  public void fromTest3() {
-    // Arrange
-    ImmutableLicence.Builder builderResult = ImmutableLicence.builder();
-
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from((ProvenanceProvider) new ImmutableLicence.Json());
-  }
-
-  @Test
-  public void fromTest2() {
-    // Arrange
-    ImmutableLicence.Builder builderResult = ImmutableLicence.builder();
-
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from((ExternalIdProvider) new ImmutableLicence.Json());
+  public void fromJsonTest() {
+    // Arrange, Act and Assert
+    thrown.expect(IllegalStateException.class);
+    ImmutableLicence.fromJson(new ImmutableLicence.Json());
   }
 
   @Test
@@ -108,38 +93,73 @@ public class ImmutableLicenceDiffblueTest {
   }
 
   @Test
-  public void fromJsonTest() {
-    // Arrange, Act and Assert
-    thrown.expect(IllegalStateException.class);
-    ImmutableLicence.fromJson(new ImmutableLicence.Json());
+  public void fromTest2() {
+    // Arrange
+    ImmutableLicence.Builder builderResult = ImmutableLicence.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from((ExternalIdProvider) new ImmutableLicence.Json());
   }
 
   @Test
-  public void copyOfTest() {
-    // Arrange, Act and Assert
+  public void fromTest3() {
+    // Arrange
+    ImmutableLicence.Builder builderResult = ImmutableLicence.builder();
+
+    // Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    ImmutableLicence.copyOf(new ImmutableLicence.Json());
+    builderResult.from((ProvenanceProvider) new ImmutableLicence.Json());
   }
 
   @Test
-  public void descriptionTest() {
-    // Arrange, Act and Assert
+  public void fromTest4() {
+    // Arrange
+    ImmutableLicence.Builder builderResult = ImmutableLicence.builder();
+
+    // Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableLicence.Json()).description();
+    builderResult.from((LastUpdatedUserTimestampProvider) new ImmutableLicence.Json());
   }
 
   @Test
-  public void provenanceTest() {
-    // Arrange, Act and Assert
+  public void fromTest5() {
+    // Arrange
+    ImmutableLicence.Builder builderResult = ImmutableLicence.builder();
+
+    // Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableLicence.Json()).provenance();
+    builderResult.from(new ImmutableLicence.Json());
   }
 
   @Test
-  public void createdTest() {
-    // Arrange, Act and Assert
+  public void fromTest6() {
+    // Arrange
+    ImmutableLicence.Builder builderResult = ImmutableLicence.builder();
+
+    // Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableLicence.Json()).created();
+    builderResult.from((NameProvider) new ImmutableLicence.Json());
+  }
+
+  @Test
+  public void fromTest7() {
+    // Arrange
+    ImmutableLicence.Builder builderResult = ImmutableLicence.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from((CreatedUserTimestampProvider) new ImmutableLicence.Json());
+  }
+
+  @Test
+  public void fromTest8() {
+    // Arrange
+    ImmutableLicence.Builder builderResult = ImmutableLicence.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from((IdProvider) new ImmutableLicence.Json());
   }
 
   @Test
@@ -147,25 +167,6 @@ public class ImmutableLicenceDiffblueTest {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
     (new ImmutableLicence.Json()).id();
-  }
-
-  @Test
-  public void approvalStatusTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableLicence.Json()).approvalStatus();
-  }
-
-  @Test
-  public void setDescriptionTest() {
-    // Arrange
-    ImmutableLicence.Json json = new ImmutableLicence.Json();
-
-    // Act
-    json.setDescription("description");
-
-    // Assert
-    assertEquals("description", json.description);
   }
 
   @Test
@@ -183,35 +184,10 @@ public class ImmutableLicenceDiffblueTest {
   }
 
   @Test
-  public void externalIdTest() {
+  public void provenanceTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableLicence.Json()).externalId();
-  }
-
-  @Test
-  public void setNameTest() {
-    // Arrange
-    ImmutableLicence.Json json = new ImmutableLicence.Json();
-
-    // Act
-    json.setName("name");
-
-    // Assert
-    assertEquals("name", json.name);
-  }
-
-  @Test
-  public void constructorTest() {
-    // Arrange and Act
-    ImmutableLicence.Json actualJson = new ImmutableLicence.Json();
-
-    // Assert
-    Optional<UserTimestamp> optional = actualJson.created;
-    assertSame(actualJson.id, optional);
-    assertSame(optional, actualJson.id);
-    assertSame(optional, actualJson.lastUpdated);
-    assertSame(optional, actualJson.externalId);
+    (new ImmutableLicence.Json()).provenance();
   }
 
   @Test
@@ -227,15 +203,39 @@ public class ImmutableLicenceDiffblueTest {
   }
 
   @Test
+  public void setDescriptionTest() {
+    // Arrange
+    ImmutableLicence.Json json = new ImmutableLicence.Json();
+
+    // Act
+    json.setDescription("description");
+
+    // Assert
+    assertEquals("description", json.description);
+  }
+
+  @Test
+  public void setNameTest() {
+    // Arrange
+    ImmutableLicence.Json json = new ImmutableLicence.Json();
+
+    // Act
+    json.setName("name");
+
+    // Assert
+    assertEquals("name", json.name);
+  }
+
+  @Test
   public void setProvenanceTest() {
     // Arrange
     ImmutableLicence.Json json = new ImmutableLicence.Json();
 
     // Act
-    json.setProvenance("foo");
+    json.setProvenance("provenance");
 
     // Assert
-    assertEquals("foo", json.provenance);
+    assertEquals("provenance", json.provenance);
   }
 }
 

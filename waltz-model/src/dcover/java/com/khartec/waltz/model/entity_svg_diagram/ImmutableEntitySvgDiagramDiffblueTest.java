@@ -16,20 +16,6 @@ public class ImmutableEntitySvgDiagramDiffblueTest {
   public ExpectedException thrown = ExpectedException.none();
 
   @Test
-  public void copyOfTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    ImmutableEntitySvgDiagram.copyOf(new ImmutableEntitySvgDiagram.Json());
-  }
-
-  @Test
-  public void fromJsonTest() {
-    // Arrange, Act and Assert
-    thrown.expect(IllegalStateException.class);
-    ImmutableEntitySvgDiagram.fromJson(new ImmutableEntitySvgDiagram.Json());
-  }
-
-  @Test
   public void buildTest() {
     // Arrange, Act and Assert
     thrown.expect(IllegalStateException.class);
@@ -37,53 +23,47 @@ public class ImmutableEntitySvgDiagramDiffblueTest {
   }
 
   @Test
-  public void fromTest6() {
-    // Arrange
-    ImmutableEntitySvgDiagram.Builder builderResult = ImmutableEntitySvgDiagram.builder();
+  public void constructorTest() {
+    // Arrange and Act
+    ImmutableEntitySvgDiagram.Json actualJson = new ImmutableEntitySvgDiagram.Json();
 
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from((ExternalIdProvider) new ImmutableEntitySvgDiagram.Json());
+    // Assert
+    assertSame(actualJson.id, actualJson.externalId);
   }
 
   @Test
-  public void fromTest5() {
-    // Arrange
-    ImmutableEntitySvgDiagram.Builder builderResult = ImmutableEntitySvgDiagram.builder();
-
-    // Act and Assert
+  public void copyOfTest() {
+    // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    builderResult.from((NameProvider) new ImmutableEntitySvgDiagram.Json());
+    ImmutableEntitySvgDiagram.copyOf(new ImmutableEntitySvgDiagram.Json());
   }
 
   @Test
-  public void fromTest4() {
-    // Arrange
-    ImmutableEntitySvgDiagram.Builder builderResult = ImmutableEntitySvgDiagram.builder();
-
-    // Act and Assert
+  public void descriptionTest() {
+    // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    builderResult.from((IdProvider) new ImmutableEntitySvgDiagram.Json());
+    (new ImmutableEntitySvgDiagram.Json()).description();
   }
 
   @Test
-  public void fromTest3() {
-    // Arrange
-    ImmutableEntitySvgDiagram.Builder builderResult = ImmutableEntitySvgDiagram.builder();
-
-    // Act and Assert
+  public void entityReferenceTest() {
+    // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    builderResult.from((ProvenanceProvider) new ImmutableEntitySvgDiagram.Json());
+    (new ImmutableEntitySvgDiagram.Json()).entityReference();
   }
 
   @Test
-  public void fromTest2() {
-    // Arrange
-    ImmutableEntitySvgDiagram.Builder builderResult = ImmutableEntitySvgDiagram.builder();
-
-    // Act and Assert
+  public void externalIdTest() {
+    // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    builderResult.from((DescriptionProvider) new ImmutableEntitySvgDiagram.Json());
+    (new ImmutableEntitySvgDiagram.Json()).externalId();
+  }
+
+  @Test
+  public void fromJsonTest() {
+    // Arrange, Act and Assert
+    thrown.expect(IllegalStateException.class);
+    ImmutableEntitySvgDiagram.fromJson(new ImmutableEntitySvgDiagram.Json());
   }
 
   @Test
@@ -97,36 +77,53 @@ public class ImmutableEntitySvgDiagramDiffblueTest {
   }
 
   @Test
-  public void entityReferenceTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableEntitySvgDiagram.Json()).entityReference();
-  }
-
-  @Test
-  public void setSvgTest() {
+  public void fromTest2() {
     // Arrange
-    ImmutableEntitySvgDiagram.Json json = new ImmutableEntitySvgDiagram.Json();
+    ImmutableEntitySvgDiagram.Builder builderResult = ImmutableEntitySvgDiagram.builder();
 
-    // Act
-    json.setSvg("foo");
-
-    // Assert
-    assertEquals("foo", json.svg);
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from((DescriptionProvider) new ImmutableEntitySvgDiagram.Json());
   }
 
   @Test
-  public void descriptionTest() {
-    // Arrange, Act and Assert
+  public void fromTest3() {
+    // Arrange
+    ImmutableEntitySvgDiagram.Builder builderResult = ImmutableEntitySvgDiagram.builder();
+
+    // Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableEntitySvgDiagram.Json()).description();
+    builderResult.from((ProvenanceProvider) new ImmutableEntitySvgDiagram.Json());
   }
 
   @Test
-  public void provenanceTest() {
-    // Arrange, Act and Assert
+  public void fromTest4() {
+    // Arrange
+    ImmutableEntitySvgDiagram.Builder builderResult = ImmutableEntitySvgDiagram.builder();
+
+    // Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableEntitySvgDiagram.Json()).provenance();
+    builderResult.from((IdProvider) new ImmutableEntitySvgDiagram.Json());
+  }
+
+  @Test
+  public void fromTest5() {
+    // Arrange
+    ImmutableEntitySvgDiagram.Builder builderResult = ImmutableEntitySvgDiagram.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from((NameProvider) new ImmutableEntitySvgDiagram.Json());
+  }
+
+  @Test
+  public void fromTest6() {
+    // Arrange
+    ImmutableEntitySvgDiagram.Builder builderResult = ImmutableEntitySvgDiagram.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from((ExternalIdProvider) new ImmutableEntitySvgDiagram.Json());
   }
 
   @Test
@@ -137,10 +134,17 @@ public class ImmutableEntitySvgDiagramDiffblueTest {
   }
 
   @Test
-  public void svgTest() {
+  public void nameTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableEntitySvgDiagram.Json()).svg();
+    (new ImmutableEntitySvgDiagram.Json()).name();
+  }
+
+  @Test
+  public void provenanceTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableEntitySvgDiagram.Json()).provenance();
   }
 
   @Test
@@ -156,20 +160,6 @@ public class ImmutableEntitySvgDiagramDiffblueTest {
   }
 
   @Test
-  public void nameTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableEntitySvgDiagram.Json()).name();
-  }
-
-  @Test
-  public void externalIdTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableEntitySvgDiagram.Json()).externalId();
-  }
-
-  @Test
   public void setNameTest() {
     // Arrange
     ImmutableEntitySvgDiagram.Json json = new ImmutableEntitySvgDiagram.Json();
@@ -182,24 +172,34 @@ public class ImmutableEntitySvgDiagramDiffblueTest {
   }
 
   @Test
-  public void constructorTest() {
-    // Arrange and Act
-    ImmutableEntitySvgDiagram.Json actualJson = new ImmutableEntitySvgDiagram.Json();
-
-    // Assert
-    assertSame(actualJson.id, actualJson.externalId);
-  }
-
-  @Test
   public void setProvenanceTest() {
     // Arrange
     ImmutableEntitySvgDiagram.Json json = new ImmutableEntitySvgDiagram.Json();
 
     // Act
-    json.setProvenance("foo");
+    json.setProvenance("provenance");
 
     // Assert
-    assertEquals("foo", json.provenance);
+    assertEquals("provenance", json.provenance);
+  }
+
+  @Test
+  public void setSvgTest() {
+    // Arrange
+    ImmutableEntitySvgDiagram.Json json = new ImmutableEntitySvgDiagram.Json();
+
+    // Act
+    json.setSvg("svg");
+
+    // Assert
+    assertEquals("svg", json.svg);
+  }
+
+  @Test
+  public void svgTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableEntitySvgDiagram.Json()).svg();
   }
 }
 

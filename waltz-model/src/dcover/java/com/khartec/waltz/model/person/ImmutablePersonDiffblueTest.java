@@ -15,85 +15,10 @@ public class ImmutablePersonDiffblueTest {
   @Rule
   public ExpectedException thrown = ExpectedException.none();
   @Test
-  public void setEmployeeIdTest() {
-    // Arrange
-    ImmutablePerson.Json json = new ImmutablePerson.Json();
-
-    // Act
-    json.setEmployeeId("123");
-
-    // Assert
-    assertEquals("123", json.employeeId);
-  }
-  @Test
-  public void kindTest() {
+  public void buildTest() {
     // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutablePerson.Json()).kind();
-  }
-  @Test
-  public void departmentNameTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutablePerson.Json()).departmentName();
-  }
-  @Test
-  public void personKindTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutablePerson.Json()).personKind();
-  }
-  @Test
-  public void setUserIdTest() {
-    // Arrange
-    ImmutablePerson.Json json = new ImmutablePerson.Json();
-
-    // Act
-    json.setUserId("123");
-
-    // Assert
-    assertEquals("123", json.userId);
-  }
-  @Test
-  public void setIsRemovedTest() {
-    // Arrange
-    ImmutablePerson.Json json = new ImmutablePerson.Json();
-
-    // Act
-    json.setIsRemoved(true);
-
-    // Assert
-    assertTrue(json.isRemoved);
-    assertTrue(json.isRemovedIsSet);
-  }
-  @Test
-  public void nameTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutablePerson.Json()).name();
-  }
-  @Test
-  public void officePhoneTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutablePerson.Json()).officePhone();
-  }
-  @Test
-  public void setDisplayNameTest() {
-    // Arrange
-    ImmutablePerson.Json json = new ImmutablePerson.Json();
-
-    // Act
-    json.setDisplayName("name");
-
-    // Assert
-    assertEquals("name", json.displayName);
-  }
-  @Test
-  public void emailTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutablePerson.Json()).email();
+    thrown.expect(IllegalStateException.class);
+    ImmutablePerson.builder().build();
   }
   @Test
   public void constructorTest() {
@@ -111,10 +36,16 @@ public class ImmutablePersonDiffblueTest {
     assertSame(optional, actualJson.id);
   }
   @Test
-  public void managerEmployeeIdTest() {
+  public void copyOfTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    (new ImmutablePerson.Json()).managerEmployeeId();
+    ImmutablePerson.copyOf(new ImmutablePerson.Json());
+  }
+  @Test
+  public void departmentNameTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutablePerson.Json()).departmentName();
   }
   @Test
   public void displayNameTest() {
@@ -123,22 +54,148 @@ public class ImmutablePersonDiffblueTest {
     (new ImmutablePerson.Json()).displayName();
   }
   @Test
-  public void mobilePhoneTest() {
+  public void emailTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    (new ImmutablePerson.Json()).mobilePhone();
+    (new ImmutablePerson.Json()).email();
   }
   @Test
-  public void titleTest() {
+  public void employeeIdTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    (new ImmutablePerson.Json()).title();
+    (new ImmutablePerson.Json()).employeeId();
+  }
+  @Test
+  public void fromJsonTest() {
+    // Arrange, Act and Assert
+    thrown.expect(IllegalStateException.class);
+    ImmutablePerson.fromJson(new ImmutablePerson.Json());
+  }
+  @Test
+  public void fromTest() {
+    // Arrange
+    ImmutablePerson.Builder builderResult = ImmutablePerson.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from((IdProvider) new ImmutablePerson.Json());
+  }
+  @Test
+  public void fromTest2() {
+    // Arrange
+    ImmutablePerson.Builder builderResult = ImmutablePerson.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from((EntityKindProvider) new ImmutablePerson.Json());
+  }
+  @Test
+  public void fromTest3() {
+    // Arrange
+    ImmutablePerson.Builder builderResult = ImmutablePerson.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from(new ImmutablePerson.Json());
   }
   @Test
   public void idTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
     (new ImmutablePerson.Json()).id();
+  }
+  @Test
+  public void isRemovedTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutablePerson.Json()).isRemoved();
+  }
+  @Test
+  public void kindTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutablePerson.Json()).kind();
+  }
+  @Test
+  public void managerEmployeeIdTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutablePerson.Json()).managerEmployeeId();
+  }
+  @Test
+  public void mobilePhoneTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutablePerson.Json()).mobilePhone();
+  }
+  @Test
+  public void nameTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutablePerson.Json()).name();
+  }
+  @Test
+  public void officePhoneTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutablePerson.Json()).officePhone();
+  }
+  @Test
+  public void organisationalUnitIdTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutablePerson.Json()).organisationalUnitId();
+  }
+  @Test
+  public void personKindTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutablePerson.Json()).personKind();
+  }
+  @Test
+  public void setDisplayNameTest() {
+    // Arrange
+    ImmutablePerson.Json json = new ImmutablePerson.Json();
+
+    // Act
+    json.setDisplayName("displayName");
+
+    // Assert
+    assertEquals("displayName", json.displayName);
+  }
+  @Test
+  public void setEmailTest() {
+    // Arrange
+    ImmutablePerson.Json json = new ImmutablePerson.Json();
+
+    // Act
+    json.setEmail("email");
+
+    // Assert
+    assertEquals("email", json.email);
+  }
+  @Test
+  public void setEmployeeIdTest() {
+    // Arrange
+    ImmutablePerson.Json json = new ImmutablePerson.Json();
+
+    // Act
+    json.setEmployeeId("123");
+
+    // Assert
+    assertEquals("123", json.employeeId);
+  }
+  @Test
+  public void setIsRemovedTest() {
+    // Arrange
+    ImmutablePerson.Json json = new ImmutablePerson.Json();
+
+    // Act
+    json.setIsRemoved(true);
+
+    // Assert
+    assertTrue(json.isRemoved);
+    assertTrue(json.isRemovedIsSet);
   }
   @Test
   public void setKindTest() {
@@ -163,90 +220,33 @@ public class ImmutablePersonDiffblueTest {
     assertEquals(PersonKind.EMPLOYEE, json.personKind);
   }
   @Test
+  public void setUserIdTest() {
+    // Arrange
+    ImmutablePerson.Json json = new ImmutablePerson.Json();
+
+    // Act
+    json.setUserId("123");
+
+    // Assert
+    assertEquals("123", json.userId);
+  }
+  @Test
+  public void titleTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutablePerson.Json()).title();
+  }
+  @Test
   public void userIdTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
     (new ImmutablePerson.Json()).userId();
   }
   @Test
-  public void organisationalUnitIdTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutablePerson.Json()).organisationalUnitId();
-  }
-  @Test
-  public void employeeIdTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutablePerson.Json()).employeeId();
-  }
-  @Test
-  public void isRemovedTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutablePerson.Json()).isRemoved();
-  }
-  @Test
   public void userPrincipalNameTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
     (new ImmutablePerson.Json()).userPrincipalName();
-  }
-  @Test
-  public void setEmailTest() {
-    // Arrange
-    ImmutablePerson.Json json = new ImmutablePerson.Json();
-
-    // Act
-    json.setEmail("foo");
-
-    // Assert
-    assertEquals("foo", json.email);
-  }
-  @Test
-  public void copyOfTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    ImmutablePerson.copyOf(new ImmutablePerson.Json());
-  }
-  @Test
-  public void fromJsonTest() {
-    // Arrange, Act and Assert
-    thrown.expect(IllegalStateException.class);
-    ImmutablePerson.fromJson(new ImmutablePerson.Json());
-  }
-  @Test
-  public void fromTest3() {
-    // Arrange
-    ImmutablePerson.Builder builderResult = ImmutablePerson.builder();
-
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from(new ImmutablePerson.Json());
-  }
-  @Test
-  public void fromTest2() {
-    // Arrange
-    ImmutablePerson.Builder builderResult = ImmutablePerson.builder();
-
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from((EntityKindProvider) new ImmutablePerson.Json());
-  }
-  @Test
-  public void fromTest() {
-    // Arrange
-    ImmutablePerson.Builder builderResult = ImmutablePerson.builder();
-
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from((IdProvider) new ImmutablePerson.Json());
-  }
-  @Test
-  public void buildTest() {
-    // Arrange, Act and Assert
-    thrown.expect(IllegalStateException.class);
-    ImmutablePerson.builder().build();
   }
 }
 

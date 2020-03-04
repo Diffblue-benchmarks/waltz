@@ -16,44 +16,6 @@ public class ImmutableOrphanRelationshipDiffblueTest {
     ImmutableOrphanRelationship.builder().build();
   }
   @Test
-  public void fromTest() {
-    // Arrange
-    ImmutableOrphanRelationship.Builder builderResult = ImmutableOrphanRelationship.builder();
-
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from(new ImmutableOrphanRelationship.Json());
-  }
-  @Test
-  public void orphanSideTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableOrphanRelationship.Json()).orphanSide();
-  }
-  @Test
-  public void entityBTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableOrphanRelationship.Json()).entityB();
-  }
-  @Test
-  public void entityATest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableOrphanRelationship.Json()).entityA();
-  }
-  @Test
-  public void setOrphanSideTest() {
-    // Arrange
-    ImmutableOrphanRelationship.Json json = new ImmutableOrphanRelationship.Json();
-
-    // Act
-    json.setOrphanSide(OrphanSide.A);
-
-    // Assert
-    assertEquals(OrphanSide.A, json.orphanSide);
-  }
-  @Test
   public void constructorTest() {
     // Arrange and Act
     ImmutableOrphanRelationship.Json actualJson = new ImmutableOrphanRelationship.Json();
@@ -70,10 +32,48 @@ public class ImmutableOrphanRelationshipDiffblueTest {
     ImmutableOrphanRelationship.copyOf(new ImmutableOrphanRelationship.Json());
   }
   @Test
+  public void entityATest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableOrphanRelationship.Json()).entityA();
+  }
+  @Test
+  public void entityBTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableOrphanRelationship.Json()).entityB();
+  }
+  @Test
   public void fromJsonTest() {
     // Arrange, Act and Assert
     thrown.expect(IllegalStateException.class);
     ImmutableOrphanRelationship.fromJson(new ImmutableOrphanRelationship.Json());
+  }
+  @Test
+  public void fromTest() {
+    // Arrange
+    ImmutableOrphanRelationship.Builder builderResult = ImmutableOrphanRelationship.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from(new ImmutableOrphanRelationship.Json());
+  }
+  @Test
+  public void orphanSideTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableOrphanRelationship.Json()).orphanSide();
+  }
+  @Test
+  public void setOrphanSideTest() {
+    // Arrange
+    ImmutableOrphanRelationship.Json json = new ImmutableOrphanRelationship.Json();
+
+    // Act
+    json.setOrphanSide(OrphanSide.A);
+
+    // Assert
+    assertEquals(OrphanSide.A, json.orphanSide);
   }
 }
 

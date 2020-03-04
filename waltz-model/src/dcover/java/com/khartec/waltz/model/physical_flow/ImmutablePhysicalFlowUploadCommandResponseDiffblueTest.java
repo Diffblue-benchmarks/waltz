@@ -20,6 +20,40 @@ public class ImmutablePhysicalFlowUploadCommandResponseDiffblueTest {
   }
 
   @Test
+  public void constructorTest() {
+    // Arrange, Act and Assert
+    assertEquals(0, (new ImmutablePhysicalFlowUploadCommandResponse.Json()).errors.size());
+  }
+
+  @Test
+  public void copyOfTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    ImmutablePhysicalFlowUploadCommandResponse.copyOf(new ImmutablePhysicalFlowUploadCommandResponse.Json());
+  }
+
+  @Test
+  public void entityReferenceTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutablePhysicalFlowUploadCommandResponse.Json()).entityReference();
+  }
+
+  @Test
+  public void errorsTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutablePhysicalFlowUploadCommandResponse.Json()).errors();
+  }
+
+  @Test
+  public void fromJsonTest() {
+    // Arrange, Act and Assert
+    thrown.expect(IllegalStateException.class);
+    ImmutablePhysicalFlowUploadCommandResponse.fromJson(new ImmutablePhysicalFlowUploadCommandResponse.Json());
+  }
+
+  @Test
   public void fromTest() {
     // Arrange
     ImmutablePhysicalFlowUploadCommandResponse.Builder builderResult = ImmutablePhysicalFlowUploadCommandResponse
@@ -31,50 +65,10 @@ public class ImmutablePhysicalFlowUploadCommandResponseDiffblueTest {
   }
 
   @Test
-  public void fromJsonTest() {
-    // Arrange, Act and Assert
-    thrown.expect(IllegalStateException.class);
-    ImmutablePhysicalFlowUploadCommandResponse.fromJson(new ImmutablePhysicalFlowUploadCommandResponse.Json());
-  }
-
-  @Test
-  public void copyOfTest() {
+  public void messageTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    ImmutablePhysicalFlowUploadCommandResponse.copyOf(new ImmutablePhysicalFlowUploadCommandResponse.Json());
-  }
-
-  @Test
-  public void setOriginalCommandTest() {
-    // Arrange
-    ImmutablePhysicalFlowUploadCommandResponse.Json json = new ImmutablePhysicalFlowUploadCommandResponse.Json();
-    ImmutablePhysicalFlowUploadCommand.Json json1 = new ImmutablePhysicalFlowUploadCommand.Json();
-
-    // Act
-    json.setOriginalCommand(json1);
-
-    // Assert
-    assertSame(json1, json.originalCommand);
-  }
-
-  @Test
-  public void entityReferenceTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutablePhysicalFlowUploadCommandResponse.Json()).entityReference();
-  }
-
-  @Test
-  public void setParsedFlowTest() {
-    // Arrange
-    ImmutablePhysicalFlowUploadCommandResponse.Json json = new ImmutablePhysicalFlowUploadCommandResponse.Json();
-    ImmutablePhysicalFlowParsed.Json json1 = new ImmutablePhysicalFlowParsed.Json();
-
-    // Act
-    json.setParsedFlow(json1);
-
-    // Assert
-    assertSame(json1, json.parsedFlow);
+    (new ImmutablePhysicalFlowUploadCommandResponse.Json()).message();
   }
 
   @Test
@@ -85,17 +79,17 @@ public class ImmutablePhysicalFlowUploadCommandResponseDiffblueTest {
   }
 
   @Test
-  public void messageTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutablePhysicalFlowUploadCommandResponse.Json()).message();
-  }
-
-  @Test
   public void outcomeTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
     (new ImmutablePhysicalFlowUploadCommandResponse.Json()).outcome();
+  }
+
+  @Test
+  public void parsedFlowTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutablePhysicalFlowUploadCommandResponse.Json()).parsedFlow();
   }
 
   @Test
@@ -113,23 +107,16 @@ public class ImmutablePhysicalFlowUploadCommandResponseDiffblueTest {
   }
 
   @Test
-  public void errorsTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutablePhysicalFlowUploadCommandResponse.Json()).errors();
-  }
+  public void setOriginalCommandTest() {
+    // Arrange
+    ImmutablePhysicalFlowUploadCommandResponse.Json json = new ImmutablePhysicalFlowUploadCommandResponse.Json();
+    ImmutablePhysicalFlowUploadCommand.Json json1 = new ImmutablePhysicalFlowUploadCommand.Json();
 
-  @Test
-  public void parsedFlowTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutablePhysicalFlowUploadCommandResponse.Json()).parsedFlow();
-  }
+    // Act
+    json.setOriginalCommand(json1);
 
-  @Test
-  public void constructorTest() {
-    // Arrange, Act and Assert
-    assertEquals(0, (new ImmutablePhysicalFlowUploadCommandResponse.Json()).errors.size());
+    // Assert
+    assertSame(json1, json.originalCommand);
   }
 
   @Test
@@ -142,6 +129,19 @@ public class ImmutablePhysicalFlowUploadCommandResponseDiffblueTest {
 
     // Assert
     assertEquals(CommandOutcome.SUCCESS, json.outcome);
+  }
+
+  @Test
+  public void setParsedFlowTest() {
+    // Arrange
+    ImmutablePhysicalFlowUploadCommandResponse.Json json = new ImmutablePhysicalFlowUploadCommandResponse.Json();
+    ImmutablePhysicalFlowParsed.Json json1 = new ImmutablePhysicalFlowParsed.Json();
+
+    // Act
+    json.setParsedFlow(json1);
+
+    // Assert
+    assertSame(json1, json.parsedFlow);
   }
 }
 

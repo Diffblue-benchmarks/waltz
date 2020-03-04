@@ -12,13 +12,43 @@ public class ImmutableSoftwareUsageDiffblueTest {
   @Rule
   public ExpectedException thrown = ExpectedException.none();
   @Test
-  public void fromTest2() {
-    // Arrange
-    ImmutableSoftwareUsage.Builder builderResult = ImmutableSoftwareUsage.builder();
-
-    // Act and Assert
+  public void applicationIdTest() {
+    // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    builderResult.from(new ImmutableSoftwarePackage.Json());
+    (new ImmutableSoftwareUsage.Json()).applicationId();
+  }
+  @Test
+  public void buildTest() {
+    // Arrange, Act and Assert
+    thrown.expect(IllegalStateException.class);
+    ImmutableSoftwareUsage.builder().build();
+  }
+  @Test
+  public void constructorTest() {
+    // Arrange and Act
+    ImmutableSoftwareUsage.Json actualJson = new ImmutableSoftwareUsage.Json();
+
+    // Assert
+    assertEquals(0L, actualJson.softwareVersionId);
+    assertNull(actualJson.licenceId);
+    assertEquals(0L, actualJson.softwarePackageId);
+    assertFalse(actualJson.softwarePackageIdIsSet);
+    assertNull(actualJson.provenance);
+    assertFalse(actualJson.applicationIdIsSet);
+    assertEquals(0L, actualJson.applicationId);
+    assertFalse(actualJson.softwareVersionIdIsSet);
+  }
+  @Test
+  public void copyOfTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    ImmutableSoftwareUsage.copyOf(new ImmutableSoftwareUsage.Json());
+  }
+  @Test
+  public void fromJsonTest() {
+    // Arrange, Act and Assert
+    thrown.expect(IllegalStateException.class);
+    ImmutableSoftwareUsage.fromJson(new ImmutableSoftwareUsage.Json());
   }
   @Test
   public void fromTest() {
@@ -30,10 +60,25 @@ public class ImmutableSoftwareUsageDiffblueTest {
     builderResult.from(new ImmutableSoftwareUsage.Json());
   }
   @Test
-  public void buildTest() {
+  public void fromTest2() {
+    // Arrange
+    ImmutableSoftwareUsage.Builder builderResult = ImmutableSoftwareUsage.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from(new ImmutableSoftwarePackage.Json());
+  }
+  @Test
+  public void licenceIdTest() {
     // Arrange, Act and Assert
-    thrown.expect(IllegalStateException.class);
-    ImmutableSoftwareUsage.builder().build();
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableSoftwareUsage.Json()).licenceId();
+  }
+  @Test
+  public void provenanceTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableSoftwareUsage.Json()).provenance();
   }
   @Test
   public void setApplicationIdTest() {
@@ -59,37 +104,15 @@ public class ImmutableSoftwareUsageDiffblueTest {
     assertEquals(Long.valueOf(123L), json.licenceId);
   }
   @Test
-  public void applicationIdTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableSoftwareUsage.Json()).applicationId();
-  }
-  @Test
-  public void softwareVersionIdTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableSoftwareUsage.Json()).softwareVersionId();
-  }
-  @Test
-  public void provenanceTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableSoftwareUsage.Json()).provenance();
-  }
-  @Test
-  public void constructorTest() {
-    // Arrange and Act
-    ImmutableSoftwareUsage.Json actualJson = new ImmutableSoftwareUsage.Json();
+  public void setProvenanceTest() {
+    // Arrange
+    ImmutableSoftwareUsage.Json json = new ImmutableSoftwareUsage.Json();
+
+    // Act
+    json.setProvenance("provenance");
 
     // Assert
-    assertEquals(0L, actualJson.softwareVersionId);
-    assertNull(actualJson.licenceId);
-    assertEquals(0L, actualJson.softwarePackageId);
-    assertFalse(actualJson.softwarePackageIdIsSet);
-    assertNull(actualJson.provenance);
-    assertFalse(actualJson.applicationIdIsSet);
-    assertEquals(0L, actualJson.applicationId);
-    assertFalse(actualJson.softwareVersionIdIsSet);
+    assertEquals("provenance", json.provenance);
   }
   @Test
   public void setSoftwarePackageIdTest() {
@@ -116,39 +139,16 @@ public class ImmutableSoftwareUsageDiffblueTest {
     assertTrue(json.softwareVersionIdIsSet);
   }
   @Test
-  public void licenceIdTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableSoftwareUsage.Json()).licenceId();
-  }
-  @Test
   public void softwarePackageIdTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
     (new ImmutableSoftwareUsage.Json()).softwarePackageId();
   }
   @Test
-  public void setProvenanceTest() {
-    // Arrange
-    ImmutableSoftwareUsage.Json json = new ImmutableSoftwareUsage.Json();
-
-    // Act
-    json.setProvenance("foo");
-
-    // Assert
-    assertEquals("foo", json.provenance);
-  }
-  @Test
-  public void fromJsonTest() {
-    // Arrange, Act and Assert
-    thrown.expect(IllegalStateException.class);
-    ImmutableSoftwareUsage.fromJson(new ImmutableSoftwareUsage.Json());
-  }
-  @Test
-  public void copyOfTest() {
+  public void softwareVersionIdTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    ImmutableSoftwareUsage.copyOf(new ImmutableSoftwareUsage.Json());
+    (new ImmutableSoftwareUsage.Json()).softwareVersionId();
   }
 }
 

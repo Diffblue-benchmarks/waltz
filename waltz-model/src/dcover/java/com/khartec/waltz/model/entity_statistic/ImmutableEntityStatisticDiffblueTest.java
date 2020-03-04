@@ -10,22 +10,10 @@ public class ImmutableEntityStatisticDiffblueTest {
   @Rule
   public ExpectedException thrown = ExpectedException.none();
   @Test
-  public void fromJsonTest() {
+  public void buildTest() {
     // Arrange, Act and Assert
     thrown.expect(IllegalStateException.class);
-    ImmutableEntityStatistic.fromJson(new ImmutableEntityStatistic.Json());
-  }
-  @Test
-  public void copyOfTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    ImmutableEntityStatistic.copyOf(new ImmutableEntityStatistic.Json());
-  }
-  @Test
-  public void valueTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableEntityStatistic.Json()).value();
+    ImmutableEntityStatistic.builder().build();
   }
   @Test
   public void constructorTest() {
@@ -37,10 +25,31 @@ public class ImmutableEntityStatisticDiffblueTest {
     assertNull(actualJson.definition);
   }
   @Test
+  public void copyOfTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    ImmutableEntityStatistic.copyOf(new ImmutableEntityStatistic.Json());
+  }
+  @Test
   public void definitionTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
     (new ImmutableEntityStatistic.Json()).definition();
+  }
+  @Test
+  public void fromJsonTest() {
+    // Arrange, Act and Assert
+    thrown.expect(IllegalStateException.class);
+    ImmutableEntityStatistic.fromJson(new ImmutableEntityStatistic.Json());
+  }
+  @Test
+  public void fromTest() {
+    // Arrange
+    ImmutableEntityStatistic.Builder builderResult = ImmutableEntityStatistic.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from(new ImmutableEntityStatistic.Json());
   }
   @Test
   public void setDefinitionTest() {
@@ -67,19 +76,10 @@ public class ImmutableEntityStatisticDiffblueTest {
     assertSame(json1, json.value);
   }
   @Test
-  public void buildTest() {
+  public void valueTest() {
     // Arrange, Act and Assert
-    thrown.expect(IllegalStateException.class);
-    ImmutableEntityStatistic.builder().build();
-  }
-  @Test
-  public void fromTest() {
-    // Arrange
-    ImmutableEntityStatistic.Builder builderResult = ImmutableEntityStatistic.builder();
-
-    // Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    builderResult.from(new ImmutableEntityStatistic.Json());
+    (new ImmutableEntityStatistic.Json()).value();
   }
 }
 

@@ -13,76 +13,16 @@ public class ImmutableAuthoritativeRatingVantagePointDiffblueTest {
   @Rule
   public ExpectedException thrown = ExpectedException.none();
   @Test
-  public void buildTest() {
-    // Arrange, Act and Assert
-    thrown.expect(IllegalStateException.class);
-    ImmutableAuthoritativeRatingVantagePoint.builder().build();
-  }
-  @Test
-  public void fromTest() {
-    // Arrange
-    ImmutableAuthoritativeRatingVantagePoint.Builder builderResult = ImmutableAuthoritativeRatingVantagePoint.builder();
-
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from(new ImmutableAuthoritativeRatingVantagePoint.Json());
-  }
-  @Test
-  public void setDataTypeRankTest() {
-    // Arrange
-    ImmutableAuthoritativeRatingVantagePoint.Json json = new ImmutableAuthoritativeRatingVantagePoint.Json();
-
-    // Act
-    json.setDataTypeRank(1);
-
-    // Assert
-    assertTrue(json.dataTypeRankIsSet);
-    assertEquals(1, json.dataTypeRank);
-  }
-  @Test
   public void applicationIdTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
     (new ImmutableAuthoritativeRatingVantagePoint.Json()).applicationId();
   }
   @Test
-  public void setDataTypeCodeTest() {
-    // Arrange
-    ImmutableAuthoritativeRatingVantagePoint.Json json = new ImmutableAuthoritativeRatingVantagePoint.Json();
-
-    // Act
-    json.setDataTypeCode("foo");
-
-    // Assert
-    assertEquals("foo", json.dataTypeCode);
-  }
-  @Test
-  public void setRatingTest() {
-    // Arrange
-    ImmutableAuthoritativeRatingVantagePoint.Json json = new ImmutableAuthoritativeRatingVantagePoint.Json();
-
-    // Act
-    json.setRating(AuthoritativenessRating.PRIMARY);
-
-    // Assert
-    assertEquals(AuthoritativenessRating.PRIMARY, json.rating);
-  }
-  @Test
-  public void setApplicationIdTest() {
-    // Arrange
-    ImmutableAuthoritativeRatingVantagePoint.Json json = new ImmutableAuthoritativeRatingVantagePoint.Json();
-
-    // Act
-    json.setApplicationId(Long.valueOf(123L));
-
-    // Assert
-    assertEquals(Long.valueOf(123L), json.applicationId);
-  }
-  @Test
-  public void dataTypeCodeTest() {
+  public void buildTest() {
     // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableAuthoritativeRatingVantagePoint.Json()).dataTypeCode();
+    thrown.expect(IllegalStateException.class);
+    ImmutableAuthoritativeRatingVantagePoint.builder().build();
   }
   @Test
   public void constructorTest() {
@@ -100,16 +40,88 @@ public class ImmutableAuthoritativeRatingVantagePointDiffblueTest {
     assertFalse(actualJson.vantagePointRankIsSet);
   }
   @Test
-  public void vantagePointRankTest() {
+  public void copyOfTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableAuthoritativeRatingVantagePoint.Json()).vantagePointRank();
+    ImmutableAuthoritativeRatingVantagePoint.copyOf(new ImmutableAuthoritativeRatingVantagePoint.Json());
   }
   @Test
-  public void vantagePointTest() {
+  public void dataTypeCodeTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableAuthoritativeRatingVantagePoint.Json()).vantagePoint();
+    (new ImmutableAuthoritativeRatingVantagePoint.Json()).dataTypeCode();
+  }
+  @Test
+  public void dataTypeRankTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableAuthoritativeRatingVantagePoint.Json()).dataTypeRank();
+  }
+  @Test
+  public void fromJsonTest() {
+    // Arrange, Act and Assert
+    thrown.expect(IllegalStateException.class);
+    ImmutableAuthoritativeRatingVantagePoint.fromJson(new ImmutableAuthoritativeRatingVantagePoint.Json());
+  }
+  @Test
+  public void fromTest() {
+    // Arrange
+    ImmutableAuthoritativeRatingVantagePoint.Builder builderResult = ImmutableAuthoritativeRatingVantagePoint.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from(new ImmutableAuthoritativeRatingVantagePoint.Json());
+  }
+  @Test
+  public void ratingTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableAuthoritativeRatingVantagePoint.Json()).rating();
+  }
+  @Test
+  public void setApplicationIdTest() {
+    // Arrange
+    ImmutableAuthoritativeRatingVantagePoint.Json json = new ImmutableAuthoritativeRatingVantagePoint.Json();
+
+    // Act
+    json.setApplicationId(Long.valueOf(123L));
+
+    // Assert
+    assertEquals(Long.valueOf(123L), json.applicationId);
+  }
+  @Test
+  public void setDataTypeCodeTest() {
+    // Arrange
+    ImmutableAuthoritativeRatingVantagePoint.Json json = new ImmutableAuthoritativeRatingVantagePoint.Json();
+
+    // Act
+    json.setDataTypeCode("dataTypeCode");
+
+    // Assert
+    assertEquals("dataTypeCode", json.dataTypeCode);
+  }
+  @Test
+  public void setDataTypeRankTest() {
+    // Arrange
+    ImmutableAuthoritativeRatingVantagePoint.Json json = new ImmutableAuthoritativeRatingVantagePoint.Json();
+
+    // Act
+    json.setDataTypeRank(1);
+
+    // Assert
+    assertTrue(json.dataTypeRankIsSet);
+    assertEquals(1, json.dataTypeRank);
+  }
+  @Test
+  public void setRatingTest() {
+    // Arrange
+    ImmutableAuthoritativeRatingVantagePoint.Json json = new ImmutableAuthoritativeRatingVantagePoint.Json();
+
+    // Act
+    json.setRating(AuthoritativenessRating.PRIMARY);
+
+    // Assert
+    assertEquals(AuthoritativenessRating.PRIMARY, json.rating);
   }
   @Test
   public void setVantagePointRankTest() {
@@ -124,28 +136,16 @@ public class ImmutableAuthoritativeRatingVantagePointDiffblueTest {
     assertTrue(json.vantagePointRankIsSet);
   }
   @Test
-  public void dataTypeRankTest() {
+  public void vantagePointRankTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableAuthoritativeRatingVantagePoint.Json()).dataTypeRank();
+    (new ImmutableAuthoritativeRatingVantagePoint.Json()).vantagePointRank();
   }
   @Test
-  public void ratingTest() {
+  public void vantagePointTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableAuthoritativeRatingVantagePoint.Json()).rating();
-  }
-  @Test
-  public void fromJsonTest() {
-    // Arrange, Act and Assert
-    thrown.expect(IllegalStateException.class);
-    ImmutableAuthoritativeRatingVantagePoint.fromJson(new ImmutableAuthoritativeRatingVantagePoint.Json());
-  }
-  @Test
-  public void copyOfTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    ImmutableAuthoritativeRatingVantagePoint.copyOf(new ImmutableAuthoritativeRatingVantagePoint.Json());
+    (new ImmutableAuthoritativeRatingVantagePoint.Json()).vantagePoint();
   }
 }
 

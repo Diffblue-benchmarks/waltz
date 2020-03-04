@@ -20,13 +20,16 @@ public class ImmutableNonAuthoritativeSourceDiffblueTest {
   }
 
   @Test
-  public void fromTest() {
-    // Arrange
-    ImmutableNonAuthoritativeSource.Builder builderResult = ImmutableNonAuthoritativeSource.builder();
+  public void constructorTest() {
+    // Arrange and Act
+    ImmutableNonAuthoritativeSource.Json actualJson = new ImmutableNonAuthoritativeSource.Json();
 
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from(new ImmutableNonAuthoritativeSource.Json());
+    // Assert
+    assertNull(actualJson.sourceReference);
+    assertEquals(0, actualJson.count);
+    assertEquals(0L, actualJson.dataTypeId);
+    assertFalse(actualJson.countIsSet);
+    assertFalse(actualJson.dataTypeIdIsSet);
   }
 
   @Test
@@ -34,13 +37,6 @@ public class ImmutableNonAuthoritativeSourceDiffblueTest {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
     ImmutableNonAuthoritativeSource.copyOf(new ImmutableNonAuthoritativeSource.Json());
-  }
-
-  @Test
-  public void fromJsonTest() {
-    // Arrange, Act and Assert
-    thrown.expect(IllegalStateException.class);
-    ImmutableNonAuthoritativeSource.fromJson(new ImmutableNonAuthoritativeSource.Json());
   }
 
   @Test
@@ -58,16 +54,33 @@ public class ImmutableNonAuthoritativeSourceDiffblueTest {
   }
 
   @Test
-  public void constructorTest() {
-    // Arrange and Act
-    ImmutableNonAuthoritativeSource.Json actualJson = new ImmutableNonAuthoritativeSource.Json();
+  public void fromJsonTest() {
+    // Arrange, Act and Assert
+    thrown.expect(IllegalStateException.class);
+    ImmutableNonAuthoritativeSource.fromJson(new ImmutableNonAuthoritativeSource.Json());
+  }
+
+  @Test
+  public void fromTest() {
+    // Arrange
+    ImmutableNonAuthoritativeSource.Builder builderResult = ImmutableNonAuthoritativeSource.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from(new ImmutableNonAuthoritativeSource.Json());
+  }
+
+  @Test
+  public void setCountTest() {
+    // Arrange
+    ImmutableNonAuthoritativeSource.Json json = new ImmutableNonAuthoritativeSource.Json();
+
+    // Act
+    json.setCount(3);
 
     // Assert
-    assertNull(actualJson.sourceReference);
-    assertEquals(0, actualJson.count);
-    assertEquals(0L, actualJson.dataTypeId);
-    assertFalse(actualJson.countIsSet);
-    assertFalse(actualJson.dataTypeIdIsSet);
+    assertEquals(3, json.count);
+    assertTrue(json.countIsSet);
   }
 
   @Test
@@ -88,19 +101,6 @@ public class ImmutableNonAuthoritativeSourceDiffblueTest {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
     (new ImmutableNonAuthoritativeSource.Json()).sourceReference();
-  }
-
-  @Test
-  public void setCountTest() {
-    // Arrange
-    ImmutableNonAuthoritativeSource.Json json = new ImmutableNonAuthoritativeSource.Json();
-
-    // Act
-    json.setCount(3);
-
-    // Assert
-    assertEquals(3, json.count);
-    assertTrue(json.countIsSet);
   }
 }
 

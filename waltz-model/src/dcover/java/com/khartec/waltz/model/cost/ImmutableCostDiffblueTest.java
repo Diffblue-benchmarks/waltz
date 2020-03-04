@@ -16,22 +16,16 @@ public class ImmutableCostDiffblueTest {
   @Rule
   public ExpectedException thrown = ExpectedException.none();
   @Test
-  public void kindTest() {
+  public void amountTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableCost.Json()).kind();
+    (new ImmutableCost.Json()).amount();
   }
   @Test
-  public void setYearTest() {
-    // Arrange
-    ImmutableCost.Json json = new ImmutableCost.Json();
-
-    // Act
-    json.setYear(1);
-
-    // Assert
-    assertTrue(json.yearIsSet);
-    assertEquals(1, json.year);
+  public void buildTest() {
+    // Arrange, Act and Assert
+    thrown.expect(IllegalStateException.class);
+    ImmutableCost.builder().build();
   }
   @Test
   public void constructorTest() {
@@ -46,10 +40,46 @@ public class ImmutableCostDiffblueTest {
     assertNull(actualJson.amount);
   }
   @Test
-  public void yearTest() {
+  public void copyOfTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableCost.Json()).year();
+    ImmutableCost.copyOf(new ImmutableCost.Json());
+  }
+  @Test
+  public void costKindTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableCost.Json()).costKind();
+  }
+  @Test
+  public void fromJsonTest() {
+    // Arrange, Act and Assert
+    thrown.expect(IllegalStateException.class);
+    ImmutableCost.fromJson(new ImmutableCost.Json());
+  }
+  @Test
+  public void fromTest() {
+    // Arrange
+    ImmutableCost.Builder builderResult = ImmutableCost.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from(new ImmutableCost.Json());
+  }
+  @Test
+  public void fromTest2() {
+    // Arrange
+    ImmutableCost.Builder builderResult = ImmutableCost.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from((EntityKindProvider) new ImmutableCost.Json());
+  }
+  @Test
+  public void kindTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableCost.Json()).kind();
   }
   @Test
   public void setAmountTest() {
@@ -64,6 +94,17 @@ public class ImmutableCostDiffblueTest {
     assertSame(valueOfResult, json.amount);
   }
   @Test
+  public void setCostKindTest() {
+    // Arrange
+    ImmutableCost.Json json = new ImmutableCost.Json();
+
+    // Act
+    json.setCostKind("costKind");
+
+    // Assert
+    assertEquals("costKind", json.costKind);
+  }
+  @Test
   public void setKindTest() {
     // Arrange
     ImmutableCost.Json json = new ImmutableCost.Json();
@@ -75,63 +116,22 @@ public class ImmutableCostDiffblueTest {
     assertEquals(EntityKind.ACTOR, json.kind);
   }
   @Test
-  public void costKindTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableCost.Json()).costKind();
-  }
-  @Test
-  public void setCostKindTest() {
+  public void setYearTest() {
     // Arrange
     ImmutableCost.Json json = new ImmutableCost.Json();
 
     // Act
-    json.setCostKind("foo");
+    json.setYear(1);
 
     // Assert
-    assertEquals("foo", json.costKind);
+    assertTrue(json.yearIsSet);
+    assertEquals(1, json.year);
   }
   @Test
-  public void amountTest() {
+  public void yearTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableCost.Json()).amount();
-  }
-  @Test
-  public void fromJsonTest() {
-    // Arrange, Act and Assert
-    thrown.expect(IllegalStateException.class);
-    ImmutableCost.fromJson(new ImmutableCost.Json());
-  }
-  @Test
-  public void copyOfTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    ImmutableCost.copyOf(new ImmutableCost.Json());
-  }
-  @Test
-  public void fromTest2() {
-    // Arrange
-    ImmutableCost.Builder builderResult = ImmutableCost.builder();
-
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from((EntityKindProvider) new ImmutableCost.Json());
-  }
-  @Test
-  public void buildTest() {
-    // Arrange, Act and Assert
-    thrown.expect(IllegalStateException.class);
-    ImmutableCost.builder().build();
-  }
-  @Test
-  public void fromTest() {
-    // Arrange
-    ImmutableCost.Builder builderResult = ImmutableCost.builder();
-
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from(new ImmutableCost.Json());
+    (new ImmutableCost.Json()).year();
   }
 }
 

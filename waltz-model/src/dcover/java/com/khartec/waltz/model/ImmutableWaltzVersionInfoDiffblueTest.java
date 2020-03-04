@@ -10,21 +10,10 @@ public class ImmutableWaltzVersionInfoDiffblueTest {
   @Rule
   public ExpectedException thrown = ExpectedException.none();
   @Test
-  public void timestampTest() {
+  public void buildTest() {
     // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableWaltzVersionInfo.Json()).timestamp();
-  }
-  @Test
-  public void setTimestampTest() {
-    // Arrange
-    ImmutableWaltzVersionInfo.Json json = new ImmutableWaltzVersionInfo.Json();
-
-    // Act
-    json.setTimestamp("foo");
-
-    // Assert
-    assertEquals("foo", json.timestamp);
+    thrown.expect(IllegalStateException.class);
+    ImmutableWaltzVersionInfo.builder().build();
   }
   @Test
   public void constructorTest() {
@@ -35,40 +24,6 @@ public class ImmutableWaltzVersionInfoDiffblueTest {
     assertNull(actualJson.pomVersion);
     assertNull(actualJson.revision);
     assertNull(actualJson.timestamp);
-  }
-  @Test
-  public void setPomVersionTest() {
-    // Arrange
-    ImmutableWaltzVersionInfo.Json json = new ImmutableWaltzVersionInfo.Json();
-
-    // Act
-    json.setPomVersion("foo");
-
-    // Assert
-    assertEquals("foo", json.pomVersion);
-  }
-  @Test
-  public void setRevisionTest() {
-    // Arrange
-    ImmutableWaltzVersionInfo.Json json = new ImmutableWaltzVersionInfo.Json();
-
-    // Act
-    json.setRevision("foo");
-
-    // Assert
-    assertEquals("foo", json.revision);
-  }
-  @Test
-  public void pomVersionTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableWaltzVersionInfo.Json()).pomVersion();
-  }
-  @Test
-  public void revisionTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableWaltzVersionInfo.Json()).revision();
   }
   @Test
   public void copyOfTest() {
@@ -92,10 +47,55 @@ public class ImmutableWaltzVersionInfoDiffblueTest {
     builderResult.from(new ImmutableWaltzVersionInfo.Json());
   }
   @Test
-  public void buildTest() {
+  public void pomVersionTest() {
     // Arrange, Act and Assert
-    thrown.expect(IllegalStateException.class);
-    ImmutableWaltzVersionInfo.builder().build();
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableWaltzVersionInfo.Json()).pomVersion();
+  }
+  @Test
+  public void revisionTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableWaltzVersionInfo.Json()).revision();
+  }
+  @Test
+  public void setPomVersionTest() {
+    // Arrange
+    ImmutableWaltzVersionInfo.Json json = new ImmutableWaltzVersionInfo.Json();
+
+    // Act
+    json.setPomVersion("pomVersion");
+
+    // Assert
+    assertEquals("pomVersion", json.pomVersion);
+  }
+  @Test
+  public void setRevisionTest() {
+    // Arrange
+    ImmutableWaltzVersionInfo.Json json = new ImmutableWaltzVersionInfo.Json();
+
+    // Act
+    json.setRevision("revision");
+
+    // Assert
+    assertEquals("revision", json.revision);
+  }
+  @Test
+  public void setTimestampTest() {
+    // Arrange
+    ImmutableWaltzVersionInfo.Json json = new ImmutableWaltzVersionInfo.Json();
+
+    // Act
+    json.setTimestamp("timestamp");
+
+    // Assert
+    assertEquals("timestamp", json.timestamp);
+  }
+  @Test
+  public void timestampTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableWaltzVersionInfo.Json()).timestamp();
   }
 }
 

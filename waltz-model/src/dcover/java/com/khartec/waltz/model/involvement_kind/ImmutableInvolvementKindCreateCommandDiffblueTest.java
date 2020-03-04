@@ -12,38 +12,10 @@ public class ImmutableInvolvementKindCreateCommandDiffblueTest {
   @Rule
   public ExpectedException thrown = ExpectedException.none();
   @Test
-  public void setDescriptionTest() {
-    // Arrange
-    ImmutableInvolvementKindCreateCommand.Json json = new ImmutableInvolvementKindCreateCommand.Json();
-
-    // Act
-    json.setDescription("description");
-
-    // Assert
-    assertEquals("description", json.description);
-  }
-  @Test
-  public void nameTest() {
+  public void buildTest() {
     // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableInvolvementKindCreateCommand.Json()).name();
-  }
-  @Test
-  public void descriptionTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableInvolvementKindCreateCommand.Json()).description();
-  }
-  @Test
-  public void setNameTest() {
-    // Arrange
-    ImmutableInvolvementKindCreateCommand.Json json = new ImmutableInvolvementKindCreateCommand.Json();
-
-    // Act
-    json.setName("name");
-
-    // Assert
-    assertEquals("name", json.name);
+    thrown.expect(IllegalStateException.class);
+    ImmutableInvolvementKindCreateCommand.builder().build();
   }
   @Test
   public void constructorTest() {
@@ -61,25 +33,25 @@ public class ImmutableInvolvementKindCreateCommandDiffblueTest {
     ImmutableInvolvementKindCreateCommand.copyOf(new ImmutableInvolvementKindCreateCommand.Json());
   }
   @Test
+  public void descriptionTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableInvolvementKindCreateCommand.Json()).description();
+  }
+  @Test
   public void fromJsonTest() {
     // Arrange, Act and Assert
     thrown.expect(IllegalStateException.class);
     ImmutableInvolvementKindCreateCommand.fromJson(new ImmutableInvolvementKindCreateCommand.Json());
   }
   @Test
-  public void fromTest3() {
+  public void fromTest() {
     // Arrange
     ImmutableInvolvementKindCreateCommand.Builder builderResult = ImmutableInvolvementKindCreateCommand.builder();
 
     // Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    builderResult.from((NameProvider) new ImmutableInvolvementKind.Json());
-  }
-  @Test
-  public void buildTest() {
-    // Arrange, Act and Assert
-    thrown.expect(IllegalStateException.class);
-    ImmutableInvolvementKindCreateCommand.builder().build();
+    builderResult.from((DescriptionProvider) new ImmutableInvolvementKind.Json());
   }
   @Test
   public void fromTest2() {
@@ -91,13 +63,41 @@ public class ImmutableInvolvementKindCreateCommandDiffblueTest {
     builderResult.from(new ImmutableInvolvementKindCreateCommand.Json());
   }
   @Test
-  public void fromTest() {
+  public void fromTest3() {
     // Arrange
     ImmutableInvolvementKindCreateCommand.Builder builderResult = ImmutableInvolvementKindCreateCommand.builder();
 
     // Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    builderResult.from((DescriptionProvider) new ImmutableInvolvementKind.Json());
+    builderResult.from((NameProvider) new ImmutableInvolvementKind.Json());
+  }
+  @Test
+  public void nameTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableInvolvementKindCreateCommand.Json()).name();
+  }
+  @Test
+  public void setDescriptionTest() {
+    // Arrange
+    ImmutableInvolvementKindCreateCommand.Json json = new ImmutableInvolvementKindCreateCommand.Json();
+
+    // Act
+    json.setDescription("description");
+
+    // Assert
+    assertEquals("description", json.description);
+  }
+  @Test
+  public void setNameTest() {
+    // Arrange
+    ImmutableInvolvementKindCreateCommand.Json json = new ImmutableInvolvementKindCreateCommand.Json();
+
+    // Act
+    json.setName("name");
+
+    // Assert
+    assertEquals("name", json.name);
   }
 }
 

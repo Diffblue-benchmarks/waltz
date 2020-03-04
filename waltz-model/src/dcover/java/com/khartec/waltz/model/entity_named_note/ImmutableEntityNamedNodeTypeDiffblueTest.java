@@ -16,22 +16,10 @@ public class ImmutableEntityNamedNodeTypeDiffblueTest {
   @Rule
   public ExpectedException thrown = ExpectedException.none();
   @Test
-  public void fromTest4() {
-    // Arrange
-    ImmutableEntityNamedNodeType.Builder builderResult = ImmutableEntityNamedNodeType.builder();
-
-    // Act and Assert
+  public void applicableEntityKindsTest() {
+    // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    builderResult.from(new ImmutableEntityNamedNodeType.Json());
-  }
-  @Test
-  public void fromTest3() {
-    // Arrange
-    ImmutableEntityNamedNodeType.Builder builderResult = ImmutableEntityNamedNodeType.builder();
-
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from((DescriptionProvider) new ImmutableEntityNamedNodeType.Json());
+    (new ImmutableEntityNamedNodeType.Json()).applicableEntityKinds();
   }
   @Test
   public void buildTest() {
@@ -40,13 +28,27 @@ public class ImmutableEntityNamedNodeTypeDiffblueTest {
     ImmutableEntityNamedNodeType.builder().build();
   }
   @Test
-  public void fromTest2() {
-    // Arrange
-    ImmutableEntityNamedNodeType.Builder builderResult = ImmutableEntityNamedNodeType.builder();
-
-    // Act and Assert
+  public void constructorTest() {
+    // Arrange, Act and Assert
+    assertEquals(0, (new ImmutableEntityNamedNodeType.Json()).applicableEntityKinds.size());
+  }
+  @Test
+  public void copyOfTest() {
+    // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    builderResult.from((IdProvider) new ImmutableEntityNamedNodeType.Json());
+    ImmutableEntityNamedNodeType.copyOf(new ImmutableEntityNamedNodeType.Json());
+  }
+  @Test
+  public void descriptionTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableEntityNamedNodeType.Json()).description();
+  }
+  @Test
+  public void fromJsonTest() {
+    // Arrange, Act and Assert
+    thrown.expect(IllegalStateException.class);
+    ImmutableEntityNamedNodeType.fromJson(new ImmutableEntityNamedNodeType.Json());
   }
   @Test
   public void fromTest() {
@@ -58,40 +60,31 @@ public class ImmutableEntityNamedNodeTypeDiffblueTest {
     builderResult.from((NameProvider) new ImmutableEntityNamedNodeType.Json());
   }
   @Test
-  public void fromJsonTest() {
-    // Arrange, Act and Assert
-    thrown.expect(IllegalStateException.class);
-    ImmutableEntityNamedNodeType.fromJson(new ImmutableEntityNamedNodeType.Json());
-  }
-  @Test
-  public void copyOfTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    ImmutableEntityNamedNodeType.copyOf(new ImmutableEntityNamedNodeType.Json());
-  }
-  @Test
-  public void applicableEntityKindsTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableEntityNamedNodeType.Json()).applicableEntityKinds();
-  }
-  @Test
-  public void descriptionTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableEntityNamedNodeType.Json()).description();
-  }
-  @Test
-  public void setIsReadOnlyTest() {
+  public void fromTest2() {
     // Arrange
-    ImmutableEntityNamedNodeType.Json json = new ImmutableEntityNamedNodeType.Json();
+    ImmutableEntityNamedNodeType.Builder builderResult = ImmutableEntityNamedNodeType.builder();
 
-    // Act
-    json.setIsReadOnly(true);
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from((IdProvider) new ImmutableEntityNamedNodeType.Json());
+  }
+  @Test
+  public void fromTest3() {
+    // Arrange
+    ImmutableEntityNamedNodeType.Builder builderResult = ImmutableEntityNamedNodeType.builder();
 
-    // Assert
-    assertTrue(json.isReadOnly);
-    assertTrue(json.isReadOnlyIsSet);
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from((DescriptionProvider) new ImmutableEntityNamedNodeType.Json());
+  }
+  @Test
+  public void fromTest4() {
+    // Arrange
+    ImmutableEntityNamedNodeType.Builder builderResult = ImmutableEntityNamedNodeType.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from(new ImmutableEntityNamedNodeType.Json());
   }
   @Test
   public void idTest() {
@@ -106,16 +99,16 @@ public class ImmutableEntityNamedNodeTypeDiffblueTest {
     (new ImmutableEntityNamedNodeType.Json()).isReadOnly();
   }
   @Test
-  public void setPositionTest() {
-    // Arrange
-    ImmutableEntityNamedNodeType.Json json = new ImmutableEntityNamedNodeType.Json();
-
-    // Act
-    json.setPosition(1);
-
-    // Assert
-    assertTrue(json.positionIsSet);
-    assertEquals(1, json.position);
+  public void nameTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableEntityNamedNodeType.Json()).name();
+  }
+  @Test
+  public void positionTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableEntityNamedNodeType.Json()).position();
   }
   @Test
   public void setApplicableEntityKindsTest() {
@@ -142,10 +135,16 @@ public class ImmutableEntityNamedNodeTypeDiffblueTest {
     assertEquals("description", json.description);
   }
   @Test
-  public void nameTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableEntityNamedNodeType.Json()).name();
+  public void setIsReadOnlyTest() {
+    // Arrange
+    ImmutableEntityNamedNodeType.Json json = new ImmutableEntityNamedNodeType.Json();
+
+    // Act
+    json.setIsReadOnly(true);
+
+    // Assert
+    assertTrue(json.isReadOnly);
+    assertTrue(json.isReadOnlyIsSet);
   }
   @Test
   public void setNameTest() {
@@ -159,15 +158,16 @@ public class ImmutableEntityNamedNodeTypeDiffblueTest {
     assertEquals("name", json.name);
   }
   @Test
-  public void constructorTest() {
-    // Arrange, Act and Assert
-    assertEquals(0, (new ImmutableEntityNamedNodeType.Json()).applicableEntityKinds.size());
-  }
-  @Test
-  public void positionTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableEntityNamedNodeType.Json()).position();
+  public void setPositionTest() {
+    // Arrange
+    ImmutableEntityNamedNodeType.Json json = new ImmutableEntityNamedNodeType.Json();
+
+    // Act
+    json.setPosition(1);
+
+    // Assert
+    assertTrue(json.positionIsSet);
+    assertEquals(1, json.position);
   }
 }
 

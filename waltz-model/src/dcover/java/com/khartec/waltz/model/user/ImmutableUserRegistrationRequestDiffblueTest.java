@@ -10,6 +10,21 @@ public class ImmutableUserRegistrationRequestDiffblueTest {
   @Rule
   public ExpectedException thrown = ExpectedException.none();
   @Test
+  public void buildTest() {
+    // Arrange, Act and Assert
+    thrown.expect(IllegalStateException.class);
+    ImmutableUserRegistrationRequest.builder().build();
+  }
+  @Test
+  public void constructorTest() {
+    // Arrange and Act
+    ImmutableUserRegistrationRequest.Json actualJson = new ImmutableUserRegistrationRequest.Json();
+
+    // Assert
+    assertNull(actualJson.password);
+    assertNull(actualJson.userName);
+  }
+  @Test
   public void copyOfTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
@@ -22,25 +37,19 @@ public class ImmutableUserRegistrationRequestDiffblueTest {
     ImmutableUserRegistrationRequest.fromJson(new ImmutableUserRegistrationRequest.Json());
   }
   @Test
+  public void fromTest() {
+    // Arrange
+    ImmutableUserRegistrationRequest.Builder builderResult = ImmutableUserRegistrationRequest.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from(new ImmutableUserRegistrationRequest.Json());
+  }
+  @Test
   public void passwordTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
     (new ImmutableUserRegistrationRequest.Json()).password();
-  }
-  @Test
-  public void constructorTest() {
-    // Arrange and Act
-    ImmutableUserRegistrationRequest.Json actualJson = new ImmutableUserRegistrationRequest.Json();
-
-    // Assert
-    assertNull(actualJson.password);
-    assertNull(actualJson.userName);
-  }
-  @Test
-  public void userNameTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableUserRegistrationRequest.Json()).userName();
   }
   @Test
   public void setPasswordTest() {
@@ -65,19 +74,10 @@ public class ImmutableUserRegistrationRequestDiffblueTest {
     assertEquals("username", json.userName);
   }
   @Test
-  public void buildTest() {
+  public void userNameTest() {
     // Arrange, Act and Assert
-    thrown.expect(IllegalStateException.class);
-    ImmutableUserRegistrationRequest.builder().build();
-  }
-  @Test
-  public void fromTest() {
-    // Arrange
-    ImmutableUserRegistrationRequest.Builder builderResult = ImmutableUserRegistrationRequest.builder();
-
-    // Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    builderResult.from(new ImmutableUserRegistrationRequest.Json());
+    (new ImmutableUserRegistrationRequest.Json()).userName();
   }
 }
 

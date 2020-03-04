@@ -15,77 +15,38 @@ public class ImmutableDatabaseSummaryStatisticsDiffblueTest {
   public ExpectedException thrown = ExpectedException.none();
 
   @Test
-  public void vendorCountsTest2() {
-    // Arrange
-    ImmutableDatabaseSummaryStatistics.Json json = new ImmutableDatabaseSummaryStatistics.Json();
-
-    // Act
-    List<Tally<String>> actualVendorCountsResult = ImmutableDatabaseSummaryStatistics.fromJson(json).vendorCounts();
-
-    // Assert
-    assertSame(json.endOfLifeStatusCounts, actualVendorCountsResult);
-    assertEquals(0, actualVendorCountsResult.size());
-  }
-
-  @Test
-  public void fromJsonTest() {
+  public void buildTest() {
     // Arrange, Act and Assert
     assertEquals("DatabaseSummaryStatistics{environmentCounts=[]," + " vendorCounts=[], endOfLifeStatusCounts=[]}",
-        ImmutableDatabaseSummaryStatistics.fromJson(new ImmutableDatabaseSummaryStatistics.Json()).toString());
+        ImmutableDatabaseSummaryStatistics.builder().build().toString());
   }
 
   @Test
-  public void environmentCountsTest2() {
-    // Arrange
-    ImmutableDatabaseSummaryStatistics.Json json = new ImmutableDatabaseSummaryStatistics.Json();
-
-    // Act
-    List<Tally<String>> actualEnvironmentCountsResult = ImmutableDatabaseSummaryStatistics.fromJson(json)
-        .environmentCounts();
+  public void constructorTest() {
+    // Arrange and Act
+    ImmutableDatabaseSummaryStatistics.Json actualJson = new ImmutableDatabaseSummaryStatistics.Json();
 
     // Assert
-    assertSame(json.endOfLifeStatusCounts, actualEnvironmentCountsResult);
-    assertEquals(0, actualEnvironmentCountsResult.size());
+    List<Tally<String>> tallyList = actualJson.environmentCounts;
+    List<Tally<String>> actualTallyList = actualJson.vendorCounts;
+    List<Tally<String>> actualTallyList1 = actualJson.endOfLifeStatusCounts;
+    assertEquals(0, tallyList.size());
+    assertSame(tallyList, actualTallyList1);
+    assertSame(tallyList, actualTallyList);
   }
 
   @Test
-  public void withVendorCountsTest() {
-    // Arrange
-    ImmutableDatabaseSummaryStatistics fromJsonResult = ImmutableDatabaseSummaryStatistics
-        .fromJson(new ImmutableDatabaseSummaryStatistics.Json());
-
-    // Act and Assert
-    assertEquals("DatabaseSummaryStatistics{environmentCounts=[]," + " vendorCounts=[], endOfLifeStatusCounts=[]}",
-        fromJsonResult.withVendorCounts(new ArrayList<Tally<String>>()).toString());
-  }
-
-  @Test
-  public void withEndOfLifeStatusCountsTest() {
-    // Arrange
-    ImmutableDatabaseSummaryStatistics fromJsonResult = ImmutableDatabaseSummaryStatistics
-        .fromJson(new ImmutableDatabaseSummaryStatistics.Json());
-
-    // Act and Assert
-    assertEquals("DatabaseSummaryStatistics{environmentCounts=[]," + " vendorCounts=[], endOfLifeStatusCounts=[]}",
-        fromJsonResult.withEndOfLifeStatusCounts(new ArrayList<Tally<String>>()).toString());
-  }
-
-  @Test
-  public void equalsTest() {
+  public void copyOfTest() {
     // Arrange, Act and Assert
-    assertFalse(
-        ImmutableDatabaseSummaryStatistics.fromJson(new ImmutableDatabaseSummaryStatistics.Json()).equals("element"));
+    thrown.expect(UnsupportedOperationException.class);
+    ImmutableDatabaseSummaryStatistics.copyOf(new ImmutableDatabaseSummaryStatistics.Json());
   }
 
   @Test
-  public void withEnvironmentCountsTest() {
-    // Arrange
-    ImmutableDatabaseSummaryStatistics fromJsonResult = ImmutableDatabaseSummaryStatistics
-        .fromJson(new ImmutableDatabaseSummaryStatistics.Json());
-
-    // Act and Assert
-    assertEquals("DatabaseSummaryStatistics{environmentCounts=[]," + " vendorCounts=[], endOfLifeStatusCounts=[]}",
-        fromJsonResult.withEnvironmentCounts(new ArrayList<Tally<String>>()).toString());
+  public void endOfLifeStatusCountsTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableDatabaseSummaryStatistics.Json()).endOfLifeStatusCounts();
   }
 
   @Test
@@ -103,31 +64,55 @@ public class ImmutableDatabaseSummaryStatisticsDiffblueTest {
   }
 
   @Test
-  public void hashCodeTest() {
+  public void environmentCountsTest() {
     // Arrange, Act and Assert
-    assertEquals(193378120,
-        ImmutableDatabaseSummaryStatistics.fromJson(new ImmutableDatabaseSummaryStatistics.Json()).hashCode());
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableDatabaseSummaryStatistics.Json()).environmentCounts();
   }
 
   @Test
-  public void toStringTest() {
+  public void environmentCountsTest2() {
+    // Arrange
+    ImmutableDatabaseSummaryStatistics.Json json = new ImmutableDatabaseSummaryStatistics.Json();
+
+    // Act
+    List<Tally<String>> actualEnvironmentCountsResult = ImmutableDatabaseSummaryStatistics.fromJson(json)
+        .environmentCounts();
+
+    // Assert
+    assertSame(json.endOfLifeStatusCounts, actualEnvironmentCountsResult);
+    assertEquals(0, actualEnvironmentCountsResult.size());
+  }
+
+  @Test
+  public void equalsTest() {
+    // Arrange, Act and Assert
+    assertFalse(
+        ImmutableDatabaseSummaryStatistics.fromJson(new ImmutableDatabaseSummaryStatistics.Json()).equals("element"));
+  }
+
+  @Test
+  public void fromJsonTest() {
     // Arrange, Act and Assert
     assertEquals("DatabaseSummaryStatistics{environmentCounts=[]," + " vendorCounts=[], endOfLifeStatusCounts=[]}",
         ImmutableDatabaseSummaryStatistics.fromJson(new ImmutableDatabaseSummaryStatistics.Json()).toString());
   }
 
   @Test
-  public void copyOfTest() {
-    // Arrange, Act and Assert
+  public void fromTest() {
+    // Arrange
+    ImmutableDatabaseSummaryStatistics.Builder builderResult = ImmutableDatabaseSummaryStatistics.builder();
+
+    // Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    ImmutableDatabaseSummaryStatistics.copyOf(new ImmutableDatabaseSummaryStatistics.Json());
+    builderResult.from(new ImmutableDatabaseSummaryStatistics.Json());
   }
 
   @Test
-  public void vendorCountsTest() {
+  public void hashCodeTest() {
     // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableDatabaseSummaryStatistics.Json()).vendorCounts();
+    assertEquals(193378120,
+        ImmutableDatabaseSummaryStatistics.fromJson(new ImmutableDatabaseSummaryStatistics.Json()).hashCode());
   }
 
   @Test
@@ -170,48 +155,63 @@ public class ImmutableDatabaseSummaryStatisticsDiffblueTest {
   }
 
   @Test
-  public void endOfLifeStatusCountsTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableDatabaseSummaryStatistics.Json()).endOfLifeStatusCounts();
-  }
-
-  @Test
-  public void constructorTest() {
-    // Arrange and Act
-    ImmutableDatabaseSummaryStatistics.Json actualJson = new ImmutableDatabaseSummaryStatistics.Json();
-
-    // Assert
-    List<Tally<String>> tallyList = actualJson.environmentCounts;
-    List<Tally<String>> actualTallyList = actualJson.vendorCounts;
-    List<Tally<String>> actualTallyList1 = actualJson.endOfLifeStatusCounts;
-    assertEquals(0, tallyList.size());
-    assertSame(tallyList, actualTallyList1);
-    assertSame(tallyList, actualTallyList);
-  }
-
-  @Test
-  public void environmentCountsTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableDatabaseSummaryStatistics.Json()).environmentCounts();
-  }
-
-  @Test
-  public void fromTest() {
-    // Arrange
-    ImmutableDatabaseSummaryStatistics.Builder builderResult = ImmutableDatabaseSummaryStatistics.builder();
-
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from(new ImmutableDatabaseSummaryStatistics.Json());
-  }
-
-  @Test
-  public void buildTest() {
+  public void toStringTest() {
     // Arrange, Act and Assert
     assertEquals("DatabaseSummaryStatistics{environmentCounts=[]," + " vendorCounts=[], endOfLifeStatusCounts=[]}",
-        ImmutableDatabaseSummaryStatistics.builder().build().toString());
+        ImmutableDatabaseSummaryStatistics.fromJson(new ImmutableDatabaseSummaryStatistics.Json()).toString());
+  }
+
+  @Test
+  public void vendorCountsTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableDatabaseSummaryStatistics.Json()).vendorCounts();
+  }
+
+  @Test
+  public void vendorCountsTest2() {
+    // Arrange
+    ImmutableDatabaseSummaryStatistics.Json json = new ImmutableDatabaseSummaryStatistics.Json();
+
+    // Act
+    List<Tally<String>> actualVendorCountsResult = ImmutableDatabaseSummaryStatistics.fromJson(json).vendorCounts();
+
+    // Assert
+    assertSame(json.endOfLifeStatusCounts, actualVendorCountsResult);
+    assertEquals(0, actualVendorCountsResult.size());
+  }
+
+  @Test
+  public void withEndOfLifeStatusCountsTest() {
+    // Arrange
+    ImmutableDatabaseSummaryStatistics fromJsonResult = ImmutableDatabaseSummaryStatistics
+        .fromJson(new ImmutableDatabaseSummaryStatistics.Json());
+
+    // Act and Assert
+    assertEquals("DatabaseSummaryStatistics{environmentCounts=[]," + " vendorCounts=[], endOfLifeStatusCounts=[]}",
+        fromJsonResult.withEndOfLifeStatusCounts(new ArrayList<Tally<String>>()).toString());
+  }
+
+  @Test
+  public void withEnvironmentCountsTest() {
+    // Arrange
+    ImmutableDatabaseSummaryStatistics fromJsonResult = ImmutableDatabaseSummaryStatistics
+        .fromJson(new ImmutableDatabaseSummaryStatistics.Json());
+
+    // Act and Assert
+    assertEquals("DatabaseSummaryStatistics{environmentCounts=[]," + " vendorCounts=[], endOfLifeStatusCounts=[]}",
+        fromJsonResult.withEnvironmentCounts(new ArrayList<Tally<String>>()).toString());
+  }
+
+  @Test
+  public void withVendorCountsTest() {
+    // Arrange
+    ImmutableDatabaseSummaryStatistics fromJsonResult = ImmutableDatabaseSummaryStatistics
+        .fromJson(new ImmutableDatabaseSummaryStatistics.Json());
+
+    // Act and Assert
+    assertEquals("DatabaseSummaryStatistics{environmentCounts=[]," + " vendorCounts=[], endOfLifeStatusCounts=[]}",
+        fromJsonResult.withVendorCounts(new ArrayList<Tally<String>>()).toString());
   }
 }
 

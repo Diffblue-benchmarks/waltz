@@ -18,10 +18,30 @@ public class ImmutableDataTypeDiffblueTest {
   @Rule
   public ExpectedException thrown = ExpectedException.none();
   @Test
-  public void fromJsonTest() {
+  public void buildTest() {
     // Arrange, Act and Assert
     thrown.expect(IllegalStateException.class);
-    ImmutableDataType.fromJson(new ImmutableDataType.Json());
+    ImmutableDataType.builder().build();
+  }
+  @Test
+  public void codeTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableDataType.Json()).code();
+  }
+  @Test
+  public void concreteTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableDataType.Json()).concrete();
+  }
+  @Test
+  public void constructorTest() {
+    // Arrange and Act
+    ImmutableDataType.Json actualJson = new ImmutableDataType.Json();
+
+    // Assert
+    assertSame(actualJson.id, actualJson.parentId);
   }
   @Test
   public void copyOfTest() {
@@ -30,64 +50,22 @@ public class ImmutableDataTypeDiffblueTest {
     ImmutableDataType.copyOf(new ImmutableDataType.Json());
   }
   @Test
-  public void fromTest7() {
-    // Arrange
-    ImmutableDataType.Builder builderResult = ImmutableDataType.builder();
-
-    // Act and Assert
+  public void deprecatedTest() {
+    // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    builderResult.from(new ImmutableDataType.Json());
+    (new ImmutableDataType.Json()).deprecated();
   }
   @Test
-  public void fromTest6() {
-    // Arrange
-    ImmutableDataType.Builder builderResult = ImmutableDataType.builder();
-
-    // Act and Assert
+  public void descriptionTest() {
+    // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    builderResult.from((NameProvider) new ImmutableDataType.Json());
+    (new ImmutableDataType.Json()).description();
   }
   @Test
-  public void fromTest5() {
-    // Arrange
-    ImmutableDataType.Builder builderResult = ImmutableDataType.builder();
-
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from((IdProvider) new ImmutableDataType.Json());
-  }
-  @Test
-  public void fromTest4() {
-    // Arrange
-    ImmutableDataType.Builder builderResult = ImmutableDataType.builder();
-
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from((ParentIdProvider) new ImmutableDataType.Json());
-  }
-  @Test
-  public void buildTest() {
+  public void fromJsonTest() {
     // Arrange, Act and Assert
     thrown.expect(IllegalStateException.class);
-    ImmutableDataType.builder().build();
-  }
-  @Test
-  public void fromTest3() {
-    // Arrange
-    ImmutableDataType.Builder builderResult = ImmutableDataType.builder();
-
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from((EntityKindProvider) new ImmutableDataType.Json());
-  }
-  @Test
-  public void fromTest2() {
-    // Arrange
-    ImmutableDataType.Builder builderResult = ImmutableDataType.builder();
-
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from((DescriptionProvider) new ImmutableDataType.Json());
+    ImmutableDataType.fromJson(new ImmutableDataType.Json());
   }
   @Test
   public void fromTest() {
@@ -99,10 +77,64 @@ public class ImmutableDataTypeDiffblueTest {
     builderResult.from((CodeProvider) new ImmutableDataType.Json());
   }
   @Test
-  public void deprecatedTest() {
+  public void fromTest2() {
+    // Arrange
+    ImmutableDataType.Builder builderResult = ImmutableDataType.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from((DescriptionProvider) new ImmutableDataType.Json());
+  }
+  @Test
+  public void fromTest3() {
+    // Arrange
+    ImmutableDataType.Builder builderResult = ImmutableDataType.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from((EntityKindProvider) new ImmutableDataType.Json());
+  }
+  @Test
+  public void fromTest4() {
+    // Arrange
+    ImmutableDataType.Builder builderResult = ImmutableDataType.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from((ParentIdProvider) new ImmutableDataType.Json());
+  }
+  @Test
+  public void fromTest5() {
+    // Arrange
+    ImmutableDataType.Builder builderResult = ImmutableDataType.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from((IdProvider) new ImmutableDataType.Json());
+  }
+  @Test
+  public void fromTest6() {
+    // Arrange
+    ImmutableDataType.Builder builderResult = ImmutableDataType.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from((NameProvider) new ImmutableDataType.Json());
+  }
+  @Test
+  public void fromTest7() {
+    // Arrange
+    ImmutableDataType.Builder builderResult = ImmutableDataType.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from(new ImmutableDataType.Json());
+  }
+  @Test
+  public void idTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableDataType.Json()).deprecated();
+    (new ImmutableDataType.Json()).id();
   }
   @Test
   public void kindTest() {
@@ -111,16 +143,27 @@ public class ImmutableDataTypeDiffblueTest {
     (new ImmutableDataType.Json()).kind();
   }
   @Test
-  public void descriptionTest() {
+  public void nameTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableDataType.Json()).description();
+    (new ImmutableDataType.Json()).name();
   }
   @Test
-  public void concreteTest() {
+  public void parentIdTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableDataType.Json()).concrete();
+    (new ImmutableDataType.Json()).parentId();
+  }
+  @Test
+  public void setCodeTest() {
+    // Arrange
+    ImmutableDataType.Json json = new ImmutableDataType.Json();
+
+    // Act
+    json.setCode("code");
+
+    // Assert
+    assertEquals("code", json.code);
   }
   @Test
   public void setConcreteTest() {
@@ -133,46 +176,6 @@ public class ImmutableDataTypeDiffblueTest {
     // Assert
     assertTrue(json.concrete);
     assertTrue(json.concreteIsSet);
-  }
-  @Test
-  public void setCodeTest() {
-    // Arrange
-    ImmutableDataType.Json json = new ImmutableDataType.Json();
-
-    // Act
-    json.setCode("foo");
-
-    // Assert
-    assertEquals("foo", json.code);
-  }
-  @Test
-  public void idTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableDataType.Json()).id();
-  }
-  @Test
-  public void setKindTest() {
-    // Arrange
-    ImmutableDataType.Json json = new ImmutableDataType.Json();
-
-    // Act
-    json.setKind(EntityKind.ACTOR);
-
-    // Assert
-    assertEquals(EntityKind.ACTOR, json.kind);
-  }
-  @Test
-  public void setUnknownTest() {
-    // Arrange
-    ImmutableDataType.Json json = new ImmutableDataType.Json();
-
-    // Act
-    json.setUnknown(true);
-
-    // Assert
-    assertTrue(json.unknown);
-    assertTrue(json.unknownIsSet);
   }
   @Test
   public void setDeprecatedTest() {
@@ -198,22 +201,15 @@ public class ImmutableDataTypeDiffblueTest {
     assertEquals("description", json.description);
   }
   @Test
-  public void nameTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableDataType.Json()).name();
-  }
-  @Test
-  public void codeTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableDataType.Json()).code();
-  }
-  @Test
-  public void parentIdTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableDataType.Json()).parentId();
+  public void setKindTest() {
+    // Arrange
+    ImmutableDataType.Json json = new ImmutableDataType.Json();
+
+    // Act
+    json.setKind(EntityKind.ACTOR);
+
+    // Assert
+    assertEquals(EntityKind.ACTOR, json.kind);
   }
   @Test
   public void setNameTest() {
@@ -227,12 +223,16 @@ public class ImmutableDataTypeDiffblueTest {
     assertEquals("name", json.name);
   }
   @Test
-  public void constructorTest() {
-    // Arrange and Act
-    ImmutableDataType.Json actualJson = new ImmutableDataType.Json();
+  public void setUnknownTest() {
+    // Arrange
+    ImmutableDataType.Json json = new ImmutableDataType.Json();
+
+    // Act
+    json.setUnknown(true);
 
     // Assert
-    assertSame(actualJson.id, actualJson.parentId);
+    assertTrue(json.unknown);
+    assertTrue(json.unknownIsSet);
   }
   @Test
   public void unknownTest() {

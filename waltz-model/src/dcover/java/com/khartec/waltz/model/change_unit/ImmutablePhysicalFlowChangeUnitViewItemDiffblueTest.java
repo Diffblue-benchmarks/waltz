@@ -12,10 +12,57 @@ public class ImmutablePhysicalFlowChangeUnitViewItemDiffblueTest {
   @Rule
   public ExpectedException thrown = ExpectedException.none();
   @Test
+  public void assessmentsTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutablePhysicalFlowChangeUnitViewItem.Json()).assessments();
+  }
+  @Test
+  public void buildTest() {
+    // Arrange, Act and Assert
+    thrown.expect(IllegalStateException.class);
+    ImmutablePhysicalFlowChangeUnitViewItem.builder().build();
+  }
+  @Test
   public void changeUnitTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
     (new ImmutablePhysicalFlowChangeUnitViewItem.Json()).changeUnit();
+  }
+  @Test
+  public void constructorTest() {
+    // Arrange, Act and Assert
+    assertEquals(0, (new ImmutablePhysicalFlowChangeUnitViewItem.Json()).assessments.size());
+  }
+  @Test
+  public void copyOfTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    ImmutablePhysicalFlowChangeUnitViewItem.copyOf(new ImmutablePhysicalFlowChangeUnitViewItem.Json());
+  }
+  @Test
+  public void fromJsonTest() {
+    // Arrange, Act and Assert
+    thrown.expect(IllegalStateException.class);
+    ImmutablePhysicalFlowChangeUnitViewItem.fromJson(new ImmutablePhysicalFlowChangeUnitViewItem.Json());
+  }
+  @Test
+  public void fromTest() {
+    // Arrange
+    ImmutablePhysicalFlowChangeUnitViewItem.Builder builderResult = ImmutablePhysicalFlowChangeUnitViewItem.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from((ChangeUnitViewItem) new ImmutablePhysicalFlowChangeUnitViewItem.Json());
+  }
+  @Test
+  public void fromTest2() {
+    // Arrange
+    ImmutablePhysicalFlowChangeUnitViewItem.Builder builderResult = ImmutablePhysicalFlowChangeUnitViewItem.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from(new ImmutablePhysicalFlowChangeUnitViewItem.Json());
   }
   @Test
   public void logicalFlowTest() {
@@ -24,16 +71,10 @@ public class ImmutablePhysicalFlowChangeUnitViewItemDiffblueTest {
     (new ImmutablePhysicalFlowChangeUnitViewItem.Json()).logicalFlow();
   }
   @Test
-  public void setChangeUnitTest() {
-    // Arrange
-    ImmutablePhysicalFlowChangeUnitViewItem.Json json = new ImmutablePhysicalFlowChangeUnitViewItem.Json();
-    ImmutableChangeUnit.Json json1 = new ImmutableChangeUnit.Json();
-
-    // Act
-    json.setChangeUnit(json1);
-
-    // Assert
-    assertSame(json1, json.changeUnit);
+  public void physicalSpecificationTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutablePhysicalFlowChangeUnitViewItem.Json()).physicalSpecification();
   }
   @Test
   public void setAssessmentsTest() {
@@ -49,57 +90,16 @@ public class ImmutablePhysicalFlowChangeUnitViewItemDiffblueTest {
     assertSame(assessmentRatingDetailSet, json.assessments);
   }
   @Test
-  public void physicalSpecificationTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutablePhysicalFlowChangeUnitViewItem.Json()).physicalSpecification();
-  }
-  @Test
-  public void assessmentsTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutablePhysicalFlowChangeUnitViewItem.Json()).assessments();
-  }
-  @Test
-  public void constructorTest() {
-    // Arrange, Act and Assert
-    assertEquals(0, (new ImmutablePhysicalFlowChangeUnitViewItem.Json()).assessments.size());
-  }
-  @Test
-  public void fromJsonTest() {
-    // Arrange, Act and Assert
-    thrown.expect(IllegalStateException.class);
-    ImmutablePhysicalFlowChangeUnitViewItem.fromJson(new ImmutablePhysicalFlowChangeUnitViewItem.Json());
-  }
-  @Test
-  public void copyOfTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    ImmutablePhysicalFlowChangeUnitViewItem.copyOf(new ImmutablePhysicalFlowChangeUnitViewItem.Json());
-  }
-  @Test
-  public void fromTest2() {
+  public void setChangeUnitTest() {
     // Arrange
-    ImmutablePhysicalFlowChangeUnitViewItem.Builder builderResult = ImmutablePhysicalFlowChangeUnitViewItem.builder();
+    ImmutablePhysicalFlowChangeUnitViewItem.Json json = new ImmutablePhysicalFlowChangeUnitViewItem.Json();
+    ImmutableChangeUnit.Json json1 = new ImmutableChangeUnit.Json();
 
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from(new ImmutablePhysicalFlowChangeUnitViewItem.Json());
-  }
-  @Test
-  public void buildTest() {
-    // Arrange, Act and Assert
-    thrown.expect(IllegalStateException.class);
-    ImmutablePhysicalFlowChangeUnitViewItem.builder().build();
-  }
-  @Test
-  public void fromTest() {
-    // Arrange
-    ImmutablePhysicalFlowChangeUnitViewItem.Builder builderResult = ImmutablePhysicalFlowChangeUnitViewItem.builder();
+    // Act
+    json.setChangeUnit(json1);
 
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from((ChangeUnitViewItem) new ImmutablePhysicalFlowChangeUnitViewItem.Json());
+    // Assert
+    assertSame(json1, json.changeUnit);
   }
 }
 

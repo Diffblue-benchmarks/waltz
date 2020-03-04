@@ -22,46 +22,6 @@ public class ImmutableSoftwarePackageDiffblueTest {
   public ExpectedException thrown = ExpectedException.none();
 
   @Test
-  public void fromTest8() {
-    // Arrange
-    ImmutableSoftwarePackage.Builder builderResult = ImmutableSoftwarePackage.builder();
-
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from((EntityKindProvider) new ImmutableSoftwarePackage.Json());
-  }
-
-  @Test
-  public void fromTest7() {
-    // Arrange
-    ImmutableSoftwarePackage.Builder builderResult = ImmutableSoftwarePackage.builder();
-
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from((ExternalIdProvider) new ImmutableSoftwarePackage.Json());
-  }
-
-  @Test
-  public void fromTest6() {
-    // Arrange
-    ImmutableSoftwarePackage.Builder builderResult = ImmutableSoftwarePackage.builder();
-
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from((DescriptionProvider) new ImmutableSoftwarePackage.Json());
-  }
-
-  @Test
-  public void fromTest5() {
-    // Arrange
-    ImmutableSoftwarePackage.Builder builderResult = ImmutableSoftwarePackage.builder();
-
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from((ProvenanceProvider) new ImmutableSoftwarePackage.Json());
-  }
-
-  @Test
   public void buildTest() {
     // Arrange, Act and Assert
     thrown.expect(IllegalStateException.class);
@@ -69,33 +29,50 @@ public class ImmutableSoftwarePackageDiffblueTest {
   }
 
   @Test
-  public void fromTest4() {
-    // Arrange
-    ImmutableSoftwarePackage.Builder builderResult = ImmutableSoftwarePackage.builder();
+  public void constructorTest() {
+    // Arrange and Act
+    ImmutableSoftwarePackage.Json actualJson = new ImmutableSoftwarePackage.Json();
 
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from(new ImmutableSoftwarePackage.Json());
+    // Assert
+    Optional<UserTimestamp> optional = actualJson.created;
+    assertSame(actualJson.id, optional);
+    assertSame(optional, actualJson.id);
+    assertSame(optional, actualJson.externalId);
   }
 
   @Test
-  public void fromTest3() {
-    // Arrange
-    ImmutableSoftwarePackage.Builder builderResult = ImmutableSoftwarePackage.builder();
-
-    // Act and Assert
+  public void copyOfTest() {
+    // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    builderResult.from((CreatedUserTimestampProvider) new ImmutableSoftwarePackage.Json());
+    ImmutableSoftwarePackage.copyOf(new ImmutableSoftwarePackage.Json());
   }
 
   @Test
-  public void fromTest2() {
-    // Arrange
-    ImmutableSoftwarePackage.Builder builderResult = ImmutableSoftwarePackage.builder();
-
-    // Act and Assert
+  public void createdTest() {
+    // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    builderResult.from((IdProvider) new ImmutableSoftwarePackage.Json());
+    (new ImmutableSoftwarePackage.Json()).created();
+  }
+
+  @Test
+  public void descriptionTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableSoftwarePackage.Json()).description();
+  }
+
+  @Test
+  public void externalIdTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableSoftwarePackage.Json()).externalId();
+  }
+
+  @Test
+  public void fromJsonTest() {
+    // Arrange, Act and Assert
+    thrown.expect(IllegalStateException.class);
+    ImmutableSoftwarePackage.fromJson(new ImmutableSoftwarePackage.Json());
   }
 
   @Test
@@ -109,69 +86,80 @@ public class ImmutableSoftwarePackageDiffblueTest {
   }
 
   @Test
-  public void fromJsonTest() {
-    // Arrange, Act and Assert
-    thrown.expect(IllegalStateException.class);
-    ImmutableSoftwarePackage.fromJson(new ImmutableSoftwarePackage.Json());
-  }
-
-  @Test
-  public void copyOfTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    ImmutableSoftwarePackage.copyOf(new ImmutableSoftwarePackage.Json());
-  }
-
-  @Test
-  public void setGroupTest() {
+  public void fromTest2() {
     // Arrange
-    ImmutableSoftwarePackage.Json json = new ImmutableSoftwarePackage.Json();
+    ImmutableSoftwarePackage.Builder builderResult = ImmutableSoftwarePackage.builder();
 
-    // Act
-    json.setGroup("foo");
-
-    // Assert
-    assertEquals("foo", json.group);
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from((IdProvider) new ImmutableSoftwarePackage.Json());
   }
 
   @Test
-  public void setVendorTest() {
+  public void fromTest3() {
     // Arrange
-    ImmutableSoftwarePackage.Json json = new ImmutableSoftwarePackage.Json();
+    ImmutableSoftwarePackage.Builder builderResult = ImmutableSoftwarePackage.builder();
 
-    // Act
-    json.setVendor("foo");
-
-    // Assert
-    assertEquals("foo", json.vendor);
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from((CreatedUserTimestampProvider) new ImmutableSoftwarePackage.Json());
   }
 
   @Test
-  public void kindTest() {
-    // Arrange, Act and Assert
+  public void fromTest4() {
+    // Arrange
+    ImmutableSoftwarePackage.Builder builderResult = ImmutableSoftwarePackage.builder();
+
+    // Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableSoftwarePackage.Json()).kind();
+    builderResult.from(new ImmutableSoftwarePackage.Json());
   }
 
   @Test
-  public void descriptionTest() {
-    // Arrange, Act and Assert
+  public void fromTest5() {
+    // Arrange
+    ImmutableSoftwarePackage.Builder builderResult = ImmutableSoftwarePackage.builder();
+
+    // Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableSoftwarePackage.Json()).description();
+    builderResult.from((ProvenanceProvider) new ImmutableSoftwarePackage.Json());
   }
 
   @Test
-  public void createdTest() {
-    // Arrange, Act and Assert
+  public void fromTest6() {
+    // Arrange
+    ImmutableSoftwarePackage.Builder builderResult = ImmutableSoftwarePackage.builder();
+
+    // Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableSoftwarePackage.Json()).created();
+    builderResult.from((DescriptionProvider) new ImmutableSoftwarePackage.Json());
   }
 
   @Test
-  public void provenanceTest() {
+  public void fromTest7() {
+    // Arrange
+    ImmutableSoftwarePackage.Builder builderResult = ImmutableSoftwarePackage.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from((ExternalIdProvider) new ImmutableSoftwarePackage.Json());
+  }
+
+  @Test
+  public void fromTest8() {
+    // Arrange
+    ImmutableSoftwarePackage.Builder builderResult = ImmutableSoftwarePackage.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from((EntityKindProvider) new ImmutableSoftwarePackage.Json());
+  }
+
+  @Test
+  public void groupTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableSoftwarePackage.Json()).provenance();
+    (new ImmutableSoftwarePackage.Json()).group();
   }
 
   @Test
@@ -189,15 +177,24 @@ public class ImmutableSoftwarePackageDiffblueTest {
   }
 
   @Test
-  public void setKindTest() {
-    // Arrange
-    ImmutableSoftwarePackage.Json json = new ImmutableSoftwarePackage.Json();
+  public void kindTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableSoftwarePackage.Json()).kind();
+  }
 
-    // Act
-    json.setKind(EntityKind.ACTOR);
+  @Test
+  public void nameTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableSoftwarePackage.Json()).name();
+  }
 
-    // Assert
-    assertEquals(EntityKind.ACTOR, json.kind);
+  @Test
+  public void provenanceTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableSoftwarePackage.Json()).provenance();
   }
 
   @Test
@@ -213,41 +210,15 @@ public class ImmutableSoftwarePackageDiffblueTest {
   }
 
   @Test
-  public void nameTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableSoftwarePackage.Json()).name();
-  }
-
-  @Test
-  public void externalIdTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableSoftwarePackage.Json()).externalId();
-  }
-
-  @Test
-  public void setNameTest() {
+  public void setGroupTest() {
     // Arrange
     ImmutableSoftwarePackage.Json json = new ImmutableSoftwarePackage.Json();
 
     // Act
-    json.setName("name");
+    json.setGroup("group");
 
     // Assert
-    assertEquals("name", json.name);
-  }
-
-  @Test
-  public void constructorTest() {
-    // Arrange and Act
-    ImmutableSoftwarePackage.Json actualJson = new ImmutableSoftwarePackage.Json();
-
-    // Assert
-    Optional<UserTimestamp> optional = actualJson.created;
-    assertSame(actualJson.id, optional);
-    assertSame(optional, actualJson.id);
-    assertSame(optional, actualJson.externalId);
+    assertEquals("group", json.group);
   }
 
   @Test
@@ -264,17 +235,27 @@ public class ImmutableSoftwarePackageDiffblueTest {
   }
 
   @Test
-  public void groupTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableSoftwarePackage.Json()).group();
+  public void setKindTest() {
+    // Arrange
+    ImmutableSoftwarePackage.Json json = new ImmutableSoftwarePackage.Json();
+
+    // Act
+    json.setKind(EntityKind.ACTOR);
+
+    // Assert
+    assertEquals(EntityKind.ACTOR, json.kind);
   }
 
   @Test
-  public void vendorTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableSoftwarePackage.Json()).vendor();
+  public void setNameTest() {
+    // Arrange
+    ImmutableSoftwarePackage.Json json = new ImmutableSoftwarePackage.Json();
+
+    // Act
+    json.setName("name");
+
+    // Assert
+    assertEquals("name", json.name);
   }
 
   @Test
@@ -283,10 +264,29 @@ public class ImmutableSoftwarePackageDiffblueTest {
     ImmutableSoftwarePackage.Json json = new ImmutableSoftwarePackage.Json();
 
     // Act
-    json.setProvenance("foo");
+    json.setProvenance("provenance");
 
     // Assert
-    assertEquals("foo", json.provenance);
+    assertEquals("provenance", json.provenance);
+  }
+
+  @Test
+  public void setVendorTest() {
+    // Arrange
+    ImmutableSoftwarePackage.Json json = new ImmutableSoftwarePackage.Json();
+
+    // Act
+    json.setVendor("vendor");
+
+    // Assert
+    assertEquals("vendor", json.vendor);
+  }
+
+  @Test
+  public void vendorTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableSoftwarePackage.Json()).vendor();
   }
 }
 

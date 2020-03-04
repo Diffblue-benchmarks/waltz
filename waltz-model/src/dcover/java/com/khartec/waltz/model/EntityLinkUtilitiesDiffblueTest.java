@@ -7,14 +7,15 @@ public class EntityLinkUtilitiesDiffblueTest {
   @Test
   public void mkExternalIdLinkTest() {
     // Arrange, Act and Assert
-    assertEquals("fooentity/ACTOR/external-id/123",
-        EntityLinkUtilities.mkExternalIdLink("foo", EntityKind.ACTOR, "123"));
+    assertEquals("baseUrlentity/ACTOR/external-id/123",
+        EntityLinkUtilities.mkExternalIdLink("baseUrl", EntityKind.ACTOR, "123"));
   }
 
   @Test
   public void mkIdLinkTest() {
     // Arrange, Act and Assert
-    assertEquals("fooentity/ACTOR/id/123", EntityLinkUtilities.mkIdLink("foo", EntityKind.ACTOR, Long.valueOf(123L)));
+    assertEquals("baseUrlentity/ACTOR/id/123",
+        EntityLinkUtilities.mkIdLink("baseUrl", EntityKind.ACTOR, Long.valueOf(123L)));
   }
 }
 

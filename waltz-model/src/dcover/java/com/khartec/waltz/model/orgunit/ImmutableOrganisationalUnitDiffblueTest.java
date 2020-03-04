@@ -16,10 +16,30 @@ public class ImmutableOrganisationalUnitDiffblueTest {
   @Rule
   public ExpectedException thrown = ExpectedException.none();
   @Test
+  public void buildTest() {
+    // Arrange, Act and Assert
+    thrown.expect(IllegalStateException.class);
+    ImmutableOrganisationalUnit.builder().build();
+  }
+  @Test
+  public void constructorTest() {
+    // Arrange and Act
+    ImmutableOrganisationalUnit.Json actualJson = new ImmutableOrganisationalUnit.Json();
+
+    // Assert
+    assertSame(actualJson.parentId, actualJson.id);
+  }
+  @Test
   public void copyOfTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
     ImmutableOrganisationalUnit.copyOf(new ImmutableOrganisationalUnit.Json());
+  }
+  @Test
+  public void descriptionTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableOrganisationalUnit.Json()).description();
   }
   @Test
   public void fromJsonTest() {
@@ -28,10 +48,82 @@ public class ImmutableOrganisationalUnitDiffblueTest {
     ImmutableOrganisationalUnit.fromJson(new ImmutableOrganisationalUnit.Json());
   }
   @Test
+  public void fromTest() {
+    // Arrange
+    ImmutableOrganisationalUnit.Builder builderResult = ImmutableOrganisationalUnit.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from((EntityKindProvider) new ImmutableOrganisationalUnit.Json());
+  }
+  @Test
+  public void fromTest2() {
+    // Arrange
+    ImmutableOrganisationalUnit.Builder builderResult = ImmutableOrganisationalUnit.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from((DescriptionProvider) new ImmutableOrganisationalUnit.Json());
+  }
+  @Test
+  public void fromTest3() {
+    // Arrange
+    ImmutableOrganisationalUnit.Builder builderResult = ImmutableOrganisationalUnit.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from((IdProvider) new ImmutableOrganisationalUnit.Json());
+  }
+  @Test
+  public void fromTest4() {
+    // Arrange
+    ImmutableOrganisationalUnit.Builder builderResult = ImmutableOrganisationalUnit.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from((ParentIdProvider) new ImmutableOrganisationalUnit.Json());
+  }
+  @Test
+  public void fromTest5() {
+    // Arrange
+    ImmutableOrganisationalUnit.Builder builderResult = ImmutableOrganisationalUnit.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from((NameProvider) new ImmutableOrganisationalUnit.Json());
+  }
+  @Test
+  public void fromTest6() {
+    // Arrange
+    ImmutableOrganisationalUnit.Builder builderResult = ImmutableOrganisationalUnit.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from(new ImmutableOrganisationalUnit.Json());
+  }
+  @Test
+  public void idTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableOrganisationalUnit.Json()).id();
+  }
+  @Test
   public void kindTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
     (new ImmutableOrganisationalUnit.Json()).kind();
+  }
+  @Test
+  public void nameTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableOrganisationalUnit.Json()).name();
+  }
+  @Test
+  public void parentIdTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableOrganisationalUnit.Json()).parentId();
   }
   @Test
   public void setDescriptionTest() {
@@ -45,49 +137,6 @@ public class ImmutableOrganisationalUnitDiffblueTest {
     assertEquals("description", json.description);
   }
   @Test
-  public void nameTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableOrganisationalUnit.Json()).name();
-  }
-  @Test
-  public void descriptionTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableOrganisationalUnit.Json()).description();
-  }
-  @Test
-  public void parentIdTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableOrganisationalUnit.Json()).parentId();
-  }
-  @Test
-  public void setNameTest() {
-    // Arrange
-    ImmutableOrganisationalUnit.Json json = new ImmutableOrganisationalUnit.Json();
-
-    // Act
-    json.setName("name");
-
-    // Assert
-    assertEquals("name", json.name);
-  }
-  @Test
-  public void idTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableOrganisationalUnit.Json()).id();
-  }
-  @Test
-  public void constructorTest() {
-    // Arrange and Act
-    ImmutableOrganisationalUnit.Json actualJson = new ImmutableOrganisationalUnit.Json();
-
-    // Assert
-    assertSame(actualJson.parentId, actualJson.id);
-  }
-  @Test
   public void setKindTest() {
     // Arrange
     ImmutableOrganisationalUnit.Json json = new ImmutableOrganisationalUnit.Json();
@@ -99,64 +148,15 @@ public class ImmutableOrganisationalUnitDiffblueTest {
     assertEquals(EntityKind.ACTOR, json.kind);
   }
   @Test
-  public void fromTest6() {
+  public void setNameTest() {
     // Arrange
-    ImmutableOrganisationalUnit.Builder builderResult = ImmutableOrganisationalUnit.builder();
+    ImmutableOrganisationalUnit.Json json = new ImmutableOrganisationalUnit.Json();
 
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from(new ImmutableOrganisationalUnit.Json());
-  }
-  @Test
-  public void fromTest5() {
-    // Arrange
-    ImmutableOrganisationalUnit.Builder builderResult = ImmutableOrganisationalUnit.builder();
+    // Act
+    json.setName("name");
 
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from((NameProvider) new ImmutableOrganisationalUnit.Json());
-  }
-  @Test
-  public void buildTest() {
-    // Arrange, Act and Assert
-    thrown.expect(IllegalStateException.class);
-    ImmutableOrganisationalUnit.builder().build();
-  }
-  @Test
-  public void fromTest4() {
-    // Arrange
-    ImmutableOrganisationalUnit.Builder builderResult = ImmutableOrganisationalUnit.builder();
-
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from((ParentIdProvider) new ImmutableOrganisationalUnit.Json());
-  }
-  @Test
-  public void fromTest3() {
-    // Arrange
-    ImmutableOrganisationalUnit.Builder builderResult = ImmutableOrganisationalUnit.builder();
-
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from((IdProvider) new ImmutableOrganisationalUnit.Json());
-  }
-  @Test
-  public void fromTest2() {
-    // Arrange
-    ImmutableOrganisationalUnit.Builder builderResult = ImmutableOrganisationalUnit.builder();
-
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from((DescriptionProvider) new ImmutableOrganisationalUnit.Json());
-  }
-  @Test
-  public void fromTest() {
-    // Arrange
-    ImmutableOrganisationalUnit.Builder builderResult = ImmutableOrganisationalUnit.builder();
-
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from((EntityKindProvider) new ImmutableOrganisationalUnit.Json());
+    // Assert
+    assertEquals("name", json.name);
   }
 }
 

@@ -13,10 +13,54 @@ public class ImmutableEntityInvolvementChangeCommandDiffblueTest {
   @Rule
   public ExpectedException thrown = ExpectedException.none();
   @Test
+  public void buildTest() {
+    // Arrange, Act and Assert
+    thrown.expect(IllegalStateException.class);
+    ImmutableEntityInvolvementChangeCommand.builder().build();
+  }
+  @Test
+  public void constructorTest() {
+    // Arrange and Act
+    ImmutableEntityInvolvementChangeCommand.Json actualJson = new ImmutableEntityInvolvementChangeCommand.Json();
+
+    // Assert
+    assertNull(actualJson.operation);
+    assertNull(actualJson.personEntityRef);
+    assertEquals(0, actualJson.involvementKindId);
+    assertFalse(actualJson.involvementKindIdIsSet);
+  }
+  @Test
+  public void copyOfTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    ImmutableEntityInvolvementChangeCommand.copyOf(new ImmutableEntityInvolvementChangeCommand.Json());
+  }
+  @Test
+  public void fromJsonTest() {
+    // Arrange, Act and Assert
+    thrown.expect(IllegalStateException.class);
+    ImmutableEntityInvolvementChangeCommand.fromJson(new ImmutableEntityInvolvementChangeCommand.Json());
+  }
+  @Test
+  public void fromTest() {
+    // Arrange
+    ImmutableEntityInvolvementChangeCommand.Builder builderResult = ImmutableEntityInvolvementChangeCommand.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from(new ImmutableEntityInvolvementChangeCommand.Json());
+  }
+  @Test
   public void involvementKindIdTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
     (new ImmutableEntityInvolvementChangeCommand.Json()).involvementKindId();
+  }
+  @Test
+  public void operationTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableEntityInvolvementChangeCommand.Json()).operation();
   }
   @Test
   public void personEntityRefTest() {
@@ -37,23 +81,6 @@ public class ImmutableEntityInvolvementChangeCommandDiffblueTest {
     assertTrue(json.involvementKindIdIsSet);
   }
   @Test
-  public void constructorTest() {
-    // Arrange and Act
-    ImmutableEntityInvolvementChangeCommand.Json actualJson = new ImmutableEntityInvolvementChangeCommand.Json();
-
-    // Assert
-    assertNull(actualJson.operation);
-    assertNull(actualJson.personEntityRef);
-    assertEquals(0, actualJson.involvementKindId);
-    assertFalse(actualJson.involvementKindIdIsSet);
-  }
-  @Test
-  public void operationTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableEntityInvolvementChangeCommand.Json()).operation();
-  }
-  @Test
   public void setOperationTest() {
     // Arrange
     ImmutableEntityInvolvementChangeCommand.Json json = new ImmutableEntityInvolvementChangeCommand.Json();
@@ -63,33 +90,6 @@ public class ImmutableEntityInvolvementChangeCommandDiffblueTest {
 
     // Assert
     assertEquals(Operation.ADD, json.operation);
-  }
-  @Test
-  public void fromJsonTest() {
-    // Arrange, Act and Assert
-    thrown.expect(IllegalStateException.class);
-    ImmutableEntityInvolvementChangeCommand.fromJson(new ImmutableEntityInvolvementChangeCommand.Json());
-  }
-  @Test
-  public void copyOfTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    ImmutableEntityInvolvementChangeCommand.copyOf(new ImmutableEntityInvolvementChangeCommand.Json());
-  }
-  @Test
-  public void fromTest() {
-    // Arrange
-    ImmutableEntityInvolvementChangeCommand.Builder builderResult = ImmutableEntityInvolvementChangeCommand.builder();
-
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from(new ImmutableEntityInvolvementChangeCommand.Json());
-  }
-  @Test
-  public void buildTest() {
-    // Arrange, Act and Assert
-    thrown.expect(IllegalStateException.class);
-    ImmutableEntityInvolvementChangeCommand.builder().build();
   }
 }
 

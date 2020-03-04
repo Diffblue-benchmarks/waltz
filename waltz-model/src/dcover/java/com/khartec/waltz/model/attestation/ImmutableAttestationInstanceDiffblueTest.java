@@ -14,44 +14,10 @@ public class ImmutableAttestationInstanceDiffblueTest {
   public ExpectedException thrown = ExpectedException.none();
 
   @Test
-  public void fromTest2() {
-    // Arrange
-    ImmutableAttestationInstance.Builder builderResult = ImmutableAttestationInstance.builder();
-
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from(new ImmutableAttestationInstance.Json());
-  }
-
-  @Test
-  public void fromTest() {
-    // Arrange
-    ImmutableAttestationInstance.Builder builderResult = ImmutableAttestationInstance.builder();
-
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from((IdProvider) new ImmutableAttestationInstance.Json());
-  }
-
-  @Test
-  public void buildTest() {
-    // Arrange, Act and Assert
-    thrown.expect(IllegalStateException.class);
-    ImmutableAttestationInstance.builder().build();
-  }
-
-  @Test
-  public void copyOfTest() {
+  public void attestationRunIdTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    ImmutableAttestationInstance.copyOf(new ImmutableAttestationInstance.Json());
-  }
-
-  @Test
-  public void fromJsonTest() {
-    // Arrange, Act and Assert
-    thrown.expect(IllegalStateException.class);
-    ImmutableAttestationInstance.fromJson(new ImmutableAttestationInstance.Json());
+    (new ImmutableAttestationInstance.Json()).attestationRunId();
   }
 
   @Test
@@ -59,13 +25,6 @@ public class ImmutableAttestationInstanceDiffblueTest {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
     (new ImmutableAttestationInstance.Json()).attestedAt();
-  }
-
-  @Test
-  public void idTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableAttestationInstance.Json()).id();
   }
 
   @Test
@@ -83,22 +42,62 @@ public class ImmutableAttestationInstanceDiffblueTest {
   }
 
   @Test
-  public void setAttestedEntityKindTest() {
-    // Arrange
-    ImmutableAttestationInstance.Json json = new ImmutableAttestationInstance.Json();
-
-    // Act
-    json.setAttestedEntityKind(EntityKind.ACTOR);
-
-    // Assert
-    assertEquals(EntityKind.ACTOR, json.attestedEntityKind);
+  public void buildTest() {
+    // Arrange, Act and Assert
+    thrown.expect(IllegalStateException.class);
+    ImmutableAttestationInstance.builder().build();
   }
 
   @Test
-  public void attestationRunIdTest() {
+  public void constructorTest() {
+    // Arrange and Act
+    ImmutableAttestationInstance.Json actualJson = new ImmutableAttestationInstance.Json();
+
+    // Assert
+    Optional<Long> optional = actualJson.id;
+    assertSame(optional, actualJson.attestedBy);
+    assertSame(optional, actualJson.attestedAt);
+  }
+
+  @Test
+  public void copyOfTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableAttestationInstance.Json()).attestationRunId();
+    ImmutableAttestationInstance.copyOf(new ImmutableAttestationInstance.Json());
+  }
+
+  @Test
+  public void fromJsonTest() {
+    // Arrange, Act and Assert
+    thrown.expect(IllegalStateException.class);
+    ImmutableAttestationInstance.fromJson(new ImmutableAttestationInstance.Json());
+  }
+
+  @Test
+  public void fromTest() {
+    // Arrange
+    ImmutableAttestationInstance.Builder builderResult = ImmutableAttestationInstance.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from((IdProvider) new ImmutableAttestationInstance.Json());
+  }
+
+  @Test
+  public void fromTest2() {
+    // Arrange
+    ImmutableAttestationInstance.Builder builderResult = ImmutableAttestationInstance.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from(new ImmutableAttestationInstance.Json());
+  }
+
+  @Test
+  public void idTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableAttestationInstance.Json()).id();
   }
 
   @Test
@@ -121,14 +120,15 @@ public class ImmutableAttestationInstanceDiffblueTest {
   }
 
   @Test
-  public void constructorTest() {
-    // Arrange and Act
-    ImmutableAttestationInstance.Json actualJson = new ImmutableAttestationInstance.Json();
+  public void setAttestedEntityKindTest() {
+    // Arrange
+    ImmutableAttestationInstance.Json json = new ImmutableAttestationInstance.Json();
+
+    // Act
+    json.setAttestedEntityKind(EntityKind.ACTOR);
 
     // Assert
-    Optional<Long> optional = actualJson.id;
-    assertSame(optional, actualJson.attestedBy);
-    assertSame(optional, actualJson.attestedAt);
+    assertEquals(EntityKind.ACTOR, json.attestedEntityKind);
   }
 }
 

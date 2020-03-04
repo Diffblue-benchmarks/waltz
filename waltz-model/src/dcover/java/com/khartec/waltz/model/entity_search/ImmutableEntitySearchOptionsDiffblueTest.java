@@ -15,46 +15,10 @@ public class ImmutableEntitySearchOptionsDiffblueTest {
   @Rule
   public ExpectedException thrown = ExpectedException.none();
   @Test
-  public void userIdTest() {
+  public void buildTest() {
     // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableEntitySearchOptions.Json()).userId();
-  }
-  @Test
-  public void entityKindsTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableEntitySearchOptions.Json()).entityKinds();
-  }
-  @Test
-  public void setSearchQueryTest() {
-    // Arrange
-    ImmutableEntitySearchOptions.Json json = new ImmutableEntitySearchOptions.Json();
-
-    // Act
-    json.setSearchQuery("foo");
-
-    // Assert
-    assertEquals("foo", json.searchQuery);
-  }
-  @Test
-  public void limitTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableEntitySearchOptions.Json()).limit();
-  }
-  @Test
-  public void setEntityKindsTest() {
-    // Arrange
-    ImmutableEntitySearchOptions.Json json = new ImmutableEntitySearchOptions.Json();
-    ArrayList<EntityKind> entityKindList = new ArrayList<EntityKind>();
-    entityKindList.add(EntityKind.ACTOR);
-
-    // Act
-    json.setEntityKinds(entityKindList);
-
-    // Assert
-    assertSame(entityKindList, json.entityKinds);
+    thrown.expect(IllegalStateException.class);
+    ImmutableEntitySearchOptions.builder().build();
   }
   @Test
   public void constructorTest() {
@@ -68,59 +32,22 @@ public class ImmutableEntitySearchOptionsDiffblueTest {
     assertSame(entityLifecycleStatusList, actualEntityKindList);
   }
   @Test
-  public void entityLifecycleStatusesTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableEntitySearchOptions.Json()).entityLifecycleStatuses();
-  }
-  @Test
-  public void searchQueryTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableEntitySearchOptions.Json()).searchQuery();
-  }
-  @Test
-  public void setEntityLifecycleStatusesTest() {
-    // Arrange
-    ImmutableEntitySearchOptions.Json json = new ImmutableEntitySearchOptions.Json();
-    ArrayList<EntityLifecycleStatus> entityLifecycleStatusList = new ArrayList<EntityLifecycleStatus>();
-    entityLifecycleStatusList.add(EntityLifecycleStatus.ACTIVE);
-
-    // Act
-    json.setEntityLifecycleStatuses(entityLifecycleStatusList);
-
-    // Assert
-    assertTrue(json.entityLifecycleStatusesIsSet);
-    assertSame(entityLifecycleStatusList, json.entityLifecycleStatuses);
-  }
-  @Test
-  public void setUserIdTest() {
-    // Arrange
-    ImmutableEntitySearchOptions.Json json = new ImmutableEntitySearchOptions.Json();
-
-    // Act
-    json.setUserId("123");
-
-    // Assert
-    assertEquals("123", json.userId);
-  }
-  @Test
-  public void setLimitTest() {
-    // Arrange
-    ImmutableEntitySearchOptions.Json json = new ImmutableEntitySearchOptions.Json();
-
-    // Act
-    json.setLimit(1);
-
-    // Assert
-    assertTrue(json.limitIsSet);
-    assertEquals(1, json.limit);
-  }
-  @Test
   public void copyOfTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
     ImmutableEntitySearchOptions.copyOf(new ImmutableEntitySearchOptions.Json());
+  }
+  @Test
+  public void entityKindsTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableEntitySearchOptions.Json()).entityKinds();
+  }
+  @Test
+  public void entityLifecycleStatusesTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableEntitySearchOptions.Json()).entityLifecycleStatuses();
   }
   @Test
   public void fromJsonTest() {
@@ -138,10 +65,83 @@ public class ImmutableEntitySearchOptionsDiffblueTest {
     builderResult.from(new ImmutableEntitySearchOptions.Json());
   }
   @Test
-  public void buildTest() {
+  public void limitTest() {
     // Arrange, Act and Assert
-    thrown.expect(IllegalStateException.class);
-    ImmutableEntitySearchOptions.builder().build();
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableEntitySearchOptions.Json()).limit();
+  }
+  @Test
+  public void searchQueryTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableEntitySearchOptions.Json()).searchQuery();
+  }
+  @Test
+  public void setEntityKindsTest() {
+    // Arrange
+    ImmutableEntitySearchOptions.Json json = new ImmutableEntitySearchOptions.Json();
+    ArrayList<EntityKind> entityKindList = new ArrayList<EntityKind>();
+    entityKindList.add(EntityKind.ACTOR);
+
+    // Act
+    json.setEntityKinds(entityKindList);
+
+    // Assert
+    assertSame(entityKindList, json.entityKinds);
+  }
+  @Test
+  public void setEntityLifecycleStatusesTest() {
+    // Arrange
+    ImmutableEntitySearchOptions.Json json = new ImmutableEntitySearchOptions.Json();
+    ArrayList<EntityLifecycleStatus> entityLifecycleStatusList = new ArrayList<EntityLifecycleStatus>();
+    entityLifecycleStatusList.add(EntityLifecycleStatus.ACTIVE);
+
+    // Act
+    json.setEntityLifecycleStatuses(entityLifecycleStatusList);
+
+    // Assert
+    assertTrue(json.entityLifecycleStatusesIsSet);
+    assertSame(entityLifecycleStatusList, json.entityLifecycleStatuses);
+  }
+  @Test
+  public void setLimitTest() {
+    // Arrange
+    ImmutableEntitySearchOptions.Json json = new ImmutableEntitySearchOptions.Json();
+
+    // Act
+    json.setLimit(1);
+
+    // Assert
+    assertTrue(json.limitIsSet);
+    assertEquals(1, json.limit);
+  }
+  @Test
+  public void setSearchQueryTest() {
+    // Arrange
+    ImmutableEntitySearchOptions.Json json = new ImmutableEntitySearchOptions.Json();
+
+    // Act
+    json.setSearchQuery("searchQuery");
+
+    // Assert
+    assertEquals("searchQuery", json.searchQuery);
+  }
+  @Test
+  public void setUserIdTest() {
+    // Arrange
+    ImmutableEntitySearchOptions.Json json = new ImmutableEntitySearchOptions.Json();
+
+    // Act
+    json.setUserId("123");
+
+    // Assert
+    assertEquals("123", json.userId);
+  }
+  @Test
+  public void userIdTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableEntitySearchOptions.Json()).userId();
   }
 }
 

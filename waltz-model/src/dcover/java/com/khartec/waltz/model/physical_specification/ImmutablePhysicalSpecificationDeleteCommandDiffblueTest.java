@@ -11,10 +11,41 @@ public class ImmutablePhysicalSpecificationDeleteCommandDiffblueTest {
   @Rule
   public ExpectedException thrown = ExpectedException.none();
   @Test
-  public void specificationIdTest() {
+  public void buildTest() {
+    // Arrange, Act and Assert
+    thrown.expect(IllegalStateException.class);
+    ImmutablePhysicalSpecificationDeleteCommand.builder().build();
+  }
+  @Test
+  public void constructorTest() {
+    // Arrange and Act
+    ImmutablePhysicalSpecificationDeleteCommand.Json actualJson = new ImmutablePhysicalSpecificationDeleteCommand.Json();
+
+    // Assert
+    assertFalse(actualJson.specificationIdIsSet);
+    assertEquals(0L, actualJson.specificationId);
+  }
+  @Test
+  public void copyOfTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    (new ImmutablePhysicalSpecificationDeleteCommand.Json()).specificationId();
+    ImmutablePhysicalSpecificationDeleteCommand.copyOf(new ImmutablePhysicalSpecificationDeleteCommand.Json());
+  }
+  @Test
+  public void fromJsonTest() {
+    // Arrange, Act and Assert
+    thrown.expect(IllegalStateException.class);
+    ImmutablePhysicalSpecificationDeleteCommand.fromJson(new ImmutablePhysicalSpecificationDeleteCommand.Json());
+  }
+  @Test
+  public void fromTest() {
+    // Arrange
+    ImmutablePhysicalSpecificationDeleteCommand.Builder builderResult = ImmutablePhysicalSpecificationDeleteCommand
+        .builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from(new ImmutablePhysicalSpecificationDeleteCommand.Json());
   }
   @Test
   public void setSpecificationIdTest() {
@@ -29,41 +60,10 @@ public class ImmutablePhysicalSpecificationDeleteCommandDiffblueTest {
     assertEquals(123L, json.specificationId);
   }
   @Test
-  public void constructorTest() {
-    // Arrange and Act
-    ImmutablePhysicalSpecificationDeleteCommand.Json actualJson = new ImmutablePhysicalSpecificationDeleteCommand.Json();
-
-    // Assert
-    assertFalse(actualJson.specificationIdIsSet);
-    assertEquals(0L, actualJson.specificationId);
-  }
-  @Test
-  public void fromJsonTest() {
-    // Arrange, Act and Assert
-    thrown.expect(IllegalStateException.class);
-    ImmutablePhysicalSpecificationDeleteCommand.fromJson(new ImmutablePhysicalSpecificationDeleteCommand.Json());
-  }
-  @Test
-  public void copyOfTest() {
+  public void specificationIdTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    ImmutablePhysicalSpecificationDeleteCommand.copyOf(new ImmutablePhysicalSpecificationDeleteCommand.Json());
-  }
-  @Test
-  public void fromTest() {
-    // Arrange
-    ImmutablePhysicalSpecificationDeleteCommand.Builder builderResult = ImmutablePhysicalSpecificationDeleteCommand
-        .builder();
-
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from(new ImmutablePhysicalSpecificationDeleteCommand.Json());
-  }
-  @Test
-  public void buildTest() {
-    // Arrange, Act and Assert
-    thrown.expect(IllegalStateException.class);
-    ImmutablePhysicalSpecificationDeleteCommand.builder().build();
+    (new ImmutablePhysicalSpecificationDeleteCommand.Json()).specificationId();
   }
 }
 

@@ -10,28 +10,16 @@ public class ImmutableApplicationInvolvementDiffblueTest {
   @Rule
   public ExpectedException thrown = ExpectedException.none();
   @Test
-  public void setInvolvementTest() {
-    // Arrange
-    ImmutableApplicationInvolvement.Json json = new ImmutableApplicationInvolvement.Json();
-    ImmutableInvolvement.Json json1 = new ImmutableInvolvement.Json();
-
-    // Act
-    json.setInvolvement(json1);
-
-    // Assert
-    assertSame(json1, json.involvement);
-  }
-  @Test
   public void applicationTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
     (new ImmutableApplicationInvolvement.Json()).application();
   }
   @Test
-  public void involvementTest() {
+  public void buildTest() {
     // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableApplicationInvolvement.Json()).involvement();
+    thrown.expect(IllegalStateException.class);
+    ImmutableApplicationInvolvement.builder().build();
   }
   @Test
   public void constructorTest() {
@@ -55,12 +43,6 @@ public class ImmutableApplicationInvolvementDiffblueTest {
     ImmutableApplicationInvolvement.fromJson(new ImmutableApplicationInvolvement.Json());
   }
   @Test
-  public void buildTest() {
-    // Arrange, Act and Assert
-    thrown.expect(IllegalStateException.class);
-    ImmutableApplicationInvolvement.builder().build();
-  }
-  @Test
   public void fromTest() {
     // Arrange
     ImmutableApplicationInvolvement.Builder builderResult = ImmutableApplicationInvolvement.builder();
@@ -68,6 +50,24 @@ public class ImmutableApplicationInvolvementDiffblueTest {
     // Act and Assert
     thrown.expect(UnsupportedOperationException.class);
     builderResult.from(new ImmutableApplicationInvolvement.Json());
+  }
+  @Test
+  public void involvementTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableApplicationInvolvement.Json()).involvement();
+  }
+  @Test
+  public void setInvolvementTest() {
+    // Arrange
+    ImmutableApplicationInvolvement.Json json = new ImmutableApplicationInvolvement.Json();
+    ImmutableInvolvement.Json json1 = new ImmutableInvolvement.Json();
+
+    // Act
+    json.setInvolvement(json1);
+
+    // Assert
+    assertSame(json1, json.involvement);
   }
 }
 

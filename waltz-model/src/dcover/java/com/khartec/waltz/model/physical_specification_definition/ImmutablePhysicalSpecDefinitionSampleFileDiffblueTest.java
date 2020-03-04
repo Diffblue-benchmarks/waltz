@@ -13,45 +13,10 @@ public class ImmutablePhysicalSpecDefinitionSampleFileDiffblueTest {
   @Rule
   public ExpectedException thrown = ExpectedException.none();
   @Test
-  public void setSpecDefinitionIdTest() {
-    // Arrange
-    ImmutablePhysicalSpecDefinitionSampleFile.Json json = new ImmutablePhysicalSpecDefinitionSampleFile.Json();
-
-    // Act
-    json.setSpecDefinitionId(123L);
-
-    // Assert
-    assertEquals(123L, json.specDefinitionId);
-    assertTrue(json.specDefinitionIdIsSet);
-  }
-  @Test
-  public void nameTest() {
+  public void buildTest() {
     // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutablePhysicalSpecDefinitionSampleFile.Json()).name();
-  }
-  @Test
-  public void specDefinitionIdTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutablePhysicalSpecDefinitionSampleFile.Json()).specDefinitionId();
-  }
-  @Test
-  public void setNameTest() {
-    // Arrange
-    ImmutablePhysicalSpecDefinitionSampleFile.Json json = new ImmutablePhysicalSpecDefinitionSampleFile.Json();
-
-    // Act
-    json.setName("name");
-
-    // Assert
-    assertEquals("name", json.name);
-  }
-  @Test
-  public void idTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutablePhysicalSpecDefinitionSampleFile.Json()).id();
+    thrown.expect(IllegalStateException.class);
+    ImmutablePhysicalSpecDefinitionSampleFile.builder().build();
   }
   @Test
   public void constructorTest() {
@@ -65,47 +30,22 @@ public class ImmutablePhysicalSpecDefinitionSampleFileDiffblueTest {
     assertFalse(actualJson.specDefinitionIdIsSet);
   }
   @Test
+  public void copyOfTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    ImmutablePhysicalSpecDefinitionSampleFile.copyOf(new ImmutablePhysicalSpecDefinitionSampleFile.Json());
+  }
+  @Test
   public void fileDataTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
     (new ImmutablePhysicalSpecDefinitionSampleFile.Json()).fileData();
   }
   @Test
-  public void setFileDataTest() {
-    // Arrange
-    ImmutablePhysicalSpecDefinitionSampleFile.Json json = new ImmutablePhysicalSpecDefinitionSampleFile.Json();
-
-    // Act
-    json.setFileData("foo");
-
-    // Assert
-    assertEquals("foo", json.fileData);
-  }
-  @Test
-  public void buildTest() {
+  public void fromJsonTest() {
     // Arrange, Act and Assert
     thrown.expect(IllegalStateException.class);
-    ImmutablePhysicalSpecDefinitionSampleFile.builder().build();
-  }
-  @Test
-  public void fromTest3() {
-    // Arrange
-    ImmutablePhysicalSpecDefinitionSampleFile.Builder builderResult = ImmutablePhysicalSpecDefinitionSampleFile
-        .builder();
-
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from(new ImmutablePhysicalSpecDefinition.Json());
-  }
-  @Test
-  public void fromTest2() {
-    // Arrange
-    ImmutablePhysicalSpecDefinitionSampleFile.Builder builderResult = ImmutablePhysicalSpecDefinitionSampleFile
-        .builder();
-
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from(new ImmutablePhysicalSpecDefinitionSampleFile.Json());
+    ImmutablePhysicalSpecDefinitionSampleFile.fromJson(new ImmutablePhysicalSpecDefinitionSampleFile.Json());
   }
   @Test
   public void fromTest() {
@@ -118,16 +58,76 @@ public class ImmutablePhysicalSpecDefinitionSampleFileDiffblueTest {
     builderResult.from((NameProvider) new ImmutablePhysicalSpecDefinitionField.Json());
   }
   @Test
-  public void copyOfTest() {
-    // Arrange, Act and Assert
+  public void fromTest2() {
+    // Arrange
+    ImmutablePhysicalSpecDefinitionSampleFile.Builder builderResult = ImmutablePhysicalSpecDefinitionSampleFile
+        .builder();
+
+    // Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    ImmutablePhysicalSpecDefinitionSampleFile.copyOf(new ImmutablePhysicalSpecDefinitionSampleFile.Json());
+    builderResult.from(new ImmutablePhysicalSpecDefinitionSampleFile.Json());
   }
   @Test
-  public void fromJsonTest() {
+  public void fromTest3() {
+    // Arrange
+    ImmutablePhysicalSpecDefinitionSampleFile.Builder builderResult = ImmutablePhysicalSpecDefinitionSampleFile
+        .builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from(new ImmutablePhysicalSpecDefinition.Json());
+  }
+  @Test
+  public void idTest() {
     // Arrange, Act and Assert
-    thrown.expect(IllegalStateException.class);
-    ImmutablePhysicalSpecDefinitionSampleFile.fromJson(new ImmutablePhysicalSpecDefinitionSampleFile.Json());
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutablePhysicalSpecDefinitionSampleFile.Json()).id();
+  }
+  @Test
+  public void nameTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutablePhysicalSpecDefinitionSampleFile.Json()).name();
+  }
+  @Test
+  public void setFileDataTest() {
+    // Arrange
+    ImmutablePhysicalSpecDefinitionSampleFile.Json json = new ImmutablePhysicalSpecDefinitionSampleFile.Json();
+
+    // Act
+    json.setFileData("fileData");
+
+    // Assert
+    assertEquals("fileData", json.fileData);
+  }
+  @Test
+  public void setNameTest() {
+    // Arrange
+    ImmutablePhysicalSpecDefinitionSampleFile.Json json = new ImmutablePhysicalSpecDefinitionSampleFile.Json();
+
+    // Act
+    json.setName("name");
+
+    // Assert
+    assertEquals("name", json.name);
+  }
+  @Test
+  public void setSpecDefinitionIdTest() {
+    // Arrange
+    ImmutablePhysicalSpecDefinitionSampleFile.Json json = new ImmutablePhysicalSpecDefinitionSampleFile.Json();
+
+    // Act
+    json.setSpecDefinitionId(123L);
+
+    // Assert
+    assertEquals(123L, json.specDefinitionId);
+    assertTrue(json.specDefinitionIdIsSet);
+  }
+  @Test
+  public void specDefinitionIdTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutablePhysicalSpecDefinitionSampleFile.Json()).specDefinitionId();
   }
 }
 

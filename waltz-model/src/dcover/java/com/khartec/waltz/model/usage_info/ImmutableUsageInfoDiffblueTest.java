@@ -12,39 +12,10 @@ public class ImmutableUsageInfoDiffblueTest {
   @Rule
   public ExpectedException thrown = ExpectedException.none();
   @Test
-  public void setIsSelectedTest() {
-    // Arrange
-    ImmutableUsageInfo.Json json = new ImmutableUsageInfo.Json();
-
-    // Act
-    json.setIsSelected(true);
-
-    // Assert
-    assertTrue(json.isSelected);
-    assertTrue(json.isSelectedIsSet);
-  }
-  @Test
-  public void setDescriptionTest() {
-    // Arrange
-    ImmutableUsageInfo.Json json = new ImmutableUsageInfo.Json();
-
-    // Act
-    json.setDescription("description");
-
-    // Assert
-    assertEquals("description", json.description);
-  }
-  @Test
-  public void descriptionTest() {
+  public void buildTest() {
     // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableUsageInfo.Json()).description();
-  }
-  @Test
-  public void kindTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableUsageInfo.Json()).kind();
+    thrown.expect(IllegalStateException.class);
+    ImmutableUsageInfo.builder().build();
   }
   @Test
   public void constructorTest() {
@@ -58,27 +29,16 @@ public class ImmutableUsageInfoDiffblueTest {
     assertFalse(actualJson.isSelectedIsSet);
   }
   @Test
-  public void isSelectedTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableUsageInfo.Json()).isSelected();
-  }
-  @Test
-  public void setKindTest() {
-    // Arrange
-    ImmutableUsageInfo.Json json = new ImmutableUsageInfo.Json();
-
-    // Act
-    json.setKind(UsageKind.CONSUMER);
-
-    // Assert
-    assertEquals(UsageKind.CONSUMER, json.kind);
-  }
-  @Test
   public void copyOfTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
     ImmutableUsageInfo.copyOf(new ImmutableUsageInfo.Json());
+  }
+  @Test
+  public void descriptionTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableUsageInfo.Json()).description();
   }
   @Test
   public void fromJsonTest() {
@@ -96,10 +56,50 @@ public class ImmutableUsageInfoDiffblueTest {
     builderResult.from(new ImmutableUsageInfo.Json());
   }
   @Test
-  public void buildTest() {
+  public void isSelectedTest() {
     // Arrange, Act and Assert
-    thrown.expect(IllegalStateException.class);
-    ImmutableUsageInfo.builder().build();
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableUsageInfo.Json()).isSelected();
+  }
+  @Test
+  public void kindTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableUsageInfo.Json()).kind();
+  }
+  @Test
+  public void setDescriptionTest() {
+    // Arrange
+    ImmutableUsageInfo.Json json = new ImmutableUsageInfo.Json();
+
+    // Act
+    json.setDescription("description");
+
+    // Assert
+    assertEquals("description", json.description);
+  }
+  @Test
+  public void setIsSelectedTest() {
+    // Arrange
+    ImmutableUsageInfo.Json json = new ImmutableUsageInfo.Json();
+
+    // Act
+    json.setIsSelected(true);
+
+    // Assert
+    assertTrue(json.isSelected);
+    assertTrue(json.isSelectedIsSet);
+  }
+  @Test
+  public void setKindTest() {
+    // Arrange
+    ImmutableUsageInfo.Json json = new ImmutableUsageInfo.Json();
+
+    // Act
+    json.setKind(UsageKind.CONSUMER);
+
+    // Assert
+    assertEquals(UsageKind.CONSUMER, json.kind);
   }
 }
 

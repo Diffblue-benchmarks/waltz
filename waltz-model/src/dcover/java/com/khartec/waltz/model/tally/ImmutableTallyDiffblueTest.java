@@ -13,10 +13,14 @@ public class ImmutableTallyDiffblueTest {
   public ExpectedException thrown = ExpectedException.none();
 
   @Test
-  public void fromJsonTest() {
-    // Arrange, Act and Assert
-    thrown.expect(IllegalStateException.class);
-    ImmutableTally.<Object>fromJson(new ImmutableTally.Json<Object>());
+  public void constructorTest() {
+    // Arrange and Act
+    ImmutableTally.Json<Object> actualJson = new ImmutableTally.Json<Object>();
+
+    // Assert
+    assertFalse(actualJson.countIsSet);
+    assertNull(actualJson.id);
+    assertEquals(0.0, actualJson.count, 0.0);
   }
 
   @Test
@@ -24,6 +28,27 @@ public class ImmutableTallyDiffblueTest {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
     ImmutableTally.<Object>copyOf(new ImmutableOrderedTally.Json<Object>());
+  }
+
+  @Test
+  public void countTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableTally.Json<Object>()).count();
+  }
+
+  @Test
+  public void fromJsonTest() {
+    // Arrange, Act and Assert
+    thrown.expect(IllegalStateException.class);
+    ImmutableTally.<Object>fromJson(new ImmutableTally.Json<Object>());
+  }
+
+  @Test
+  public void idTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableTally.Json<Object>()).id();
   }
 
   @Test
@@ -37,31 +62,6 @@ public class ImmutableTallyDiffblueTest {
     // Assert
     assertTrue(json.countIsSet);
     assertEquals(10.0, json.count, 0.0);
-  }
-
-  @Test
-  public void idTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableTally.Json<Object>()).id();
-  }
-
-  @Test
-  public void countTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableTally.Json<Object>()).count();
-  }
-
-  @Test
-  public void constructorTest() {
-    // Arrange and Act
-    ImmutableTally.Json<Object> actualJson = new ImmutableTally.Json<Object>();
-
-    // Assert
-    assertFalse(actualJson.countIsSet);
-    assertNull(actualJson.id);
-    assertEquals(0.0, actualJson.count, 0.0);
   }
 
   @Test

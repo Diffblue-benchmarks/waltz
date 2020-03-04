@@ -10,33 +10,10 @@ public class ImmutablePasswordResetRequestDiffblueTest {
   @Rule
   public ExpectedException thrown = ExpectedException.none();
   @Test
-  public void copyOfTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    ImmutablePasswordResetRequest.copyOf(new ImmutablePasswordResetRequest.Json());
-  }
-  @Test
-  public void fromJsonTest() {
+  public void buildTest() {
     // Arrange, Act and Assert
     thrown.expect(IllegalStateException.class);
-    ImmutablePasswordResetRequest.fromJson(new ImmutablePasswordResetRequest.Json());
-  }
-  @Test
-  public void setCurrentPasswordTest() {
-    // Arrange
-    ImmutablePasswordResetRequest.Json json = new ImmutablePasswordResetRequest.Json();
-
-    // Act
-    json.setCurrentPassword("Password123");
-
-    // Assert
-    assertEquals("Password123", json.currentPassword);
-  }
-  @Test
-  public void currentPasswordTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutablePasswordResetRequest.Json()).currentPassword();
+    ImmutablePasswordResetRequest.builder().build();
   }
   @Test
   public void constructorTest() {
@@ -49,10 +26,48 @@ public class ImmutablePasswordResetRequestDiffblueTest {
     assertNull(actualJson.currentPassword);
   }
   @Test
-  public void userNameTest() {
+  public void copyOfTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    (new ImmutablePasswordResetRequest.Json()).userName();
+    ImmutablePasswordResetRequest.copyOf(new ImmutablePasswordResetRequest.Json());
+  }
+  @Test
+  public void currentPasswordTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutablePasswordResetRequest.Json()).currentPassword();
+  }
+  @Test
+  public void fromJsonTest() {
+    // Arrange, Act and Assert
+    thrown.expect(IllegalStateException.class);
+    ImmutablePasswordResetRequest.fromJson(new ImmutablePasswordResetRequest.Json());
+  }
+  @Test
+  public void fromTest() {
+    // Arrange
+    ImmutablePasswordResetRequest.Builder builderResult = ImmutablePasswordResetRequest.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from(new ImmutablePasswordResetRequest.Json());
+  }
+  @Test
+  public void newPasswordTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutablePasswordResetRequest.Json()).newPassword();
+  }
+  @Test
+  public void setCurrentPasswordTest() {
+    // Arrange
+    ImmutablePasswordResetRequest.Json json = new ImmutablePasswordResetRequest.Json();
+
+    // Act
+    json.setCurrentPassword("Password123");
+
+    // Assert
+    assertEquals("Password123", json.currentPassword);
   }
   @Test
   public void setNewPasswordTest() {
@@ -77,25 +92,10 @@ public class ImmutablePasswordResetRequestDiffblueTest {
     assertEquals("username", json.userName);
   }
   @Test
-  public void newPasswordTest() {
+  public void userNameTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    (new ImmutablePasswordResetRequest.Json()).newPassword();
-  }
-  @Test
-  public void fromTest() {
-    // Arrange
-    ImmutablePasswordResetRequest.Builder builderResult = ImmutablePasswordResetRequest.builder();
-
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from(new ImmutablePasswordResetRequest.Json());
-  }
-  @Test
-  public void buildTest() {
-    // Arrange, Act and Assert
-    thrown.expect(IllegalStateException.class);
-    ImmutablePasswordResetRequest.builder().build();
+    (new ImmutablePasswordResetRequest.Json()).userName();
   }
 }
 

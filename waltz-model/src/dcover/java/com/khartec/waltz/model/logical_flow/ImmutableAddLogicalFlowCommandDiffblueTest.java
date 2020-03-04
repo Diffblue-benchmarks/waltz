@@ -17,13 +17,20 @@ public class ImmutableAddLogicalFlowCommandDiffblueTest {
   }
 
   @Test
-  public void fromTest() {
-    // Arrange
-    ImmutableAddLogicalFlowCommand.Builder builderResult = ImmutableAddLogicalFlowCommand.builder();
+  public void constructorTest() {
+    // Arrange and Act
+    ImmutableAddLogicalFlowCommand.Json actualJson = new ImmutableAddLogicalFlowCommand.Json();
 
-    // Act and Assert
+    // Assert
+    assertNull(actualJson.target);
+    assertNull(actualJson.source);
+  }
+
+  @Test
+  public void copyOfTest() {
+    // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    builderResult.from(new ImmutableAddLogicalFlowCommand.Json());
+    ImmutableAddLogicalFlowCommand.copyOf(new ImmutableAddLogicalFlowCommand.Json());
   }
 
   @Test
@@ -34,10 +41,13 @@ public class ImmutableAddLogicalFlowCommandDiffblueTest {
   }
 
   @Test
-  public void copyOfTest() {
-    // Arrange, Act and Assert
+  public void fromTest() {
+    // Arrange
+    ImmutableAddLogicalFlowCommand.Builder builderResult = ImmutableAddLogicalFlowCommand.builder();
+
+    // Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    ImmutableAddLogicalFlowCommand.copyOf(new ImmutableAddLogicalFlowCommand.Json());
+    builderResult.from(new ImmutableAddLogicalFlowCommand.Json());
   }
 
   @Test
@@ -52,16 +62,6 @@ public class ImmutableAddLogicalFlowCommandDiffblueTest {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
     (new ImmutableAddLogicalFlowCommand.Json()).target();
-  }
-
-  @Test
-  public void constructorTest() {
-    // Arrange and Act
-    ImmutableAddLogicalFlowCommand.Json actualJson = new ImmutableAddLogicalFlowCommand.Json();
-
-    // Assert
-    assertNull(actualJson.target);
-    assertNull(actualJson.source);
   }
 }
 

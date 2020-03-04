@@ -13,16 +13,85 @@ public class ImmutableEntityWorkflowDefinitionDiffblueTest {
   @Rule
   public ExpectedException thrown = ExpectedException.none();
   @Test
+  public void buildTest() {
+    // Arrange, Act and Assert
+    thrown.expect(IllegalStateException.class);
+    ImmutableEntityWorkflowDefinition.builder().build();
+  }
+  @Test
+  public void constructorTest() {
+    // Arrange and Act
+    ImmutableEntityWorkflowDefinition.Json actualJson = new ImmutableEntityWorkflowDefinition.Json();
+
+    // Assert
+    assertNull(actualJson.description);
+    assertNull(actualJson.name);
+  }
+  @Test
   public void copyOfTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
     ImmutableEntityWorkflowDefinition.copyOf(new ImmutableEntityWorkflowDefinition.Json());
   }
   @Test
+  public void descriptionTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableEntityWorkflowDefinition.Json()).description();
+  }
+  @Test
   public void fromJsonTest() {
     // Arrange, Act and Assert
     thrown.expect(IllegalStateException.class);
     ImmutableEntityWorkflowDefinition.fromJson(new ImmutableEntityWorkflowDefinition.Json());
+  }
+  @Test
+  public void fromTest() {
+    // Arrange
+    ImmutableEntityWorkflowDefinition.Builder builderResult = ImmutableEntityWorkflowDefinition.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from(new ImmutableEntityWorkflowDefinition.Json());
+  }
+  @Test
+  public void fromTest2() {
+    // Arrange
+    ImmutableEntityWorkflowDefinition.Builder builderResult = ImmutableEntityWorkflowDefinition.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from((IdProvider) new ImmutableEntityWorkflowDefinition.Json());
+  }
+  @Test
+  public void fromTest3() {
+    // Arrange
+    ImmutableEntityWorkflowDefinition.Builder builderResult = ImmutableEntityWorkflowDefinition.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from((DescriptionProvider) new ImmutableEntityWorkflowDefinition.Json());
+  }
+  @Test
+  public void fromTest4() {
+    // Arrange
+    ImmutableEntityWorkflowDefinition.Builder builderResult = ImmutableEntityWorkflowDefinition.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from((NameProvider) new ImmutableEntityWorkflowDefinition.Json());
+  }
+  @Test
+  public void idTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableEntityWorkflowDefinition.Json()).id();
+  }
+  @Test
+  public void nameTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableEntityWorkflowDefinition.Json()).name();
   }
   @Test
   public void setDescriptionTest() {
@@ -36,18 +105,6 @@ public class ImmutableEntityWorkflowDefinitionDiffblueTest {
     assertEquals("description", json.description);
   }
   @Test
-  public void nameTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableEntityWorkflowDefinition.Json()).name();
-  }
-  @Test
-  public void descriptionTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableEntityWorkflowDefinition.Json()).description();
-  }
-  @Test
   public void setNameTest() {
     // Arrange
     ImmutableEntityWorkflowDefinition.Json json = new ImmutableEntityWorkflowDefinition.Json();
@@ -57,63 +114,6 @@ public class ImmutableEntityWorkflowDefinitionDiffblueTest {
 
     // Assert
     assertEquals("name", json.name);
-  }
-  @Test
-  public void idTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableEntityWorkflowDefinition.Json()).id();
-  }
-  @Test
-  public void constructorTest() {
-    // Arrange and Act
-    ImmutableEntityWorkflowDefinition.Json actualJson = new ImmutableEntityWorkflowDefinition.Json();
-
-    // Assert
-    assertNull(actualJson.description);
-    assertNull(actualJson.name);
-  }
-  @Test
-  public void fromTest4() {
-    // Arrange
-    ImmutableEntityWorkflowDefinition.Builder builderResult = ImmutableEntityWorkflowDefinition.builder();
-
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from((NameProvider) new ImmutableEntityWorkflowDefinition.Json());
-  }
-  @Test
-  public void fromTest3() {
-    // Arrange
-    ImmutableEntityWorkflowDefinition.Builder builderResult = ImmutableEntityWorkflowDefinition.builder();
-
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from((DescriptionProvider) new ImmutableEntityWorkflowDefinition.Json());
-  }
-  @Test
-  public void fromTest2() {
-    // Arrange
-    ImmutableEntityWorkflowDefinition.Builder builderResult = ImmutableEntityWorkflowDefinition.builder();
-
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from((IdProvider) new ImmutableEntityWorkflowDefinition.Json());
-  }
-  @Test
-  public void fromTest() {
-    // Arrange
-    ImmutableEntityWorkflowDefinition.Builder builderResult = ImmutableEntityWorkflowDefinition.builder();
-
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from(new ImmutableEntityWorkflowDefinition.Json());
-  }
-  @Test
-  public void buildTest() {
-    // Arrange, Act and Assert
-    thrown.expect(IllegalStateException.class);
-    ImmutableEntityWorkflowDefinition.builder().build();
   }
 }
 

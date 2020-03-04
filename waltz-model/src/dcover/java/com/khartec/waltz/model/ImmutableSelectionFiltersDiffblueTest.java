@@ -15,44 +15,15 @@ public class ImmutableSelectionFiltersDiffblueTest {
   public ExpectedException thrown = ExpectedException.none();
 
   @Test
-  public void fromJsonTest() {
+  public void buildTest() {
     // Arrange, Act and Assert
-    assertEquals("SelectionFilters{omitApplicationKinds=[]}",
-        ImmutableSelectionFilters.fromJson(new ImmutableSelectionFilters.Json()).toString());
+    assertEquals("SelectionFilters{omitApplicationKinds=[]}", ImmutableSelectionFilters.builder().build().toString());
   }
 
   @Test
-  public void omitApplicationKindsTest2() {
+  public void constructorTest() {
     // Arrange, Act and Assert
-    assertEquals(0,
-        ImmutableSelectionFilters.fromJson(new ImmutableSelectionFilters.Json()).omitApplicationKinds().size());
-  }
-
-  @Test
-  public void equalsTest() {
-    // Arrange, Act and Assert
-    assertFalse(ImmutableSelectionFilters.fromJson(new ImmutableSelectionFilters.Json()).equals("element"));
-  }
-
-  @Test
-  public void withOmitApplicationKindsTest2() {
-    // Arrange
-    ImmutableSelectionFilters fromJsonResult = ImmutableSelectionFilters.fromJson(new ImmutableSelectionFilters.Json());
-    ArrayList<ApplicationKind> applicationKindList = new ArrayList<ApplicationKind>();
-    applicationKindList.add(ApplicationKind.IN_HOUSE);
-
-    // Act and Assert
-    assertEquals("SelectionFilters{omitApplicationKinds=[IN_HOUSE]}",
-        fromJsonResult.withOmitApplicationKinds(applicationKindList).toString());
-  }
-
-  @Test
-  public void withOmitApplicationKindsTest() {
-    // Arrange, Act and Assert
-    assertEquals("SelectionFilters{omitApplicationKinds=[IN_HOUSE]}",
-        ImmutableSelectionFilters.fromJson(new ImmutableSelectionFilters.Json())
-            .withOmitApplicationKinds(ApplicationKind.IN_HOUSE, ApplicationKind.IN_HOUSE, ApplicationKind.IN_HOUSE)
-            .toString());
+    assertEquals(0, (new ImmutableSelectionFilters.Json()).omitApplicationKinds.size());
   }
 
   @Test
@@ -63,22 +34,16 @@ public class ImmutableSelectionFiltersDiffblueTest {
   }
 
   @Test
-  public void hashCodeTest() {
+  public void equalsTest() {
     // Arrange, Act and Assert
-    assertEquals(177573, ImmutableSelectionFilters.fromJson(new ImmutableSelectionFilters.Json()).hashCode());
+    assertFalse(ImmutableSelectionFilters.fromJson(new ImmutableSelectionFilters.Json()).equals("element"));
   }
 
   @Test
-  public void toStringTest() {
+  public void fromJsonTest() {
     // Arrange, Act and Assert
     assertEquals("SelectionFilters{omitApplicationKinds=[]}",
         ImmutableSelectionFilters.fromJson(new ImmutableSelectionFilters.Json()).toString());
-  }
-
-  @Test
-  public void buildTest() {
-    // Arrange, Act and Assert
-    assertEquals("SelectionFilters{omitApplicationKinds=[]}", ImmutableSelectionFilters.builder().build().toString());
   }
 
   @Test
@@ -92,10 +57,23 @@ public class ImmutableSelectionFiltersDiffblueTest {
   }
 
   @Test
+  public void hashCodeTest() {
+    // Arrange, Act and Assert
+    assertEquals(177573, ImmutableSelectionFilters.fromJson(new ImmutableSelectionFilters.Json()).hashCode());
+  }
+
+  @Test
   public void omitApplicationKindsTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
     (new ImmutableSelectionFilters.Json()).omitApplicationKinds();
+  }
+
+  @Test
+  public void omitApplicationKindsTest2() {
+    // Arrange, Act and Assert
+    assertEquals(0,
+        ImmutableSelectionFilters.fromJson(new ImmutableSelectionFilters.Json()).omitApplicationKinds().size());
   }
 
   @Test
@@ -113,9 +91,31 @@ public class ImmutableSelectionFiltersDiffblueTest {
   }
 
   @Test
-  public void constructorTest() {
+  public void toStringTest() {
     // Arrange, Act and Assert
-    assertEquals(0, (new ImmutableSelectionFilters.Json()).omitApplicationKinds.size());
+    assertEquals("SelectionFilters{omitApplicationKinds=[]}",
+        ImmutableSelectionFilters.fromJson(new ImmutableSelectionFilters.Json()).toString());
+  }
+
+  @Test
+  public void withOmitApplicationKindsTest() {
+    // Arrange, Act and Assert
+    assertEquals("SelectionFilters{omitApplicationKinds=[IN_HOUSE]}",
+        ImmutableSelectionFilters.fromJson(new ImmutableSelectionFilters.Json())
+            .withOmitApplicationKinds(ApplicationKind.IN_HOUSE, ApplicationKind.IN_HOUSE, ApplicationKind.IN_HOUSE)
+            .toString());
+  }
+
+  @Test
+  public void withOmitApplicationKindsTest2() {
+    // Arrange
+    ImmutableSelectionFilters fromJsonResult = ImmutableSelectionFilters.fromJson(new ImmutableSelectionFilters.Json());
+    ArrayList<ApplicationKind> applicationKindList = new ArrayList<ApplicationKind>();
+    applicationKindList.add(ApplicationKind.IN_HOUSE);
+
+    // Act and Assert
+    assertEquals("SelectionFilters{omitApplicationKinds=[IN_HOUSE]}",
+        fromJsonResult.withOmitApplicationKinds(applicationKindList).toString());
   }
 }
 

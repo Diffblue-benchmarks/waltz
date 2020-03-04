@@ -19,27 +19,6 @@ public class ImmutableDecoratorRatingSummaryDiffblueTest {
     ImmutableDecoratorRatingSummary.builder().build();
   }
   @Test
-  public void fromTest() {
-    // Arrange
-    ImmutableDecoratorRatingSummary.Builder builderResult = ImmutableDecoratorRatingSummary.builder();
-
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from(new ImmutableDecoratorRatingSummary.Json());
-  }
-  @Test
-  public void decoratorEntityReferenceTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableDecoratorRatingSummary.Json()).decoratorEntityReference();
-  }
-  @Test
-  public void countTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableDecoratorRatingSummary.Json()).count();
-  }
-  @Test
   public void constructorTest() {
     // Arrange and Act
     ImmutableDecoratorRatingSummary.Json actualJson = new ImmutableDecoratorRatingSummary.Json();
@@ -51,15 +30,37 @@ public class ImmutableDecoratorRatingSummaryDiffblueTest {
     assertNull(actualJson.rating);
   }
   @Test
-  public void setRatingTest() {
+  public void copyOfTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    ImmutableDecoratorRatingSummary.copyOf(new ImmutableDecoratorRatingSummary.Json());
+  }
+  @Test
+  public void countTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableDecoratorRatingSummary.Json()).count();
+  }
+  @Test
+  public void decoratorEntityReferenceTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableDecoratorRatingSummary.Json()).decoratorEntityReference();
+  }
+  @Test
+  public void fromJsonTest() {
+    // Arrange, Act and Assert
+    thrown.expect(IllegalStateException.class);
+    ImmutableDecoratorRatingSummary.fromJson(new ImmutableDecoratorRatingSummary.Json());
+  }
+  @Test
+  public void fromTest() {
     // Arrange
-    ImmutableDecoratorRatingSummary.Json json = new ImmutableDecoratorRatingSummary.Json();
+    ImmutableDecoratorRatingSummary.Builder builderResult = ImmutableDecoratorRatingSummary.builder();
 
-    // Act
-    json.setRating(AuthoritativenessRating.PRIMARY);
-
-    // Assert
-    assertEquals(AuthoritativenessRating.PRIMARY, json.rating);
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from(new ImmutableDecoratorRatingSummary.Json());
   }
   @Test
   public void ratingTest() {
@@ -80,16 +81,15 @@ public class ImmutableDecoratorRatingSummaryDiffblueTest {
     assertEquals(3, json.count);
   }
   @Test
-  public void copyOfTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    ImmutableDecoratorRatingSummary.copyOf(new ImmutableDecoratorRatingSummary.Json());
-  }
-  @Test
-  public void fromJsonTest() {
-    // Arrange, Act and Assert
-    thrown.expect(IllegalStateException.class);
-    ImmutableDecoratorRatingSummary.fromJson(new ImmutableDecoratorRatingSummary.Json());
+  public void setRatingTest() {
+    // Arrange
+    ImmutableDecoratorRatingSummary.Json json = new ImmutableDecoratorRatingSummary.Json();
+
+    // Act
+    json.setRating(AuthoritativenessRating.PRIMARY);
+
+    // Assert
+    assertEquals(AuthoritativenessRating.PRIMARY, json.rating);
   }
 }
 

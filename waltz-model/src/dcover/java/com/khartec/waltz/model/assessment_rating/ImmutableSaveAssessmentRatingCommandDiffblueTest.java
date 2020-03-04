@@ -15,80 +15,22 @@ public class ImmutableSaveAssessmentRatingCommandDiffblueTest {
   @Rule
   public ExpectedException thrown = ExpectedException.none();
   @Test
-  public void entityReferenceTest() {
+  public void assessmentDefinitionIdTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableSaveAssessmentRatingCommand.Json()).entityReference();
+    (new ImmutableSaveAssessmentRatingCommand.Json()).assessmentDefinitionId();
   }
   @Test
-  public void setLastUpdatedByTest() {
-    // Arrange
-    ImmutableSaveAssessmentRatingCommand.Json json = new ImmutableSaveAssessmentRatingCommand.Json();
-
-    // Act
-    json.setLastUpdatedBy("foo");
-
-    // Assert
-    assertEquals("foo", json.lastUpdatedBy);
-  }
-  @Test
-  public void setCommentTest() {
-    // Arrange
-    ImmutableSaveAssessmentRatingCommand.Json json = new ImmutableSaveAssessmentRatingCommand.Json();
-
-    // Act
-    json.setComment("foo");
-
-    // Assert
-    assertEquals("foo", json.comment);
-  }
-  @Test
-  public void ratingIdTest() {
+  public void buildTest() {
     // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableSaveAssessmentRatingCommand.Json()).ratingId();
-  }
-  @Test
-  public void lastUpdatedByTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableSaveAssessmentRatingCommand.Json()).lastUpdatedBy();
-  }
-  @Test
-  public void provenanceTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableSaveAssessmentRatingCommand.Json()).provenance();
+    thrown.expect(IllegalStateException.class);
+    ImmutableSaveAssessmentRatingCommand.builder().build();
   }
   @Test
   public void commentTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
     (new ImmutableSaveAssessmentRatingCommand.Json()).comment();
-  }
-  @Test
-  public void setRatingIdTest() {
-    // Arrange
-    ImmutableSaveAssessmentRatingCommand.Json json = new ImmutableSaveAssessmentRatingCommand.Json();
-
-    // Act
-    json.setRatingId(123L);
-
-    // Assert
-    assertTrue(json.ratingIdIsSet);
-    assertEquals(123L, json.ratingId);
-  }
-  @Test
-  public void lastUpdatedAtTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableSaveAssessmentRatingCommand.Json()).lastUpdatedAt();
-  }
-  @Test
-  public void assessmentDefinitionIdTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableSaveAssessmentRatingCommand.Json()).assessmentDefinitionId();
   }
   @Test
   public void constructorTest() {
@@ -107,6 +49,93 @@ public class ImmutableSaveAssessmentRatingCommandDiffblueTest {
     assertEquals(0L, actualJson.assessmentDefinitionId);
   }
   @Test
+  public void copyOfTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    ImmutableSaveAssessmentRatingCommand.copyOf(new ImmutableSaveAssessmentRatingCommand.Json());
+  }
+  @Test
+  public void entityReferenceTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableSaveAssessmentRatingCommand.Json()).entityReference();
+  }
+  @Test
+  public void fromJsonTest() {
+    // Arrange, Act and Assert
+    thrown.expect(IllegalStateException.class);
+    ImmutableSaveAssessmentRatingCommand.fromJson(new ImmutableSaveAssessmentRatingCommand.Json());
+  }
+  @Test
+  public void fromTest() {
+    // Arrange
+    ImmutableSaveAssessmentRatingCommand.Builder builderResult = ImmutableSaveAssessmentRatingCommand.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from((LastUpdatedProvider) new ImmutableAssessmentRating.Json());
+  }
+  @Test
+  public void fromTest2() {
+    // Arrange
+    ImmutableSaveAssessmentRatingCommand.Builder builderResult = ImmutableSaveAssessmentRatingCommand.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from((ProvenanceProvider) new ImmutableAssessmentRating.Json());
+  }
+  @Test
+  public void fromTest3() {
+    // Arrange
+    ImmutableSaveAssessmentRatingCommand.Builder builderResult = ImmutableSaveAssessmentRatingCommand.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from(new ImmutableRemoveAssessmentRatingCommand.Json());
+  }
+  @Test
+  public void fromTest4() {
+    // Arrange
+    ImmutableSaveAssessmentRatingCommand.Builder builderResult = ImmutableSaveAssessmentRatingCommand.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from((CommentProvider) new ImmutableAssessmentRating.Json());
+  }
+  @Test
+  public void fromTest5() {
+    // Arrange
+    ImmutableSaveAssessmentRatingCommand.Builder builderResult = ImmutableSaveAssessmentRatingCommand.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from(new ImmutableSaveAssessmentRatingCommand.Json());
+  }
+  @Test
+  public void lastUpdatedAtTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableSaveAssessmentRatingCommand.Json()).lastUpdatedAt();
+  }
+  @Test
+  public void lastUpdatedByTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableSaveAssessmentRatingCommand.Json()).lastUpdatedBy();
+  }
+  @Test
+  public void provenanceTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableSaveAssessmentRatingCommand.Json()).provenance();
+  }
+  @Test
+  public void ratingIdTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableSaveAssessmentRatingCommand.Json()).ratingId();
+  }
+  @Test
   public void setAssessmentDefinitionIdTest() {
     // Arrange
     ImmutableSaveAssessmentRatingCommand.Json json = new ImmutableSaveAssessmentRatingCommand.Json();
@@ -119,78 +148,49 @@ public class ImmutableSaveAssessmentRatingCommandDiffblueTest {
     assertEquals(123L, json.assessmentDefinitionId);
   }
   @Test
+  public void setCommentTest() {
+    // Arrange
+    ImmutableSaveAssessmentRatingCommand.Json json = new ImmutableSaveAssessmentRatingCommand.Json();
+
+    // Act
+    json.setComment("comment");
+
+    // Assert
+    assertEquals("comment", json.comment);
+  }
+  @Test
+  public void setLastUpdatedByTest() {
+    // Arrange
+    ImmutableSaveAssessmentRatingCommand.Json json = new ImmutableSaveAssessmentRatingCommand.Json();
+
+    // Act
+    json.setLastUpdatedBy("lastUpdatedBy");
+
+    // Assert
+    assertEquals("lastUpdatedBy", json.lastUpdatedBy);
+  }
+  @Test
   public void setProvenanceTest() {
     // Arrange
     ImmutableSaveAssessmentRatingCommand.Json json = new ImmutableSaveAssessmentRatingCommand.Json();
 
     // Act
-    json.setProvenance("foo");
+    json.setProvenance("provenance");
 
     // Assert
-    assertEquals("foo", json.provenance);
+    assertEquals("provenance", json.provenance);
   }
   @Test
-  public void copyOfTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    ImmutableSaveAssessmentRatingCommand.copyOf(new ImmutableSaveAssessmentRatingCommand.Json());
-  }
-  @Test
-  public void fromJsonTest() {
-    // Arrange, Act and Assert
-    thrown.expect(IllegalStateException.class);
-    ImmutableSaveAssessmentRatingCommand.fromJson(new ImmutableSaveAssessmentRatingCommand.Json());
-  }
-  @Test
-  public void fromTest5() {
+  public void setRatingIdTest() {
     // Arrange
-    ImmutableSaveAssessmentRatingCommand.Builder builderResult = ImmutableSaveAssessmentRatingCommand.builder();
+    ImmutableSaveAssessmentRatingCommand.Json json = new ImmutableSaveAssessmentRatingCommand.Json();
 
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from(new ImmutableSaveAssessmentRatingCommand.Json());
-  }
-  @Test
-  public void fromTest4() {
-    // Arrange
-    ImmutableSaveAssessmentRatingCommand.Builder builderResult = ImmutableSaveAssessmentRatingCommand.builder();
+    // Act
+    json.setRatingId(123L);
 
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from((CommentProvider) new ImmutableAssessmentRating.Json());
-  }
-  @Test
-  public void fromTest3() {
-    // Arrange
-    ImmutableSaveAssessmentRatingCommand.Builder builderResult = ImmutableSaveAssessmentRatingCommand.builder();
-
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from(new ImmutableRemoveAssessmentRatingCommand.Json());
-  }
-  @Test
-  public void fromTest2() {
-    // Arrange
-    ImmutableSaveAssessmentRatingCommand.Builder builderResult = ImmutableSaveAssessmentRatingCommand.builder();
-
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from((ProvenanceProvider) new ImmutableAssessmentRating.Json());
-  }
-  @Test
-  public void buildTest() {
-    // Arrange, Act and Assert
-    thrown.expect(IllegalStateException.class);
-    ImmutableSaveAssessmentRatingCommand.builder().build();
-  }
-  @Test
-  public void fromTest() {
-    // Arrange
-    ImmutableSaveAssessmentRatingCommand.Builder builderResult = ImmutableSaveAssessmentRatingCommand.builder();
-
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from((LastUpdatedProvider) new ImmutableAssessmentRating.Json());
+    // Assert
+    assertTrue(json.ratingIdIsSet);
+    assertEquals(123L, json.ratingId);
   }
 }
 

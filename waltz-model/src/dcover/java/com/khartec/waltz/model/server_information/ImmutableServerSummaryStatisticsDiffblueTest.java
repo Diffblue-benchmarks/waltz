@@ -14,6 +14,47 @@ public class ImmutableServerSummaryStatisticsDiffblueTest {
   @Rule
   public ExpectedException thrown = ExpectedException.none();
   @Test
+  public void buildTest() {
+    // Arrange, Act and Assert
+    thrown.expect(IllegalStateException.class);
+    ImmutableServerSummaryStatistics.builder().build();
+  }
+  @Test
+  public void constructorTest() {
+    // Arrange and Act
+    ImmutableServerSummaryStatistics.Json actualJson = new ImmutableServerSummaryStatistics.Json();
+
+    // Assert
+    List<Tally<String>> tallyList = actualJson.operatingSystemCounts;
+    List<Tally<String>> actualTallyList = actualJson.operatingSystemEndOfLifeStatusCounts;
+    List<Tally<String>> actualTallyList1 = actualJson.environmentCounts;
+    List<Tally<String>> actualTallyList2 = actualJson.hardwareEndOfLifeStatusCounts;
+    List<Tally<String>> actualTallyList3 = actualJson.locationCounts;
+    assertEquals(0, tallyList.size());
+    assertSame(tallyList, actualTallyList3);
+    assertSame(tallyList, actualTallyList2);
+    assertSame(tallyList, actualTallyList1);
+    assertSame(tallyList, actualTallyList);
+  }
+  @Test
+  public void copyOfTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    ImmutableServerSummaryStatistics.copyOf(new ImmutableServerSummaryStatistics.Json());
+  }
+  @Test
+  public void environmentCountsTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableServerSummaryStatistics.Json()).environmentCounts();
+  }
+  @Test
+  public void fromJsonTest() {
+    // Arrange, Act and Assert
+    thrown.expect(IllegalStateException.class);
+    ImmutableServerSummaryStatistics.fromJson(new ImmutableServerSummaryStatistics.Json());
+  }
+  @Test
   public void fromTest() {
     // Arrange
     ImmutableServerSummaryStatistics.Builder builderResult = ImmutableServerSummaryStatistics.builder();
@@ -23,46 +64,16 @@ public class ImmutableServerSummaryStatisticsDiffblueTest {
     builderResult.from(new ImmutableServerSummaryStatistics.Json());
   }
   @Test
-  public void buildTest() {
-    // Arrange, Act and Assert
-    thrown.expect(IllegalStateException.class);
-    ImmutableServerSummaryStatistics.builder().build();
-  }
-  @Test
-  public void fromJsonTest() {
-    // Arrange, Act and Assert
-    thrown.expect(IllegalStateException.class);
-    ImmutableServerSummaryStatistics.fromJson(new ImmutableServerSummaryStatistics.Json());
-  }
-  @Test
-  public void copyOfTest() {
+  public void hardwareEndOfLifeStatusCountsTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    ImmutableServerSummaryStatistics.copyOf(new ImmutableServerSummaryStatistics.Json());
+    (new ImmutableServerSummaryStatistics.Json()).hardwareEndOfLifeStatusCounts();
   }
   @Test
-  public void setOperatingSystemCountsTest() {
-    // Arrange
-    ImmutableServerSummaryStatistics.Json json = new ImmutableServerSummaryStatistics.Json();
-    ArrayList<Tally<String>> tallyList = new ArrayList<Tally<String>>();
-
-    // Act
-    json.setOperatingSystemCounts(tallyList);
-
-    // Assert
-    assertSame(tallyList, json.operatingSystemCounts);
-  }
-  @Test
-  public void setEnvironmentCountsTest() {
-    // Arrange
-    ImmutableServerSummaryStatistics.Json json = new ImmutableServerSummaryStatistics.Json();
-    ArrayList<Tally<String>> tallyList = new ArrayList<Tally<String>>();
-
-    // Act
-    json.setEnvironmentCounts(tallyList);
-
-    // Assert
-    assertSame(tallyList, json.environmentCounts);
+  public void locationCountsTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableServerSummaryStatistics.Json()).locationCounts();
   }
   @Test
   public void operatingSystemCountsTest() {
@@ -77,10 +88,22 @@ public class ImmutableServerSummaryStatisticsDiffblueTest {
     (new ImmutableServerSummaryStatistics.Json()).operatingSystemEndOfLifeStatusCounts();
   }
   @Test
-  public void hardwareEndOfLifeStatusCountsTest() {
+  public void physicalCountTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableServerSummaryStatistics.Json()).hardwareEndOfLifeStatusCounts();
+    (new ImmutableServerSummaryStatistics.Json()).physicalCount();
+  }
+  @Test
+  public void setEnvironmentCountsTest() {
+    // Arrange
+    ImmutableServerSummaryStatistics.Json json = new ImmutableServerSummaryStatistics.Json();
+    ArrayList<Tally<String>> tallyList = new ArrayList<Tally<String>>();
+
+    // Act
+    json.setEnvironmentCounts(tallyList);
+
+    // Assert
+    assertSame(tallyList, json.environmentCounts);
   }
   @Test
   public void setHardwareEndOfLifeStatusCountsTest() {
@@ -95,16 +118,28 @@ public class ImmutableServerSummaryStatisticsDiffblueTest {
     assertSame(tallyList, json.hardwareEndOfLifeStatusCounts);
   }
   @Test
-  public void physicalCountTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableServerSummaryStatistics.Json()).physicalCount();
+  public void setLocationCountsTest() {
+    // Arrange
+    ImmutableServerSummaryStatistics.Json json = new ImmutableServerSummaryStatistics.Json();
+    ArrayList<Tally<String>> tallyList = new ArrayList<Tally<String>>();
+
+    // Act
+    json.setLocationCounts(tallyList);
+
+    // Assert
+    assertSame(tallyList, json.locationCounts);
   }
   @Test
-  public void environmentCountsTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableServerSummaryStatistics.Json()).environmentCounts();
+  public void setOperatingSystemCountsTest() {
+    // Arrange
+    ImmutableServerSummaryStatistics.Json json = new ImmutableServerSummaryStatistics.Json();
+    ArrayList<Tally<String>> tallyList = new ArrayList<Tally<String>>();
+
+    // Act
+    json.setOperatingSystemCounts(tallyList);
+
+    // Assert
+    assertSame(tallyList, json.operatingSystemCounts);
   }
   @Test
   public void setOperatingSystemEndOfLifeStatusCountsTest() {
@@ -131,12 +166,6 @@ public class ImmutableServerSummaryStatisticsDiffblueTest {
     assertEquals(3L, json.physicalCount);
   }
   @Test
-  public void totalCountTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableServerSummaryStatistics.Json()).totalCount();
-  }
-  @Test
   public void setTotalCountTest() {
     // Arrange
     ImmutableServerSummaryStatistics.Json json = new ImmutableServerSummaryStatistics.Json();
@@ -147,41 +176,6 @@ public class ImmutableServerSummaryStatisticsDiffblueTest {
     // Assert
     assertTrue(json.totalCountIsSet);
     assertEquals(3L, json.totalCount);
-  }
-  @Test
-  public void constructorTest() {
-    // Arrange and Act
-    ImmutableServerSummaryStatistics.Json actualJson = new ImmutableServerSummaryStatistics.Json();
-
-    // Assert
-    List<Tally<String>> tallyList = actualJson.operatingSystemCounts;
-    List<Tally<String>> actualTallyList = actualJson.operatingSystemEndOfLifeStatusCounts;
-    List<Tally<String>> actualTallyList1 = actualJson.environmentCounts;
-    List<Tally<String>> actualTallyList2 = actualJson.hardwareEndOfLifeStatusCounts;
-    List<Tally<String>> actualTallyList3 = actualJson.locationCounts;
-    assertEquals(0, tallyList.size());
-    assertSame(tallyList, actualTallyList3);
-    assertSame(tallyList, actualTallyList2);
-    assertSame(tallyList, actualTallyList1);
-    assertSame(tallyList, actualTallyList);
-  }
-  @Test
-  public void virtualCountTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableServerSummaryStatistics.Json()).virtualCount();
-  }
-  @Test
-  public void setLocationCountsTest() {
-    // Arrange
-    ImmutableServerSummaryStatistics.Json json = new ImmutableServerSummaryStatistics.Json();
-    ArrayList<Tally<String>> tallyList = new ArrayList<Tally<String>>();
-
-    // Act
-    json.setLocationCounts(tallyList);
-
-    // Assert
-    assertSame(tallyList, json.locationCounts);
   }
   @Test
   public void setVirtualCountTest() {
@@ -196,10 +190,16 @@ public class ImmutableServerSummaryStatisticsDiffblueTest {
     assertEquals(3L, json.virtualCount);
   }
   @Test
-  public void locationCountsTest() {
+  public void totalCountTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableServerSummaryStatistics.Json()).locationCounts();
+    (new ImmutableServerSummaryStatistics.Json()).totalCount();
+  }
+  @Test
+  public void virtualCountTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableServerSummaryStatistics.Json()).virtualCount();
   }
 }
 

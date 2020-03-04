@@ -10,50 +10,16 @@ public class ImmutableCodedReferenceDiffblueTest {
   @Rule
   public ExpectedException thrown = ExpectedException.none();
   @Test
-  public void fromJsonTest() {
+  public void buildTest() {
     // Arrange, Act and Assert
     thrown.expect(IllegalStateException.class);
-    ImmutableCodedReference.fromJson(new ImmutableCodedReference.Json());
-  }
-  @Test
-  public void copyOfTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    ImmutableCodedReference.copyOf(new ImmutableCodedReference.Json());
-  }
-  @Test
-  public void nameTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableCodedReference.Json()).name();
+    ImmutableCodedReference.builder().build();
   }
   @Test
   public void codeTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
     (new ImmutableCodedReference.Json()).code();
-  }
-  @Test
-  public void setNameTest() {
-    // Arrange
-    ImmutableCodedReference.Json json = new ImmutableCodedReference.Json();
-
-    // Act
-    json.setName("name");
-
-    // Assert
-    assertEquals("name", json.name);
-  }
-  @Test
-  public void setCodeTest() {
-    // Arrange
-    ImmutableCodedReference.Json json = new ImmutableCodedReference.Json();
-
-    // Act
-    json.setCode("foo");
-
-    // Assert
-    assertEquals("foo", json.code);
   }
   @Test
   public void constructorTest() {
@@ -65,19 +31,25 @@ public class ImmutableCodedReferenceDiffblueTest {
     assertNull(actualJson.name);
   }
   @Test
-  public void fromTest3() {
+  public void copyOfTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    ImmutableCodedReference.copyOf(new ImmutableCodedReference.Json());
+  }
+  @Test
+  public void fromJsonTest() {
+    // Arrange, Act and Assert
+    thrown.expect(IllegalStateException.class);
+    ImmutableCodedReference.fromJson(new ImmutableCodedReference.Json());
+  }
+  @Test
+  public void fromTest() {
     // Arrange
     ImmutableCodedReference.Builder builderResult = ImmutableCodedReference.builder();
 
     // Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    builderResult.from((CodeProvider) new ImmutableCodedReference.Json());
-  }
-  @Test
-  public void buildTest() {
-    // Arrange, Act and Assert
-    thrown.expect(IllegalStateException.class);
-    ImmutableCodedReference.builder().build();
+    builderResult.from((NameProvider) new ImmutableCodedReference.Json());
   }
   @Test
   public void fromTest2() {
@@ -89,13 +61,41 @@ public class ImmutableCodedReferenceDiffblueTest {
     builderResult.from(new ImmutableCodedReference.Json());
   }
   @Test
-  public void fromTest() {
+  public void fromTest3() {
     // Arrange
     ImmutableCodedReference.Builder builderResult = ImmutableCodedReference.builder();
 
     // Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    builderResult.from((NameProvider) new ImmutableCodedReference.Json());
+    builderResult.from((CodeProvider) new ImmutableCodedReference.Json());
+  }
+  @Test
+  public void nameTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableCodedReference.Json()).name();
+  }
+  @Test
+  public void setCodeTest() {
+    // Arrange
+    ImmutableCodedReference.Json json = new ImmutableCodedReference.Json();
+
+    // Act
+    json.setCode("code");
+
+    // Assert
+    assertEquals("code", json.code);
+  }
+  @Test
+  public void setNameTest() {
+    // Arrange
+    ImmutableCodedReference.Json json = new ImmutableCodedReference.Json();
+
+    // Act
+    json.setName("name");
+
+    // Assert
+    assertEquals("name", json.name);
   }
 }
 

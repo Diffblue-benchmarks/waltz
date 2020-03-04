@@ -19,13 +19,16 @@ public class ImmutableTaxonomyChangePreviewDiffblueTest {
   }
 
   @Test
-  public void fromTest() {
-    // Arrange
-    ImmutableTaxonomyChangePreview.Builder builderResult = ImmutableTaxonomyChangePreview.builder();
-
-    // Act and Assert
+  public void commandTest() {
+    // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    builderResult.from(new ImmutableTaxonomyChangePreview.Json());
+    (new ImmutableTaxonomyChangePreview.Json()).command();
+  }
+
+  @Test
+  public void constructorTest() {
+    // Arrange, Act and Assert
+    assertEquals(0, (new ImmutableTaxonomyChangePreview.Json()).impacts.size());
   }
 
   @Test
@@ -43,10 +46,13 @@ public class ImmutableTaxonomyChangePreviewDiffblueTest {
   }
 
   @Test
-  public void commandTest() {
-    // Arrange, Act and Assert
+  public void fromTest() {
+    // Arrange
+    ImmutableTaxonomyChangePreview.Builder builderResult = ImmutableTaxonomyChangePreview.builder();
+
+    // Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableTaxonomyChangePreview.Json()).command();
+    builderResult.from(new ImmutableTaxonomyChangePreview.Json());
   }
 
   @Test
@@ -81,12 +87,6 @@ public class ImmutableTaxonomyChangePreviewDiffblueTest {
 
     // Assert
     assertSame(taxonomyChangeImpactList, json.impacts);
-  }
-
-  @Test
-  public void constructorTest() {
-    // Arrange, Act and Assert
-    assertEquals(0, (new ImmutableTaxonomyChangePreview.Json()).impacts.size());
   }
 }
 

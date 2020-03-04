@@ -16,23 +16,10 @@ public class ImmutableThumbnailDiffblueTest {
   public ExpectedException thrown = ExpectedException.none();
 
   @Test
-  public void fromTest4() {
-    // Arrange
-    ImmutableThumbnail.Builder builderResult = ImmutableThumbnail.builder();
-
-    // Act and Assert
+  public void blobTest() {
+    // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    builderResult.from(new ImmutableThumbnail.Json());
-  }
-
-  @Test
-  public void fromTest3() {
-    // Arrange
-    ImmutableThumbnail.Builder builderResult = ImmutableThumbnail.builder();
-
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from((ExternalIdProvider) new ImmutableThumbnail.Json());
+    (new ImmutableThumbnail.Json()).blob();
   }
 
   @Test
@@ -43,13 +30,38 @@ public class ImmutableThumbnailDiffblueTest {
   }
 
   @Test
-  public void fromTest2() {
-    // Arrange
-    ImmutableThumbnail.Builder builderResult = ImmutableThumbnail.builder();
+  public void constructorTest() {
+    // Arrange and Act
+    ImmutableThumbnail.Json actualJson = new ImmutableThumbnail.Json();
 
-    // Act and Assert
+    // Assert
+    assertNull(actualJson.lastUpdatedAt);
+    assertNull(actualJson.mimeType);
+    assertNull(actualJson.lastUpdatedBy);
+    assertNull(actualJson.blob);
+    assertNull(actualJson.provenance);
+    assertNull(actualJson.parentEntityReference);
+  }
+
+  @Test
+  public void copyOfTest() {
+    // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    builderResult.from((LastUpdatedProvider) new ImmutableThumbnail.Json());
+    ImmutableThumbnail.copyOf(new ImmutableThumbnail.Json());
+  }
+
+  @Test
+  public void externalIdTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableThumbnail.Json()).externalId();
+  }
+
+  @Test
+  public void fromJsonTest() {
+    // Arrange, Act and Assert
+    thrown.expect(IllegalStateException.class);
+    ImmutableThumbnail.fromJson(new ImmutableThumbnail.Json());
   }
 
   @Test
@@ -63,17 +75,68 @@ public class ImmutableThumbnailDiffblueTest {
   }
 
   @Test
-  public void copyOfTest() {
-    // Arrange, Act and Assert
+  public void fromTest2() {
+    // Arrange
+    ImmutableThumbnail.Builder builderResult = ImmutableThumbnail.builder();
+
+    // Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    ImmutableThumbnail.copyOf(new ImmutableThumbnail.Json());
+    builderResult.from((LastUpdatedProvider) new ImmutableThumbnail.Json());
   }
 
   @Test
-  public void fromJsonTest() {
+  public void fromTest3() {
+    // Arrange
+    ImmutableThumbnail.Builder builderResult = ImmutableThumbnail.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from((ExternalIdProvider) new ImmutableThumbnail.Json());
+  }
+
+  @Test
+  public void fromTest4() {
+    // Arrange
+    ImmutableThumbnail.Builder builderResult = ImmutableThumbnail.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from(new ImmutableThumbnail.Json());
+  }
+
+  @Test
+  public void lastUpdatedAtTest() {
     // Arrange, Act and Assert
-    thrown.expect(IllegalStateException.class);
-    ImmutableThumbnail.fromJson(new ImmutableThumbnail.Json());
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableThumbnail.Json()).lastUpdatedAt();
+  }
+
+  @Test
+  public void lastUpdatedByTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableThumbnail.Json()).lastUpdatedBy();
+  }
+
+  @Test
+  public void mimeTypeTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableThumbnail.Json()).mimeType();
+  }
+
+  @Test
+  public void parentEntityReferenceTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableThumbnail.Json()).parentEntityReference();
+  }
+
+  @Test
+  public void provenanceTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableThumbnail.Json()).provenance();
   }
 
   @Test
@@ -96,10 +159,10 @@ public class ImmutableThumbnailDiffblueTest {
     ImmutableThumbnail.Json json = new ImmutableThumbnail.Json();
 
     // Act
-    json.setLastUpdatedBy("foo");
+    json.setLastUpdatedBy("lastUpdatedBy");
 
     // Assert
-    assertEquals("foo", json.lastUpdatedBy);
+    assertEquals("lastUpdatedBy", json.lastUpdatedBy);
   }
 
   @Test
@@ -108,73 +171,10 @@ public class ImmutableThumbnailDiffblueTest {
     ImmutableThumbnail.Json json = new ImmutableThumbnail.Json();
 
     // Act
-    json.setMimeType("foo");
+    json.setMimeType("mimeType");
 
     // Assert
-    assertEquals("foo", json.mimeType);
-  }
-
-  @Test
-  public void mimeTypeTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableThumbnail.Json()).mimeType();
-  }
-
-  @Test
-  public void lastUpdatedByTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableThumbnail.Json()).lastUpdatedBy();
-  }
-
-  @Test
-  public void provenanceTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableThumbnail.Json()).provenance();
-  }
-
-  @Test
-  public void parentEntityReferenceTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableThumbnail.Json()).parentEntityReference();
-  }
-
-  @Test
-  public void lastUpdatedAtTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableThumbnail.Json()).lastUpdatedAt();
-  }
-
-  @Test
-  public void externalIdTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableThumbnail.Json()).externalId();
-  }
-
-  @Test
-  public void blobTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableThumbnail.Json()).blob();
-  }
-
-  @Test
-  public void constructorTest() {
-    // Arrange and Act
-    ImmutableThumbnail.Json actualJson = new ImmutableThumbnail.Json();
-
-    // Assert
-    assertNull(actualJson.lastUpdatedAt);
-    assertNull(actualJson.mimeType);
-    assertNull(actualJson.lastUpdatedBy);
-    assertNull(actualJson.blob);
-    assertNull(actualJson.provenance);
-    assertNull(actualJson.parentEntityReference);
+    assertEquals("mimeType", json.mimeType);
   }
 
   @Test
@@ -183,10 +183,10 @@ public class ImmutableThumbnailDiffblueTest {
     ImmutableThumbnail.Json json = new ImmutableThumbnail.Json();
 
     // Act
-    json.setProvenance("foo");
+    json.setProvenance("provenance");
 
     // Assert
-    assertEquals("foo", json.provenance);
+    assertEquals("provenance", json.provenance);
   }
 }
 

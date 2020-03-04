@@ -13,28 +13,10 @@ public class ImmutableNotificationSummaryDiffblueTest {
   @Rule
   public ExpectedException thrown = ExpectedException.none();
   @Test
-  public void copyOfTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    ImmutableNotificationSummary.copyOf(new ImmutableNotificationSummary.Json());
-  }
-  @Test
-  public void fromJsonTest() {
+  public void buildTest() {
     // Arrange, Act and Assert
     thrown.expect(IllegalStateException.class);
-    ImmutableNotificationSummary.fromJson(new ImmutableNotificationSummary.Json());
-  }
-  @Test
-  public void kindTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableNotificationSummary.Json()).kind();
-  }
-  @Test
-  public void countTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableNotificationSummary.Json()).count();
+    ImmutableNotificationSummary.builder().build();
   }
   @Test
   public void constructorTest() {
@@ -47,15 +29,37 @@ public class ImmutableNotificationSummaryDiffblueTest {
     assertFalse(actualJson.countIsSet);
   }
   @Test
-  public void setKindTest() {
+  public void copyOfTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    ImmutableNotificationSummary.copyOf(new ImmutableNotificationSummary.Json());
+  }
+  @Test
+  public void countTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableNotificationSummary.Json()).count();
+  }
+  @Test
+  public void fromJsonTest() {
+    // Arrange, Act and Assert
+    thrown.expect(IllegalStateException.class);
+    ImmutableNotificationSummary.fromJson(new ImmutableNotificationSummary.Json());
+  }
+  @Test
+  public void fromTest() {
     // Arrange
-    ImmutableNotificationSummary.Json json = new ImmutableNotificationSummary.Json();
+    ImmutableNotificationSummary.Builder builderResult = ImmutableNotificationSummary.builder();
 
-    // Act
-    json.setKind(EntityKind.ACTOR);
-
-    // Assert
-    assertEquals(EntityKind.ACTOR, json.kind);
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from(new ImmutableNotificationSummary.Json());
+  }
+  @Test
+  public void kindTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableNotificationSummary.Json()).kind();
   }
   @Test
   public void setCountTest() {
@@ -70,19 +74,15 @@ public class ImmutableNotificationSummaryDiffblueTest {
     assertTrue(json.countIsSet);
   }
   @Test
-  public void buildTest() {
-    // Arrange, Act and Assert
-    thrown.expect(IllegalStateException.class);
-    ImmutableNotificationSummary.builder().build();
-  }
-  @Test
-  public void fromTest() {
+  public void setKindTest() {
     // Arrange
-    ImmutableNotificationSummary.Builder builderResult = ImmutableNotificationSummary.builder();
+    ImmutableNotificationSummary.Json json = new ImmutableNotificationSummary.Json();
 
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from(new ImmutableNotificationSummary.Json());
+    // Act
+    json.setKind(EntityKind.ACTOR);
+
+    // Assert
+    assertEquals(EntityKind.ACTOR, json.kind);
   }
 }
 

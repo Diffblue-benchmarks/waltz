@@ -10,6 +10,28 @@ public class ImmutableSurveyRunWithOwnerAndStatsDiffblueTest {
   @Rule
   public ExpectedException thrown = ExpectedException.none();
   @Test
+  public void buildTest() {
+    // Arrange, Act and Assert
+    thrown.expect(IllegalStateException.class);
+    ImmutableSurveyRunWithOwnerAndStats.builder().build();
+  }
+  @Test
+  public void completionRateStatsTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableSurveyRunWithOwnerAndStats.Json()).completionRateStats();
+  }
+  @Test
+  public void constructorTest() {
+    // Arrange and Act
+    ImmutableSurveyRunWithOwnerAndStats.Json actualJson = new ImmutableSurveyRunWithOwnerAndStats.Json();
+
+    // Assert
+    assertNull(actualJson.completionRateStats);
+    assertNull(actualJson.owner);
+    assertNull(actualJson.surveyRun);
+  }
+  @Test
   public void copyOfTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
@@ -31,44 +53,10 @@ public class ImmutableSurveyRunWithOwnerAndStatsDiffblueTest {
     builderResult.from(new ImmutableSurveyRunWithOwnerAndStats.Json());
   }
   @Test
-  public void buildTest() {
-    // Arrange, Act and Assert
-    thrown.expect(IllegalStateException.class);
-    ImmutableSurveyRunWithOwnerAndStats.builder().build();
-  }
-  @Test
-  public void setSurveyRunTest() {
-    // Arrange
-    ImmutableSurveyRunWithOwnerAndStats.Json json = new ImmutableSurveyRunWithOwnerAndStats.Json();
-    ImmutableSurveyRun.Json json1 = new ImmutableSurveyRun.Json();
-
-    // Act
-    json.setSurveyRun(json1);
-
-    // Assert
-    assertSame(json1, json.surveyRun);
-  }
-  @Test
   public void ownerTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
     (new ImmutableSurveyRunWithOwnerAndStats.Json()).owner();
-  }
-  @Test
-  public void constructorTest() {
-    // Arrange and Act
-    ImmutableSurveyRunWithOwnerAndStats.Json actualJson = new ImmutableSurveyRunWithOwnerAndStats.Json();
-
-    // Assert
-    assertNull(actualJson.completionRateStats);
-    assertNull(actualJson.owner);
-    assertNull(actualJson.surveyRun);
-  }
-  @Test
-  public void surveyRunTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableSurveyRunWithOwnerAndStats.Json()).surveyRun();
   }
   @Test
   public void setCompletionRateStatsTest() {
@@ -83,10 +71,22 @@ public class ImmutableSurveyRunWithOwnerAndStatsDiffblueTest {
     assertSame(json1, json.completionRateStats);
   }
   @Test
-  public void completionRateStatsTest() {
+  public void setSurveyRunTest() {
+    // Arrange
+    ImmutableSurveyRunWithOwnerAndStats.Json json = new ImmutableSurveyRunWithOwnerAndStats.Json();
+    ImmutableSurveyRun.Json json1 = new ImmutableSurveyRun.Json();
+
+    // Act
+    json.setSurveyRun(json1);
+
+    // Assert
+    assertSame(json1, json.surveyRun);
+  }
+  @Test
+  public void surveyRunTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableSurveyRunWithOwnerAndStats.Json()).completionRateStats();
+    (new ImmutableSurveyRunWithOwnerAndStats.Json()).surveyRun();
   }
 }
 

@@ -13,39 +13,10 @@ public class ImmutableSettingDiffblueTest {
   @Rule
   public ExpectedException thrown = ExpectedException.none();
   @Test
-  public void fromJsonTest() {
+  public void buildTest() {
     // Arrange, Act and Assert
     thrown.expect(IllegalStateException.class);
-    ImmutableSetting.fromJson(new ImmutableSetting.Json());
-  }
-  @Test
-  public void copyOfTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    ImmutableSetting.copyOf(new ImmutableSetting.Json());
-  }
-  @Test
-  public void restrictedTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableSetting.Json()).restricted();
-  }
-  @Test
-  public void nameTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableSetting.Json()).name();
-  }
-  @Test
-  public void setNameTest() {
-    // Arrange
-    ImmutableSetting.Json json = new ImmutableSetting.Json();
-
-    // Act
-    json.setName("name");
-
-    // Assert
-    assertEquals("name", json.name);
+    ImmutableSetting.builder().build();
   }
   @Test
   public void constructorTest() {
@@ -58,10 +29,57 @@ public class ImmutableSettingDiffblueTest {
     assertFalse(actualJson.restrictedIsSet);
   }
   @Test
-  public void valueTest() {
+  public void copyOfTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableSetting.Json()).value();
+    ImmutableSetting.copyOf(new ImmutableSetting.Json());
+  }
+  @Test
+  public void fromJsonTest() {
+    // Arrange, Act and Assert
+    thrown.expect(IllegalStateException.class);
+    ImmutableSetting.fromJson(new ImmutableSetting.Json());
+  }
+  @Test
+  public void fromTest() {
+    // Arrange
+    ImmutableSetting.Builder builderResult = ImmutableSetting.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from((NameProvider) new ImmutableSetting.Json());
+  }
+  @Test
+  public void fromTest2() {
+    // Arrange
+    ImmutableSetting.Builder builderResult = ImmutableSetting.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from(new ImmutableSetting.Json());
+  }
+  @Test
+  public void nameTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableSetting.Json()).name();
+  }
+  @Test
+  public void restrictedTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableSetting.Json()).restricted();
+  }
+  @Test
+  public void setNameTest() {
+    // Arrange
+    ImmutableSetting.Json json = new ImmutableSetting.Json();
+
+    // Act
+    json.setName("name");
+
+    // Assert
+    assertEquals("name", json.name);
   }
   @Test
   public void setRestrictedTest() {
@@ -76,28 +94,10 @@ public class ImmutableSettingDiffblueTest {
     assertTrue(json.restrictedIsSet);
   }
   @Test
-  public void fromTest2() {
-    // Arrange
-    ImmutableSetting.Builder builderResult = ImmutableSetting.builder();
-
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from(new ImmutableSetting.Json());
-  }
-  @Test
-  public void fromTest() {
-    // Arrange
-    ImmutableSetting.Builder builderResult = ImmutableSetting.builder();
-
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from((NameProvider) new ImmutableSetting.Json());
-  }
-  @Test
-  public void buildTest() {
+  public void valueTest() {
     // Arrange, Act and Assert
-    thrown.expect(IllegalStateException.class);
-    ImmutableSetting.builder().build();
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableSetting.Json()).value();
   }
 }
 

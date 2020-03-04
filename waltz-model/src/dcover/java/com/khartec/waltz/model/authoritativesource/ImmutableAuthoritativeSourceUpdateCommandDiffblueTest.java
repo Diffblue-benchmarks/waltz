@@ -13,10 +13,31 @@ public class ImmutableAuthoritativeSourceUpdateCommandDiffblueTest {
   @Rule
   public ExpectedException thrown = ExpectedException.none();
   @Test
+  public void buildTest() {
+    // Arrange, Act and Assert
+    thrown.expect(IllegalStateException.class);
+    ImmutableAuthoritativeSourceUpdateCommand.builder().build();
+  }
+  @Test
+  public void constructorTest() {
+    // Arrange and Act
+    ImmutableAuthoritativeSourceUpdateCommand.Json actualJson = new ImmutableAuthoritativeSourceUpdateCommand.Json();
+
+    // Assert
+    assertNull(actualJson.description);
+    assertNull(actualJson.rating);
+  }
+  @Test
   public void copyOfTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
     ImmutableAuthoritativeSourceUpdateCommand.copyOf(new ImmutableAuthoritativeSourceUpdateCommand.Json());
+  }
+  @Test
+  public void descriptionTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableAuthoritativeSourceUpdateCommand.Json()).description();
   }
   @Test
   public void fromJsonTest() {
@@ -25,20 +46,14 @@ public class ImmutableAuthoritativeSourceUpdateCommandDiffblueTest {
     ImmutableAuthoritativeSourceUpdateCommand.fromJson(new ImmutableAuthoritativeSourceUpdateCommand.Json());
   }
   @Test
-  public void buildTest() {
-    // Arrange, Act and Assert
-    thrown.expect(IllegalStateException.class);
-    ImmutableAuthoritativeSourceUpdateCommand.builder().build();
-  }
-  @Test
-  public void fromTest3() {
+  public void fromTest() {
     // Arrange
     ImmutableAuthoritativeSourceUpdateCommand.Builder builderResult = ImmutableAuthoritativeSourceUpdateCommand
         .builder();
 
     // Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    builderResult.from(new ImmutableAuthoritativeSourceUpdateCommand.Json());
+    builderResult.from((DescriptionProvider) new ImmutableAuthoritativeSource.Json());
   }
   @Test
   public void fromTest2() {
@@ -51,14 +66,26 @@ public class ImmutableAuthoritativeSourceUpdateCommandDiffblueTest {
     builderResult.from((IdProvider) new ImmutableAuthoritativeSource.Json());
   }
   @Test
-  public void fromTest() {
+  public void fromTest3() {
     // Arrange
     ImmutableAuthoritativeSourceUpdateCommand.Builder builderResult = ImmutableAuthoritativeSourceUpdateCommand
         .builder();
 
     // Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    builderResult.from((DescriptionProvider) new ImmutableAuthoritativeSource.Json());
+    builderResult.from(new ImmutableAuthoritativeSourceUpdateCommand.Json());
+  }
+  @Test
+  public void idTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableAuthoritativeSourceUpdateCommand.Json()).id();
+  }
+  @Test
+  public void ratingTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableAuthoritativeSourceUpdateCommand.Json()).rating();
   }
   @Test
   public void setDescriptionTest() {
@@ -72,27 +99,6 @@ public class ImmutableAuthoritativeSourceUpdateCommandDiffblueTest {
     assertEquals("description", json.description);
   }
   @Test
-  public void descriptionTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableAuthoritativeSourceUpdateCommand.Json()).description();
-  }
-  @Test
-  public void idTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableAuthoritativeSourceUpdateCommand.Json()).id();
-  }
-  @Test
-  public void constructorTest() {
-    // Arrange and Act
-    ImmutableAuthoritativeSourceUpdateCommand.Json actualJson = new ImmutableAuthoritativeSourceUpdateCommand.Json();
-
-    // Assert
-    assertNull(actualJson.description);
-    assertNull(actualJson.rating);
-  }
-  @Test
   public void setRatingTest() {
     // Arrange
     ImmutableAuthoritativeSourceUpdateCommand.Json json = new ImmutableAuthoritativeSourceUpdateCommand.Json();
@@ -102,12 +108,6 @@ public class ImmutableAuthoritativeSourceUpdateCommandDiffblueTest {
 
     // Assert
     assertEquals(AuthoritativenessRating.PRIMARY, json.rating);
-  }
-  @Test
-  public void ratingTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableAuthoritativeSourceUpdateCommand.Json()).rating();
   }
 }
 

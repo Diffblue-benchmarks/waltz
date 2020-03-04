@@ -16,67 +16,10 @@ public class ImmutableCheckpointDiffblueTest {
   @Rule
   public ExpectedException thrown = ExpectedException.none();
   @Test
-  public void setDescriptionTest() {
-    // Arrange
-    ImmutableCheckpoint.Json json = new ImmutableCheckpoint.Json();
-
-    // Act
-    json.setDescription("description");
-
-    // Assert
-    assertEquals("description", json.description);
-  }
-  @Test
-  public void nameTest() {
+  public void buildTest() {
     // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableCheckpoint.Json()).name();
-  }
-  @Test
-  public void setQuarterTest() {
-    // Arrange
-    ImmutableCheckpoint.Json json = new ImmutableCheckpoint.Json();
-
-    // Act
-    json.setQuarter(Quarter.Q1);
-
-    // Assert
-    assertEquals(Quarter.Q1, json.quarter);
-  }
-  @Test
-  public void descriptionTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableCheckpoint.Json()).description();
-  }
-  @Test
-  public void setNameTest() {
-    // Arrange
-    ImmutableCheckpoint.Json json = new ImmutableCheckpoint.Json();
-
-    // Act
-    json.setName("name");
-
-    // Assert
-    assertEquals("name", json.name);
-  }
-  @Test
-  public void setYearTest() {
-    // Arrange
-    ImmutableCheckpoint.Json json = new ImmutableCheckpoint.Json();
-
-    // Act
-    json.setYear(1);
-
-    // Assert
-    assertEquals(1, json.year);
-    assertTrue(json.yearIsSet);
-  }
-  @Test
-  public void idTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableCheckpoint.Json()).id();
+    thrown.expect(IllegalStateException.class);
+    ImmutableCheckpoint.builder().build();
   }
   @Test
   public void constructorTest() {
@@ -91,49 +34,22 @@ public class ImmutableCheckpointDiffblueTest {
     assertNull(actualJson.name);
   }
   @Test
-  public void yearTest() {
+  public void copyOfTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableCheckpoint.Json()).year();
+    ImmutableCheckpoint.copyOf(new ImmutableCheckpoint.Json());
   }
   @Test
-  public void quarterTest() {
+  public void descriptionTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableCheckpoint.Json()).quarter();
+    (new ImmutableCheckpoint.Json()).description();
   }
   @Test
-  public void buildTest() {
+  public void fromJsonTest() {
     // Arrange, Act and Assert
     thrown.expect(IllegalStateException.class);
-    ImmutableCheckpoint.builder().build();
-  }
-  @Test
-  public void fromTest4() {
-    // Arrange
-    ImmutableCheckpoint.Builder builderResult = ImmutableCheckpoint.builder();
-
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from((NameProvider) new ImmutableCheckpoint.Json());
-  }
-  @Test
-  public void fromTest3() {
-    // Arrange
-    ImmutableCheckpoint.Builder builderResult = ImmutableCheckpoint.builder();
-
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from((DescriptionProvider) new ImmutableCheckpoint.Json());
-  }
-  @Test
-  public void fromTest2() {
-    // Arrange
-    ImmutableCheckpoint.Builder builderResult = ImmutableCheckpoint.builder();
-
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from(new ImmutableCheckpoint.Json());
+    ImmutableCheckpoint.fromJson(new ImmutableCheckpoint.Json());
   }
   @Test
   public void fromTest() {
@@ -145,16 +61,100 @@ public class ImmutableCheckpointDiffblueTest {
     builderResult.from((IdProvider) new ImmutableCheckpoint.Json());
   }
   @Test
-  public void copyOfTest() {
-    // Arrange, Act and Assert
+  public void fromTest2() {
+    // Arrange
+    ImmutableCheckpoint.Builder builderResult = ImmutableCheckpoint.builder();
+
+    // Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    ImmutableCheckpoint.copyOf(new ImmutableCheckpoint.Json());
+    builderResult.from(new ImmutableCheckpoint.Json());
   }
   @Test
-  public void fromJsonTest() {
+  public void fromTest3() {
+    // Arrange
+    ImmutableCheckpoint.Builder builderResult = ImmutableCheckpoint.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from((DescriptionProvider) new ImmutableCheckpoint.Json());
+  }
+  @Test
+  public void fromTest4() {
+    // Arrange
+    ImmutableCheckpoint.Builder builderResult = ImmutableCheckpoint.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from((NameProvider) new ImmutableCheckpoint.Json());
+  }
+  @Test
+  public void idTest() {
     // Arrange, Act and Assert
-    thrown.expect(IllegalStateException.class);
-    ImmutableCheckpoint.fromJson(new ImmutableCheckpoint.Json());
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableCheckpoint.Json()).id();
+  }
+  @Test
+  public void nameTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableCheckpoint.Json()).name();
+  }
+  @Test
+  public void quarterTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableCheckpoint.Json()).quarter();
+  }
+  @Test
+  public void setDescriptionTest() {
+    // Arrange
+    ImmutableCheckpoint.Json json = new ImmutableCheckpoint.Json();
+
+    // Act
+    json.setDescription("description");
+
+    // Assert
+    assertEquals("description", json.description);
+  }
+  @Test
+  public void setNameTest() {
+    // Arrange
+    ImmutableCheckpoint.Json json = new ImmutableCheckpoint.Json();
+
+    // Act
+    json.setName("name");
+
+    // Assert
+    assertEquals("name", json.name);
+  }
+  @Test
+  public void setQuarterTest() {
+    // Arrange
+    ImmutableCheckpoint.Json json = new ImmutableCheckpoint.Json();
+
+    // Act
+    json.setQuarter(Quarter.Q1);
+
+    // Assert
+    assertEquals(Quarter.Q1, json.quarter);
+  }
+  @Test
+  public void setYearTest() {
+    // Arrange
+    ImmutableCheckpoint.Json json = new ImmutableCheckpoint.Json();
+
+    // Act
+    json.setYear(1);
+
+    // Assert
+    assertEquals(1, json.year);
+    assertTrue(json.yearIsSet);
+  }
+  @Test
+  public void yearTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableCheckpoint.Json()).year();
   }
 }
 

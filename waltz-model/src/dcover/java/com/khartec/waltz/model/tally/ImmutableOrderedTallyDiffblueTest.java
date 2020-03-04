@@ -12,16 +12,34 @@ public class ImmutableOrderedTallyDiffblueTest {
   @Rule
   public ExpectedException thrown = ExpectedException.none();
   @Test
-  public void setCountTest() {
-    // Arrange
-    ImmutableOrderedTally.Json<Object> json = new ImmutableOrderedTally.Json<Object>();
-
-    // Act
-    json.setCount(10.0);
+  public void constructorTest() {
+    // Arrange and Act
+    ImmutableOrderedTally.Json<Object> actualJson = new ImmutableOrderedTally.Json<Object>();
 
     // Assert
-    assertTrue(json.countIsSet);
-    assertEquals(10.0, json.count, 0.0);
+    assertFalse(actualJson.indexIsSet);
+    assertFalse(actualJson.countIsSet);
+    assertNull(actualJson.id);
+    assertEquals(0.0, actualJson.count, 0.0);
+    assertEquals(0, actualJson.index);
+  }
+  @Test
+  public void copyOfTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    ImmutableOrderedTally.<Object>copyOf(new ImmutableOrderedTally.Json<Object>());
+  }
+  @Test
+  public void countTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableOrderedTally.Json<Object>()).count();
+  }
+  @Test
+  public void fromJsonTest() {
+    // Arrange, Act and Assert
+    thrown.expect(IllegalStateException.class);
+    ImmutableOrderedTally.<Object>fromJson(new ImmutableOrderedTally.Json<Object>());
   }
   @Test
   public void idTest() {
@@ -36,34 +54,16 @@ public class ImmutableOrderedTallyDiffblueTest {
     (new ImmutableOrderedTally.Json<Object>()).index();
   }
   @Test
-  public void countTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableOrderedTally.Json<Object>()).count();
-  }
-  @Test
-  public void setIndexTest() {
+  public void setCountTest() {
     // Arrange
     ImmutableOrderedTally.Json<Object> json = new ImmutableOrderedTally.Json<Object>();
 
     // Act
-    json.setIndex(1);
+    json.setCount(10.0);
 
     // Assert
-    assertTrue(json.indexIsSet);
-    assertEquals(1, json.index);
-  }
-  @Test
-  public void constructorTest() {
-    // Arrange and Act
-    ImmutableOrderedTally.Json<Object> actualJson = new ImmutableOrderedTally.Json<Object>();
-
-    // Assert
-    assertFalse(actualJson.indexIsSet);
-    assertFalse(actualJson.countIsSet);
-    assertNull(actualJson.id);
-    assertEquals(0.0, actualJson.count, 0.0);
-    assertEquals(0, actualJson.index);
+    assertTrue(json.countIsSet);
+    assertEquals(10.0, json.count, 0.0);
   }
   @Test
   public void setIdTest() {
@@ -77,16 +77,16 @@ public class ImmutableOrderedTallyDiffblueTest {
     assertTrue(json.id instanceof String);
   }
   @Test
-  public void copyOfTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    ImmutableOrderedTally.<Object>copyOf(new ImmutableOrderedTally.Json<Object>());
-  }
-  @Test
-  public void fromJsonTest() {
-    // Arrange, Act and Assert
-    thrown.expect(IllegalStateException.class);
-    ImmutableOrderedTally.<Object>fromJson(new ImmutableOrderedTally.Json<Object>());
+  public void setIndexTest() {
+    // Arrange
+    ImmutableOrderedTally.Json<Object> json = new ImmutableOrderedTally.Json<Object>();
+
+    // Act
+    json.setIndex(1);
+
+    // Assert
+    assertTrue(json.indexIsSet);
+    assertEquals(1, json.index);
   }
 }
 

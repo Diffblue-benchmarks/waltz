@@ -12,127 +12,10 @@ public class ImmutableUserAgentInfoDiffblueTest {
   public ExpectedException thrown = ExpectedException.none();
 
   @Test
-  public void fromTest2() {
-    // Arrange
-    ImmutableUserAgentInfo.Builder builderResult = ImmutableUserAgentInfo.builder();
-
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from((UserNameProvider) new ImmutableUserAgentInfo.Json());
-  }
-
-  @Test
   public void buildTest() {
     // Arrange, Act and Assert
     thrown.expect(IllegalStateException.class);
     ImmutableUserAgentInfo.builder().build();
-  }
-
-  @Test
-  public void fromTest() {
-    // Arrange
-    ImmutableUserAgentInfo.Builder builderResult = ImmutableUserAgentInfo.builder();
-
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from(new ImmutableUserAgentInfo.Json());
-  }
-
-  @Test
-  public void fromJsonTest() {
-    // Arrange, Act and Assert
-    thrown.expect(IllegalStateException.class);
-    ImmutableUserAgentInfo.fromJson(new ImmutableUserAgentInfo.Json());
-  }
-
-  @Test
-  public void copyOfTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    ImmutableUserAgentInfo.copyOf(new ImmutableUserAgentInfo.Json());
-  }
-
-  @Test
-  public void operatingSystemTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableUserAgentInfo.Json()).operatingSystem();
-  }
-
-  @Test
-  public void resolutionTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableUserAgentInfo.Json()).resolution();
-  }
-
-  @Test
-  public void loginTimestampTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableUserAgentInfo.Json()).loginTimestamp();
-  }
-
-  @Test
-  public void userAgentTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableUserAgentInfo.Json()).userAgent();
-  }
-
-  @Test
-  public void setUserNameTest() {
-    // Arrange
-    ImmutableUserAgentInfo.Json json = new ImmutableUserAgentInfo.Json();
-
-    // Act
-    json.setUserName("username");
-
-    // Assert
-    assertEquals("username", json.userName);
-  }
-
-  @Test
-  public void setResolutionTest() {
-    // Arrange
-    ImmutableUserAgentInfo.Json json = new ImmutableUserAgentInfo.Json();
-
-    // Act
-    json.setResolution("foo");
-
-    // Assert
-    assertEquals("foo", json.resolution);
-  }
-
-  @Test
-  public void setIpAddressTest() {
-    // Arrange
-    ImmutableUserAgentInfo.Json json = new ImmutableUserAgentInfo.Json();
-
-    // Act
-    json.setIpAddress("foo");
-
-    // Assert
-    assertEquals("foo", json.ipAddress);
-  }
-
-  @Test
-  public void ipAddressTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableUserAgentInfo.Json()).ipAddress();
-  }
-
-  @Test
-  public void setOperatingSystemTest() {
-    // Arrange
-    ImmutableUserAgentInfo.Json json = new ImmutableUserAgentInfo.Json();
-
-    // Act
-    json.setOperatingSystem("foo");
-
-    // Assert
-    assertEquals("foo", json.operatingSystem);
   }
 
   @Test
@@ -150,10 +33,101 @@ public class ImmutableUserAgentInfoDiffblueTest {
   }
 
   @Test
-  public void userNameTest() {
+  public void copyOfTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableUserAgentInfo.Json()).userName();
+    ImmutableUserAgentInfo.copyOf(new ImmutableUserAgentInfo.Json());
+  }
+
+  @Test
+  public void fromJsonTest() {
+    // Arrange, Act and Assert
+    thrown.expect(IllegalStateException.class);
+    ImmutableUserAgentInfo.fromJson(new ImmutableUserAgentInfo.Json());
+  }
+
+  @Test
+  public void fromTest() {
+    // Arrange
+    ImmutableUserAgentInfo.Builder builderResult = ImmutableUserAgentInfo.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from(new ImmutableUserAgentInfo.Json());
+  }
+
+  @Test
+  public void fromTest2() {
+    // Arrange
+    ImmutableUserAgentInfo.Builder builderResult = ImmutableUserAgentInfo.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from((UserNameProvider) new ImmutableUserAgentInfo.Json());
+  }
+
+  @Test
+  public void ipAddressTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableUserAgentInfo.Json()).ipAddress();
+  }
+
+  @Test
+  public void loginTimestampTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableUserAgentInfo.Json()).loginTimestamp();
+  }
+
+  @Test
+  public void operatingSystemTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableUserAgentInfo.Json()).operatingSystem();
+  }
+
+  @Test
+  public void resolutionTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableUserAgentInfo.Json()).resolution();
+  }
+
+  @Test
+  public void setIpAddressTest() {
+    // Arrange
+    ImmutableUserAgentInfo.Json json = new ImmutableUserAgentInfo.Json();
+
+    // Act
+    json.setIpAddress("ipAddress");
+
+    // Assert
+    assertEquals("ipAddress", json.ipAddress);
+  }
+
+  @Test
+  public void setOperatingSystemTest() {
+    // Arrange
+    ImmutableUserAgentInfo.Json json = new ImmutableUserAgentInfo.Json();
+
+    // Act
+    json.setOperatingSystem("operatingSystem");
+
+    // Assert
+    assertEquals("operatingSystem", json.operatingSystem);
+  }
+
+  @Test
+  public void setResolutionTest() {
+    // Arrange
+    ImmutableUserAgentInfo.Json json = new ImmutableUserAgentInfo.Json();
+
+    // Act
+    json.setResolution("resolution");
+
+    // Assert
+    assertEquals("resolution", json.resolution);
   }
 
   @Test
@@ -162,10 +136,36 @@ public class ImmutableUserAgentInfoDiffblueTest {
     ImmutableUserAgentInfo.Json json = new ImmutableUserAgentInfo.Json();
 
     // Act
-    json.setUserAgent("foo");
+    json.setUserAgent("userAgent");
 
     // Assert
-    assertEquals("foo", json.userAgent);
+    assertEquals("userAgent", json.userAgent);
+  }
+
+  @Test
+  public void setUserNameTest() {
+    // Arrange
+    ImmutableUserAgentInfo.Json json = new ImmutableUserAgentInfo.Json();
+
+    // Act
+    json.setUserName("username");
+
+    // Assert
+    assertEquals("username", json.userName);
+  }
+
+  @Test
+  public void userAgentTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableUserAgentInfo.Json()).userAgent();
+  }
+
+  @Test
+  public void userNameTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableUserAgentInfo.Json()).userName();
   }
 }
 

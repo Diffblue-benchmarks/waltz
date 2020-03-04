@@ -16,111 +16,10 @@ public class ImmutableTagUsageDiffblueTest {
   public ExpectedException thrown = ExpectedException.none();
 
   @Test
-  public void fromTest4() {
-    // Arrange
-    ImmutableTagUsage.Builder builderResult = ImmutableTagUsage.builder();
-
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from(new ImmutableTagUsage.Json());
-  }
-
-  @Test
   public void buildTest() {
     // Arrange, Act and Assert
     thrown.expect(IllegalStateException.class);
     ImmutableTagUsage.builder().build();
-  }
-
-  @Test
-  public void fromTest3() {
-    // Arrange
-    ImmutableTagUsage.Builder builderResult = ImmutableTagUsage.builder();
-
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from((WaltzEntity) new ImmutableTagUsage.Json());
-  }
-
-  @Test
-  public void fromTest2() {
-    // Arrange
-    ImmutableTagUsage.Builder builderResult = ImmutableTagUsage.builder();
-
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from((ProvenanceProvider) new ImmutableTagUsage.Json());
-  }
-
-  @Test
-  public void fromTest() {
-    // Arrange
-    ImmutableTagUsage.Builder builderResult = ImmutableTagUsage.builder();
-
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from((CreatedProvider) new ImmutableTagUsage.Json());
-  }
-
-  @Test
-  public void fromJsonTest() {
-    // Arrange, Act and Assert
-    thrown.expect(IllegalStateException.class);
-    ImmutableTagUsage.fromJson(new ImmutableTagUsage.Json());
-  }
-
-  @Test
-  public void copyOfTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    ImmutableTagUsage.copyOf(new ImmutableTagUsage.Json());
-  }
-
-  @Test
-  public void createdByTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableTagUsage.Json()).createdBy();
-  }
-
-  @Test
-  public void entityReferenceTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableTagUsage.Json()).entityReference();
-  }
-
-  @Test
-  public void tagIdTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableTagUsage.Json()).tagId();
-  }
-
-  @Test
-  public void createdAtTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableTagUsage.Json()).createdAt();
-  }
-
-  @Test
-  public void setCreatedByTest() {
-    // Arrange
-    ImmutableTagUsage.Json json = new ImmutableTagUsage.Json();
-
-    // Act
-    json.setCreatedBy("foo");
-
-    // Assert
-    assertEquals("foo", json.createdBy);
-  }
-
-  @Test
-  public void provenanceTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableTagUsage.Json()).provenance();
   }
 
   @Test
@@ -138,6 +37,112 @@ public class ImmutableTagUsageDiffblueTest {
   }
 
   @Test
+  public void copyOfTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    ImmutableTagUsage.copyOf(new ImmutableTagUsage.Json());
+  }
+
+  @Test
+  public void createdAtTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableTagUsage.Json()).createdAt();
+  }
+
+  @Test
+  public void createdByTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableTagUsage.Json()).createdBy();
+  }
+
+  @Test
+  public void entityReferenceTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableTagUsage.Json()).entityReference();
+  }
+
+  @Test
+  public void fromJsonTest() {
+    // Arrange, Act and Assert
+    thrown.expect(IllegalStateException.class);
+    ImmutableTagUsage.fromJson(new ImmutableTagUsage.Json());
+  }
+
+  @Test
+  public void fromTest() {
+    // Arrange
+    ImmutableTagUsage.Builder builderResult = ImmutableTagUsage.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from((CreatedProvider) new ImmutableTagUsage.Json());
+  }
+
+  @Test
+  public void fromTest2() {
+    // Arrange
+    ImmutableTagUsage.Builder builderResult = ImmutableTagUsage.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from((ProvenanceProvider) new ImmutableTagUsage.Json());
+  }
+
+  @Test
+  public void fromTest3() {
+    // Arrange
+    ImmutableTagUsage.Builder builderResult = ImmutableTagUsage.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from((WaltzEntity) new ImmutableTagUsage.Json());
+  }
+
+  @Test
+  public void fromTest4() {
+    // Arrange
+    ImmutableTagUsage.Builder builderResult = ImmutableTagUsage.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from(new ImmutableTagUsage.Json());
+  }
+
+  @Test
+  public void provenanceTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableTagUsage.Json()).provenance();
+  }
+
+  @Test
+  public void setCreatedByTest() {
+    // Arrange
+    ImmutableTagUsage.Json json = new ImmutableTagUsage.Json();
+
+    // Act
+    json.setCreatedBy("createdBy");
+
+    // Assert
+    assertEquals("createdBy", json.createdBy);
+  }
+
+  @Test
+  public void setProvenanceTest() {
+    // Arrange
+    ImmutableTagUsage.Json json = new ImmutableTagUsage.Json();
+
+    // Act
+    json.setProvenance("provenance");
+
+    // Assert
+    assertEquals("provenance", json.provenance);
+  }
+
+  @Test
   public void setTagIdTest() {
     // Arrange
     ImmutableTagUsage.Json json = new ImmutableTagUsage.Json();
@@ -151,15 +156,10 @@ public class ImmutableTagUsageDiffblueTest {
   }
 
   @Test
-  public void setProvenanceTest() {
-    // Arrange
-    ImmutableTagUsage.Json json = new ImmutableTagUsage.Json();
-
-    // Act
-    json.setProvenance("foo");
-
-    // Assert
-    assertEquals("foo", json.provenance);
+  public void tagIdTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableTagUsage.Json()).tagId();
   }
 }
 

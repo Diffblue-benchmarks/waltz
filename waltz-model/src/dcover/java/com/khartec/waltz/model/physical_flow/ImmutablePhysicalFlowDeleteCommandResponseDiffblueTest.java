@@ -15,10 +15,25 @@ public class ImmutablePhysicalFlowDeleteCommandResponseDiffblueTest {
   public ExpectedException thrown = ExpectedException.none();
 
   @Test
-  public void fromJsonTest() {
+  public void buildTest() {
     // Arrange, Act and Assert
     thrown.expect(IllegalStateException.class);
-    ImmutablePhysicalFlowDeleteCommandResponse.fromJson(new ImmutablePhysicalFlowDeleteCommandResponse.Json());
+    ImmutablePhysicalFlowDeleteCommandResponse.builder().build();
+  }
+
+  @Test
+  public void constructorTest() {
+    // Arrange and Act
+    ImmutablePhysicalFlowDeleteCommandResponse.Json actualJson = new ImmutablePhysicalFlowDeleteCommandResponse.Json();
+
+    // Assert
+    assertFalse(actualJson.isSpecificationUnusedIsSet);
+    assertNull(actualJson.originalCommand);
+    assertFalse(actualJson.isSpecificationUnused);
+    assertFalse(actualJson.isLastPhysicalFlow);
+    assertNull(actualJson.outcome);
+    assertNull(actualJson.entityReference);
+    assertFalse(actualJson.isLastPhysicalFlowIsSet);
   }
 
   @Test
@@ -26,6 +41,20 @@ public class ImmutablePhysicalFlowDeleteCommandResponseDiffblueTest {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
     ImmutablePhysicalFlowDeleteCommandResponse.copyOf(new ImmutablePhysicalFlowDeleteCommandResponse.Json());
+  }
+
+  @Test
+  public void entityReferenceTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutablePhysicalFlowDeleteCommandResponse.Json()).entityReference();
+  }
+
+  @Test
+  public void fromJsonTest() {
+    // Arrange, Act and Assert
+    thrown.expect(IllegalStateException.class);
+    ImmutablePhysicalFlowDeleteCommandResponse.fromJson(new ImmutablePhysicalFlowDeleteCommandResponse.Json());
   }
 
   @Test
@@ -40,17 +69,38 @@ public class ImmutablePhysicalFlowDeleteCommandResponseDiffblueTest {
   }
 
   @Test
-  public void buildTest() {
+  public void isLastPhysicalFlowTest() {
     // Arrange, Act and Assert
-    thrown.expect(IllegalStateException.class);
-    ImmutablePhysicalFlowDeleteCommandResponse.builder().build();
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutablePhysicalFlowDeleteCommandResponse.Json()).isLastPhysicalFlow();
   }
 
   @Test
-  public void entityReferenceTest() {
+  public void isSpecificationUnusedTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    (new ImmutablePhysicalFlowDeleteCommandResponse.Json()).entityReference();
+    (new ImmutablePhysicalFlowDeleteCommandResponse.Json()).isSpecificationUnused();
+  }
+
+  @Test
+  public void messageTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutablePhysicalFlowDeleteCommandResponse.Json()).message();
+  }
+
+  @Test
+  public void originalCommandTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutablePhysicalFlowDeleteCommandResponse.Json()).originalCommand();
+  }
+
+  @Test
+  public void outcomeTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutablePhysicalFlowDeleteCommandResponse.Json()).outcome();
   }
 
   @Test
@@ -64,27 +114,6 @@ public class ImmutablePhysicalFlowDeleteCommandResponseDiffblueTest {
     // Assert
     assertTrue(json.isLastPhysicalFlow);
     assertTrue(json.isLastPhysicalFlowIsSet);
-  }
-
-  @Test
-  public void originalCommandTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutablePhysicalFlowDeleteCommandResponse.Json()).originalCommand();
-  }
-
-  @Test
-  public void messageTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutablePhysicalFlowDeleteCommandResponse.Json()).message();
-  }
-
-  @Test
-  public void outcomeTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutablePhysicalFlowDeleteCommandResponse.Json()).outcome();
   }
 
   @Test
@@ -111,35 +140,6 @@ public class ImmutablePhysicalFlowDeleteCommandResponseDiffblueTest {
 
     // Assert
     assertSame(json1, json.originalCommand);
-  }
-
-  @Test
-  public void isSpecificationUnusedTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutablePhysicalFlowDeleteCommandResponse.Json()).isSpecificationUnused();
-  }
-
-  @Test
-  public void isLastPhysicalFlowTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutablePhysicalFlowDeleteCommandResponse.Json()).isLastPhysicalFlow();
-  }
-
-  @Test
-  public void constructorTest() {
-    // Arrange and Act
-    ImmutablePhysicalFlowDeleteCommandResponse.Json actualJson = new ImmutablePhysicalFlowDeleteCommandResponse.Json();
-
-    // Assert
-    assertFalse(actualJson.isSpecificationUnusedIsSet);
-    assertNull(actualJson.originalCommand);
-    assertFalse(actualJson.isSpecificationUnused);
-    assertFalse(actualJson.isLastPhysicalFlow);
-    assertNull(actualJson.outcome);
-    assertNull(actualJson.entityReference);
-    assertFalse(actualJson.isLastPhysicalFlowIsSet);
   }
 
   @Test
