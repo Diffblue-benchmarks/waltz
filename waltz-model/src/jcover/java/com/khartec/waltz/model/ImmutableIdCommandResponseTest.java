@@ -27,10 +27,4 @@ public class ImmutableIdCommandResponseTest {
         ImmutableIdCommandResponse immutableIdCommandResponse = ImmutableIdCommandResponse.fromJson(new ImmutableIdCommandResponse.Json());
         assertThat(immutableIdCommandResponse.withId(Optional.<Long>empty()), sameInstance(immutableIdCommandResponse));
     }
-
-    @Test
-    public void withId2() {
-        // pojo ImmutableIdCommandResponse
-        // pojo ImmutableIdCommandResponse
-    }
 }

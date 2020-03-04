@@ -27,10 +27,4 @@ public class ImmutableStringChangeCommandTest {
         ImmutableStringChangeCommand immutableStringChangeCommand = ImmutableStringChangeCommand.fromJson(new ImmutableStringChangeCommand.Json());
         assertThat(immutableStringChangeCommand.withNewStringVal(Optional.<String>empty()), sameInstance(immutableStringChangeCommand));
     }
-
-    @Test
-    public void withNewStringVal2() {
-        // pojo ImmutableStringChangeCommand
-        // pojo ImmutableStringChangeCommand
-    }
 }

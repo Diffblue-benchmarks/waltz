@@ -20,7 +20,5 @@ public class NotAuthorizedExceptionTest {
         assertThat(notAuthorizedException.getCause(), is(nullValue()));
         assertThat(notAuthorizedException.getLocalizedMessage(), is("User is not authorized to perform that action"));
         assertThat(notAuthorizedException.getMessage(), is("User is not authorized to perform that action"));
-        // array literal with unexpected element type StackTraceElement
-        // array literal with unexpected element type Throwable
     }
 }

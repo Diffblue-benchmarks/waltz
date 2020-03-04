@@ -32,30 +32,15 @@ public class ImmutableFieldChangeTest {
     }
 
     @Test
-    public void withDescription() {
-        // pojo ImmutableFieldChange<String>
-    }
-
-    @Test
     public void withDescriptionValueIsNull() {
         ImmutableFieldChange<String> immutableFieldChange = ImmutableFieldChange.fromJson(new ImmutableFieldChange.Json<String>());
         assertThat(immutableFieldChange.withDescription(null), sameInstance(immutableFieldChange));
     }
 
     @Test
-    public void withNewValValueIsDiffblue() {
-        // pojo ImmutableFieldChange<String>
-    }
-
-    @Test
     public void withNewValValueIsNull() {
         ImmutableFieldChange<String> immutableFieldChange = ImmutableFieldChange.fromJson(new ImmutableFieldChange.Json<String>());
         assertThat(immutableFieldChange.withNewVal(null), sameInstance(immutableFieldChange));
-    }
-
-    @Test
-    public void withOldValValueIsDiffblue() {
-        // pojo ImmutableFieldChange<String>
     }
 
     @Test

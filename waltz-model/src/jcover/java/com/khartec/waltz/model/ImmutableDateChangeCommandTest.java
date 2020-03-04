@@ -24,11 +24,6 @@ public class ImmutableDateChangeCommandTest {
     }
 
     @Test
-    public void withNewDateVal1() {
-        // pojo ImmutableDateChangeCommand
-    }
-
-    @Test
     public void withNewDateVal2() {
         ImmutableDateChangeCommand immutableDateChangeCommand = ImmutableDateChangeCommand.fromJson(new ImmutableDateChangeCommand.Json());
         assertThat(immutableDateChangeCommand.withNewDateVal(Optional.<LocalDate>empty()), sameInstance(immutableDateChangeCommand));

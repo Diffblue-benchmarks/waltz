@@ -22,11 +22,6 @@ public class ImmutableUpdateDescriptionCommandTest {
     }
 
     @Test
-    public void withNewDescription() {
-        // pojo ImmutableUpdateDescriptionCommand
-    }
-
-    @Test
     public void withNewDescriptionValueIsNull() {
         ImmutableUpdateDescriptionCommand immutableUpdateDescriptionCommand = ImmutableUpdateDescriptionCommand.fromJson(new ImmutableUpdateDescriptionCommand.Json());
         assertThat(immutableUpdateDescriptionCommand.withNewDescription(null), sameInstance(immutableUpdateDescriptionCommand));

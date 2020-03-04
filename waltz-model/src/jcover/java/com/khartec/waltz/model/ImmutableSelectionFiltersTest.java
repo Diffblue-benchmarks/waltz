@@ -19,9 +19,4 @@ public class ImmutableSelectionFiltersTest {
         assertTrue(ImmutableSelectionFilters.copyOf(ImmutableSelectionFilters.fromJson(new ImmutableSelectionFilters.Json())).omitApplicationKinds().isEmpty());
         assertTrue(ImmutableSelectionFilters.fromJson(new ImmutableSelectionFilters.Json()).omitApplicationKinds().isEmpty());
     }
-
-    @Test
-    public void withOmitApplicationKindsElementsIsIN_HOUSE() {
-        // pojo ImmutableSelectionFilters
-    }
 }

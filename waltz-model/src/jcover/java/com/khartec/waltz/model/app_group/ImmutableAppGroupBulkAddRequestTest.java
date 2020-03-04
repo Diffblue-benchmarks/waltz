@@ -22,15 +22,4 @@ public class ImmutableAppGroupBulkAddRequestTest {
     public void unknownIdentifiersReturnsEmpty() {
         assertTrue(ImmutableAppGroupBulkAddRequest.fromJson(new ImmutableAppGroupBulkAddRequest.Json()).unknownIdentifiers().isEmpty());
     }
-
-    @Test
-    public void withApplicationIds() {
-        // pojo ImmutableAppGroupBulkAddRequest
-        // pojo ImmutableAppGroupBulkAddRequest
-    }
-
-    @Test
-    public void withUnknownIdentifiersElementsIsFoo() {
-        // pojo ImmutableAppGroupBulkAddRequest
-    }
 }

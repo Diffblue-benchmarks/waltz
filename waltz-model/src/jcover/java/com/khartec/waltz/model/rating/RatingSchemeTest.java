@@ -14,18 +14,7 @@ import org.junit.Test;
 public class RatingSchemeTest {
 
     @Test
-    public void mkDflt() {
-        // pojo RatingScheme
-    }
-
-    @Test
     public void toList() {
         assertThat(RatingScheme.toList().size(), is(6));
-        // pojo RagName
-        // pojo RagName
-        // pojo RagName
-        // pojo RagName
-        // pojo RagName
-        // pojo RagName
     }
 }
