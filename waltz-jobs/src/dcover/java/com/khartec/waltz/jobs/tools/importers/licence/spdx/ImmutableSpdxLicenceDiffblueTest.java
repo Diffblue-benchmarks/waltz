@@ -13,88 +13,10 @@ public class ImmutableSpdxLicenceDiffblueTest {
   @Rule
   public ExpectedException thrown = ExpectedException.none();
   @Test
-  public void fromTest() {
-    // Arrange
-    ImmutableSpdxLicence.Builder builderResult = ImmutableSpdxLicence.builder();
-
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from(new ImmutableSpdxLicence.Json());
-  }
-  @Test
   public void buildTest() {
     // Arrange, Act and Assert
     thrown.expect(IllegalStateException.class);
     ImmutableSpdxLicence.builder().build();
-  }
-  @Test
-  public void copyOfTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    ImmutableSpdxLicence.copyOf(new ImmutableSpdxLicence.Json());
-  }
-  @Test
-  public void fromJsonTest() {
-    // Arrange, Act and Assert
-    thrown.expect(IllegalStateException.class);
-    ImmutableSpdxLicence.fromJson(new ImmutableSpdxLicence.Json());
-  }
-  @Test
-  public void setLicenseTextTest() {
-    // Arrange
-    ImmutableSpdxLicence.Json json = new ImmutableSpdxLicence.Json();
-
-    // Act
-    json.setLicenseText("foo");
-
-    // Assert
-    assertEquals("foo", json.licenseText);
-  }
-  @Test
-  public void licenseIdTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableSpdxLicence.Json()).licenseId();
-  }
-  @Test
-  public void setLicenseIdTest() {
-    // Arrange
-    ImmutableSpdxLicence.Json json = new ImmutableSpdxLicence.Json();
-
-    // Act
-    json.setLicenseId("123");
-
-    // Assert
-    assertEquals("123", json.licenseId);
-  }
-  @Test
-  public void setIsDeprecatedLicenseIdTest() {
-    // Arrange
-    ImmutableSpdxLicence.Json json = new ImmutableSpdxLicence.Json();
-
-    // Act
-    json.setIsDeprecatedLicenseId(true);
-
-    // Assert
-    assertTrue(json.isDeprecatedLicenseIdIsSet);
-    assertTrue(json.isDeprecatedLicenseId);
-  }
-  @Test
-  public void nameTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableSpdxLicence.Json()).name();
-  }
-  @Test
-  public void setNameTest() {
-    // Arrange
-    ImmutableSpdxLicence.Json json = new ImmutableSpdxLicence.Json();
-
-    // Act
-    json.setName("name");
-
-    // Assert
-    assertEquals("name", json.name);
   }
   @Test
   public void constructorTest() {
@@ -110,10 +32,100 @@ public class ImmutableSpdxLicenceDiffblueTest {
     assertFalse(actualJson.isDeprecatedLicenseId);
   }
   @Test
+  public void copyOfTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    ImmutableSpdxLicence.copyOf(new ImmutableSpdxLicence.Json());
+  }
+  @Test
+  public void fromJsonTest() {
+    // Arrange, Act and Assert
+    thrown.expect(IllegalStateException.class);
+    ImmutableSpdxLicence.fromJson(new ImmutableSpdxLicence.Json());
+  }
+  @Test
+  public void fromTest() {
+    // Arrange
+    ImmutableSpdxLicence.Builder builderResult = ImmutableSpdxLicence.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from(new ImmutableSpdxLicence.Json());
+  }
+  @Test
+  public void isDeprecatedLicenseIdTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableSpdxLicence.Json()).isDeprecatedLicenseId();
+  }
+  @Test
+  public void licenseIdTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableSpdxLicence.Json()).licenseId();
+  }
+  @Test
   public void licenseTextTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
     (new ImmutableSpdxLicence.Json()).licenseText();
+  }
+  @Test
+  public void nameTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableSpdxLicence.Json()).name();
+  }
+  @Test
+  public void seeAlsoTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableSpdxLicence.Json()).seeAlso();
+  }
+  @Test
+  public void setIsDeprecatedLicenseIdTest() {
+    // Arrange
+    ImmutableSpdxLicence.Json json = new ImmutableSpdxLicence.Json();
+
+    // Act
+    json.setIsDeprecatedLicenseId(true);
+
+    // Assert
+    assertTrue(json.isDeprecatedLicenseIdIsSet);
+    assertTrue(json.isDeprecatedLicenseId);
+  }
+  @Test
+  public void setLicenseIdTest() {
+    // Arrange
+    ImmutableSpdxLicence.Json json = new ImmutableSpdxLicence.Json();
+
+    // Act
+    json.setLicenseId("123");
+
+    // Assert
+    assertEquals("123", json.licenseId);
+  }
+  @Test
+  public void setLicenseTextTest() {
+    // Arrange
+    ImmutableSpdxLicence.Json json = new ImmutableSpdxLicence.Json();
+
+    // Act
+    json.setLicenseText("licenseText");
+
+    // Assert
+    assertEquals("licenseText", json.licenseText);
+  }
+  @Test
+  public void setNameTest() {
+    // Arrange
+    ImmutableSpdxLicence.Json json = new ImmutableSpdxLicence.Json();
+
+    // Act
+    json.setName("name");
+
+    // Assert
+    assertEquals("name", json.name);
   }
   @Test
   public void setSeeAlsoTest() {
@@ -126,18 +138,6 @@ public class ImmutableSpdxLicenceDiffblueTest {
 
     // Assert
     assertSame(stringArray, json.seeAlso);
-  }
-  @Test
-  public void isDeprecatedLicenseIdTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableSpdxLicence.Json()).isDeprecatedLicenseId();
-  }
-  @Test
-  public void seeAlsoTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableSpdxLicence.Json()).seeAlso();
   }
 }
 

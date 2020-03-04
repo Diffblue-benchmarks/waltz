@@ -11,10 +11,48 @@ public class ImmutableLicenceComplianceDiffblueTest {
   @Rule
   public ExpectedException thrown = ExpectedException.none();
   @Test
-  public void notesTest() {
+  public void buildTest() {
+    // Arrange, Act and Assert
+    thrown.expect(IllegalStateException.class);
+    ImmutableLicenceCompliance.builder().build();
+  }
+  @Test
+  public void constructorTest() {
+    // Arrange and Act
+    ImmutableLicenceCompliance.Json actualJson = new ImmutableLicenceCompliance.Json();
+
+    // Assert
+    assertNull(actualJson.name);
+    assertNull(actualJson.terms);
+    assertNull(actualJson.notes);
+    assertNull(actualJson.licenseId);
+  }
+  @Test
+  public void copyOfTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableLicenceCompliance.Json()).notes();
+    ImmutableLicenceCompliance.copyOf(new ImmutableLicenceCompliance.Json());
+  }
+  @Test
+  public void fromJsonTest() {
+    // Arrange, Act and Assert
+    thrown.expect(IllegalStateException.class);
+    ImmutableLicenceCompliance.fromJson(new ImmutableLicenceCompliance.Json());
+  }
+  @Test
+  public void fromTest() {
+    // Arrange
+    ImmutableLicenceCompliance.Builder builderResult = ImmutableLicenceCompliance.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from(new ImmutableLicenceCompliance.Json());
+  }
+  @Test
+  public void licenseIdTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableLicenceCompliance.Json()).licenseId();
   }
   @Test
   public void nameTest() {
@@ -23,27 +61,10 @@ public class ImmutableLicenceComplianceDiffblueTest {
     (new ImmutableLicenceCompliance.Json()).name();
   }
   @Test
-  public void termsTest() {
+  public void notesTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableLicenceCompliance.Json()).terms();
-  }
-  @Test
-  public void setNameTest() {
-    // Arrange
-    ImmutableLicenceCompliance.Json json = new ImmutableLicenceCompliance.Json();
-
-    // Act
-    json.setName("name");
-
-    // Assert
-    assertEquals("name", json.name);
-  }
-  @Test
-  public void licenseIdTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableLicenceCompliance.Json()).licenseId();
+    (new ImmutableLicenceCompliance.Json()).notes();
   }
   @Test
   public void setLicenseIdTest() {
@@ -58,26 +79,26 @@ public class ImmutableLicenceComplianceDiffblueTest {
     assertSame(stringArray, json.licenseId);
   }
   @Test
+  public void setNameTest() {
+    // Arrange
+    ImmutableLicenceCompliance.Json json = new ImmutableLicenceCompliance.Json();
+
+    // Act
+    json.setName("name");
+
+    // Assert
+    assertEquals("name", json.name);
+  }
+  @Test
   public void setNotesTest() {
     // Arrange
     ImmutableLicenceCompliance.Json json = new ImmutableLicenceCompliance.Json();
 
     // Act
-    json.setNotes("foo");
+    json.setNotes("notes");
 
     // Assert
-    assertEquals("foo", json.notes);
-  }
-  @Test
-  public void constructorTest() {
-    // Arrange and Act
-    ImmutableLicenceCompliance.Json actualJson = new ImmutableLicenceCompliance.Json();
-
-    // Assert
-    assertNull(actualJson.name);
-    assertNull(actualJson.terms);
-    assertNull(actualJson.notes);
-    assertNull(actualJson.licenseId);
+    assertEquals("notes", json.notes);
   }
   @Test
   public void setTermsTest() {
@@ -93,31 +114,10 @@ public class ImmutableLicenceComplianceDiffblueTest {
     assertSame(complianceTermArray, json.terms);
   }
   @Test
-  public void fromJsonTest() {
-    // Arrange, Act and Assert
-    thrown.expect(IllegalStateException.class);
-    ImmutableLicenceCompliance.fromJson(new ImmutableLicenceCompliance.Json());
-  }
-  @Test
-  public void copyOfTest() {
+  public void termsTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    ImmutableLicenceCompliance.copyOf(new ImmutableLicenceCompliance.Json());
-  }
-  @Test
-  public void fromTest() {
-    // Arrange
-    ImmutableLicenceCompliance.Builder builderResult = ImmutableLicenceCompliance.builder();
-
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from(new ImmutableLicenceCompliance.Json());
-  }
-  @Test
-  public void buildTest() {
-    // Arrange, Act and Assert
-    thrown.expect(IllegalStateException.class);
-    ImmutableLicenceCompliance.builder().build();
+    (new ImmutableLicenceCompliance.Json()).terms();
   }
 }
 

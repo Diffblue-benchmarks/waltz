@@ -11,57 +11,16 @@ public class ImmutableComplianceTermDiffblueTest {
   @Rule
   public ExpectedException thrown = ExpectedException.none();
   @Test
-  public void typeTest() {
+  public void buildTest() {
     // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableComplianceTerm.Json()).type();
-  }
-  @Test
-  public void setUseCasesTest() {
-    // Arrange
-    ComplianceUseCase[] complianceUseCaseArray = new ComplianceUseCase[]{ComplianceUseCase.UB, ComplianceUseCase.UB,
-        ComplianceUseCase.UB};
-    ImmutableComplianceTerm.Json json = new ImmutableComplianceTerm.Json();
-
-    // Act
-    json.setUseCases(complianceUseCaseArray);
-
-    // Assert
-    assertSame(complianceUseCaseArray, json.useCases);
-  }
-  @Test
-  public void setDescriptionTest() {
-    // Arrange
-    ImmutableComplianceTerm.Json json = new ImmutableComplianceTerm.Json();
-
-    // Act
-    json.setDescription("description");
-
-    // Assert
-    assertEquals("description", json.description);
+    thrown.expect(IllegalStateException.class);
+    ImmutableComplianceTerm.builder().build();
   }
   @Test
   public void complianceNotesTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
     (new ImmutableComplianceTerm.Json()).complianceNotes();
-  }
-  @Test
-  public void setComplianceNotesTest() {
-    // Arrange
-    ImmutableComplianceTerm.Json json = new ImmutableComplianceTerm.Json();
-
-    // Act
-    json.setComplianceNotes("foo");
-
-    // Assert
-    assertEquals("foo", json.complianceNotes);
-  }
-  @Test
-  public void descriptionTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableComplianceTerm.Json()).description();
   }
   @Test
   public void constructorTest() {
@@ -75,27 +34,16 @@ public class ImmutableComplianceTermDiffblueTest {
     assertNull(actualJson.complianceNotes);
   }
   @Test
-  public void setTypeTest() {
-    // Arrange
-    ImmutableComplianceTerm.Json json = new ImmutableComplianceTerm.Json();
-
-    // Act
-    json.setType(ComplianceType.CONDITION);
-
-    // Assert
-    assertEquals(ComplianceType.CONDITION, json.type);
-  }
-  @Test
-  public void useCasesTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableComplianceTerm.Json()).useCases();
-  }
-  @Test
   public void copyOfTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
     ImmutableComplianceTerm.copyOf(new ImmutableComplianceTerm.Json());
+  }
+  @Test
+  public void descriptionTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableComplianceTerm.Json()).description();
   }
   @Test
   public void fromJsonTest() {
@@ -113,10 +61,62 @@ public class ImmutableComplianceTermDiffblueTest {
     builderResult.from(new ImmutableComplianceTerm.Json());
   }
   @Test
-  public void buildTest() {
+  public void setComplianceNotesTest() {
+    // Arrange
+    ImmutableComplianceTerm.Json json = new ImmutableComplianceTerm.Json();
+
+    // Act
+    json.setComplianceNotes("complianceNotes");
+
+    // Assert
+    assertEquals("complianceNotes", json.complianceNotes);
+  }
+  @Test
+  public void setDescriptionTest() {
+    // Arrange
+    ImmutableComplianceTerm.Json json = new ImmutableComplianceTerm.Json();
+
+    // Act
+    json.setDescription("description");
+
+    // Assert
+    assertEquals("description", json.description);
+  }
+  @Test
+  public void setTypeTest() {
+    // Arrange
+    ImmutableComplianceTerm.Json json = new ImmutableComplianceTerm.Json();
+
+    // Act
+    json.setType(ComplianceType.CONDITION);
+
+    // Assert
+    assertEquals(ComplianceType.CONDITION, json.type);
+  }
+  @Test
+  public void setUseCasesTest() {
+    // Arrange
+    ComplianceUseCase[] complianceUseCaseArray = new ComplianceUseCase[]{ComplianceUseCase.UB, ComplianceUseCase.UB,
+        ComplianceUseCase.UB};
+    ImmutableComplianceTerm.Json json = new ImmutableComplianceTerm.Json();
+
+    // Act
+    json.setUseCases(complianceUseCaseArray);
+
+    // Assert
+    assertSame(complianceUseCaseArray, json.useCases);
+  }
+  @Test
+  public void typeTest() {
     // Arrange, Act and Assert
-    thrown.expect(IllegalStateException.class);
-    ImmutableComplianceTerm.builder().build();
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableComplianceTerm.Json()).type();
+  }
+  @Test
+  public void useCasesTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableComplianceTerm.Json()).useCases();
   }
 }
 

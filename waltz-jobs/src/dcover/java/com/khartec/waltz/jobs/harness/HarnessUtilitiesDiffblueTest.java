@@ -8,9 +8,10 @@ public class HarnessUtilitiesDiffblueTest {
   @Test
   public void timeTest() {
     // Arrange, Act and Assert
-    assertEquals("foo",
-        HarnessUtilities.<Object>time("name", new SingletonSupplier<Object>("foo", new SingletonSupplier<Object>("foo",
-            new SingletonSupplier<Object>("foo", new SingletonSupplier<Object>("foo", null))))));
+    assertEquals("instance",
+        HarnessUtilities.<Object>time("]",
+            new SingletonSupplier<Object>("instance", new SingletonSupplier<Object>("instance",
+                new SingletonSupplier<Object>("instance", new SingletonSupplier<Object>("instance", null))))));
   }
 }
 
