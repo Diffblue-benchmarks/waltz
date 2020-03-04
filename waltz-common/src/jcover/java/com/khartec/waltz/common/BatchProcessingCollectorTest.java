@@ -19,7 +19,6 @@ public class BatchProcessingCollectorTest {
     public void accumulator() {
         @SuppressWarnings("unchecked")
         Consumer<List<String>> batchProcessor = null;
-        // pojo java.util.function.BiConsumer<List<String>, String>
     }
 
     @Test
@@ -33,13 +32,11 @@ public class BatchProcessingCollectorTest {
     public void combiner() {
         @SuppressWarnings("unchecked")
         Consumer<List<String>> batchProcessor = null;
-        // pojo java.util.function.BinaryOperator<List<String>>
     }
 
     @Test
     public void supplier() {
         @SuppressWarnings("unchecked")
         Consumer<List<String>> batchProcessor = null;
-        // pojo java.util.function.Supplier<List<String>>
     }
 }

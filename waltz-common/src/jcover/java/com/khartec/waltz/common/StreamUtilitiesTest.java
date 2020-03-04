@@ -30,7 +30,6 @@ public class StreamUtilitiesTest {
     public void batchProcessingCollectorBatchSizeIsOne() {
         @SuppressWarnings("unchecked")
         Consumer<List<String>> batchProcessor = null;
-        // pojo java.util.stream.Collector<String, List<String>, Integer>
     }
 
     @Test

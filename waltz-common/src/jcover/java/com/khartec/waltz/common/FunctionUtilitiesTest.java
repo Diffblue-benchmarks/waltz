@@ -17,11 +17,6 @@ import org.junit.Test;
 public class FunctionUtilitiesTest {
 
     @Test
-    public void alwaysBiResultIsFoo() {
-        // pojo java.util.function.BiFunction<String, String, String>
-    }
-
-    @Test
     public void discardResult() {
         FunctionUtilities.discardResult(new Aliases());
     }

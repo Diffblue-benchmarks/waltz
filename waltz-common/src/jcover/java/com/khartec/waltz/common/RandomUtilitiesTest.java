@@ -19,11 +19,6 @@ import org.junit.Test;
 public class RandomUtilitiesTest {
 
     @Test
-    public void getRandom() {
-        // pojo java.util.Random
-    }
-
-    @Test
     public void randomIntBetween() {
         assertThat(RandomUtilities.randomIntBetween(-1, 0), is(-1));
         assertThat(RandomUtilities.randomIntBetween(0, 1), is(0));

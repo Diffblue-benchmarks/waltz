@@ -20,7 +20,5 @@ public class DuplicateKeyExceptionTest {
         assertThat(duplicateKeyException.getCause(), is(nullValue()));
         assertThat(duplicateKeyException.getLocalizedMessage(), is("jpg"));
         assertThat(duplicateKeyException.getMessage(), is("jpg"));
-        // array literal with unexpected element type StackTraceElement
-        // array literal with unexpected element type Throwable
     }
 }

@@ -20,7 +20,5 @@ public class InsufficientPrivelegeExceptionTest {
         assertThat(insufficientPrivelegeException.getCause(), is(nullValue()));
         assertThat(insufficientPrivelegeException.getLocalizedMessage(), is("jpg"));
         assertThat(insufficientPrivelegeException.getMessage(), is("jpg"));
-        // array literal with unexpected element type StackTraceElement
-        // array literal with unexpected element type Throwable
     }
 }
