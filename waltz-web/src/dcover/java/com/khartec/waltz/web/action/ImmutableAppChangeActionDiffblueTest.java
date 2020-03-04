@@ -12,6 +12,13 @@ public class ImmutableAppChangeActionDiffblueTest {
   public ExpectedException thrown = ExpectedException.none();
 
   @Test
+  public void appTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableAppChangeAction.Json()).app();
+  }
+
+  @Test
   public void buildTest() {
     // Arrange, Act and Assert
     thrown.expect(IllegalStateException.class);
@@ -19,20 +26,16 @@ public class ImmutableAppChangeActionDiffblueTest {
   }
 
   @Test
-  public void fromTest() {
-    // Arrange
-    ImmutableAppChangeAction.Builder builderResult = ImmutableAppChangeAction.builder();
-
-    // Act and Assert
+  public void changesTest() {
+    // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    builderResult.from(new ImmutableAppChangeAction.Json());
+    (new ImmutableAppChangeAction.Json()).changes();
   }
 
   @Test
-  public void fromJsonTest() {
+  public void constructorTest() {
     // Arrange, Act and Assert
-    thrown.expect(IllegalStateException.class);
-    ImmutableAppChangeAction.fromJson(new ImmutableAppChangeAction.Json());
+    assertEquals(0, (new ImmutableAppChangeAction.Json()).changes.size());
   }
 
   @Test
@@ -43,10 +46,20 @@ public class ImmutableAppChangeActionDiffblueTest {
   }
 
   @Test
-  public void appTest() {
+  public void fromJsonTest() {
     // Arrange, Act and Assert
+    thrown.expect(IllegalStateException.class);
+    ImmutableAppChangeAction.fromJson(new ImmutableAppChangeAction.Json());
+  }
+
+  @Test
+  public void fromTest() {
+    // Arrange
+    ImmutableAppChangeAction.Builder builderResult = ImmutableAppChangeAction.builder();
+
+    // Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableAppChangeAction.Json()).app();
+    builderResult.from(new ImmutableAppChangeAction.Json());
   }
 
   @Test
@@ -61,19 +74,6 @@ public class ImmutableAppChangeActionDiffblueTest {
 
     // Assert
     assertSame(fieldChangeList, json.changes);
-  }
-
-  @Test
-  public void changesTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableAppChangeAction.Json()).changes();
-  }
-
-  @Test
-  public void constructorTest() {
-    // Arrange, Act and Assert
-    assertEquals(0, (new ImmutableAppChangeAction.Json()).changes.size());
   }
 }
 

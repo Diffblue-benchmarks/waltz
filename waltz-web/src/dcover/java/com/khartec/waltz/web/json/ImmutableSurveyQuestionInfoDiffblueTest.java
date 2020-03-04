@@ -12,10 +12,10 @@ public class ImmutableSurveyQuestionInfoDiffblueTest {
   @Rule
   public ExpectedException thrown = ExpectedException.none();
   @Test
-  public void questionTest() {
+  public void buildTest() {
     // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableSurveyQuestionInfo.Json()).question();
+    thrown.expect(IllegalStateException.class);
+    ImmutableSurveyQuestionInfo.builder().build();
   }
   @Test
   public void constructorTest() {
@@ -23,17 +23,10 @@ public class ImmutableSurveyQuestionInfoDiffblueTest {
     assertEquals(0, (new ImmutableSurveyQuestionInfo.Json()).dropdownEntries.size());
   }
   @Test
-  public void setDropdownEntriesTest() {
-    // Arrange
-    ImmutableSurveyQuestionInfo.Json json = new ImmutableSurveyQuestionInfo.Json();
-    ArrayList<SurveyQuestionDropdownEntry> surveyQuestionDropdownEntryList = new ArrayList<SurveyQuestionDropdownEntry>();
-    surveyQuestionDropdownEntryList.add(null);
-
-    // Act
-    json.setDropdownEntries(surveyQuestionDropdownEntryList);
-
-    // Assert
-    assertSame(surveyQuestionDropdownEntryList, json.dropdownEntries);
+  public void copyOfTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    ImmutableSurveyQuestionInfo.copyOf(new ImmutableSurveyQuestionInfo.Json());
   }
   @Test
   public void dropdownEntriesTest() {
@@ -48,18 +41,6 @@ public class ImmutableSurveyQuestionInfoDiffblueTest {
     ImmutableSurveyQuestionInfo.fromJson(new ImmutableSurveyQuestionInfo.Json());
   }
   @Test
-  public void copyOfTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    ImmutableSurveyQuestionInfo.copyOf(new ImmutableSurveyQuestionInfo.Json());
-  }
-  @Test
-  public void buildTest() {
-    // Arrange, Act and Assert
-    thrown.expect(IllegalStateException.class);
-    ImmutableSurveyQuestionInfo.builder().build();
-  }
-  @Test
   public void fromTest() {
     // Arrange
     ImmutableSurveyQuestionInfo.Builder builderResult = ImmutableSurveyQuestionInfo.builder();
@@ -67,6 +48,25 @@ public class ImmutableSurveyQuestionInfoDiffblueTest {
     // Act and Assert
     thrown.expect(UnsupportedOperationException.class);
     builderResult.from(new ImmutableSurveyQuestionInfo.Json());
+  }
+  @Test
+  public void questionTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableSurveyQuestionInfo.Json()).question();
+  }
+  @Test
+  public void setDropdownEntriesTest() {
+    // Arrange
+    ImmutableSurveyQuestionInfo.Json json = new ImmutableSurveyQuestionInfo.Json();
+    ArrayList<SurveyQuestionDropdownEntry> surveyQuestionDropdownEntryList = new ArrayList<SurveyQuestionDropdownEntry>();
+    surveyQuestionDropdownEntryList.add(null);
+
+    // Act
+    json.setDropdownEntries(surveyQuestionDropdownEntryList);
+
+    // Assert
+    assertSame(surveyQuestionDropdownEntryList, json.dropdownEntries);
   }
 }
 

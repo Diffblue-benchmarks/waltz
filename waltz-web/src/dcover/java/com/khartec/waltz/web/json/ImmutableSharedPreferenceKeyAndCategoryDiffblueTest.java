@@ -11,10 +11,27 @@ public class ImmutableSharedPreferenceKeyAndCategoryDiffblueTest {
   public ExpectedException thrown = ExpectedException.none();
 
   @Test
-  public void fromJsonTest() {
+  public void buildTest() {
     // Arrange, Act and Assert
     thrown.expect(IllegalStateException.class);
-    ImmutableSharedPreferenceKeyAndCategory.fromJson(new ImmutableSharedPreferenceKeyAndCategory.Json());
+    ImmutableSharedPreferenceKeyAndCategory.builder().build();
+  }
+
+  @Test
+  public void categoryTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableSharedPreferenceKeyAndCategory.Json()).category();
+  }
+
+  @Test
+  public void constructorTest() {
+    // Arrange and Act
+    ImmutableSharedPreferenceKeyAndCategory.Json actualJson = new ImmutableSharedPreferenceKeyAndCategory.Json();
+
+    // Assert
+    assertNull(actualJson.category);
+    assertNull(actualJson.key);
   }
 
   @Test
@@ -25,10 +42,10 @@ public class ImmutableSharedPreferenceKeyAndCategoryDiffblueTest {
   }
 
   @Test
-  public void buildTest() {
+  public void fromJsonTest() {
     // Arrange, Act and Assert
     thrown.expect(IllegalStateException.class);
-    ImmutableSharedPreferenceKeyAndCategory.builder().build();
+    ImmutableSharedPreferenceKeyAndCategory.fromJson(new ImmutableSharedPreferenceKeyAndCategory.Json());
   }
 
   @Test
@@ -39,13 +56,6 @@ public class ImmutableSharedPreferenceKeyAndCategoryDiffblueTest {
     // Act and Assert
     thrown.expect(UnsupportedOperationException.class);
     builderResult.from(new ImmutableSharedPreferenceKeyAndCategory.Json());
-  }
-
-  @Test
-  public void categoryTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableSharedPreferenceKeyAndCategory.Json()).category();
   }
 
   @Test
@@ -61,20 +71,10 @@ public class ImmutableSharedPreferenceKeyAndCategoryDiffblueTest {
     ImmutableSharedPreferenceKeyAndCategory.Json json = new ImmutableSharedPreferenceKeyAndCategory.Json();
 
     // Act
-    json.setCategory("foo");
+    json.setCategory("category");
 
     // Assert
-    assertEquals("foo", json.category);
-  }
-
-  @Test
-  public void constructorTest() {
-    // Arrange and Act
-    ImmutableSharedPreferenceKeyAndCategory.Json actualJson = new ImmutableSharedPreferenceKeyAndCategory.Json();
-
-    // Assert
-    assertNull(actualJson.category);
-    assertNull(actualJson.key);
+    assertEquals("category", json.category);
   }
 
   @Test
@@ -83,10 +83,10 @@ public class ImmutableSharedPreferenceKeyAndCategoryDiffblueTest {
     ImmutableSharedPreferenceKeyAndCategory.Json json = new ImmutableSharedPreferenceKeyAndCategory.Json();
 
     // Act
-    json.setKey("foo");
+    json.setKey("key");
 
     // Assert
-    assertEquals("foo", json.key);
+    assertEquals("key", json.key);
   }
 }
 

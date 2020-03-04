@@ -13,10 +13,39 @@ public class ImmutableFullScenarioDiffblueTest {
   @Rule
   public ExpectedException thrown = ExpectedException.none();
   @Test
+  public void axisDefinitionsTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableFullScenario.Json()).axisDefinitions();
+  }
+  @Test
   public void buildTest() {
     // Arrange, Act and Assert
     thrown.expect(IllegalStateException.class);
     ImmutableFullScenario.builder().build();
+  }
+  @Test
+  public void constructorTest() {
+    // Arrange and Act
+    ImmutableFullScenario.Json actualJson = new ImmutableFullScenario.Json();
+
+    // Assert
+    assertNull(actualJson.scenario);
+    assertNull(actualJson.roadmap);
+    assertNull(actualJson.ratings);
+    assertNull(actualJson.axisDefinitions);
+  }
+  @Test
+  public void copyOfTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    ImmutableFullScenario.copyOf(new ImmutableFullScenario.Json());
+  }
+  @Test
+  public void fromJsonTest() {
+    // Arrange, Act and Assert
+    thrown.expect(IllegalStateException.class);
+    ImmutableFullScenario.fromJson(new ImmutableFullScenario.Json());
   }
   @Test
   public void fromTest() {
@@ -26,6 +55,24 @@ public class ImmutableFullScenarioDiffblueTest {
     // Act and Assert
     thrown.expect(UnsupportedOperationException.class);
     builderResult.from(new ImmutableFullScenario.Json());
+  }
+  @Test
+  public void ratingsTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableFullScenario.Json()).ratings();
+  }
+  @Test
+  public void roadmapTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableFullScenario.Json()).roadmap();
+  }
+  @Test
+  public void scenarioTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableFullScenario.Json()).scenario();
   }
   @Test
   public void setAxisDefinitionsTest() {
@@ -41,41 +88,6 @@ public class ImmutableFullScenarioDiffblueTest {
     assertSame(scenarioAxisItemList, json.axisDefinitions);
   }
   @Test
-  public void ratingsTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableFullScenario.Json()).ratings();
-  }
-  @Test
-  public void constructorTest() {
-    // Arrange and Act
-    ImmutableFullScenario.Json actualJson = new ImmutableFullScenario.Json();
-
-    // Assert
-    assertNull(actualJson.scenario);
-    assertNull(actualJson.roadmap);
-    assertNull(actualJson.ratings);
-    assertNull(actualJson.axisDefinitions);
-  }
-  @Test
-  public void scenarioTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableFullScenario.Json()).scenario();
-  }
-  @Test
-  public void roadmapTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableFullScenario.Json()).roadmap();
-  }
-  @Test
-  public void axisDefinitionsTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableFullScenario.Json()).axisDefinitions();
-  }
-  @Test
   public void setRatingsTest() {
     // Arrange
     ImmutableFullScenario.Json json = new ImmutableFullScenario.Json();
@@ -87,18 +99,6 @@ public class ImmutableFullScenarioDiffblueTest {
 
     // Assert
     assertSame(scenarioRatingItemList, json.ratings);
-  }
-  @Test
-  public void fromJsonTest() {
-    // Arrange, Act and Assert
-    thrown.expect(IllegalStateException.class);
-    ImmutableFullScenario.fromJson(new ImmutableFullScenario.Json());
-  }
-  @Test
-  public void copyOfTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    ImmutableFullScenario.copyOf(new ImmutableFullScenario.Json());
   }
 }
 

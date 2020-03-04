@@ -10,7 +10,7 @@ public class WebUtilitiesDiffblueTest {
   @Test
   public void getMimeTypeTest() {
     // Arrange, Act and Assert
-    assertEquals("application/octet-stream", WebUtilities.getMimeType("foo"));
+    assertEquals("application/octet-stream", WebUtilities.getMimeType("path"));
   }
 
   @Test

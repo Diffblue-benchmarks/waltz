@@ -17,6 +17,38 @@ public class ImmutableFieldChangeDiffblueTest {
     ImmutableFieldChange.builder().build();
   }
   @Test
+  public void constructorTest() {
+    // Arrange and Act
+    ImmutableFieldChange.Json actualJson = new ImmutableFieldChange.Json();
+
+    // Assert
+    assertSame(actualJson.original, actualJson.current);
+  }
+  @Test
+  public void copyOfTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    ImmutableFieldChange.copyOf(new ImmutableFieldChange.Json());
+  }
+  @Test
+  public void currentTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableFieldChange.Json()).current();
+  }
+  @Test
+  public void dirtyTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableFieldChange.Json()).dirty();
+  }
+  @Test
+  public void fromJsonTest() {
+    // Arrange, Act and Assert
+    thrown.expect(IllegalStateException.class);
+    ImmutableFieldChange.fromJson(new ImmutableFieldChange.Json());
+  }
+  @Test
   public void fromTest() {
     // Arrange
     ImmutableFieldChange.Builder builderResult = ImmutableFieldChange.builder();
@@ -24,12 +56,6 @@ public class ImmutableFieldChangeDiffblueTest {
     // Act and Assert
     thrown.expect(UnsupportedOperationException.class);
     builderResult.from(new ImmutableFieldChange.Json());
-  }
-  @Test
-  public void originalTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableFieldChange.Json()).original();
   }
   @Test
   public void keyTest() {
@@ -44,46 +70,10 @@ public class ImmutableFieldChangeDiffblueTest {
     (new ImmutableFieldChange.Json()).name();
   }
   @Test
-  public void dirtyTest() {
+  public void originalTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableFieldChange.Json()).dirty();
-  }
-  @Test
-  public void setNameTest() {
-    // Arrange
-    ImmutableFieldChange.Json json = new ImmutableFieldChange.Json();
-
-    // Act
-    json.setName("name");
-
-    // Assert
-    assertEquals("name", json.name);
-  }
-  @Test
-  public void constructorTest() {
-    // Arrange and Act
-    ImmutableFieldChange.Json actualJson = new ImmutableFieldChange.Json();
-
-    // Assert
-    assertSame(actualJson.original, actualJson.current);
-  }
-  @Test
-  public void setKeyTest() {
-    // Arrange
-    ImmutableFieldChange.Json json = new ImmutableFieldChange.Json();
-
-    // Act
-    json.setKey("foo");
-
-    // Assert
-    assertEquals("foo", json.key);
-  }
-  @Test
-  public void currentTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableFieldChange.Json()).current();
+    (new ImmutableFieldChange.Json()).original();
   }
   @Test
   public void setDirtyTest() {
@@ -98,16 +88,26 @@ public class ImmutableFieldChangeDiffblueTest {
     assertTrue(json.dirty);
   }
   @Test
-  public void copyOfTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    ImmutableFieldChange.copyOf(new ImmutableFieldChange.Json());
+  public void setKeyTest() {
+    // Arrange
+    ImmutableFieldChange.Json json = new ImmutableFieldChange.Json();
+
+    // Act
+    json.setKey("key");
+
+    // Assert
+    assertEquals("key", json.key);
   }
   @Test
-  public void fromJsonTest() {
-    // Arrange, Act and Assert
-    thrown.expect(IllegalStateException.class);
-    ImmutableFieldChange.fromJson(new ImmutableFieldChange.Json());
+  public void setNameTest() {
+    // Arrange
+    ImmutableFieldChange.Json json = new ImmutableFieldChange.Json();
+
+    // Act
+    json.setName("name");
+
+    // Assert
+    assertEquals("name", json.name);
   }
 }
 

@@ -11,16 +11,6 @@ public class ImmutableBrowserInfoDiffblueTest {
   public ExpectedException thrown = ExpectedException.none();
 
   @Test
-  public void fromTest() {
-    // Arrange
-    ImmutableBrowserInfo.Builder builderResult = ImmutableBrowserInfo.builder();
-
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from(new ImmutableBrowserInfo.Json());
-  }
-
-  @Test
   public void buildTest() {
     // Arrange, Act and Assert
     thrown.expect(IllegalStateException.class);
@@ -28,10 +18,13 @@ public class ImmutableBrowserInfoDiffblueTest {
   }
 
   @Test
-  public void fromJsonTest() {
-    // Arrange, Act and Assert
-    thrown.expect(IllegalStateException.class);
-    ImmutableBrowserInfo.fromJson(new ImmutableBrowserInfo.Json());
+  public void constructorTest() {
+    // Arrange and Act
+    ImmutableBrowserInfo.Json actualJson = new ImmutableBrowserInfo.Json();
+
+    // Assert
+    assertNull(actualJson.operatingSystem);
+    assertNull(actualJson.resolution);
   }
 
   @Test
@@ -42,15 +35,20 @@ public class ImmutableBrowserInfoDiffblueTest {
   }
 
   @Test
-  public void setResolutionTest() {
+  public void fromJsonTest() {
+    // Arrange, Act and Assert
+    thrown.expect(IllegalStateException.class);
+    ImmutableBrowserInfo.fromJson(new ImmutableBrowserInfo.Json());
+  }
+
+  @Test
+  public void fromTest() {
     // Arrange
-    ImmutableBrowserInfo.Json json = new ImmutableBrowserInfo.Json();
+    ImmutableBrowserInfo.Builder builderResult = ImmutableBrowserInfo.builder();
 
-    // Act
-    json.setResolution("foo");
-
-    // Assert
-    assertEquals("foo", json.resolution);
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from(new ImmutableBrowserInfo.Json());
   }
 
   @Test
@@ -73,20 +71,22 @@ public class ImmutableBrowserInfoDiffblueTest {
     ImmutableBrowserInfo.Json json = new ImmutableBrowserInfo.Json();
 
     // Act
-    json.setOperatingSystem("foo");
+    json.setOperatingSystem("operatingSystem");
 
     // Assert
-    assertEquals("foo", json.operatingSystem);
+    assertEquals("operatingSystem", json.operatingSystem);
   }
 
   @Test
-  public void constructorTest() {
-    // Arrange and Act
-    ImmutableBrowserInfo.Json actualJson = new ImmutableBrowserInfo.Json();
+  public void setResolutionTest() {
+    // Arrange
+    ImmutableBrowserInfo.Json json = new ImmutableBrowserInfo.Json();
+
+    // Act
+    json.setResolution("resolution");
 
     // Assert
-    assertNull(actualJson.operatingSystem);
-    assertNull(actualJson.resolution);
+    assertEquals("resolution", json.resolution);
   }
 }
 

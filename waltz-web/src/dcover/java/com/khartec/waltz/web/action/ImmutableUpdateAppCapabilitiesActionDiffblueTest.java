@@ -14,16 +14,28 @@ public class ImmutableUpdateAppCapabilitiesActionDiffblueTest {
   @Rule
   public ExpectedException thrown = ExpectedException.none();
   @Test
+  public void additionsTest() {
+    // Arrange
+    ImmutableUpdateAppCapabilitiesAction.Json json = new ImmutableUpdateAppCapabilitiesAction.Json();
+
+    // Act
+    List<EntityReference> actualAdditionsResult = ImmutableUpdateAppCapabilitiesAction.fromJson(json).additions();
+
+    // Assert
+    assertSame(json.additions, actualAdditionsResult);
+    assertEquals(0, actualAdditionsResult.size());
+  }
+  @Test
   public void additionsTest2() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
     (new ImmutableUpdateAppCapabilitiesAction.Json()).additions();
   }
   @Test
-  public void removalsTest2() {
+  public void buildTest() {
     // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableUpdateAppCapabilitiesAction.Json()).removals();
+    assertEquals("UpdateAppCapabilitiesAction{additions=[]," + " removals=[]}",
+        ImmutableUpdateAppCapabilitiesAction.builder().build().toString());
   }
   @Test
   public void constructorTest() {
@@ -37,17 +49,55 @@ public class ImmutableUpdateAppCapabilitiesActionDiffblueTest {
     assertSame(entityReferenceList, actualEntityReferenceList);
   }
   @Test
-  public void setRemovalsTest() {
+  public void copyOfTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    ImmutableUpdateAppCapabilitiesAction.copyOf(new ImmutableUpdateAppCapabilitiesAction.Json());
+  }
+  @Test
+  public void equalsTest() {
+    // Arrange, Act and Assert
+    assertFalse(ImmutableUpdateAppCapabilitiesAction.fromJson(new ImmutableUpdateAppCapabilitiesAction.Json())
+        .equals("element"));
+  }
+  @Test
+  public void fromJsonTest() {
+    // Arrange, Act and Assert
+    assertEquals("UpdateAppCapabilitiesAction{additions=[]," + " removals=[]}",
+        ImmutableUpdateAppCapabilitiesAction.fromJson(new ImmutableUpdateAppCapabilitiesAction.Json()).toString());
+  }
+  @Test
+  public void fromTest() {
+    // Arrange
+    ImmutableUpdateAppCapabilitiesAction.Builder builderResult = ImmutableUpdateAppCapabilitiesAction.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from(new ImmutableUpdateAppCapabilitiesAction.Json());
+  }
+  @Test
+  public void hashCodeTest() {
+    // Arrange, Act and Assert
+    assertEquals(5859943,
+        ImmutableUpdateAppCapabilitiesAction.fromJson(new ImmutableUpdateAppCapabilitiesAction.Json()).hashCode());
+  }
+  @Test
+  public void removalsTest() {
     // Arrange
     ImmutableUpdateAppCapabilitiesAction.Json json = new ImmutableUpdateAppCapabilitiesAction.Json();
-    ArrayList<EntityReference> entityReferenceList = new ArrayList<EntityReference>();
-    entityReferenceList.add(null);
 
     // Act
-    json.setRemovals(entityReferenceList);
+    List<EntityReference> actualRemovalsResult = ImmutableUpdateAppCapabilitiesAction.fromJson(json).removals();
 
     // Assert
-    assertSame(entityReferenceList, json.removals);
+    assertSame(json.additions, actualRemovalsResult);
+    assertEquals(0, actualRemovalsResult.size());
+  }
+  @Test
+  public void removalsTest2() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableUpdateAppCapabilitiesAction.Json()).removals();
   }
   @Test
   public void setAdditionsTest() {
@@ -63,73 +113,23 @@ public class ImmutableUpdateAppCapabilitiesActionDiffblueTest {
     assertSame(entityReferenceList, json.additions);
   }
   @Test
-  public void equalsTest() {
-    // Arrange, Act and Assert
-    assertFalse(ImmutableUpdateAppCapabilitiesAction.fromJson(new ImmutableUpdateAppCapabilitiesAction.Json())
-        .equals("element"));
-  }
-  @Test
-  public void additionsTest() {
+  public void setRemovalsTest() {
     // Arrange
     ImmutableUpdateAppCapabilitiesAction.Json json = new ImmutableUpdateAppCapabilitiesAction.Json();
+    ArrayList<EntityReference> entityReferenceList = new ArrayList<EntityReference>();
+    entityReferenceList.add(null);
 
     // Act
-    List<EntityReference> actualAdditionsResult = ImmutableUpdateAppCapabilitiesAction.fromJson(json).additions();
+    json.setRemovals(entityReferenceList);
 
     // Assert
-    assertSame(json.additions, actualAdditionsResult);
-    assertEquals(0, actualAdditionsResult.size());
-  }
-  @Test
-  public void fromJsonTest() {
-    // Arrange, Act and Assert
-    assertEquals("UpdateAppCapabilitiesAction{additions=[]," + " removals=[]}",
-        ImmutableUpdateAppCapabilitiesAction.fromJson(new ImmutableUpdateAppCapabilitiesAction.Json()).toString());
-  }
-  @Test
-  public void removalsTest() {
-    // Arrange
-    ImmutableUpdateAppCapabilitiesAction.Json json = new ImmutableUpdateAppCapabilitiesAction.Json();
-
-    // Act
-    List<EntityReference> actualRemovalsResult = ImmutableUpdateAppCapabilitiesAction.fromJson(json).removals();
-
-    // Assert
-    assertSame(json.additions, actualRemovalsResult);
-    assertEquals(0, actualRemovalsResult.size());
-  }
-  @Test
-  public void copyOfTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    ImmutableUpdateAppCapabilitiesAction.copyOf(new ImmutableUpdateAppCapabilitiesAction.Json());
-  }
-  @Test
-  public void hashCodeTest() {
-    // Arrange, Act and Assert
-    assertEquals(5859943,
-        ImmutableUpdateAppCapabilitiesAction.fromJson(new ImmutableUpdateAppCapabilitiesAction.Json()).hashCode());
+    assertSame(entityReferenceList, json.removals);
   }
   @Test
   public void toStringTest() {
     // Arrange, Act and Assert
     assertEquals("UpdateAppCapabilitiesAction{additions=[]," + " removals=[]}",
         ImmutableUpdateAppCapabilitiesAction.fromJson(new ImmutableUpdateAppCapabilitiesAction.Json()).toString());
-  }
-  @Test
-  public void buildTest() {
-    // Arrange, Act and Assert
-    assertEquals("UpdateAppCapabilitiesAction{additions=[]," + " removals=[]}",
-        ImmutableUpdateAppCapabilitiesAction.builder().build().toString());
-  }
-  @Test
-  public void fromTest() {
-    // Arrange
-    ImmutableUpdateAppCapabilitiesAction.Builder builderResult = ImmutableUpdateAppCapabilitiesAction.builder();
-
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from(new ImmutableUpdateAppCapabilitiesAction.Json());
   }
 }
 

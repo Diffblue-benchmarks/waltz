@@ -12,6 +12,50 @@ public class ImmutableApplicationDatabasesDiffblueTest {
   @Rule
   public ExpectedException thrown = ExpectedException.none();
   @Test
+  public void applicationIdTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableApplicationDatabases.Json()).applicationId();
+  }
+  @Test
+  public void buildTest() {
+    // Arrange, Act and Assert
+    thrown.expect(IllegalStateException.class);
+    ImmutableApplicationDatabases.builder().build();
+  }
+  @Test
+  public void constructorTest() {
+    // Arrange, Act and Assert
+    assertEquals(0, (new ImmutableApplicationDatabases.Json()).databases.size());
+  }
+  @Test
+  public void copyOfTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    ImmutableApplicationDatabases.copyOf(new ImmutableApplicationDatabases.Json());
+  }
+  @Test
+  public void databasesTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableApplicationDatabases.Json()).databases();
+  }
+  @Test
+  public void fromJsonTest() {
+    // Arrange, Act and Assert
+    thrown.expect(IllegalStateException.class);
+    ImmutableApplicationDatabases.fromJson(new ImmutableApplicationDatabases.Json());
+  }
+  @Test
+  public void fromTest() {
+    // Arrange
+    ImmutableApplicationDatabases.Builder builderResult = ImmutableApplicationDatabases.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from(new ImmutableApplicationDatabases.Json());
+  }
+  @Test
   public void setApplicationIdTest() {
     // Arrange
     ImmutableApplicationDatabases.Json json = new ImmutableApplicationDatabases.Json();
@@ -21,18 +65,6 @@ public class ImmutableApplicationDatabasesDiffblueTest {
 
     // Assert
     assertEquals(Long.valueOf(123L), json.applicationId);
-  }
-  @Test
-  public void databasesTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableApplicationDatabases.Json()).databases();
-  }
-  @Test
-  public void applicationIdTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableApplicationDatabases.Json()).applicationId();
   }
   @Test
   public void setDatabasesTest() {
@@ -46,38 +78,6 @@ public class ImmutableApplicationDatabasesDiffblueTest {
 
     // Assert
     assertSame(databaseInformationList, json.databases);
-  }
-  @Test
-  public void constructorTest() {
-    // Arrange, Act and Assert
-    assertEquals(0, (new ImmutableApplicationDatabases.Json()).databases.size());
-  }
-  @Test
-  public void fromTest() {
-    // Arrange
-    ImmutableApplicationDatabases.Builder builderResult = ImmutableApplicationDatabases.builder();
-
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from(new ImmutableApplicationDatabases.Json());
-  }
-  @Test
-  public void buildTest() {
-    // Arrange, Act and Assert
-    thrown.expect(IllegalStateException.class);
-    ImmutableApplicationDatabases.builder().build();
-  }
-  @Test
-  public void fromJsonTest() {
-    // Arrange, Act and Assert
-    thrown.expect(IllegalStateException.class);
-    ImmutableApplicationDatabases.fromJson(new ImmutableApplicationDatabases.Json());
-  }
-  @Test
-  public void copyOfTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    ImmutableApplicationDatabases.copyOf(new ImmutableApplicationDatabases.Json());
   }
 }
 

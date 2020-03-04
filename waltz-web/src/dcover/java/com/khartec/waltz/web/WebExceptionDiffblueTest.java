@@ -5,15 +5,15 @@ import org.junit.Test;
 
 public class WebExceptionDiffblueTest {
   @Test
-  public void constructorTest2() {
+  public void constructorTest() {
     // Arrange, Act and Assert
-    assertEquals("foo", (new WebException("foo", "An error occurred", new Throwable())).getCode());
+    assertEquals("code", (new WebException("code", "An error occurred")).getCode());
   }
 
   @Test
-  public void constructorTest() {
+  public void constructorTest2() {
     // Arrange, Act and Assert
-    assertEquals("foo", (new WebException("foo", "An error occurred")).getCode());
+    assertEquals("code", (new WebException("code", "An error occurred", new Throwable())).getCode());
   }
 }
 

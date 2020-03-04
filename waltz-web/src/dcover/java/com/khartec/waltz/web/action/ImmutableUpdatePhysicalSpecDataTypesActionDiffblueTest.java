@@ -13,6 +13,29 @@ public class ImmutableUpdatePhysicalSpecDataTypesActionDiffblueTest {
   @Rule
   public ExpectedException thrown = ExpectedException.none();
   @Test
+  public void addedDataTypeIdsTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableUpdatePhysicalSpecDataTypesAction.Json()).addedDataTypeIds();
+  }
+  @Test
+  public void buildTest() {
+    // Arrange, Act and Assert
+    thrown.expect(IllegalStateException.class);
+    ImmutableUpdatePhysicalSpecDataTypesAction.builder().build();
+  }
+  @Test
+  public void constructorTest() {
+    // Arrange and Act
+    ImmutableUpdatePhysicalSpecDataTypesAction.Json actualJson = new ImmutableUpdatePhysicalSpecDataTypesAction.Json();
+
+    // Assert
+    Set<Long> actualResultLongSet = actualJson.addedDataTypeIds;
+    Set<Long> resultLongSet = actualJson.removedDataTypeIds;
+    assertEquals(0, resultLongSet.size());
+    assertSame(resultLongSet, actualResultLongSet);
+  }
+  @Test
   public void copyOfTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
@@ -33,30 +56,6 @@ public class ImmutableUpdatePhysicalSpecDataTypesActionDiffblueTest {
     // Act and Assert
     thrown.expect(UnsupportedOperationException.class);
     builderResult.from(new ImmutableUpdatePhysicalSpecDataTypesAction.Json());
-  }
-  @Test
-  public void buildTest() {
-    // Arrange, Act and Assert
-    thrown.expect(IllegalStateException.class);
-    ImmutableUpdatePhysicalSpecDataTypesAction.builder().build();
-  }
-  @Test
-  public void specificationIdTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableUpdatePhysicalSpecDataTypesAction.Json()).specificationId();
-  }
-  @Test
-  public void setSpecificationIdTest() {
-    // Arrange
-    ImmutableUpdatePhysicalSpecDataTypesAction.Json json = new ImmutableUpdatePhysicalSpecDataTypesAction.Json();
-
-    // Act
-    json.setSpecificationId(123L);
-
-    // Assert
-    assertTrue(json.specificationIdIsSet);
-    assertEquals(123L, json.specificationId);
   }
   @Test
   public void removedDataTypeIdsTest() {
@@ -91,21 +90,22 @@ public class ImmutableUpdatePhysicalSpecDataTypesActionDiffblueTest {
     assertSame(resultLongSet, json.removedDataTypeIds);
   }
   @Test
-  public void constructorTest() {
-    // Arrange and Act
-    ImmutableUpdatePhysicalSpecDataTypesAction.Json actualJson = new ImmutableUpdatePhysicalSpecDataTypesAction.Json();
+  public void setSpecificationIdTest() {
+    // Arrange
+    ImmutableUpdatePhysicalSpecDataTypesAction.Json json = new ImmutableUpdatePhysicalSpecDataTypesAction.Json();
+
+    // Act
+    json.setSpecificationId(123L);
 
     // Assert
-    Set<Long> actualResultLongSet = actualJson.addedDataTypeIds;
-    Set<Long> resultLongSet = actualJson.removedDataTypeIds;
-    assertEquals(0, resultLongSet.size());
-    assertSame(resultLongSet, actualResultLongSet);
+    assertTrue(json.specificationIdIsSet);
+    assertEquals(123L, json.specificationId);
   }
   @Test
-  public void addedDataTypeIdsTest() {
+  public void specificationIdTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableUpdatePhysicalSpecDataTypesAction.Json()).addedDataTypeIds();
+    (new ImmutableUpdatePhysicalSpecDataTypesAction.Json()).specificationId();
   }
 }
 

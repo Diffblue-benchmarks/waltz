@@ -9,25 +9,10 @@ public class ImmutableCreateBookmarkActionDiffblueTest {
   @Rule
   public ExpectedException thrown = ExpectedException.none();
   @Test
-  public void fromJsonTest() {
-    // Arrange, Act and Assert
-    thrown.expect(IllegalStateException.class);
-    ImmutableCreateBookmarkAction.fromJson(new ImmutableCreateBookmarkAction.Json());
-  }
-  @Test
-  public void copyOfTest() {
+  public void bookmarkTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    ImmutableCreateBookmarkAction.copyOf(new ImmutableCreateBookmarkAction.Json());
-  }
-  @Test
-  public void fromTest() {
-    // Arrange
-    ImmutableCreateBookmarkAction.Builder builderResult = ImmutableCreateBookmarkAction.builder();
-
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from(new ImmutableCreateBookmarkAction.Json());
+    (new ImmutableCreateBookmarkAction.Json()).bookmark();
   }
   @Test
   public void buildTest() {
@@ -41,10 +26,25 @@ public class ImmutableCreateBookmarkActionDiffblueTest {
     assertNull((new ImmutableCreateBookmarkAction.Json()).bookmark);
   }
   @Test
-  public void bookmarkTest() {
+  public void copyOfTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableCreateBookmarkAction.Json()).bookmark();
+    ImmutableCreateBookmarkAction.copyOf(new ImmutableCreateBookmarkAction.Json());
+  }
+  @Test
+  public void fromJsonTest() {
+    // Arrange, Act and Assert
+    thrown.expect(IllegalStateException.class);
+    ImmutableCreateBookmarkAction.fromJson(new ImmutableCreateBookmarkAction.Json());
+  }
+  @Test
+  public void fromTest() {
+    // Arrange
+    ImmutableCreateBookmarkAction.Builder builderResult = ImmutableCreateBookmarkAction.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from(new ImmutableCreateBookmarkAction.Json());
   }
 }
 
