@@ -12,15 +12,15 @@ public class AllocationUtilitiesDiffblueTest {
   }
 
   @Test
-  public void messageTest() {
-    // Arrange, Act and Assert
-    assertEquals("", (new AllocationUtilities.ValidationResult()).message());
-  }
-
-  @Test
   public void failedTest() {
     // Arrange, Act and Assert
     assertFalse((new AllocationUtilities.ValidationResult()).failed());
+  }
+
+  @Test
+  public void messageTest() {
+    // Arrange, Act and Assert
+    assertEquals("", (new AllocationUtilities.ValidationResult()).message());
   }
 }
 

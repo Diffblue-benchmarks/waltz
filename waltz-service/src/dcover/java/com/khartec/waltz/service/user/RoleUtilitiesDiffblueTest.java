@@ -8,13 +8,6 @@ import org.junit.Test;
 
 public class RoleUtilitiesDiffblueTest {
   @Test
-  public void getRequiredRoleForEntityKindTest2() {
-    // Arrange, Act and Assert
-    assertEquals(SystemRole.ADMIN,
-        RoleUtilities.getRequiredRoleForEntityKind(EntityKind.ACTOR, Operation.ADD, EntityKind.ACTOR));
-  }
-
-  @Test
   public void getRequiredRoleForEntityKindTest() {
     // Arrange
     SystemRole actualRequiredRoleForEntityKind = RoleUtilities.getRequiredRoleForEntityKind(EntityKind.ACTOR);
@@ -25,6 +18,13 @@ public class RoleUtilitiesDiffblueTest {
     assertEquals(SystemRole.APP_EDITOR, actualRequiredRoleForEntityKind1);
     assertEquals(SystemRole.CHANGE_INITIATIVE_EDITOR,
         RoleUtilities.getRequiredRoleForEntityKind(EntityKind.CHANGE_INITIATIVE));
+  }
+
+  @Test
+  public void getRequiredRoleForEntityKindTest2() {
+    // Arrange, Act and Assert
+    assertEquals(SystemRole.ADMIN,
+        RoleUtilities.getRequiredRoleForEntityKind(EntityKind.ACTOR, Operation.ADD, EntityKind.ACTOR));
   }
 }
 

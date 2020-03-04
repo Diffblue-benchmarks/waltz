@@ -12,12 +12,6 @@ import org.springframework.scheduling.config.ScheduledTaskRegistrar;
 
 public class DIConfigurationDiffblueTest {
   @Test
-  public void settingOverridesTest() {
-    // Arrange, Act and Assert
-    assertEquals(0, (new DIConfiguration()).settingOverrides().size());
-  }
-
-  @Test
   public void configureTasksTest() {
     // Arrange
     DIConfiguration diConfiguration = new DIConfiguration();
@@ -48,6 +42,12 @@ public class DIConfigurationDiffblueTest {
     assertEquals(3, propertySources.size());
     assertEquals("[JndiPropertySource {name='java:comp'}," + " PropertiesPropertySource {name='systemProperties'},"
         + " SystemEnvironmentPropertySource {name=" + "'systemEnvironment'}]", propertySources.toString());
+  }
+
+  @Test
+  public void settingOverridesTest() {
+    // Arrange, Act and Assert
+    assertEquals(0, (new DIConfiguration()).settingOverrides().size());
   }
 }
 

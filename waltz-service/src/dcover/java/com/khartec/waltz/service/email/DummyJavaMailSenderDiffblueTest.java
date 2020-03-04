@@ -8,12 +8,6 @@ import org.springframework.mail.MailException;
 
 public class DummyJavaMailSenderDiffblueTest {
   @Test
-  public void createMimeMessageTest2() {
-    // Arrange, Act and Assert
-    assertNull((new DummyJavaMailSender()).createMimeMessage());
-  }
-
-  @Test
   public void createMimeMessageTest() throws MailException {
     // Arrange
     byte[] byteArray = new byte[24];
@@ -22,6 +16,12 @@ public class DummyJavaMailSenderDiffblueTest {
 
     // Act and Assert
     assertNull((new DummyJavaMailSender()).createMimeMessage(inputStream));
+  }
+
+  @Test
+  public void createMimeMessageTest2() {
+    // Arrange, Act and Assert
+    assertNull((new DummyJavaMailSender()).createMimeMessage());
   }
 }
 

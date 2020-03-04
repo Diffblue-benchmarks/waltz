@@ -7,16 +7,6 @@ import org.junit.Test;
 
 public class UserContributionUtilitiesDiffblueTest {
   @Test
-  public void findWindowTest2() {
-    // Arrange
-    ArrayList<Object> objectList = new ArrayList<Object>();
-    objectList.add("foo");
-
-    // Act and Assert
-    assertEquals(1, UserContributionUtilities.<Object>findWindow(objectList, Integer.valueOf(747), 3).size());
-  }
-
-  @Test
   public void findWindowTest() {
     // Arrange
     ArrayList<Object> objectList = new ArrayList<Object>();
@@ -24,6 +14,16 @@ public class UserContributionUtilitiesDiffblueTest {
 
     // Act and Assert
     assertEquals(1, UserContributionUtilities.<Object>findWindow(objectList, 1, 3).size());
+  }
+
+  @Test
+  public void findWindowTest2() {
+    // Arrange
+    ArrayList<Object> objectList = new ArrayList<Object>();
+    objectList.add("foo");
+
+    // Act and Assert
+    assertEquals(1, UserContributionUtilities.<Object>findWindow(objectList, Integer.valueOf(734), 3).size());
   }
 
   @Test

@@ -11,37 +11,16 @@ public class ImmutableAppGroupSubscriptionDiffblueTest {
   @Rule
   public ExpectedException thrown = ExpectedException.none();
   @Test
-  public void fromJsonTest() {
-    // Arrange, Act and Assert
-    thrown.expect(IllegalStateException.class);
-    ImmutableAppGroupSubscription.fromJson(new ImmutableAppGroupSubscription.Json());
-  }
-  @Test
-  public void copyOfTest() {
+  public void appGroupTest() {
     // Arrange, Act and Assert
     thrown.expect(UnsupportedOperationException.class);
-    ImmutableAppGroupSubscription.copyOf(new ImmutableAppGroupSubscription.Json());
-  }
-  @Test
-  public void fromTest() {
-    // Arrange
-    ImmutableAppGroupSubscription.Builder builderResult = ImmutableAppGroupSubscription.builder();
-
-    // Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    builderResult.from(new ImmutableAppGroupSubscription.Json());
+    (new ImmutableAppGroupSubscription.Json()).appGroup();
   }
   @Test
   public void buildTest() {
     // Arrange, Act and Assert
     thrown.expect(IllegalStateException.class);
     ImmutableAppGroupSubscription.builder().build();
-  }
-  @Test
-  public void appGroupTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableAppGroupSubscription.Json()).appGroup();
   }
   @Test
   public void constructorTest() {
@@ -53,6 +32,33 @@ public class ImmutableAppGroupSubscriptionDiffblueTest {
     assertNull(actualJson.role);
   }
   @Test
+  public void copyOfTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    ImmutableAppGroupSubscription.copyOf(new ImmutableAppGroupSubscription.Json());
+  }
+  @Test
+  public void fromJsonTest() {
+    // Arrange, Act and Assert
+    thrown.expect(IllegalStateException.class);
+    ImmutableAppGroupSubscription.fromJson(new ImmutableAppGroupSubscription.Json());
+  }
+  @Test
+  public void fromTest() {
+    // Arrange
+    ImmutableAppGroupSubscription.Builder builderResult = ImmutableAppGroupSubscription.builder();
+
+    // Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    builderResult.from(new ImmutableAppGroupSubscription.Json());
+  }
+  @Test
+  public void roleTest() {
+    // Arrange, Act and Assert
+    thrown.expect(UnsupportedOperationException.class);
+    (new ImmutableAppGroupSubscription.Json()).role();
+  }
+  @Test
   public void setRoleTest() {
     // Arrange
     ImmutableAppGroupSubscription.Json json = new ImmutableAppGroupSubscription.Json();
@@ -62,12 +68,6 @@ public class ImmutableAppGroupSubscriptionDiffblueTest {
 
     // Assert
     assertEquals(AppGroupMemberRole.VIEWER, json.role);
-  }
-  @Test
-  public void roleTest() {
-    // Arrange, Act and Assert
-    thrown.expect(UnsupportedOperationException.class);
-    (new ImmutableAppGroupSubscription.Json()).role();
   }
 }
 
