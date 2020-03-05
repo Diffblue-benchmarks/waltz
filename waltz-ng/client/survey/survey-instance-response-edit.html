@@ -180,7 +180,6 @@
                                                required="qi.question.isMandatory"
                                                current-selection="ctrl.surveyResponses[qi.question.id].entityResponse"
                                                on-select="ctrl.saveEntityResponse"
-                                               entity-lifecycle-statuses="['ACTIVE', 'PENDING']"
                                                entity-kinds="['APPLICATION']">
                         </waltz-entity-selector>
                         <!-- person -->
@@ -189,7 +188,6 @@
                                                required="qi.question.isMandatory"
                                                current-selection="ctrl.surveyResponses[qi.question.id].entityResponse"
                                                on-select="ctrl.saveEntityResponse"
-                                               entity-lifecycle-statuses='["ACTIVE"]'
                                                entity-kinds="['PERSON']">
                         </waltz-entity-selector>
                         <!-- comment -->
