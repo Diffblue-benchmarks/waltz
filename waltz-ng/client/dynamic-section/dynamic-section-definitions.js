@@ -351,7 +351,6 @@ export const dynamicSectionsByKind = {
         dynamicSections.assetCostsSection,
         dynamicSections.complexitySection,
         dynamicSections.technologySummarySection,
-        dynamicSections.surveySection,
         dynamicSections.changeLogSection,
         dynamicSections.measurableRatingsBrowserSection
     ],

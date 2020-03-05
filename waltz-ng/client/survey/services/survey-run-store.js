@@ -71,12 +71,6 @@ function store($http, baseApiUrl) {
             .then(r => r.data);
     };
 
-    const findForRecipientId = (personId) => {
-        return $http
-            .get(`${base}/recipient/id/${personId}`)
-            .then(r => r.data);
-    };
-
     const findForUser = () => {
         return $http
             .get(`${base}/user`)
@@ -130,7 +124,6 @@ function store($http, baseApiUrl) {
         getById,
         findByTemplateId,
         findByEntityReference,
-        findForRecipientId,
         findForUser,
         update,
         updateStatus,
@@ -178,15 +171,10 @@ export const SurveyRunStore_API = {
         serviceFnName: 'findByEntityReference',
         description: 'find survey runs for a given entity'
     },
-    findForRecipientId: {
-        serviceName,
-        serviceFnName: 'findForRecipientId',
-        description: 'find survey runs for a given recipient person id'
-    },
     findForUser: {
         serviceName,
         serviceFnName: 'findForUser',
-        description: 'find survey runs for the current logged in user'
+        description: 'find survey runs for a given user'
     },
     update: {
         serviceName,

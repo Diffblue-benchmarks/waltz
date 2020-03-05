@@ -19,7 +19,6 @@ import {initialiseData} from "../../../common/index";
 import {CORE_API} from "../../../common/services/core-api-utils";
 import _ from "lodash";
 import moment from "moment";
-import {isSurveyTargetKind} from "../../survey-utils";
 
 
 import template from "./survey-instance-list.html";
@@ -33,8 +32,7 @@ const bindings = {
 const initialState = {
     surveys: [],
     visibility: {
-        dataTab: 0,
-        showSurveySubject: false
+        dataTab: 0
     }
 };
 
@@ -70,36 +68,22 @@ function controller($q, serviceBroker) {
 
     vm.$onChanges = () => {
         if (vm.parentEntityRef) {
-            let runsPromise;
-            let instancesPromise;
+            const runsPromise = serviceBroker
+                .loadViewData(
+                    CORE_API.SurveyRunStore.findByEntityReference,
+                    [vm.parentEntityRef],
+                    { force: true })
+                .then(r => r.data);
 
-            if (vm.parentEntityRef.kind === 'PERSON') {
-                runsPromise = serviceBroker.loadViewData(
-                    CORE_API.SurveyRunStore.findForRecipientId,
-                    [vm.parentEntityRef.id],
-                    { force: true });
-
-                instancesPromise = serviceBroker.loadViewData(
-                    CORE_API.SurveyInstanceStore.findForRecipientId,
-                    [vm.parentEntityRef.id],
-                    { force: true });
-            } else {
-                runsPromise = serviceBroker.loadViewData(
-                        CORE_API.SurveyRunStore.findByEntityReference,
-                        [vm.parentEntityRef],
-                        { force: true });
-
-                instancesPromise = serviceBroker.loadViewData(
-                        CORE_API.SurveyInstanceStore.findByEntityReference,
-                        [vm.parentEntityRef],
-                        { force: true });
-            }
-
-            vm.visibility.showSurveySubject = ! isSurveyTargetKind(vm.parentEntityRef.kind);
-
+            const instancesPromise = serviceBroker
+                .loadViewData(
+                    CORE_API.SurveyInstanceStore.findByEntityReference,
+                    [vm.parentEntityRef],
+                    { force: true })
+                .then(r => r.data);
             $q.all([runsPromise, instancesPromise])
-                .then(([runsResult, instancesResult]) =>
-                    vm.surveys = mkTableData(runsResult.data, instancesResult.data));
+                .then(([runs, instances]) =>
+                    vm.surveys = mkTableData(runs, instances));
         }
     };
 

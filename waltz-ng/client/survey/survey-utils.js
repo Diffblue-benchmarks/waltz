@@ -1,3 +1,4 @@
+
 /*
  * Waltz - Enterprise Architecture
  * Copyright (C) 2016, 2017, 2018, 2019 Waltz open source project
@@ -33,10 +34,4 @@ export function groupQuestions(questionInfos = []) {
             'questionInfos': groupedQuestionInfos[s]
         }
     });
-}
-
-
-export function isSurveyTargetKind(entityKind = "") {
-    return entityKind === "APPLICATION"
-            || entityKind === "CHANGE_INITIATIVE";
 }

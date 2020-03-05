@@ -59,7 +59,6 @@ public class SurveyInstanceEndpoint implements Endpoint {
     public void register() {
         String getByIdPath = mkPath(BASE_URL, "id", ":id");
         String findByEntityRefPath = mkPath(BASE_URL, "entity", ":kind", ":id");
-        String findForRecipientIdPath = mkPath(BASE_URL, "recipient", "id", ":id");
         String findForUserPath = mkPath(BASE_URL, "user");
         String findForSurveyRunPath = mkPath(BASE_URL, "run", ":id");
         String findPreviousVersionsPath = mkPath(BASE_URL, "id", ":id", "previous-versions");
@@ -77,9 +76,6 @@ public class SurveyInstanceEndpoint implements Endpoint {
 
         ListRoute<SurveyInstance> findByEntityRefRoute = (req, res)
                 -> surveyInstanceService.findBySurveyInstanceIdSelector(mkOpts(getEntityReference(req), EXACT));
-
-        ListRoute<SurveyInstance> findForRecipientIdRoute = (req, res)
-                -> surveyInstanceService.findForRecipient(getId(req));
 
         ListRoute<SurveyInstance> findForUserRoute =
                 (req, res) -> surveyInstanceService.findForRecipient(getUsername(req));
@@ -165,7 +161,6 @@ public class SurveyInstanceEndpoint implements Endpoint {
 
         getForDatum(getByIdPath, getByIdRoute);
         getForList(findByEntityRefPath, findByEntityRefRoute);
-        getForList(findForRecipientIdPath, findForRecipientIdRoute);
         getForList(findForUserPath, findForUserRoute);
         getForList(findForSurveyRunPath, findForSurveyRunRoute);
         getForList(findPreviousVersionsPath, findPreviousVersionsRoute);

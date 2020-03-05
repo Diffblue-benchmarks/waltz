@@ -35,12 +35,6 @@ function store($http, baseApiUrl) {
             .then(r => r.data);
     };
 
-    const findForRecipientId = (personId) => {
-        return $http
-            .get(`${base}/recipient/id/${personId}`)
-            .then(r => r.data);
-    };
-
     const findForUser = () => {
         return $http
             .get(`${base}/user`)
@@ -116,7 +110,6 @@ function store($http, baseApiUrl) {
     return {
         getById,
         findByEntityReference,
-        findForRecipientId,
         findForUser,
         findForSurveyRun,
         findPreviousVersions,
@@ -153,15 +146,10 @@ export const SurveyInstanceStore_API = {
         serviceFnName: 'findByEntityReference',
         description: 'finds survey instances for a given entity reference'
     },
-    findForRecipientId: {
-        serviceName,
-        serviceFnName: 'findForRecipientId',
-        description: 'finds survey instances for a recipient person id'
-    },
     findForUser: {
         serviceName,
         serviceFnName: 'findForUser',
-        description: 'finds survey instances for the current logged in user'
+        description: 'finds survey instances for a given user id'
     },
     findForSurveyRun: {
         serviceName,
