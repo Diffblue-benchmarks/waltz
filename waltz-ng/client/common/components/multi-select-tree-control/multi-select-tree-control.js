@@ -95,15 +95,17 @@ function controller() {
     };
 
     vm.onNodeClick = (node) => {
-        invokeFunction(vm.onClick, node.id);
-    };
-
-    vm.onToggleCheck = (node) => {
-        if (_.includes(vm.checkedItemIds, node.id)) {
-            vm.onNodeUncheck(node.id)
-        } else {
-            vm.onNodeCheck(node.id)
+        if (vm.hasAnyChild(node)) {
+            const idx = _.findIndex(vm.expandedNodes, n => n.id === node.id);
+            if (idx === -1) {
+                // add
+                vm.expandedNodes.push(node);
+            } else {
+                // remove
+                vm.expandedNodes.splice(idx, 1);
+            }
         }
+        invokeFunction(vm.onClick, node.id);
     };
 
     vm.onNodeCheck = (id) => {
@@ -122,13 +124,12 @@ function controller() {
     };
 
     vm.$onChanges = changes => {
-        if(changes.items) {
+        if(changes) {
             vm.hierarchy = buildHierarchies(vm.items, false);
             vm.searchNodes = prepareSearchNodes(vm.items);
-            vm.expandedNodes = expandSelectedNodes(vm.items, vm.expandedItemIds);
         }
 
-        if(changes.expandedItemIds) {
+        if(changes.items && changes.expandedItemIds) {
             vm.expandedNodes = expandSelectedNodes(vm.items, vm.expandedItemIds);
         }
 

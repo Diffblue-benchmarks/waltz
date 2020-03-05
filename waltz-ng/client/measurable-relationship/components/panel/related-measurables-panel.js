@@ -68,8 +68,8 @@ function mkGridData(selfRef,
                     measurables = [],
                     categories = [],
                     appGroups = [],
-                    rowFilterFn = () => true) {
-
+                    rowFilterFn = () => true)
+{
     const measurablesById = _.keyBy(measurables, "id");
     const categoriesById = _.keyBy(categories, "id");
     const appGroupsById = _.keyBy(appGroups, "id");
@@ -87,6 +87,7 @@ function mkGridData(selfRef,
         const c = appGroupsById[r.id];
         return Object.assign({}, r, { name: c !== null ? c.name : "", type: "App Group" });
     };
+
 
     const mkCell = (kind, side) => {
         switch (kind) {
@@ -141,7 +142,8 @@ function controller($q, $timeout, serviceBroker, notification) {
     };
 
     vm.refresh = ()=> {
-        loadAll()
+        vm.cancelEditor();
+        loadRelationships()
             .then(() => {
                 if (vm.selectedRow) {
                     vm.selectedRow = _.find(vm.gridData || [], row => {
@@ -193,7 +195,7 @@ function controller($q, $timeout, serviceBroker, notification) {
 
     vm.removeRelationship = (rel) => {
         if (confirm("Are you sure you want to delete this relationship ?")) {
-            vm.onRemove(rel)
+            remove(rel)
                 .then(() => {
                     notification.warning("Relationship removed");
                     vm.clearRowSelection();
@@ -258,7 +260,7 @@ function controller($q, $timeout, serviceBroker, notification) {
 
     };
 
-    vm.onRemove = (rel) => {
+    const remove = (rel) => {
         return serviceBroker
             .execute(CORE_API.MeasurableRelationshipStore.remove, [rel])
     };

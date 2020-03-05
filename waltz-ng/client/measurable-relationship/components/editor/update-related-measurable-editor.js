@@ -70,7 +70,6 @@ function controller(notification, serviceBroker) {
                 .then(() => {
                     notification.success("Relationship saved");
                     vm.onRefresh();
-                    vm.onCancel();
                 })
                 .catch(e => {
                     displayError(notification, "Could not save because: ", e);

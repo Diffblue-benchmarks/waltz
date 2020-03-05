@@ -133,6 +133,18 @@ function controller($q, serviceBroker, notification) {
             .then(() => reloadData());
     };
 
+    vm.onItemToggle = (toggledId) => {
+        const isExistingItem = _.some(
+            vm.usedItems,
+            d => d.domainItem.id === toggledId);
+
+        if (isExistingItem) {
+            vm.onItemUncheck(toggledId);
+        } else {
+            vm.onItemCheck(toggledId);
+        }
+    };
+
     vm.onItemUncheck = (uncheckedId) => {
         const itemToRemove = {
             orientation: vm.axisOrientation,
