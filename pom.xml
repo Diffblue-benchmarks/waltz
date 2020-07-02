@@ -82,9 +82,52 @@
         <spark.version>2.9.1</spark.version>
         <spring.version>5.2.1.RELEASE</spring.version>
         <super-csv.version>2.4.0</super-csv.version>
-        <timestamp>${maven.build.timestamp}</timestamp>
+	<timestamp>${maven.build.timestamp}</timestamp>
+	<currentTestSourceDirectory>src/test/java</currentTestSourceDirectory>
     </properties>
-
+  <profiles>
+    <profile>
+      <id>Dcover</id>
+      <properties>
+        <currentTestSourceDirectory>src/dcover/java</currentTestSourceDirectory>
+      </properties>
+    </profile>
+    <profile>
+      <id>Jcover</id>
+      <properties>
+        <currentTestSourceDirectory>src/jcover/java</currentTestSourceDirectory>
+      </properties>
+    </profile>
+    <profile>
+      <id>Combined</id>
+      <properties>
+        <currentTestSourceDirectory>src/jcover/java</currentTestSourceDirectory>
+      </properties>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>build-helper-maven-plugin</artifactId>
+            <version>1.4</version>
+            <executions>
+              <execution>
+                <id>add-test-source</id>
+                <phase>generate-test-sources</phase>
+                <goals>
+                  <goal>add-test-source</goal>
+                </goals>
+                <configuration>
+                  <sources>
+                    <source>src/dcover/java/</source>
+                  </sources>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
 
     <dependencyManagement>
         <dependencies>
@@ -345,7 +388,8 @@
                     </execution>
                 </executions>
             </plugin>
-        </plugins>
+    </plugins>
+    <testSourceDirectory>${currentTestSourceDirectory}</testSourceDirectory>
     </build>
     <reporting>
         <plugins>
