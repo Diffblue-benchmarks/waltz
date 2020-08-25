@@ -1,0 +1,59 @@
+package com.khartec.waltz.common;
+
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.nullValue;
+import static org.hamcrest.core.Is.is;
+import static org.hamcrest.core.IsEqual.equalTo;
+
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+
+import org.junit.jupiter.api.Test;
+
+/**
+ * Unit tests for com.khartec.waltz.common.DateTimeUtilities
+ *
+ * @author Diffblue Cover
+ */
+
+class DateTimeUtilitiesTest {
+
+    @Test
+    void nowUtc() {
+        assertThat(DateTimeUtilities.nowUtc(), equalTo(LocalDateTime.parse("2020-08-25T22:17:04.282")));
+    }
+
+    @Test
+    void nowUtcTimestamp() {
+        assertThat(DateTimeUtilities.nowUtcTimestamp(), equalTo(Timestamp.valueOf("2020-08-25 22:17:04.284")));
+    }
+
+    @Test
+    void toSqlDate() throws java.text.ParseException {
+        assertThat(DateTimeUtilities.toSqlDate(LocalDate.of(2_000, 1, 1)).toString(), is("2000-01-01"));
+        assertThat(DateTimeUtilities.toSqlDate(new SimpleDateFormat("yyyy-MM-dd").parse("2010-12-31")).toString(), is("2010-12-31"));
+        assertThat(DateTimeUtilities.toSqlDate((java.util.Date) null), is(nullValue()));
+        assertThat(DateTimeUtilities.toSqlDate((LocalDate) null), is(nullValue()));
+    }
+
+    @Test
+    void toLocalDate() throws java.text.ParseException {
+        assertThat(DateTimeUtilities.toLocalDate(Timestamp.valueOf("2019-12-31 23:10:59")).toString(), is("2019-12-31"));
+        assertThat(DateTimeUtilities.toLocalDate(new SimpleDateFormat("yyyy-MM-dd").parse("2010-12-31")).toString(), is("2010-12-31"));
+        assertThat(DateTimeUtilities.toLocalDate((java.util.Date) null), is(nullValue()));
+        assertThat(DateTimeUtilities.toLocalDate((Timestamp) null), is(nullValue()));
+    }
+
+    @Test
+    void toLocalDateTime() throws java.text.ParseException {
+        assertThat(DateTimeUtilities.toLocalDateTime(new SimpleDateFormat("yyyy-MM-dd").parse("2010-12-31")), equalTo(LocalDateTime.parse("2010-12-31T00:00")));
+        assertThat(DateTimeUtilities.toLocalDateTime(null), is(nullValue()));
+    }
+
+    @Test
+    void today() {
+        assertThat(DateTimeUtilities.today(), equalTo(LocalDate.now()));
+    }
+}
