@@ -22,12 +22,12 @@ class DateTimeUtilitiesTest {
 
     @Test
     void nowUtc() {
-        assertThat(DateTimeUtilities.nowUtc(), equalTo(LocalDateTime.parse("2020-08-26T12:06:00.500")));
+        assertThat(DateTimeUtilities.nowUtc(), equalTo(LocalDateTime.parse("2020-08-26T13:35:54.986")));
     }
 
     @Test
     void nowUtcTimestamp() {
-        assertThat(DateTimeUtilities.nowUtcTimestamp(), equalTo(Timestamp.valueOf("2020-08-26 12:06:00.502")));
+        assertThat(DateTimeUtilities.nowUtcTimestamp(), equalTo(Timestamp.valueOf("2020-08-26 13:35:54.987")));
     }
 
     @Test
