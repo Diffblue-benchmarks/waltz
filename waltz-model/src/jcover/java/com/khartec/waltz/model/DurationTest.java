@@ -24,9 +24,4 @@ class DurationTest {
         assertThat(result[5], is(Duration.YEAR));
         assertThat(result[6], is(Duration.ALL));
     }
-
-    @Test
-    void numDaysReturnsOne() {
-        assertThat(Duration.DAY.numDays(), is(1));
-    }
 }

@@ -26,9 +26,4 @@ class EnumValueKindTest {
         assertThat(result[7], is(EnumValueKind.PHYSICAL_FLOW_CRITICALITY));
         assertThat(result[8], is(EnumValueKind.FRESHNESS_INDICATOR));
     }
-
-    @Test
-    void dbValueReturnsTransportKind() {
-        assertThat(EnumValueKind.TRANSPORT_KIND.dbValue(), is("TransportKind"));
-    }
 }
