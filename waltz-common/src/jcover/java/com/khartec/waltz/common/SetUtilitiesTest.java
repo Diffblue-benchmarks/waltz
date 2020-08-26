@@ -4,6 +4,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.empty;
 import static org.hamcrest.Matchers.hasItem;
 import static org.hamcrest.collection.IsCollectionWithSize.hasSize;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -118,7 +119,13 @@ class SetUtilitiesTest {
     }
 
     @Test
-    void unionAllValuesIsEmptyReturnsEmpty() {
-        assertThat(SetUtilities.<String>unionAll(new LinkedList<LinkedList<String>>()), empty());
+    void unionAllReturnsFoo() {
+        LinkedList<LinkedList<String>> values =
+             new LinkedList<LinkedList<String>>();
+        LinkedList<String> linkedList = new LinkedList<String>();
+        linkedList.add("foo");
+        values.add(linkedList);
+        assertThat(SetUtilities.<String>unionAll(values), hasSize(1));
+        assertTrue(SetUtilities.<String>unionAll(values).contains("foo"));
     }
 }
