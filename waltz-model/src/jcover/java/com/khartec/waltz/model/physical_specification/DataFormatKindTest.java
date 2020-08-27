@@ -19,6 +19,19 @@ import org.mockito.Mockito;
 class DataFormatKindTest {
 
     @Test
+    void valuesReturnsBinaryDatabaseFlat_fileJsonOtherUnstructuredUnknownXml() {
+        DataFormatKind[] result = DataFormatKind.values();
+        assertThat(result[0], is(DataFormatKind.BINARY));
+        assertThat(result[1], is(DataFormatKind.DATABASE));
+        assertThat(result[2], is(DataFormatKind.FLAT_FILE));
+        assertThat(result[3], is(DataFormatKind.JSON));
+        assertThat(result[4], is(DataFormatKind.OTHER));
+        assertThat(result[5], is(DataFormatKind.UNSTRUCTURED));
+        assertThat(result[6], is(DataFormatKind.UNKNOWN));
+        assertThat(result[7], is(DataFormatKind.XML));
+    }
+
+    @Test
     void parseValueIsValueReturnsBinary() {
         @SuppressWarnings("unchecked")
         Function<String, DataFormatKind> failedParseSupplier =
