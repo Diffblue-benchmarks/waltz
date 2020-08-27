@@ -24,10 +24,12 @@ class DuplicateKeyExceptionTest {
 
     @Test
     void factory2() {
+        Exception cause = new Exception();
+        cause.setStackTrace(new StackTraceElement[] { });
         DuplicateKeyException duplicateKeyException =
-             new DuplicateKeyException("an error has happened", new InsufficientPrivelegeException("an error has happened"));
+             new DuplicateKeyException("an error has happened", cause);
         assertThat(duplicateKeyException.getCause().getCause(), is(nullValue()));
-        assertThat(duplicateKeyException.getCause().getMessage(), is("an error has happened"));
+        assertThat(duplicateKeyException.getCause().getMessage(), is(nullValue()));
         assertThat(duplicateKeyException.getMessage(), is("an error has happened"));
     }
 }

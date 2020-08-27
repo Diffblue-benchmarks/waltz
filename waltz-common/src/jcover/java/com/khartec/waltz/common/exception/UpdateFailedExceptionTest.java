@@ -25,11 +25,13 @@ class UpdateFailedExceptionTest {
 
     @Test
     void factory2() {
+        Exception cause = new Exception();
+        cause.setStackTrace(new StackTraceElement[] { });
         UpdateFailedException updateFailedException =
-             new UpdateFailedException("DE", "an error has happened", new InsufficientPrivelegeException("an error has happened"));
+             new UpdateFailedException("DE", "an error has happened", cause);
         assertThat(updateFailedException.getCode(), is("DE"));
         assertThat(updateFailedException.getCause().getCause(), is(nullValue()));
-        assertThat(updateFailedException.getCause().getMessage(), is("an error has happened"));
+        assertThat(updateFailedException.getCause().getMessage(), is(nullValue()));
         assertThat(updateFailedException.getMessage(), is("an error has happened"));
     }
 }

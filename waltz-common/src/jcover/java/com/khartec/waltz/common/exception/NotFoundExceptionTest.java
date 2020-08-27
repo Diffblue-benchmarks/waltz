@@ -25,11 +25,13 @@ class NotFoundExceptionTest {
 
     @Test
     void factory2() {
+        Exception cause = new Exception();
+        cause.setStackTrace(new StackTraceElement[] { });
         NotFoundException notFoundException =
-             new NotFoundException("DE", "an error has happened", new InsufficientPrivelegeException("an error has happened"));
+             new NotFoundException("DE", "an error has happened", cause);
         assertThat(notFoundException.getCode(), is("DE"));
         assertThat(notFoundException.getCause().getCause(), is(nullValue()));
-        assertThat(notFoundException.getCause().getMessage(), is("an error has happened"));
+        assertThat(notFoundException.getCause().getMessage(), is(nullValue()));
         assertThat(notFoundException.getMessage(), is("an error has happened"));
     }
 }
