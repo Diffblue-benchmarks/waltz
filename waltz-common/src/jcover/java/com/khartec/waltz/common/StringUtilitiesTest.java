@@ -28,15 +28,15 @@ class StringUtilitiesTest {
     void notEmpty() {
         assertThat(StringUtilities.notEmpty(""), is(false));
         assertThat(StringUtilities.notEmpty("foo"), is(true));
+        assertThat(StringUtilities.notEmpty(null), is(false));
     }
 
     @Test
     void isEmpty() {
-        assertThat(StringUtilities.isEmpty(Optional.<String>empty()), is(true));
         assertThat(StringUtilities.isEmpty(Optional.of("foo")), is(false));
+        assertThat(StringUtilities.isEmpty(Optional.<String>empty()), is(true));
         assertThat(StringUtilities.isEmpty(""), is(true));
         assertThat(StringUtilities.isEmpty("foo"), is(false));
-        assertThat(StringUtilities.isEmpty((String) null), is(true));
     }
 
     @Test
@@ -93,27 +93,27 @@ class StringUtilitiesTest {
     }
 
     @Test
-    void splitThenMapSeparatorIsBarReturnsFoo() {
+    void splitThenMapSeparatorIsEmptyAndStrIsBar() {
         @SuppressWarnings("unchecked")
         Function<String, String> itemTransformer = mock(Function.class);
-        when(itemTransformer.apply(Mockito.<String>any()))
-            .thenReturn("foo");
-        assertThat(StringUtilities.<String>splitThenMap("foo", "bar", itemTransformer), hasSize(1));
-        assertThat(StringUtilities.<String>splitThenMap("foo", "bar", itemTransformer).get(0), is("foo"));
-    }
-
-    @Test
-    void splitThenMapSeparatorIsEmpty() {
-        @SuppressWarnings("unchecked")
-        Function<String, String> itemTransformer = mock(Function.class);
-        assertThat(StringUtilities.<String>splitThenMap("foo", "", itemTransformer), empty());
+        assertThat(StringUtilities.<String>splitThenMap("bar", "", itemTransformer), empty());
     }
 
     @Test
     void splitThenMapStrIsEmpty() {
         @SuppressWarnings("unchecked")
         Function<String, String> itemTransformer = mock(Function.class);
-        assertThat(StringUtilities.<String>splitThenMap("", ",", itemTransformer), empty());
+        assertThat(StringUtilities.<String>splitThenMap("", "bar", itemTransformer), empty());
+    }
+
+    @Test
+    void splitThenMapStrIsFooReturnsFoo() {
+        @SuppressWarnings("unchecked")
+        Function<String, String> itemTransformer = mock(Function.class);
+        when(itemTransformer.apply(Mockito.<String>any()))
+            .thenReturn("foo");
+        assertThat(StringUtilities.<String>splitThenMap("foo", "bar", itemTransformer), hasSize(1));
+        assertThat(StringUtilities.<String>splitThenMap("foo", "bar", itemTransformer).get(0), is("foo"));
     }
 
     @Test

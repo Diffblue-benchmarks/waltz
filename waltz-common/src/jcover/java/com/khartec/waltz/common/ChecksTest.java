@@ -26,6 +26,11 @@ import org.mockito.Mockito;
 class ChecksTest {
 
     @Test
+    void checkNotNullMessageIsBarAndTIsFooReturnsFoo() {
+        assertThat(Checks.<String>checkNotNull("foo", "bar", new Object()), is("foo"));
+    }
+
+    @Test
     void checkAllTsIsFooReturnsFoo() {
         String[] ts = new String[] { "foo" };
         @SuppressWarnings("unchecked")
@@ -61,17 +66,17 @@ class ChecksTest {
     void checkNotEmpty1() {
         LinkedList<String> ts = new LinkedList<String>();
         ts.add("foo");
-        Checks.<String>checkNotEmpty(ts, "bar");
+        Checks.<String>checkNotEmpty(ts, "SHA-256");
     }
 
     @Test
     void checkNotEmpty2() {
         String[] ts = new String[] { "foo" };
-        Checks.<String>checkNotEmpty(ts, "bar");
+        Checks.<String>checkNotEmpty(ts, "SHA-256");
     }
 
     @Test
     void checkNotEmptyStrIsFooReturnsFoo() {
-        assertThat(Checks.checkNotEmpty("foo", "bar"), is("foo"));
+        assertThat(Checks.checkNotEmpty("foo", "SHA-256"), is("foo"));
     }
 }

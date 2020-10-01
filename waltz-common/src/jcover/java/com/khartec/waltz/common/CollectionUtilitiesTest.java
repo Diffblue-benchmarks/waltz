@@ -145,9 +145,8 @@ class CollectionUtilitiesTest {
     }
 
     @Test
-    void head() {
+    void headXsIsEmpty() {
         assertThat(CollectionUtilities.<String>head(new LinkedList<String>()).isPresent(), is(false));
-        assertThat(CollectionUtilities.<String>head(null).isPresent(), is(false));
     }
 
     @Test
@@ -188,8 +187,9 @@ class CollectionUtilitiesTest {
     }
 
     @Test
-    void maybeFirst1() {
+    void maybeFirst() {
         assertThat(CollectionUtilities.<String>maybeFirst(new LinkedList<String>()).isPresent(), is(false));
+        assertThat(CollectionUtilities.<String>maybeFirst(null).isPresent(), is(false));
     }
 
     @Test
@@ -200,7 +200,7 @@ class CollectionUtilitiesTest {
     }
 
     @Test
-    void maybeFirst2() {
+    void maybeFirstXsIsEmpty() {
         @SuppressWarnings("unchecked")
         Predicate<String> predicate = mock(Predicate.class);
         assertThat(CollectionUtilities.<String>maybeFirst(new LinkedList<String>(), predicate).isPresent(), is(false));

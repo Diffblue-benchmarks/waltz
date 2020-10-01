@@ -33,7 +33,7 @@ class PredicateUtilitiesTest {
     }
 
     @Test
-    void allReturnsFalse1() {
+    void allReturnsFalse2() {
         LinkedList<String> ts = new LinkedList<String>();
         ts.add("foo");
         @SuppressWarnings("unchecked")
@@ -69,7 +69,7 @@ class PredicateUtilitiesTest {
     }
 
     @Test
-    void noneReturnsFalse1() {
+    void noneReturnsFalse2() {
         LinkedList<String> ts = new LinkedList<String>();
         ts.add("foo");
         @SuppressWarnings("unchecked")
@@ -87,7 +87,7 @@ class PredicateUtilitiesTest {
     }
 
     @Test
-    void allReturnsFalse2() {
+    void allReturnsFalse1() {
         String[] ts = new String[] { "foo" };
         @SuppressWarnings("unchecked")
         Predicate<String> p = mock(Predicate.class);
@@ -127,7 +127,7 @@ class PredicateUtilitiesTest {
     }
 
     @Test
-    void noneReturnsFalse2() {
+    void noneReturnsFalse1() {
         String[] ts = new String[] { "foo" };
         @SuppressWarnings("unchecked")
         Predicate<String> p = mock(Predicate.class);

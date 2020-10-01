@@ -1,6 +1,8 @@
 package com.khartec.waltz.model.utils;
 
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.hasItem;
+import static org.hamcrest.collection.IsCollectionWithSize.hasSize;
 import static org.hamcrest.core.Is.is;
 import static org.hamcrest.core.IsSame.sameInstance;
 import static org.mockito.Mockito.mock;
@@ -21,6 +23,17 @@ import org.junit.jupiter.api.Test;
  */
 
 class IdUtilitiesTest {
+
+    @Test
+    void toIdsReturnsOne() {
+        LinkedList<IdProvider> xs = new LinkedList<IdProvider>();
+        IdProvider idProvider = mock(IdProvider.class);
+        when(idProvider.id())
+            .thenReturn(Optional.of(1L));
+        xs.add(idProvider);
+        assertThat(IdUtilities.toIds(xs), hasSize(1));
+        assertThat(IdUtilities.toIds(xs), hasItem(1L));
+    }
 
     @Test
     void toIdArrayReturnsOne() {

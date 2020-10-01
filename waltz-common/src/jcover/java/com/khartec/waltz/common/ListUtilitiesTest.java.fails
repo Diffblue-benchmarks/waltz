@@ -9,6 +9,7 @@ import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.function.Function;
 import java.util.function.Predicate;
 
@@ -44,6 +45,20 @@ class ListUtilitiesTest {
         ts.add("foo");
         assertThat(ListUtilities.<String>compact(ts), hasSize(1));
         assertThat(ListUtilities.<String>compact(ts).get(0), is("foo"));
+    }
+
+    @Test
+    void concat() {
+        assertThat(ListUtilities.<String>concat(), empty());
+        assertThat(ListUtilities.<String>concat(new List[] { null }), empty());
+    }
+
+    @Test
+    void concatReturnsFoo() {
+        List<? extends String> element = new ArrayList<String>();
+        ((ArrayList<String>) element).add("foo");
+        assertThat(ListUtilities.<String>concat(element), hasSize(1));
+        assertThat(ListUtilities.<String>concat(element).get(0), is("foo"));
     }
 
     @Test
@@ -105,11 +120,12 @@ class ListUtilitiesTest {
     }
 
     @Test
-    void push() {
-        assertThat(ListUtilities.<String>push(new ArrayList<String>(), "Smith"), hasSize(1));
-        assertThat(ListUtilities.<String>push(new ArrayList<String>(), "Smith").get(0), is("Smith"));
-        assertThat(ListUtilities.<String>push(null, "Smith"), hasSize(1));
-        assertThat(ListUtilities.<String>push(null, "Smith").get(0), is("Smith"));
+    void pushElemsIsSmithAndXsIsFooReturnsFooSmith() {
+        ArrayList<String> xs = new ArrayList<String>();
+        xs.add("foo");
+        assertThat(ListUtilities.<String>push(xs, "Smith"), hasSize(2));
+        assertThat(ListUtilities.<String>push(xs, "Smith").get(0), is("foo"));
+        assertThat(ListUtilities.<String>push(xs, "Smith").get(1), is("Smith"));
     }
 
     @Test
