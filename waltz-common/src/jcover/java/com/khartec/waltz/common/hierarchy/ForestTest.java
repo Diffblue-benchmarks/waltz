@@ -21,11 +21,11 @@ class ForestTest {
     void factory() {
         HashMap<String, Node<String, String>> allNodes =
              new HashMap<String, Node<String, String>>();
-        Node<String, String> x15 = new Node<String, String>("foo", "foo");
-        allNodes.put("foo", x15);
+        Node<String, String> node1 = new Node<String, String>("foo", "foo");
+        allNodes.put("foo", node1);
         Forest<String, String> forest =
              new Forest<String, String>(allNodes, new HashSet<Node<String, String>>());
-        assertThat(forest.getAllNodes().get("foo"), sameInstance(x15));
+        assertThat(forest.getAllNodes().get("foo"), sameInstance(node1));
         assertThat(forest.getRootNodes(), empty());
     }
 }

@@ -46,9 +46,9 @@ class BatchProcessingCollectorTest {
     void finisher() {
         @SuppressWarnings("unchecked")
         Consumer<List<String>> batchProcessor = mock(Consumer.class);
-        ArrayList<String> x8 = new ArrayList<String>();
-        x8.add("foo");
-        assertThat(new BatchProcessingCollector<String>(1, batchProcessor).finisher().apply(x8), is(1));
+        ArrayList<String> list = new ArrayList<String>();
+        list.add("foo");
+        assertThat(new BatchProcessingCollector<String>(1, batchProcessor).finisher().apply(list), is(1));
         Mockito.verify(batchProcessor).accept(ArgumentMatchers.<List<String>>any());
     }
 

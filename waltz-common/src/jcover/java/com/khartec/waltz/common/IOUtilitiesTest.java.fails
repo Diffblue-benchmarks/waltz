@@ -32,10 +32,10 @@ class IOUtilitiesTest {
         ByteArrayOutputStream output = new ByteArrayOutputStream();
 
         // act
-        IOUtilities.copyStream(new StringBufferInputStream("Broadway"), output);
+        IOUtilities.copyStream(new StringBufferInputStream("foo"), output);
 
         // assert
-        assertArrayEquals(new byte[] { 66, 114, 111, 97, 100, 119, 97, 121 }, output.toByteArray());
+        assertArrayEquals(new byte[] { 102, 111, 111 }, output.toByteArray());
     }
 
     @Test
@@ -61,8 +61,8 @@ class IOUtilitiesTest {
         assertThat(result.getDescription(), is("class path resource []"));
         assertThat(result.getFile().getPath().startsWith(System.getProperty("java.io.tmpdir")), is(true));
         assertThat(result.getFilename(), is(""));
-        assertThat(result.getURI().toString(), is("file:/tmp/jcover-cp-819FqR/"));
-        assertThat(result.getURL().toString(), is("file:/tmp/jcover-cp-819FqR/"));
+        assertThat(result.getURI().toString(), is("file:/tmp/jcover-cp-TtvbkS/"));
+        assertThat(result.getURL().toString(), is("file:/tmp/jcover-cp-TtvbkS/"));
         assertThat(result.isFile(), is(true));
         assertThat(result.isOpen(), is(false));
     }
