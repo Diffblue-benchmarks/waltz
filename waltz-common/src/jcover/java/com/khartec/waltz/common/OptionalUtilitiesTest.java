@@ -32,23 +32,23 @@ class OptionalUtilitiesTest {
 
     @Test
     void contentsEqual() {
-        assertThat(OptionalUtilities.<String>contentsEqual(Optional.<String>empty(), "hello"), is(false));
+        assertThat(OptionalUtilities.<String>contentsEqual(Optional.of("foo"), "foo"), is(true));
         assertThat(OptionalUtilities.<String>contentsEqual(Optional.of("foo"), "hello"), is(false));
-        assertThat(OptionalUtilities.<String>contentsEqual(Optional.<String>empty(), null), is(true));
+        assertThat(OptionalUtilities.<String>contentsEqual(Optional.of("foo"), null), is(false));
     }
 
     @Test
-    void ofNullableOptional() {
+    void ofNullableOptionalNullableIsFooReturnsFoo() {
 
         // arrange
-        Optional<String> nullable = Optional.<String>empty();
+        Optional<String> nullable = Optional.of("foo");
 
         // act
         Optional<String> result =
              OptionalUtilities.<String>ofNullableOptional(nullable);
 
         // assert
-        assertThat(result.isPresent(), is(false));
+        assertThat(result.get(), is("foo"));
         assertThat(nullable, sameInstance(result));
     }
 

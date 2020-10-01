@@ -9,6 +9,7 @@ import static org.mockito.Mockito.when;
 
 import java.time.DayOfWeek;
 import java.util.LinkedList;
+import java.util.Optional;
 import java.util.function.Function;
 
 import org.junit.jupiter.api.Test;
@@ -32,12 +33,23 @@ class EnumUtilitiesTest {
     }
 
     @Test
-    void parseEnumWithAliasesEnumClassIsDayOfWeekAndValueIsValueReturnsMonday() {
+    void parseEnumWithAliases1() {
         @SuppressWarnings("unchecked")
         Function<String, DayOfWeek> failedParseSupplier = mock(Function.class);
         when(failedParseSupplier.apply(Mockito.<String>any()))
             .thenReturn(DayOfWeek.MONDAY);
         assertThat(EnumUtilities.<DayOfWeek>parseEnumWithAliases("value", DayOfWeek.class, failedParseSupplier, new Aliases<DayOfWeek>()), is(DayOfWeek.MONDAY));
+    }
+
+    @Test
+    void parseEnumWithAliases2() {
+        @SuppressWarnings("unchecked")
+        Function<String, DayOfWeek> failedParseSupplier = mock(Function.class);
+        @SuppressWarnings("unchecked")
+        Aliases<DayOfWeek> aliases = mock(Aliases.class);
+        when(aliases.lookup(Mockito.<String>any()))
+            .thenReturn(Optional.of(DayOfWeek.MONDAY));
+        assertThat(EnumUtilities.<DayOfWeek>parseEnumWithAliases("value", DayOfWeek.class, failedParseSupplier, aliases), is(DayOfWeek.MONDAY));
     }
 
     @Test

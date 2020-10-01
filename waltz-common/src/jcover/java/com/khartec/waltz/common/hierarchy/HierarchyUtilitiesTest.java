@@ -31,7 +31,7 @@ class HierarchyUtilitiesTest {
         // arrange
         LinkedList<FlatNode<String, String>> flatNodes =
              new LinkedList<FlatNode<String, String>>();
-        flatNodes.add(new FlatNode<String, String>("foo", Optional.<String>empty(), "bar"));
+        flatNodes.add(new FlatNode<String, String>("foo", Optional.of("foo"), "bar"));
 
         // act
         Forest<String, String> result =
@@ -51,7 +51,7 @@ class HierarchyUtilitiesTest {
         // arrange
         LinkedList<FlatNode<String, String>> flatNodes =
              new LinkedList<FlatNode<String, String>>();
-        flatNodes.add(new FlatNode<String, String>("bar", Optional.of("foo"), "yyyy-MM-dd"));
+        flatNodes.add(new FlatNode<String, String>("bar", Optional.of("foo"), "bar"));
 
         // act
         Forest<String, String> result =
@@ -59,7 +59,7 @@ class HierarchyUtilitiesTest {
 
         // assert
         assertThat(result.getAllNodes().get("bar").getChildren(), empty());
-        assertThat(result.getAllNodes().get("bar").getData(), is("yyyy-MM-dd"));
+        assertThat(result.getAllNodes().get("bar").getData(), is("bar"));
         assertThat(result.getAllNodes().get("bar").getId(), is("bar"));
         assertThat(result.getAllNodes().get("bar").getParent(), is(nullValue()));
         assertThat(result.getRootNodes(), empty());
@@ -71,7 +71,7 @@ class HierarchyUtilitiesTest {
         // arrange
         LinkedList<FlatNode<String, String>> flatNodes =
              new LinkedList<FlatNode<String, String>>();
-        flatNodes.add(new FlatNode<String, String>("foo", Optional.of("foo"), "bar"));
+        flatNodes.add(new FlatNode<String, String>("foo", Optional.<String>empty(), "bar"));
 
         // act
         Forest<String, String> result =

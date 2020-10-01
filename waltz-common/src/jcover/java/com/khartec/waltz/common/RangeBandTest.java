@@ -34,7 +34,7 @@ class RangeBandTest {
     @Test
     void test() {
         assertThat(new RangeBand<Integer>(-1, 0).test((Integer) 1), is(false));
-        assertThat(new RangeBand<Integer>(0, 1).test((Integer) 1), is(true));
+        assertThat(new RangeBand<Integer>(-1, 1).test((Integer) 0), is(true));
     }
 
     @Test

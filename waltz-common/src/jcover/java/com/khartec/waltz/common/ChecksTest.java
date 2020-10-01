@@ -32,11 +32,11 @@ class ChecksTest {
         Predicate<String> check = mock(Predicate.class);
         when(check.test(Mockito.<String>any()))
             .thenReturn(true);
-        assertThat(Checks.<String>checkAll(ts, check, "SHA-256"), Matchers.arrayContaining("foo"));
+        assertThat(Checks.<String>checkAll(ts, check, "bar"), Matchers.arrayContaining("foo"));
     }
 
     @Test
-    void checkAllMessageIsBarAndTsIsEmptyReturnsEmpty() {
+    void checkAllTsIsEmptyReturnsEmpty() {
 
         // arrange
         LinkedList<String> ts = new LinkedList<String>();
@@ -53,8 +53,8 @@ class ChecksTest {
     }
 
     @Test
-    void checkOptionalIsPresentMessageIsBarAndOptionalIsFooReturnsFoo() {
-        assertThat(Checks.<String>checkOptionalIsPresent(Optional.of("foo"), "bar"), is("foo"));
+    void checkOptionalIsPresentOptionalIsFooReturnsFoo() {
+        assertThat(Checks.<String>checkOptionalIsPresent(Optional.of("foo"), "SHA-256"), is("foo"));
     }
 
     @Test

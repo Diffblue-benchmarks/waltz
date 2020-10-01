@@ -25,8 +25,8 @@ class EntityReferenceUtilitiesTest {
         when(ref.kind())
             .thenReturn(EntityKind.ACTOR);
         when(ref.name())
-            .thenReturn(Optional.<String>empty());
-        assertThat(EntityReferenceUtilities.pretty(ref), is("? [ACTOR/1]"));
+            .thenReturn(Optional.of("foo"));
+        assertThat(EntityReferenceUtilities.pretty(ref), is("foo [ACTOR/1]"));
     }
 
     @Test
@@ -35,7 +35,7 @@ class EntityReferenceUtilitiesTest {
         when(ref.id())
             .thenReturn(1L);
         when(ref.name())
-            .thenReturn(Optional.<String>empty());
-        assertThat(EntityReferenceUtilities.safeName(ref), is("[1]"));
+            .thenReturn(Optional.of("foo"));
+        assertThat(EntityReferenceUtilities.safeName(ref), is("foo [1]"));
     }
 }

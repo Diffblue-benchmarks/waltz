@@ -18,7 +18,7 @@ class FlatNodeTest {
 
     @Test
     void factory() {
-        Optional<String> parentId = Optional.<String>empty();
+        Optional<String> parentId = Optional.of("foo");
         FlatNode<String, String> flatNode =
              new FlatNode<String, String>("foo", parentId, "foo");
         assertThat(flatNode.getData(), is("foo"));

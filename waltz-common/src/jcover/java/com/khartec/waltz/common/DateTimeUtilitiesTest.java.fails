@@ -28,7 +28,7 @@ class DateTimeUtilitiesTest {
 
     @Test
     void nowUtcTimestamp() {
-        assertThat(DateTimeUtilities.nowUtcTimestamp(), equalTo(Timestamp.valueOf("2020-10-01 19:34:37.995")));
+        assertThat(DateTimeUtilities.nowUtcTimestamp(), equalTo(Timestamp.valueOf("2020-10-01 19:38:13.914")));
     }
 
     @Test
