@@ -119,7 +119,7 @@ class MapUtilitiesTest {
     }
 
     @Test
-    void ensureNotNull() throws java.io.IOException, CloneNotSupportedException {
+    void ensureNotNull() {
         assertThat(MapUtilities.<String, String>ensureNotNull(new HashMap<String, String>()), is(notNullValue()));
     }
 
@@ -130,7 +130,7 @@ class MapUtilitiesTest {
     }
 
     @Test
-    void isEmpty1() throws java.io.IOException, CloneNotSupportedException {
+    void isEmpty1() {
         assertThat(MapUtilities.<String, String>isEmpty(new HashMap<String, String>()), is(true));
     }
 
@@ -140,14 +140,14 @@ class MapUtilitiesTest {
     }
 
     @Test
-    void isEmptyReturnsFalse() throws java.io.IOException, CloneNotSupportedException {
+    void isEmptyReturnsFalse() {
         HashMap<String, String> map = new HashMap<String, String>();
         map.put("", "foo");
         assertThat(MapUtilities.<String, String>isEmpty(map), is(false));
     }
 
     @Test
-    void maybeGet() throws java.io.IOException, CloneNotSupportedException {
+    void maybeGet() {
         assertThat(MapUtilities.<String, String>maybeGet(new HashMap<String, String>(), "key").isPresent(), is(false));
     }
 
@@ -167,7 +167,7 @@ class MapUtilitiesTest {
     }
 
     @Test
-    void transformKeys() throws java.io.IOException, CloneNotSupportedException {
+    void transformKeys() {
         HashMap<String, String> original = new HashMap<String, String>();
         @SuppressWarnings("unchecked")
         Function<String, String> transformation = mock(Function.class);
@@ -176,7 +176,7 @@ class MapUtilitiesTest {
     }
 
     @Test
-    void compose() throws java.io.IOException, CloneNotSupportedException {
+    void compose() {
         HashMap<String, String> map1 = new HashMap<String, String>();
         assertThat(MapUtilities.<String, String, String>compose(map1, new HashMap<String, String>()).isEmpty(), is(true));
         Mockito.verify(map1).forEach(ArgumentMatchers.<BiConsumer<? super String, ? super String>>any());

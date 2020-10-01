@@ -11,7 +11,6 @@ import static org.mockito.Mockito.when;
 import java.util.LinkedList;
 import java.util.Optional;
 import java.util.function.Function;
-import java.util.regex.Pattern;
 
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -75,10 +74,10 @@ class StringUtilitiesTest {
     }
 
     @Test
-    void join() {
-        LinkedList<Object> values = new LinkedList<Object>();
-        values.add(new Object());
-        assertThat(Pattern.matches("java\\.lang\\.Object@[0-9a-f]+", StringUtilities.join(values, ",")), is(true));
+    void joinValuesIsFooReturnsFoo() {
+        LinkedList<String> values = new LinkedList<String>();
+        values.add("foo");
+        assertThat(StringUtilities.join(values, ","), is("foo"));
     }
 
     @Test

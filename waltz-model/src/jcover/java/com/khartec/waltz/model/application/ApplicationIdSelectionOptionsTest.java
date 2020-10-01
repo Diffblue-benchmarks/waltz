@@ -12,6 +12,7 @@ import com.khartec.waltz.model.HierarchyQueryScope;
 import com.khartec.waltz.model.IdSelectionOptions;
 
 import java.util.HashSet;
+import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
@@ -24,12 +25,6 @@ import org.junit.jupiter.api.Test;
 class ApplicationIdSelectionOptionsTest {
 
     @Test
-    void mkOptsApplicationKindsIsEmptyAndEntityLifecycleStatusesIsEmptyAndScopeIsExact() {
-        EntityReference ref = mock(EntityReference.class);
-        // pojo ApplicationIdSelectionOptions
-    }
-
-    @Test
     void mkOpts() {
         EntityReference entityReference = mock(EntityReference.class);
         IdSelectionOptions options = mock(IdSelectionOptions.class);
@@ -39,7 +34,7 @@ class ApplicationIdSelectionOptionsTest {
             .thenReturn(entityReference);
         when(options.scope())
             .thenReturn(HierarchyQueryScope.EXACT);
-        // pojo ApplicationIdSelectionOptions
+        // pojo ApplicationIdSelectionOptions ApplicationIdSelectionOptions.mkOpts(options)
     }
 
     @Test

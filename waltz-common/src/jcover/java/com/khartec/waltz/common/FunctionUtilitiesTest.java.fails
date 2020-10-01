@@ -38,7 +38,7 @@ class FunctionUtilitiesTest {
 
     @Test
     void alwaysBiResultIsFoo() {
-        // pojo java.util.function.BiFunction<String, String, String>
+        // pojo java.util.function.BiFunction<String, String, String> FunctionUtilities.<String, String, String>alwaysBi("foo")
     }
 
     @Test

@@ -90,12 +90,12 @@ class SetUtilitiesTest {
     }
 
     @Test
-    void minusXsIsEmptyReturnsEmpty() {
+    void minusReturnsEmpty() {
         assertThat(SetUtilities.<String>minus(new HashSet<String>(), new HashSet<String>()), empty());
     }
 
     @Test
-    void intersectionXsIsEmptyAndYsIsEmptyReturnsEmpty() {
+    void intersectionReturnsEmpty() {
         assertThat(SetUtilities.<String>intersection(new HashSet<String>(), new HashSet<String>()), empty());
     }
 

@@ -26,12 +26,12 @@ class IdSelectionOptionsTest {
     @Test
     void mkOptsScopeIsExact() {
         EntityReference ref = mock(EntityReference.class);
-        // pojo IdSelectionOptions
+        // pojo IdSelectionOptions IdSelectionOptions.mkOpts(ref, HierarchyQueryScope.EXACT)
     }
 
     @Test
     void mkOptsForAllLifecycleStatesScopeIsExact() {
         EntityReference ref = mock(EntityReference.class);
-        // pojo IdSelectionOptions
+        // pojo IdSelectionOptions IdSelectionOptions.mkOptsForAllLifecycleStates(ref, HierarchyQueryScope.EXACT)
     }
 }

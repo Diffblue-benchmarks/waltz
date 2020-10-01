@@ -25,7 +25,7 @@ class UserTimestampTest {
 
     @Test
     void mkForUser() {
-        // pojo UserTimestamp
-        // pojo UserTimestamp
+        // pojo UserTimestamp UserTimestamp.mkForUser("root", Timestamp.valueOf("2019-12-31 23:10:59"))
+        // pojo UserTimestamp UserTimestamp.mkForUser("root", LocalDateTime.of(LocalDate.of(2_000, 1, 1), LocalTime.of(10, 50, 22)))
     }
 }

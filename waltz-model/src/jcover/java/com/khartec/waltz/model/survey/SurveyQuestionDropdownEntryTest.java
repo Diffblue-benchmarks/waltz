@@ -12,6 +12,6 @@ class SurveyQuestionDropdownEntryTest {
 
     @Test
     void mkEntryPositionIsOneAndValueIsValue() {
-        // pojo SurveyQuestionDropdownEntry
+        // pojo SurveyQuestionDropdownEntry SurveyQuestionDropdownEntry.mkEntry("value", 1)
     }
 }

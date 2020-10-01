@@ -161,7 +161,7 @@ class CollectionUtilitiesTest {
         LinkedList<String> xs = new LinkedList<String>();
         xs.add("foo");
         @SuppressWarnings("unchecked")
-        Comparator<Object> comparator = mock(Comparator.class);
+        Comparator<String> comparator = mock(Comparator.class);
         assertThat(CollectionUtilities.<String>sort(xs, comparator), hasSize(1));
         assertThat(CollectionUtilities.<String>sort(xs, comparator).get(0), is("foo"));
     }

@@ -21,7 +21,7 @@ import org.w3c.dom.NodeList;
 class XmlUtilitiesTest {
 
     @Test
-    void stream() throws org.w3c.dom.DOMException {
+    void stream() {
         Node node = mock(Node.class);
         NodeList nodeList = mock(NodeList.class);
         when(nodeList.getLength())

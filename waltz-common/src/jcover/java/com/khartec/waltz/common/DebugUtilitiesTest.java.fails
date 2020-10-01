@@ -38,7 +38,7 @@ class DebugUtilitiesTest {
     }
 
     @Test
-    void dump() throws java.io.IOException, CloneNotSupportedException {
+    void dump() {
         HashMap<String, String> m = new HashMap<String, String>();
         assertThat(DebugUtilities.<String, String>dump(m), is(notNullValue()));
         Mockito.verify(m).forEach(ArgumentMatchers.<BiConsumer<? super String, ? super String>>any());
@@ -47,7 +47,7 @@ class DebugUtilitiesTest {
     @Test
     void dumpPreambleIsFoo() {
         @SuppressWarnings("unchecked")
-        Predicate<Object> pred = mock(Predicate.class);
-        DebugUtilities.dump("foo", new StreamUtilities.Siphon<Object>(pred));
+        Predicate<String> pred = mock(Predicate.class);
+        DebugUtilities.dump("foo", new StreamUtilities.Siphon<String>(pred));
     }
 }

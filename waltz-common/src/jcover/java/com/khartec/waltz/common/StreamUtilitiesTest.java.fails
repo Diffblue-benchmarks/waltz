@@ -28,7 +28,7 @@ class StreamUtilitiesTest {
     void batchProcessingCollectorBatchSizeIsOne() {
         @SuppressWarnings("unchecked")
         Consumer<List<String>> batchProcessor = mock(Consumer.class);
-        // pojo java.util.stream.Collector<String, List<String>, Integer>
+        // pojo java.util.stream.Collector<String, List<String>, Integer> StreamUtilities.<String>batchProcessingCollector(1, batchProcessor)
     }
 
     @Test
@@ -36,7 +36,7 @@ class StreamUtilitiesTest {
         Collection<String> element = new LinkedList<String>();
         element.add("foo");
         String[] array =
-             StreamUtilities.<String>concat(element).toArray(String[]::new);
+             StreamUtilities.<String>concat(new Collection[] { element }).toArray(String[]::new);
     }
 
     @Test
@@ -68,7 +68,7 @@ class StreamUtilitiesTest {
     @Test
     void concat2() {
         String[] array =
-             StreamUtilities.<String>concat(Stream.<String>of("Broadway")).toArray(String[]::new);
+             StreamUtilities.<String>concat(new Stream[] { Stream.<String>of("Broadway") }).toArray(String[]::new);
     }
 
     @Test

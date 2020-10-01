@@ -13,7 +13,7 @@ import org.junit.jupiter.api.Test;
 class UsageInfoUtilitiesTest {
 
     @Test
-    void mkChangeSetBaseIsEmptyAndReplacementsIsEmpty() {
-        // pojo com.khartec.waltz.model.system.SystemChangeSet<UsageInfo, UsageKind>
+    void mkChangeSet() {
+        // pojo com.khartec.waltz.model.system.SystemChangeSet<UsageInfo, UsageKind> UsageInfoUtilities.mkChangeSet(new HashSet<UsageInfo>(), new HashSet<UsageInfo>())
     }
 }

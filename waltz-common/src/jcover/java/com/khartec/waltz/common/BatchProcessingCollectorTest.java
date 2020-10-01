@@ -32,14 +32,14 @@ class BatchProcessingCollectorTest {
     void accumulator() {
         @SuppressWarnings("unchecked")
         Consumer<List<String>> batchProcessor = mock(Consumer.class);
-        // pojo java.util.function.BiConsumer<List<String>, String>
+        // pojo java.util.function.BiConsumer<List<String>, String> new BatchProcessingCollector<String>(1, batchProcessor).accumulator()
     }
 
     @Test
     void combiner() {
         @SuppressWarnings("unchecked")
         Consumer<List<String>> batchProcessor = mock(Consumer.class);
-        // pojo java.util.function.BinaryOperator<List<String>>
+        // pojo java.util.function.BinaryOperator<List<String>> new BatchProcessingCollector<String>(1, batchProcessor).combiner()
     }
 
     @Test

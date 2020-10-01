@@ -12,6 +12,6 @@ class MeasurablePercentageTest {
 
     @Test
     void mkMeasurablePercentageMeasurableIdIsOneAndPercentageIsOne() {
-        // pojo MeasurablePercentage
+        // pojo MeasurablePercentage MeasurablePercentage.mkMeasurablePercentage(1L, 1)
     }
 }

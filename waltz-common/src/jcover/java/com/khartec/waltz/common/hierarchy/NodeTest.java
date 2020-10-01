@@ -29,7 +29,9 @@ class NodeTest {
     @Test
     void addChild() {
         Node<String, String> node = new Node<String, String>("foo", "foo");
-        assertThat(node.addChild(new Node(new Object(), new Object())), sameInstance(node));
+        Node<String, String> childNode =
+             new Node<String, String>("foo", "foo");
+        assertThat(node.addChild(childNode), sameInstance(node));
         assertThat(node.getChildren(), hasSize(1));
     }
 

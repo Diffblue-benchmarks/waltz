@@ -23,7 +23,7 @@ class ComplexityUtilitiesTest {
             .thenReturn(0.0);
         when(tally.id())
             .thenReturn(1L);
-        // pojo ComplexityScore
+        // pojo ComplexityScore ComplexityUtilities.tallyToComplexityScore(ComplexityKind.CONNECTION, tally, 1.0)
     }
 
     @Test
@@ -34,6 +34,6 @@ class ComplexityUtilitiesTest {
             .thenReturn(1.0);
         when(tally.id())
             .thenReturn(1L);
-        // pojo ComplexityScore
+        // pojo ComplexityScore ComplexityUtilities.tallyToComplexityScore(ComplexityKind.CONNECTION, tally, 0.0)
     }
 }

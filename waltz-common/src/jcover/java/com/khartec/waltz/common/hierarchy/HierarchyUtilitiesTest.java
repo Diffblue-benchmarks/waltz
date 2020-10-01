@@ -13,7 +13,9 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
+import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
@@ -94,8 +96,12 @@ class HierarchyUtilitiesTest {
     }
 
     @Test
-    void hasCycleReturnsFalse() throws java.io.IOException, CloneNotSupportedException {
-        assertThat(HierarchyUtilities.<String, String>hasCycle(new Forest<String, String>(new HashMap<String, Node<String, String>>(), new HashSet<Node<String, String>>())), is(false));
+    void hasCycleReturnsFalse() {
+        @SuppressWarnings("unchecked")
+        Forest<String, String> forest = mock(Forest.class);
+        when(forest.getAllNodes())
+            .thenReturn(new HashMap<String, Node<String, String>>());
+        assertThat(HierarchyUtilities.<String, String>hasCycle(forest), is(false));
     }
 
     @Test

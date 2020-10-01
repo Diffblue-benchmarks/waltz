@@ -19,23 +19,23 @@ class RatingSchemeTest {
     void ratings() {
         List<RagName> result = RatingScheme.mkDflt().ratings();
         assertThat(result.size(), is(6));
-        // pojo RagName
-        // pojo RagName
-        // pojo RagName
-        // pojo RagName
-        // pojo RagName
-        // pojo RagName
+        // pojo RagName result.get(0)
+        // pojo RagName result.get(1)
+        // pojo RagName result.get(2)
+        // pojo RagName result.get(3)
+        // pojo RagName result.get(4)
+        // pojo RagName result.get(5)
     }
 
     @Test
     void toList() {
         List<RagName> result = RatingScheme.toList();
         assertThat(result.size(), is(6));
-        // pojo RagName
-        // pojo RagName
-        // pojo RagName
-        // pojo RagName
-        // pojo RagName
-        // pojo RagName
+        // pojo RagName result.get(0)
+        // pojo RagName result.get(1)
+        // pojo RagName result.get(2)
+        // pojo RagName result.get(3)
+        // pojo RagName result.get(4)
+        // pojo RagName result.get(5)
     }
 }

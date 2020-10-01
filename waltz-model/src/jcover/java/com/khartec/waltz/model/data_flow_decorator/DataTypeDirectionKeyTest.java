@@ -14,6 +14,6 @@ class DataTypeDirectionKeyTest {
 
     @Test
     void mkKeyDataTypeIdIsOneAndFlowDirectionIsInbound() {
-        // pojo DataTypeDirectionKey
+        // pojo DataTypeDirectionKey DataTypeDirectionKey.mkKey(1L, FlowDirection.INBOUND)
     }
 }
