@@ -20,9 +20,9 @@ class FlatNodeTest {
     void factory() {
         Optional<String> parentId = Optional.<String>empty();
         FlatNode<String, String> flatNode =
-             new FlatNode<String, String>("1234", parentId, "something");
-        assertThat(flatNode.getData(), is("something"));
-        assertThat(flatNode.getId(), is("1234"));
+             new FlatNode<String, String>("foo", parentId, "foo");
+        assertThat(flatNode.getData(), is("foo"));
+        assertThat(flatNode.getId(), is("foo"));
         assertThat(flatNode.getParentId(), sameInstance(parentId));
     }
 }

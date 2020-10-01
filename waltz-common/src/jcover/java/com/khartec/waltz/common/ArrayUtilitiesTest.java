@@ -79,7 +79,7 @@ class ArrayUtilitiesTest {
     @Test
     void initialBitsIsFooReturnsEmpty() {
         String[] bits = new String[] { "foo" };
-        assertThat(ArrayUtilities.<String>initial(bits), Matchers.arrayContaining());
+        assertThat(ArrayUtilities.<String>initial(bits).length, is(0));
     }
 
     @Test

@@ -19,11 +19,10 @@ class NodeTest {
 
     @Test
     void factory() {
-        Node<String, String> node =
-             new Node<String, String>("1234", "something");
+        Node<String, String> node = new Node<String, String>("foo", "foo");
         assertThat(node.getChildren(), empty());
-        assertThat(node.getData(), is("something"));
-        assertThat(node.getId(), is("1234"));
+        assertThat(node.getData(), is("foo"));
+        assertThat(node.getId(), is("foo"));
         assertThat(node.getParent(), is(nullValue()));
     }
 

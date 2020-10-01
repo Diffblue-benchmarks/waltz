@@ -32,7 +32,7 @@ class ChecksTest {
         Predicate<String> check = mock(Predicate.class);
         when(check.test(Mockito.<String>any()))
             .thenReturn(true);
-        assertThat(Checks.<String>checkAll(ts, check, "an error has happened"), Matchers.arrayContaining("foo"));
+        assertThat(Checks.<String>checkAll(ts, check, "SHA-256"), Matchers.arrayContaining("foo"));
     }
 
     @Test

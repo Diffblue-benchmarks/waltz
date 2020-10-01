@@ -7,6 +7,7 @@ import static org.hamcrest.core.IsEqual.equalTo;
 
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
+import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
@@ -22,12 +23,12 @@ class DateTimeUtilitiesTest {
 
     @Test
     void nowUtc() {
-        assertThat(DateTimeUtilities.nowUtc(), equalTo(LocalDateTime.parse("2020-08-27T12:29:29.477")));
+        assertThat(Math.abs(Duration.between(LocalDateTime.now(), DateTimeUtilities.nowUtc()).getSeconds())<=10L, is(true));
     }
 
     @Test
     void nowUtcTimestamp() {
-        assertThat(DateTimeUtilities.nowUtcTimestamp(), equalTo(Timestamp.valueOf("2020-08-27 12:29:29.61")));
+        assertThat(DateTimeUtilities.nowUtcTimestamp(), equalTo(Timestamp.valueOf("2020-10-01 19:34:37.995")));
     }
 
     @Test

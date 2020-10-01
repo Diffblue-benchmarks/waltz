@@ -2,6 +2,7 @@ package com.khartec.waltz.common;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.empty;
+import static org.hamcrest.Matchers.notNullValue;
 import static org.hamcrest.collection.IsCollectionWithSize.hasSize;
 import static org.hamcrest.core.Is.is;
 
@@ -19,12 +20,12 @@ class RandomUtilitiesTest {
 
     @Test
     void getRandom() {
-        // pojo java.util.Random
+        assertThat(RandomUtilities.getRandom(), is(notNullValue()));
     }
 
     @Test
     void randomIntBetween() {
-        assertThat(RandomUtilities.randomIntBetween(-1, 0), is(-1));
+        assertThat(RandomUtilities.randomIntBetween(-1, 1), is(-1));
         assertThat(RandomUtilities.randomIntBetween(0, 1), is(0));
     }
 

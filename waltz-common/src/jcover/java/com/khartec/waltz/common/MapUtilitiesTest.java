@@ -29,12 +29,12 @@ class MapUtilitiesTest {
 
     @Test
     void newHashMap() {
-        assertThat(MapUtilities.<String, String>newHashMap("foo", "foo", "foo", "foo").get("foo"), is("foo"));
-        assertThat(MapUtilities.<String, String>newHashMap("foo", "foo", "foo", "foo", "foo", "foo").get("foo"), is("foo"));
-        assertThat(MapUtilities.<String, String>newHashMap("foo", "foo", "foo", "foo", "foo", "foo", "foo", "foo", "foo", "foo", "foo", "foo").get("foo"), is("foo"));
-        assertThat(MapUtilities.<String, String>newHashMap("foo", "foo", "foo", "foo", "foo", "foo", "foo", "foo", "foo", "foo").get("foo"), is("foo"));
-        assertThat(MapUtilities.<String, String>newHashMap("foo", "foo", "foo", "foo", "foo", "foo", "foo", "foo").get("foo"), is("foo"));
-        assertThat(MapUtilities.<String, String>newHashMap("key", "foo").get("key"), is("foo"));
+        assertThat(MapUtilities.<String, String>newHashMap("HmacMD5", "HmacMD5", "HmacMD5", "HmacMD5").get("HmacMD5"), is("HmacMD5"));
+        assertThat(MapUtilities.<String, String>newHashMap("HmacMD5", "HmacMD5", "HmacMD5", "HmacMD5", "HmacMD5", "HmacMD5").get("HmacMD5"), is("HmacMD5"));
+        assertThat(MapUtilities.<String, String>newHashMap("HmacMD5", "HmacMD5", "HmacMD5", "HmacMD5", "HmacMD5", "HmacMD5", "HmacMD5", "HmacMD5").get("HmacMD5"), is("HmacMD5"));
+        assertThat(MapUtilities.<String, String>newHashMap("HmacMD5", "HmacMD5", "HmacMD5", "HmacMD5", "HmacMD5", "HmacMD5", "HmacMD5", "HmacMD5", "HmacMD5", "HmacMD5").get("HmacMD5"), is("HmacMD5"));
+        assertThat(MapUtilities.<String, String>newHashMap("HmacMD5", "HmacMD5", "HmacMD5", "HmacMD5", "HmacMD5", "HmacMD5", "HmacMD5", "HmacMD5", "HmacMD5", "HmacMD5", "HmacMD5", "HmacMD5").get("HmacMD5"), is("HmacMD5"));
+        assertThat(MapUtilities.<String, String>newHashMap("key", "HmacMD5").get("key"), is("HmacMD5"));
         assertThat(MapUtilities.<String, String>newHashMap().isEmpty(), is(true));
     }
 

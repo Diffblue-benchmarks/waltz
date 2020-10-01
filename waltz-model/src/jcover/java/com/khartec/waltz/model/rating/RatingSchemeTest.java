@@ -16,8 +16,8 @@ import org.junit.jupiter.api.Test;
 class RatingSchemeTest {
 
     @Test
-    void toList() {
-        List<RagName> result = RatingScheme.toList();
+    void ratings() {
+        List<RagName> result = RatingScheme.mkDflt().ratings();
         assertThat(result.size(), is(6));
         // pojo RagName
         // pojo RagName
@@ -28,7 +28,14 @@ class RatingSchemeTest {
     }
 
     @Test
-    void mkDflt() {
-        // pojo RatingScheme
+    void toList() {
+        List<RagName> result = RatingScheme.toList();
+        assertThat(result.size(), is(6));
+        // pojo RagName
+        // pojo RagName
+        // pojo RagName
+        // pojo RagName
+        // pojo RagName
+        // pojo RagName
     }
 }

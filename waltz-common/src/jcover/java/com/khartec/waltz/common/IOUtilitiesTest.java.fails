@@ -46,11 +46,11 @@ class IOUtilitiesTest {
     @Test
     void getFileResource() throws java.io.IOException {
         Resource result = IOUtilities.getFileResource("data.txt");
-        assertThat(result.getDescription(), is("file [/home/thomas/.waltz/data.txt]"));
-        assertThat(result.getFile().getPath(), is("/home/thomas/.waltz/data.txt"));
+        assertThat(result.getDescription(), is("file [/home/thomas_perkins/.waltz/data.txt]"));
+        assertThat(result.getFile().getPath(), is("/home/thomas_perkins/.waltz/data.txt"));
         assertThat(result.getFilename(), is("data.txt"));
-        assertThat(result.getURI().toString(), is("file:/home/thomas/.waltz/data.txt"));
-        assertThat(result.getURL().toString(), is("file:/home/thomas/.waltz/data.txt"));
+        assertThat(result.getURI().toString(), is("file:/home/thomas_perkins/.waltz/data.txt"));
+        assertThat(result.getURL().toString(), is("file:/home/thomas_perkins/.waltz/data.txt"));
         assertThat(result.isFile(), is(true));
         assertThat(result.isOpen(), is(false));
     }
@@ -61,8 +61,8 @@ class IOUtilitiesTest {
         assertThat(result.getDescription(), is("class path resource []"));
         assertThat(result.getFile().getPath().startsWith(System.getProperty("java.io.tmpdir")), is(true));
         assertThat(result.getFilename(), is(""));
-        assertThat(result.getURI().toString(), is("file:/tmp/jcover-cp-j4PdUg/"));
-        assertThat(result.getURL().toString(), is("file:/tmp/jcover-cp-j4PdUg/"));
+        assertThat(result.getURI().toString(), is("file:/tmp/jcover-cp-uT1EYz/"));
+        assertThat(result.getURL().toString(), is("file:/tmp/jcover-cp-uT1EYz/"));
         assertThat(result.isFile(), is(true));
         assertThat(result.isOpen(), is(false));
     }

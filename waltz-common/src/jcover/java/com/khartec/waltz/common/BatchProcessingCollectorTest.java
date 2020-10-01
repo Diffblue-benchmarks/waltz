@@ -22,10 +22,10 @@ import org.mockito.Mockito;
 class BatchProcessingCollectorTest {
 
     @Test
-    void supplier() {
+    void supplierReturnsEmpty() {
         @SuppressWarnings("unchecked")
         Consumer<List<String>> batchProcessor = mock(Consumer.class);
-        // pojo java.util.function.Supplier<List<String>>
+        assertThat(new BatchProcessingCollector<String>(1, batchProcessor).supplier().get(), empty());
     }
 
     @Test
