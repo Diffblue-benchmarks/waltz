@@ -47,15 +47,10 @@ class ListUtilitiesTest {
     }
 
     @Test
-    void mapAsIsFooReturnsFoo() {
-        LinkedList<String> as = new LinkedList<String>();
-        as.add("foo");
+    void mapAsIsEmptyReturnsEmpty() {
         @SuppressWarnings("unchecked")
         Function<String, String> mapper = mock(Function.class);
-        when(mapper.apply(Mockito.<String>any()))
-            .thenReturn("foo");
-        assertThat(ListUtilities.<String, String>map(as, mapper), hasSize(1));
-        assertThat(ListUtilities.<String, String>map(as, mapper).get(0), is("foo"));
+        assertThat(ListUtilities.<String, String>map(new LinkedList<String>(), mapper), empty());
     }
 
     @Test
@@ -113,14 +108,14 @@ class ListUtilitiesTest {
     }
 
     @Test
-    void applyToFirstXsIsBarReturnsAnna() {
+    void applyToFirstXsIsAnnaReturnsFoo() {
         ArrayList<String> xs = new ArrayList<String>();
-        xs.add("bar");
+        xs.add("Anna");
         @SuppressWarnings("unchecked")
         Function<String, String> mapFn = mock(Function.class);
         when(mapFn.apply(Mockito.<String>any()))
-            .thenReturn("Anna");
-        assertThat(ListUtilities.<String, String>applyToFirst(xs, mapFn).get(), is("Anna"));
+            .thenReturn("foo");
+        assertThat(ListUtilities.<String, String>applyToFirst(xs, mapFn).get(), is("foo"));
     }
 
     @Test

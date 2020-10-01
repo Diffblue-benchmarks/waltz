@@ -4,7 +4,6 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.empty;
 import static org.hamcrest.collection.IsCollectionWithSize.hasSize;
 import static org.hamcrest.core.Is.is;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -72,15 +71,10 @@ class CollectionUtilitiesTest {
     }
 
     @Test
-    void mapXsIsFooReturnsFoo() {
-        LinkedList<String> xs = new LinkedList<String>();
-        xs.add("foo");
+    void mapXsIsEmptyReturnsEmpty() {
         @SuppressWarnings("unchecked")
         Function<String, String> fn = mock(Function.class);
-        when(fn.apply(Mockito.<String>any()))
-            .thenReturn("foo");
-        assertThat(CollectionUtilities.<String, String>map(xs, fn), hasSize(1));
-        assertTrue(CollectionUtilities.<String, String>map(xs, fn).contains("foo"));
+        assertThat(CollectionUtilities.<String, String>map(new LinkedList<String>(), fn), empty());
     }
 
     @Test
