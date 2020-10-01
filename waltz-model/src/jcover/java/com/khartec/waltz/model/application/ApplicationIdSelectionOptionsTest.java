@@ -43,7 +43,7 @@ class ApplicationIdSelectionOptionsTest {
     }
 
     @Test
-    void applicationKindsReturnsIn_houseInternally_hostedExternally_hostedEucThird_partyCustomisedExternal() {
+    void applicationKindsReturnsCustomisedEucExternalExternally_hostedInternally_hostedIn_houseThird_party() {
         EntityReference ref1 = mock(EntityReference.class);
         when(ref1.kind())
             .thenReturn(EntityKind.ACTOR);

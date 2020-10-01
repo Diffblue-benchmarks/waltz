@@ -1,18 +1,19 @@
 package com.khartec.waltz.common;
 
-import static org.hamcrest.CoreMatchers.instanceOf;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.notNullValue;
 import static org.hamcrest.core.Is.is;
-import static org.hamcrest.core.IsSame.sameInstance;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 import java.util.HashMap;
-import java.util.Map;
+import java.util.function.BiConsumer;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
 
 import org.junit.jupiter.api.Test;
+import org.mockito.ArgumentMatchers;
+import org.mockito.Mockito;
 
 /**
  * Unit tests for com.khartec.waltz.common.DebugUtilities
@@ -37,19 +38,10 @@ class DebugUtilitiesTest {
     }
 
     @Test
-    void dumpMIsFooReturnsFoo() {
-
-        // arrange
+    void dump() throws java.io.IOException, CloneNotSupportedException {
         HashMap<String, String> m = new HashMap<String, String>();
-        m.put("foo", "foo");
-
-        // act
-        Map<String, String> result = DebugUtilities.<String, String>dump(m);
-
-        // assert
-        assertThat(result.get("foo"), is("foo"));
-        assertThat(m, instanceOf(Map.class));
-        assertThat((Map<String, String>) m, sameInstance(result));
+        assertThat(DebugUtilities.<String, String>dump(m), is(notNullValue()));
+        Mockito.verify(m).forEach(ArgumentMatchers.<BiConsumer<? super String, ? super String>>any());
     }
 
     @Test

@@ -1,10 +1,9 @@
 package com.khartec.waltz.common;
 
-import static org.hamcrest.CoreMatchers.instanceOf;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.notNullValue;
 import static org.hamcrest.collection.IsCollectionWithSize.hasSize;
 import static org.hamcrest.core.Is.is;
-import static org.hamcrest.core.IsSame.sameInstance;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -12,11 +11,12 @@ import static org.mockito.Mockito.when;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.LinkedList;
-import java.util.Map;
+import java.util.function.BiConsumer;
 import java.util.function.BinaryOperator;
 import java.util.function.Function;
 
 import org.junit.jupiter.api.Test;
+import org.mockito.ArgumentMatchers;
 import org.mockito.Mockito;
 
 /**
@@ -119,43 +119,36 @@ class MapUtilitiesTest {
     }
 
     @Test
-    void ensureNotNullMaybeMapIsFooReturnsFoo() {
-
-        // arrange
-        HashMap<String, String> maybeMap = new HashMap<String, String>();
-        maybeMap.put("bar", "foo");
-
-        // act
-        Map<String, String> result =
-             MapUtilities.<String, String>ensureNotNull(maybeMap);
-
-        // assert
-        assertThat(result.get("bar"), is("foo"));
-        assertThat(maybeMap, instanceOf(Map.class));
-        assertThat((Map<String, String>) maybeMap, sameInstance(result));
+    void ensureNotNull() throws java.io.IOException, CloneNotSupportedException {
+        assertThat(MapUtilities.<String, String>ensureNotNull(new HashMap<String, String>()), is(notNullValue()));
     }
 
     @Test
-    void ensureNotNullMaybeMapIsNullReturnsEmpty() {
+    void getters() {
         assertThat(MapUtilities.<String, String>ensureNotNull(null).isEmpty(), is(true));
+        assertThat(MapUtilities.<String, String>maybeGet(null, "key").isPresent(), is(false));
     }
 
     @Test
-    void isEmptyMapIsFooReturnsFalse() {
-        HashMap<String, String> map = new HashMap<String, String>();
-        map.put("bar", "foo");
-        assertThat(MapUtilities.<String, String>isEmpty(map), is(false));
+    void isEmpty1() throws java.io.IOException, CloneNotSupportedException {
+        assertThat(MapUtilities.<String, String>isEmpty(new HashMap<String, String>()), is(true));
     }
 
     @Test
-    void isEmptyMapIsNullReturnsTrue() {
+    void isEmpty2() {
         assertThat(MapUtilities.<String, String>isEmpty(null), is(true));
     }
 
     @Test
-    void maybeGet() {
+    void isEmptyReturnsFalse() throws java.io.IOException, CloneNotSupportedException {
+        HashMap<String, String> map = new HashMap<String, String>();
+        map.put("", "foo");
+        assertThat(MapUtilities.<String, String>isEmpty(map), is(false));
+    }
+
+    @Test
+    void maybeGet() throws java.io.IOException, CloneNotSupportedException {
         assertThat(MapUtilities.<String, String>maybeGet(new HashMap<String, String>(), "key").isPresent(), is(false));
-        assertThat(MapUtilities.<String, String>maybeGet(null, "key").isPresent(), is(false));
     }
 
     @Test
@@ -174,22 +167,18 @@ class MapUtilitiesTest {
     }
 
     @Test
-    void transformKeysOriginalIsFooReturnsFoo() {
+    void transformKeys() throws java.io.IOException, CloneNotSupportedException {
         HashMap<String, String> original = new HashMap<String, String>();
-        original.put("foo", "foo");
         @SuppressWarnings("unchecked")
         Function<String, String> transformation = mock(Function.class);
-        when(transformation.apply(Mockito.<String>any()))
-            .thenReturn("foo");
-        assertThat(MapUtilities.<String, String, String>transformKeys(original, transformation).get("foo"), is("foo"));
+        assertThat(MapUtilities.<String, String, String>transformKeys(original, transformation).isEmpty(), is(true));
+        Mockito.verify(original).forEach(ArgumentMatchers.<BiConsumer<? super String, ? super String>>any());
     }
 
     @Test
-    void composeMap1IsFooAndMap2IsFooReturnsFoo() {
+    void compose() throws java.io.IOException, CloneNotSupportedException {
         HashMap<String, String> map1 = new HashMap<String, String>();
-        map1.put("foo", "foo");
-        HashMap<String, String> map2 = new HashMap<String, String>();
-        map2.put("foo", "foo");
-        assertThat(MapUtilities.<String, String, String>compose(map1, map2).get("foo"), is("foo"));
+        assertThat(MapUtilities.<String, String, String>compose(map1, new HashMap<String, String>()).isEmpty(), is(true));
+        Mockito.verify(map1).forEach(ArgumentMatchers.<BiConsumer<? super String, ? super String>>any());
     }
 }

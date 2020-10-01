@@ -17,7 +17,7 @@ import org.junit.jupiter.api.Test;
 class MapBuilderTest {
 
     @Test
-    void fromMIsEmpty() {
+    void from() throws java.io.IOException, CloneNotSupportedException {
         MapBuilder<String, String> mapBuilder =
              new MapBuilder<String, String>();
         assertThat(mapBuilder.from(new HashMap<String, String>()), sameInstance(mapBuilder));

@@ -94,11 +94,8 @@ class HierarchyUtilitiesTest {
     }
 
     @Test
-    void hasCycleReturnsFalse() {
-        HashMap<String, Node<String, String>> allNodes =
-             new HashMap<String, Node<String, String>>();
-        allNodes.put("bar", new Node<String, String>("foo", "foo"));
-        assertThat(HierarchyUtilities.<String, String>hasCycle(new Forest<String, String>(allNodes, new HashSet<Node<String, String>>())), is(false));
+    void hasCycleReturnsFalse() throws java.io.IOException, CloneNotSupportedException {
+        assertThat(HierarchyUtilities.<String, String>hasCycle(new Forest<String, String>(new HashMap<String, Node<String, String>>(), new HashSet<Node<String, String>>())), is(false));
     }
 
     @Test
@@ -127,6 +124,10 @@ class HierarchyUtilitiesTest {
 
     @Test
     void assignDepthsReturnsEmpty() {
-        assertThat(HierarchyUtilities.<String, String>assignDepths(new Forest<String, String>(new HashMap<String, Node<String, String>>(), new HashSet<Node<String, String>>())).isEmpty(), is(true));
+        @SuppressWarnings("unchecked")
+        Forest<String, String> forest = mock(Forest.class);
+        when(forest.getRootNodes())
+            .thenReturn(new HashSet<Node<String, String>>());
+        assertThat(HierarchyUtilities.<String, String>assignDepths(forest).isEmpty(), is(true));
     }
 }
