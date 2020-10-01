@@ -39,49 +39,58 @@ class MapUtilitiesTest {
     }
 
     @Test
-    void groupByXsIsBarReturnsBar() {
+    void groupByXsIsFooReturnsFoo() {
         @SuppressWarnings("unchecked")
         Function<String, String> keyFn = mock(Function.class);
         when(keyFn.apply(Mockito.<String>any()))
             .thenReturn("foo");
         LinkedList<String> xs = new LinkedList<String>();
-        xs.add("bar");
+        xs.add("foo");
         assertThat(MapUtilities.<String, String>groupBy(keyFn, xs).get("foo"), hasSize(1));
-        assertTrue(MapUtilities.<String, String>groupBy(keyFn, xs).get("foo").contains("bar"));
-    }
-
-    @Test
-    void groupByXsIsEmptyReturnsEmpty() {
-        @SuppressWarnings("unchecked")
-        Function<String, String> keyFn = mock(Function.class);
-        assertThat(MapUtilities.<String, String>groupBy(keyFn, new LinkedList<String>()).isEmpty(), is(true));
+        assertTrue(MapUtilities.<String, String>groupBy(keyFn, xs).get("foo").contains("foo"));
     }
 
     @Test
     void indexBy1() {
+        LinkedList<String> xs = new LinkedList<String>();
+        xs.add("foo");
         @SuppressWarnings("unchecked")
         Function<String, String> keyFn = mock(Function.class);
-        assertThat(MapUtilities.<String, String>indexBy(new LinkedList<String>(), keyFn).isEmpty(), is(true));
+        when(keyFn.apply(Mockito.<String>any()))
+            .thenReturn("foo");
+        assertThat(MapUtilities.<String, String>indexBy(xs, keyFn).get("foo"), is("foo"));
     }
 
     @Test
     void indexBy2() {
+        LinkedList<String> xs = new LinkedList<String>();
+        xs.add("foo");
         @SuppressWarnings("unchecked")
         Function<String, String> keyFn = mock(Function.class);
+        when(keyFn.apply(Mockito.<String>any()))
+            .thenReturn("foo");
         @SuppressWarnings("unchecked")
         Function<String, String> valueFn = mock(Function.class);
-        assertThat(MapUtilities.<String, String, String>indexBy(new LinkedList<String>(), keyFn, valueFn).isEmpty(), is(true));
+        when(valueFn.apply(Mockito.<String>any()))
+            .thenReturn("foo");
+        assertThat(MapUtilities.<String, String, String>indexBy(xs, keyFn, valueFn).get("foo"), is("foo"));
     }
 
     @Test
     void indexBy3() {
         @SuppressWarnings("unchecked")
         Function<String, String> keyFn = mock(Function.class);
+        when(keyFn.apply(Mockito.<String>any()))
+            .thenReturn("foo");
         @SuppressWarnings("unchecked")
         Function<String, String> valueFn = mock(Function.class);
+        when(valueFn.apply(Mockito.<String>any()))
+            .thenReturn("foo");
+        LinkedList<String> xs = new LinkedList<String>();
+        xs.add("foo");
         @SuppressWarnings("unchecked")
         BinaryOperator<String> mergeFunction = mock(BinaryOperator.class);
-        assertThat(MapUtilities.<String, String, String>indexBy(keyFn, valueFn, new LinkedList<String>(), mergeFunction).isEmpty(), is(true));
+        assertThat(MapUtilities.<String, String, String>indexBy(keyFn, valueFn, xs, mergeFunction).get("foo"), is("foo"));
     }
 
     @Test
@@ -139,33 +148,24 @@ class MapUtilitiesTest {
     }
 
     @Test
-    void groupAndThenReturnsFoo() {
+    void groupAndThenXsIsFooReturnsFoo() {
         @SuppressWarnings("unchecked")
         Function<String, String> keyFn = mock(Function.class);
         when(keyFn.apply(Mockito.<String>any()))
-            .thenReturn("bar");
+            .thenReturn("foo");
         @SuppressWarnings("unchecked")
         Function<Collection<String>, String> valueFn = mock(Function.class);
         when(valueFn.apply(Mockito.<Collection<String>>any()))
             .thenReturn("foo");
         LinkedList<String> xs = new LinkedList<String>();
-        xs.add("xs cannot be null");
-        assertThat(MapUtilities.<String, String, String>groupAndThen(keyFn, valueFn, xs).get("bar"), is("foo"));
-    }
-
-    @Test
-    void groupAndThenXsIsEmptyReturnsEmpty() {
-        @SuppressWarnings("unchecked")
-        Function<String, String> keyFn = mock(Function.class);
-        @SuppressWarnings("unchecked")
-        Function<Collection<String>, String> valueFn = mock(Function.class);
-        assertThat(MapUtilities.<String, String, String>groupAndThen(keyFn, valueFn, new LinkedList<String>()).isEmpty(), is(true));
+        xs.add("foo");
+        assertThat(MapUtilities.<String, String, String>groupAndThen(keyFn, valueFn, xs).get("foo"), is("foo"));
     }
 
     @Test
     void transformKeysOriginalIsFooReturnsFoo() {
         HashMap<String, String> original = new HashMap<String, String>();
-        original.put("bar", "foo");
+        original.put("foo", "foo");
         @SuppressWarnings("unchecked")
         Function<String, String> transformation = mock(Function.class);
         when(transformation.apply(Mockito.<String>any()))

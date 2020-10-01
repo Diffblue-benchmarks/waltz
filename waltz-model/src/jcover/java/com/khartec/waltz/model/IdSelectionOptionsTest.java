@@ -16,13 +16,7 @@ import org.junit.jupiter.api.Test;
 class IdSelectionOptionsTest {
 
     @Test
-    void entityLifecycleStatuses1() {
-        EntityReference ref = mock(EntityReference.class);
-        assertThat(IdSelectionOptions.mkOpts(ref, HierarchyQueryScope.EXACT).entityLifecycleStatuses(), hasSize(1));
-    }
-
-    @Test
-    void entityLifecycleStatuses2() {
+    void entityLifecycleStatusesReturnsActive() {
         EntityReference ref1 = mock(EntityReference.class);
         when(ref1.kind())
             .thenReturn(EntityKind.ACTOR);
@@ -30,8 +24,14 @@ class IdSelectionOptionsTest {
     }
 
     @Test
-    void entityLifecycleStatusesReturnsActivePendingRemoved() {
+    void mkOptsScopeIsExact() {
         EntityReference ref = mock(EntityReference.class);
-        assertThat(IdSelectionOptions.mkOptsForAllLifecycleStates(ref, HierarchyQueryScope.EXACT).entityLifecycleStatuses(), hasSize(3));
+        // pojo IdSelectionOptions
+    }
+
+    @Test
+    void mkOptsForAllLifecycleStatesScopeIsExact() {
+        EntityReference ref = mock(EntityReference.class);
+        // pojo IdSelectionOptions
     }
 }

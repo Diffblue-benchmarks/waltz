@@ -82,14 +82,18 @@ class StringUtilitiesTest {
     }
 
     @Test
-    void joinUsingSeparatorIsBarAndValuesIsEmptyReturnsEmpty() {
+    void joinUsingValuesIsFooReturnsFoo() {
+        LinkedList<String> values = new LinkedList<String>();
+        values.add("foo");
         @SuppressWarnings("unchecked")
         Function<String, String> toStringFn = mock(Function.class);
-        assertThat(StringUtilities.<String>joinUsing(new LinkedList<String>(), toStringFn, "bar"), is(""));
+        when(toStringFn.apply(Mockito.<String>any()))
+            .thenReturn("foo");
+        assertThat(StringUtilities.<String>joinUsing(values, toStringFn, ","), is("foo"));
     }
 
     @Test
-    void splitThenMapReturnsFoo() {
+    void splitThenMapSeparatorIsBarReturnsFoo() {
         @SuppressWarnings("unchecked")
         Function<String, String> itemTransformer = mock(Function.class);
         when(itemTransformer.apply(Mockito.<String>any()))
@@ -109,7 +113,7 @@ class StringUtilitiesTest {
     void splitThenMapStrIsEmpty() {
         @SuppressWarnings("unchecked")
         Function<String, String> itemTransformer = mock(Function.class);
-        assertThat(StringUtilities.<String>splitThenMap("", "bar", itemTransformer), empty());
+        assertThat(StringUtilities.<String>splitThenMap("", ",", itemTransformer), empty());
     }
 
     @Test

@@ -33,22 +33,22 @@ class IdUtilitiesTest {
     }
 
     @Test
-    void toIdArrayXsIsEmptyReturnsEmpty() {
-        assertThat(IdUtilities.toIdArray(new LinkedList<IdProvider>()).length, is(0));
-    }
-
-    @Test
-    void ensureHasIdExceptionMessageIsBarReturnsOne() {
+    void ensureHasIdReturnsOne() {
         IdProvider idProvider = mock(IdProvider.class);
         when(idProvider.id())
             .thenReturn(Optional.of(1L));
-        assertThat(IdUtilities.ensureHasId(idProvider, "bar"), is(1L));
+        assertThat(IdUtilities.ensureHasId(idProvider, "an error has happened"), is(1L));
     }
 
     @Test
-    void getters() {
-        assertThat(IdUtilities.<IdProvider>indexById(new LinkedList<IdProvider>()).isEmpty(), is(true));
-        assertThat(IdUtilities.<IdProvider>indexByOptId(new LinkedList<IdProvider>()).isEmpty(), is(true));
+    void indexByOptId() {
+        LinkedList<IdProvider> ts = new LinkedList<IdProvider>();
+        Optional<Long> optional = Optional.of(1L);
+        IdProvider idProvider = mock(IdProvider.class);
+        when(idProvider.id())
+            .thenReturn(optional);
+        ts.add(idProvider);
+        assertThat(IdUtilities.<IdProvider>indexByOptId(ts).get(optional), sameInstance(idProvider));
     }
 
     @Test

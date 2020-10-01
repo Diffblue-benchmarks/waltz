@@ -83,8 +83,8 @@ class ArrayUtilitiesTest {
     }
 
     @Test
-    void mapArrIsBarReturnsFoo() {
-        String[] arr = new String[] { "bar" };
+    void mapArrIsFooReturnsFoo() {
+        String[] arr = new String[] { "foo" };
         @SuppressWarnings("unchecked")
         Function<String, String> mapper = mock(Function.class);
         when(mapper.apply(Mockito.<String>any()))

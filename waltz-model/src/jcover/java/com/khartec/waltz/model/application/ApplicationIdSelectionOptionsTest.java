@@ -1,7 +1,6 @@
 package com.khartec.waltz.model.application;
 
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.empty;
 import static org.hamcrest.collection.IsCollectionWithSize.hasSize;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -25,15 +24,13 @@ import org.junit.jupiter.api.Test;
 class ApplicationIdSelectionOptionsTest {
 
     @Test
-    void applicationKinds1() {
-        EntityReference ref1 = mock(EntityReference.class);
-        when(ref1.kind())
-            .thenReturn(EntityKind.ACTOR);
-        assertThat(ApplicationIdSelectionOptions.mkOpts(ref1).applicationKinds(), hasSize(7));
+    void mkOptsApplicationKindsIsEmptyAndEntityLifecycleStatusesIsEmptyAndScopeIsExact() {
+        EntityReference ref = mock(EntityReference.class);
+        // pojo ApplicationIdSelectionOptions
     }
 
     @Test
-    void applicationKinds2() {
+    void mkOpts() {
         EntityReference entityReference = mock(EntityReference.class);
         IdSelectionOptions options = mock(IdSelectionOptions.class);
         when(options.entityLifecycleStatuses())
@@ -42,12 +39,14 @@ class ApplicationIdSelectionOptionsTest {
             .thenReturn(entityReference);
         when(options.scope())
             .thenReturn(HierarchyQueryScope.EXACT);
-        assertThat(ApplicationIdSelectionOptions.mkOpts(options).applicationKinds(), hasSize(7));
+        // pojo ApplicationIdSelectionOptions
     }
 
     @Test
-    void applicationKindsReturnsEmpty() {
-        EntityReference ref = mock(EntityReference.class);
-        assertThat(ApplicationIdSelectionOptions.mkOpts(ref, HierarchyQueryScope.EXACT, new HashSet<EntityLifecycleStatus>(), new HashSet<ApplicationKind>()).applicationKinds(), empty());
+    void applicationKindsReturnsIn_houseInternally_hostedExternally_hostedEucThird_partyCustomisedExternal() {
+        EntityReference ref1 = mock(EntityReference.class);
+        when(ref1.kind())
+            .thenReturn(EntityKind.ACTOR);
+        assertThat(ApplicationIdSelectionOptions.mkOpts(ref1).applicationKinds(), hasSize(7));
     }
 }

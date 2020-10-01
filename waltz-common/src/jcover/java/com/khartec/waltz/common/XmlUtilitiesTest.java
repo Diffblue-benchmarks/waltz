@@ -21,16 +21,7 @@ import org.w3c.dom.NodeList;
 class XmlUtilitiesTest {
 
     @Test
-    void stream1() {
-        NodeList nodeList = mock(NodeList.class);
-        when(nodeList.getLength())
-            .thenReturn(1)
-            .thenReturn(0);
-        Node[] array = XmlUtilities.stream(nodeList).toArray(Node[]::new);
-    }
-
-    @Test
-    void stream2() throws org.w3c.dom.DOMException {
+    void stream() throws org.w3c.dom.DOMException {
         Node node = mock(Node.class);
         NodeList nodeList = mock(NodeList.class);
         when(nodeList.getLength())

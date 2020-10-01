@@ -47,10 +47,15 @@ class ListUtilitiesTest {
     }
 
     @Test
-    void mapAsIsEmptyReturnsEmpty() {
+    void mapAsIsFooReturnsFoo() {
+        LinkedList<String> as = new LinkedList<String>();
+        as.add("foo");
         @SuppressWarnings("unchecked")
         Function<String, String> mapper = mock(Function.class);
-        assertThat(ListUtilities.<String, String>map(new LinkedList<String>(), mapper), empty());
+        when(mapper.apply(Mockito.<String>any()))
+            .thenReturn("foo");
+        assertThat(ListUtilities.<String, String>map(as, mapper), hasSize(1));
+        assertThat(ListUtilities.<String, String>map(as, mapper).get(0), is("foo"));
     }
 
     @Test
