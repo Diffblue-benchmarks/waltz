@@ -74,19 +74,19 @@ class SetUtilitiesTest {
     }
 
     @Test
-    void unionReturnsFoo() {
-        Collection<String> element = new LinkedList<String>();
-        element.add("foo");
-        assertThat(SetUtilities.<String>union(element), hasSize(1));
-        assertThat(SetUtilities.<String>union(element), hasItem("foo"));
+    void unionXssIsFooReturnsFoo() {
+        LinkedList<String> collection = new LinkedList<String>();
+        collection.add("foo");
+        assertThat(SetUtilities.<String>union(collection), hasSize(1));
+        assertThat(SetUtilities.<String>union(collection), hasItem("foo"));
     }
 
     @Test
-    void orderedUnionReturnsFoo() {
-        Collection<String> element = new LinkedList<String>();
-        element.add("foo");
-        assertThat(SetUtilities.<String>orderedUnion(element), hasSize(1));
-        assertThat(SetUtilities.<String>orderedUnion(element), hasItem("foo"));
+    void orderedUnionXssIsFooReturnsFoo() {
+        LinkedList<String> collection = new LinkedList<String>();
+        collection.add("foo");
+        assertThat(SetUtilities.<String>orderedUnion(collection), hasSize(1));
+        assertThat(SetUtilities.<String>orderedUnion(collection), hasItem("foo"));
     }
 
     @Test
@@ -119,13 +119,13 @@ class SetUtilitiesTest {
     }
 
     @Test
-    void unionAllReturnsFoo() {
+    void unionAllReturnsSmith() {
         LinkedList<LinkedList<String>> values =
              new LinkedList<LinkedList<String>>();
         LinkedList<String> linkedList = new LinkedList<String>();
-        linkedList.add("foo");
+        linkedList.add("Smith");
         values.add(linkedList);
         assertThat(SetUtilities.<String>unionAll(values), hasSize(1));
-        assertTrue(SetUtilities.<String>unionAll(values).contains("foo"));
+        assertTrue(SetUtilities.<String>unionAll(values).contains("Smith"));
     }
 }

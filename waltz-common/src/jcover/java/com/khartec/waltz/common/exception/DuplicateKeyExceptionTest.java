@@ -18,6 +18,9 @@ class DuplicateKeyExceptionTest {
     void factory1() {
         DuplicateKeyException duplicateKeyException =
              new DuplicateKeyException("an error has happened");
+        StackTraceElement[] stackTrace =
+             new StackTraceElement[] { new StackTraceElement("java.lang.Object", "toString", "Object.java", 1) };
+        duplicateKeyException.setStackTrace(stackTrace);
         assertThat(duplicateKeyException.getCause(), is(nullValue()));
         assertThat(duplicateKeyException.getMessage(), is("an error has happened"));
     }
@@ -28,6 +31,9 @@ class DuplicateKeyExceptionTest {
         cause.setStackTrace(new StackTraceElement[] { });
         DuplicateKeyException duplicateKeyException =
              new DuplicateKeyException("an error has happened", cause);
+        StackTraceElement[] stackTrace =
+             new StackTraceElement[] { new StackTraceElement("java.lang.Object", "toString", "Object.java", 1) };
+        duplicateKeyException.setStackTrace(stackTrace);
         assertThat(duplicateKeyException.getCause().getCause(), is(nullValue()));
         assertThat(duplicateKeyException.getCause().getMessage(), is(nullValue()));
         assertThat(duplicateKeyException.getMessage(), is("an error has happened"));

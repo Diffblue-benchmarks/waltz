@@ -18,6 +18,9 @@ class InsufficientPrivelegeExceptionTest {
     void factory() {
         InsufficientPrivelegeException insufficientPrivelegeException =
              new InsufficientPrivelegeException("an error has happened");
+        StackTraceElement[] stackTrace =
+             new StackTraceElement[] { new StackTraceElement("java.lang.Object", "toString", "Object.java", 1) };
+        insufficientPrivelegeException.setStackTrace(stackTrace);
         assertThat(insufficientPrivelegeException.getCause(), is(nullValue()));
         assertThat(insufficientPrivelegeException.getMessage(), is("an error has happened"));
     }

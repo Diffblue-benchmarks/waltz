@@ -18,6 +18,9 @@ class NotAuthorizedExceptionTest {
     void factory() {
         NotAuthorizedException notAuthorizedException =
              new NotAuthorizedException();
+        StackTraceElement[] stackTrace =
+             new StackTraceElement[] { new StackTraceElement("java.lang.Object", "toString", "Object.java", 1) };
+        notAuthorizedException.setStackTrace(stackTrace);
         assertThat(notAuthorizedException.getCause(), is(nullValue()));
         assertThat(notAuthorizedException.getMessage(), is("User is not authorized to perform that action"));
     }

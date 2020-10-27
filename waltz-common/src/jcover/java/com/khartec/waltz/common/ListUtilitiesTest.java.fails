@@ -25,11 +25,11 @@ import org.mockito.Mockito;
 class ListUtilitiesTest {
 
     @Test
-    void appendTIsSmithAndTsIsFooReturnsFooSmith() {
+    void appendTIsSmithAndTsIsSmithReturnsSmithSmith() {
         ArrayList<String> ts = new ArrayList<String>();
-        ts.add("foo");
+        ts.add("Smith");
         assertThat(ListUtilities.<String>append(ts, "Smith"), hasSize(2));
-        assertThat(ListUtilities.<String>append(ts, "Smith").get(0), is("foo"));
+        assertThat(ListUtilities.<String>append(ts, "Smith").get(0), is("Smith"));
         assertThat(ListUtilities.<String>append(ts, "Smith").get(1), is("Smith"));
     }
 
@@ -40,11 +40,11 @@ class ListUtilitiesTest {
     }
 
     @Test
-    void compactTsIsFooReturnsFoo() {
+    void compactTsIsSmithReturnsSmith() {
         LinkedList<String> ts = new LinkedList<String>();
-        ts.add("foo");
+        ts.add("Smith");
         assertThat(ListUtilities.<String>compact(ts), hasSize(1));
-        assertThat(ListUtilities.<String>compact(ts).get(0), is("foo"));
+        assertThat(ListUtilities.<String>compact(ts).get(0), is("Smith"));
     }
 
     @Test
@@ -54,17 +54,17 @@ class ListUtilitiesTest {
     }
 
     @Test
-    void concatReturnsFoo() {
-        List<? extends String> element = new ArrayList<String>();
-        ((ArrayList<String>) element).add("foo");
-        assertThat(ListUtilities.<String>concat(element), hasSize(1));
-        assertThat(ListUtilities.<String>concat(element).get(0), is("foo"));
+    void concatTssIsSmithReturnsSmith() {
+        ArrayList<String> list = new ArrayList<String>();
+        list.add("Smith");
+        assertThat(ListUtilities.<String>concat(list), hasSize(1));
+        assertThat(ListUtilities.<String>concat(list).get(0), is("Smith"));
     }
 
     @Test
-    void mapAsIsFooReturnsFoo() {
+    void mapAsIsSmithReturnsFoo() {
         LinkedList<String> as = new LinkedList<String>();
-        as.add("foo");
+        as.add("Smith");
         @SuppressWarnings("unchecked")
         Function<String, String> mapper = mock(Function.class);
         when(mapper.apply(Mockito.<String>any()))
@@ -80,9 +80,9 @@ class ListUtilitiesTest {
     }
 
     @Test
-    void isEmptyTsIsFooReturnsFalse() {
+    void isEmptyTsIsSmithReturnsFalse() {
         ArrayList<String> ts = new ArrayList<String>();
-        ts.add("foo");
+        ts.add("Smith");
         assertThat(ListUtilities.<String>isEmpty(ts), is(false));
     }
 
@@ -99,19 +99,11 @@ class ListUtilitiesTest {
     }
 
     @Test
-    void reverseTsIsFooReturnsFoo() {
+    void reverseTsIsSmithReturnsSmith() {
         ArrayList<String> ts = new ArrayList<String>();
-        ts.add("foo");
+        ts.add("Smith");
         assertThat(ListUtilities.<String>reverse(ts), hasSize(1));
-        assertThat(ListUtilities.<String>reverse(ts).get(0), is("foo"));
-    }
-
-    @Test
-    void ensureNotNullTsIsFooReturnsFoo() {
-        LinkedList<String> ts = new LinkedList<String>();
-        ts.add("foo");
-        assertThat(ListUtilities.<String>ensureNotNull(ts), hasSize(1));
-        assertThat(ListUtilities.<String>ensureNotNull(ts).get(0), is("foo"));
+        assertThat(ListUtilities.<String>reverse(ts).get(0), is("Smith"));
     }
 
     @Test
@@ -120,11 +112,19 @@ class ListUtilitiesTest {
     }
 
     @Test
-    void pushElemsIsSmithAndXsIsFooReturnsFooSmith() {
+    void ensureNotNullTsIsSmithReturnsSmith() {
+        LinkedList<String> ts = new LinkedList<String>();
+        ts.add("Smith");
+        assertThat(ListUtilities.<String>ensureNotNull(ts), hasSize(1));
+        assertThat(ListUtilities.<String>ensureNotNull(ts).get(0), is("Smith"));
+    }
+
+    @Test
+    void pushElemsIsSmithAndXsIsSmithReturnsSmithSmith() {
         ArrayList<String> xs = new ArrayList<String>();
-        xs.add("foo");
+        xs.add("Smith");
         assertThat(ListUtilities.<String>push(xs, "Smith"), hasSize(2));
-        assertThat(ListUtilities.<String>push(xs, "Smith").get(0), is("foo"));
+        assertThat(ListUtilities.<String>push(xs, "Smith").get(0), is("Smith"));
         assertThat(ListUtilities.<String>push(xs, "Smith").get(1), is("Smith"));
     }
 

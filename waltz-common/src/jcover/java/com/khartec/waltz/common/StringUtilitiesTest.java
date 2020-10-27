@@ -74,16 +74,16 @@ class StringUtilitiesTest {
     }
 
     @Test
-    void joinValuesIsFooReturnsFoo() {
+    void joinValuesIsValueReturnsValue() {
         LinkedList<String> values = new LinkedList<String>();
-        values.add("foo");
-        assertThat(StringUtilities.join(values, ","), is("foo"));
+        values.add("value");
+        assertThat(StringUtilities.join(values, ","), is("value"));
     }
 
     @Test
-    void joinUsingValuesIsFooReturnsFoo() {
+    void joinUsingValuesIsValueReturnsFoo() {
         LinkedList<String> values = new LinkedList<String>();
-        values.add("foo");
+        values.add("value");
         @SuppressWarnings("unchecked")
         Function<String, String> toStringFn = mock(Function.class);
         when(toStringFn.apply(Mockito.<String>any()))

@@ -18,6 +18,9 @@ class NotFoundExceptionTest {
     void factory1() {
         NotFoundException notFoundException =
              new NotFoundException("DE", "an error has happened");
+        StackTraceElement[] stackTrace =
+             new StackTraceElement[] { new StackTraceElement("java.lang.Object", "toString", "Object.java", 1) };
+        notFoundException.setStackTrace(stackTrace);
         assertThat(notFoundException.getCode(), is("DE"));
         assertThat(notFoundException.getCause(), is(nullValue()));
         assertThat(notFoundException.getMessage(), is("an error has happened"));
@@ -29,6 +32,9 @@ class NotFoundExceptionTest {
         cause.setStackTrace(new StackTraceElement[] { });
         NotFoundException notFoundException =
              new NotFoundException("DE", "an error has happened", cause);
+        StackTraceElement[] stackTrace =
+             new StackTraceElement[] { new StackTraceElement("java.lang.Object", "toString", "Object.java", 1) };
+        notFoundException.setStackTrace(stackTrace);
         assertThat(notFoundException.getCode(), is("DE"));
         assertThat(notFoundException.getCause().getCause(), is(nullValue()));
         assertThat(notFoundException.getCause().getMessage(), is(nullValue()));

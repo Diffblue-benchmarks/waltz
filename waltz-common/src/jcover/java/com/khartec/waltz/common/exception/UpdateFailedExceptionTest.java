@@ -18,6 +18,9 @@ class UpdateFailedExceptionTest {
     void factory1() {
         UpdateFailedException updateFailedException =
              new UpdateFailedException("DE", "an error has happened");
+        StackTraceElement[] stackTrace =
+             new StackTraceElement[] { new StackTraceElement("java.lang.Object", "toString", "Object.java", 1) };
+        updateFailedException.setStackTrace(stackTrace);
         assertThat(updateFailedException.getCode(), is("DE"));
         assertThat(updateFailedException.getCause(), is(nullValue()));
         assertThat(updateFailedException.getMessage(), is("an error has happened"));
@@ -29,6 +32,9 @@ class UpdateFailedExceptionTest {
         cause.setStackTrace(new StackTraceElement[] { });
         UpdateFailedException updateFailedException =
              new UpdateFailedException("DE", "an error has happened", cause);
+        StackTraceElement[] stackTrace =
+             new StackTraceElement[] { new StackTraceElement("java.lang.Object", "toString", "Object.java", 1) };
+        updateFailedException.setStackTrace(stackTrace);
         assertThat(updateFailedException.getCode(), is("DE"));
         assertThat(updateFailedException.getCause().getCause(), is(nullValue()));
         assertThat(updateFailedException.getCause().getMessage(), is(nullValue()));

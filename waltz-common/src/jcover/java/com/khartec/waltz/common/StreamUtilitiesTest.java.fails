@@ -32,11 +32,11 @@ class StreamUtilitiesTest {
     }
 
     @Test
-    void concat1() {
-        Collection<String> element = new LinkedList<String>();
-        element.add("foo");
+    void concatValuesIsBroadway() {
+        LinkedList<String> collection = new LinkedList<String>();
+        collection.add("Broadway");
         String[] array =
-             StreamUtilities.<String>concat(new Collection[] { element }).toArray(String[]::new);
+             StreamUtilities.<String>concat(new Collection[] { collection }).toArray(String[]::new);
     }
 
     @Test
@@ -66,7 +66,7 @@ class StreamUtilitiesTest {
     }
 
     @Test
-    void concat2() {
+    void concat() {
         String[] array =
              StreamUtilities.<String>concat(new Stream[] { Stream.<String>of("Broadway") }).toArray(String[]::new);
     }
