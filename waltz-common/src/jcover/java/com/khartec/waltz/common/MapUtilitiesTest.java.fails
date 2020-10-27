@@ -1,7 +1,6 @@
 package com.khartec.waltz.common;
 
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.notNullValue;
 import static org.hamcrest.collection.IsCollectionWithSize.hasSize;
 import static org.hamcrest.core.Is.is;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -120,7 +119,7 @@ class MapUtilitiesTest {
 
     @Test
     void ensureNotNull() {
-        assertThat(MapUtilities.<String, String>ensureNotNull(new HashMap<String, String>()), is(notNullValue()));
+        assertThat(MapUtilities.<String, String>ensureNotNull(new HashMap<String, String>()).isEmpty(), is(true));
     }
 
     @Test

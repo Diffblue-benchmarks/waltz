@@ -96,7 +96,15 @@ class HierarchyUtilitiesTest {
     }
 
     @Test
-    void hasCycleReturnsFalse() {
+    void hasCycle1() {
+        HashMap<String, Node<String, String>> allNodes =
+             new HashMap<String, Node<String, String>>();
+        allNodes.put("", new Node<String, String>("bar", "foo"));
+        assertThat(HierarchyUtilities.<String, String>hasCycle(new Forest<String, String>(allNodes, new HashSet<Node<String, String>>())), is(false));
+    }
+
+    @Test
+    void hasCycle2() {
         @SuppressWarnings("unchecked")
         Forest<String, String> forest = mock(Forest.class);
         when(forest.getAllNodes())

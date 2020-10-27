@@ -90,7 +90,7 @@ class SetUtilitiesTest {
     }
 
     @Test
-    void minusReturnsEmpty() {
+    void minusYssIsEmptyReturnsEmpty() {
         assertThat(SetUtilities.<String>minus(new HashSet<String>(), new HashSet<String>()), empty());
     }
 

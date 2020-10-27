@@ -17,7 +17,7 @@ import org.junit.jupiter.api.Test;
 class MapBuilderTest {
 
     @Test
-    void from() {
+    void fromMIsEmpty() {
         MapBuilder<String, String> mapBuilder =
              new MapBuilder<String, String>();
         assertThat(mapBuilder.from(new HashMap<String, String>()), sameInstance(mapBuilder));
