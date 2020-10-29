@@ -15,7 +15,6 @@ import java.util.function.BinaryOperator;
 import java.util.function.Function;
 
 import org.junit.jupiter.api.Test;
-import org.mockito.ArgumentMatchers;
 import org.mockito.Mockito;
 
 /**
@@ -50,7 +49,7 @@ class MapUtilitiesTest {
     }
 
     @Test
-    void indexBy3() {
+    void indexBy4() {
         LinkedList<String> xs = new LinkedList<String>();
         xs.add("foo");
         @SuppressWarnings("unchecked")
@@ -61,7 +60,7 @@ class MapUtilitiesTest {
     }
 
     @Test
-    void indexBy4() {
+    void indexBy2() {
         LinkedList<String> xs = new LinkedList<String>();
         xs.add("foo");
         @SuppressWarnings("unchecked")
@@ -76,7 +75,7 @@ class MapUtilitiesTest {
     }
 
     @Test
-    void indexBy2() {
+    void indexBy1() {
         @SuppressWarnings("unchecked")
         Function<String, String> keyFn = mock(Function.class);
         when(keyFn.apply(Mockito.<String>any()))
@@ -87,7 +86,7 @@ class MapUtilitiesTest {
     }
 
     @Test
-    void indexBy1() {
+    void indexBy3() {
         @SuppressWarnings("unchecked")
         Function<String, String> keyFn = mock(Function.class);
         when(keyFn.apply(Mockito.<String>any()))
@@ -171,13 +170,13 @@ class MapUtilitiesTest {
         @SuppressWarnings("unchecked")
         Function<String, String> transformation = mock(Function.class);
         assertThat(MapUtilities.<String, String, String>transformKeys(original, transformation).isEmpty(), is(true));
-        Mockito.verify(original).forEach(ArgumentMatchers.<BiConsumer<? super String, ? super String>>any());
+        Mockito.verify(original).forEach(Mockito.<BiConsumer<? super String, ? super String>>any());
     }
 
     @Test
     void compose() {
         HashMap<String, String> map1 = new HashMap<String, String>();
         assertThat(MapUtilities.<String, String, String>compose(map1, new HashMap<String, String>()).isEmpty(), is(true));
-        Mockito.verify(map1).forEach(ArgumentMatchers.<BiConsumer<? super String, ? super String>>any());
+        Mockito.verify(map1).forEach(Mockito.<BiConsumer<? super String, ? super String>>any());
     }
 }

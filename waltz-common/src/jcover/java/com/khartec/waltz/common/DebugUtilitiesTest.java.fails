@@ -11,7 +11,6 @@ import java.util.function.Predicate;
 import java.util.function.Supplier;
 
 import org.junit.jupiter.api.Test;
-import org.mockito.ArgumentMatchers;
 import org.mockito.Mockito;
 
 /**
@@ -40,7 +39,7 @@ class DebugUtilitiesTest {
     void dump1() {
         HashMap<String, String> m = new HashMap<String, String>();
         assertThat(DebugUtilities.<String, String>dump(m).isEmpty(), is(true));
-        Mockito.verify(m).forEach(ArgumentMatchers.<BiConsumer<? super String, ? super String>>any());
+        Mockito.verify(m).forEach(Mockito.<BiConsumer<? super String, ? super String>>any());
     }
 
     @Test
@@ -48,7 +47,7 @@ class DebugUtilitiesTest {
         HashMap<String, String> m = new HashMap<String, String>();
         m.put("", "foo");
         assertThat(DebugUtilities.<String, String>dump(m).get(""), is("foo"));
-        Mockito.verify(m).forEach(ArgumentMatchers.<BiConsumer<? super String, ? super String>>any());
+        Mockito.verify(m).forEach(Mockito.<BiConsumer<? super String, ? super String>>any());
     }
 
     @Test

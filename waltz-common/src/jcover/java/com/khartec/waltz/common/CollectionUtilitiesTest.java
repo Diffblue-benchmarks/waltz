@@ -17,7 +17,6 @@ import java.util.function.Predicate;
 import java.util.function.ToLongFunction;
 
 import org.junit.jupiter.api.Test;
-import org.mockito.ArgumentMatchers;
 import org.mockito.Mockito;
 
 /**
@@ -103,7 +102,7 @@ class CollectionUtilitiesTest {
         CollectionUtilities.<String>maybe(xs, fn);
 
         // assert
-        Mockito.verify(fn).accept(ArgumentMatchers.<Collection<String>>any());
+        Mockito.verify(fn).accept(Mockito.<Collection<String>>any());
     }
 
     @Test

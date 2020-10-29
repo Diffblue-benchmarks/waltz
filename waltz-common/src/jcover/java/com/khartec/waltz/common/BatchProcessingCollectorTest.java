@@ -10,7 +10,6 @@ import java.util.List;
 import java.util.function.Consumer;
 
 import org.junit.jupiter.api.Test;
-import org.mockito.ArgumentMatchers;
 import org.mockito.Mockito;
 
 /**
@@ -49,7 +48,7 @@ class BatchProcessingCollectorTest {
         ArrayList<String> list = new ArrayList<String>();
         list.add("Smith");
         assertThat(new BatchProcessingCollector<String>(1, batchProcessor).finisher().apply(list), is(1));
-        Mockito.verify(batchProcessor).accept(ArgumentMatchers.<List<String>>any());
+        Mockito.verify(batchProcessor).accept(Mockito.<List<String>>any());
     }
 
     @Test

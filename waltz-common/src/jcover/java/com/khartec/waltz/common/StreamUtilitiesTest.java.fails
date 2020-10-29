@@ -13,7 +13,6 @@ import java.util.function.Predicate;
 import java.util.stream.Stream;
 
 import org.junit.jupiter.api.Test;
-import org.mockito.ArgumentMatchers;
 import org.mockito.Mockito;
 
 /**
@@ -49,7 +48,7 @@ class StreamUtilitiesTest {
         @SuppressWarnings("unchecked")
         Consumer<String> consumer = mock(Consumer.class);
         assertThat(StreamUtilities.<String>tap(consumer).apply("foo"), is("foo"));
-        Mockito.verify(consumer).accept(ArgumentMatchers.eq("foo"));
+        Mockito.verify(consumer).accept(Mockito.eq("foo"));
     }
 
     @Test
