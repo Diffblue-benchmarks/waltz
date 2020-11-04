@@ -49,7 +49,7 @@ class MapUtilitiesTest {
     }
 
     @Test
-    void indexBy4() {
+    void indexBy3() {
         LinkedList<String> xs = new LinkedList<String>();
         xs.add("foo");
         @SuppressWarnings("unchecked")
@@ -60,7 +60,7 @@ class MapUtilitiesTest {
     }
 
     @Test
-    void indexBy2() {
+    void indexBy4() {
         LinkedList<String> xs = new LinkedList<String>();
         xs.add("foo");
         @SuppressWarnings("unchecked")
@@ -75,7 +75,7 @@ class MapUtilitiesTest {
     }
 
     @Test
-    void indexBy1() {
+    void indexBy2() {
         @SuppressWarnings("unchecked")
         Function<String, String> keyFn = mock(Function.class);
         when(keyFn.apply(Mockito.<String>any()))
@@ -86,7 +86,7 @@ class MapUtilitiesTest {
     }
 
     @Test
-    void indexBy3() {
+    void indexBy1() {
         @SuppressWarnings("unchecked")
         Function<String, String> keyFn = mock(Function.class);
         when(keyFn.apply(Mockito.<String>any()))

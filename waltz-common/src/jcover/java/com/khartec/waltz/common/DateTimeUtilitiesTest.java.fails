@@ -24,12 +24,14 @@ class DateTimeUtilitiesTest {
 
     @Test
     void nowUtc() {
-        assertThat(Math.abs(Duration.between(LocalDateTime.now(), DateTimeUtilities.nowUtc()).getSeconds())<=10L, is(true));
+        assertThat(
+            Math.abs(Duration.between(LocalDateTime.now(), DateTimeUtilities.nowUtc()).getSeconds())
+            <= 10L, is(true));
     }
 
     @Test
     void nowUtcTimestamp() {
-        assertThat(DateTimeUtilities.nowUtcTimestamp(), equalTo(Timestamp.valueOf("2020-10-29 04:28:36.637")));
+        assertThat(DateTimeUtilities.nowUtcTimestamp(), equalTo(Timestamp.valueOf("2020-11-04 04:05:17.366")));
     }
 
     @Test

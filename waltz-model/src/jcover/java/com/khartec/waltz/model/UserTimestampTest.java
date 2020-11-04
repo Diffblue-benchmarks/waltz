@@ -20,7 +20,9 @@ class UserTimestampTest {
 
     @Test
     void at() {
-        assertThat(Math.abs(java.time.Duration.between(LocalDateTime.now(), UserTimestamp.mkForUser("root").at()).getSeconds())<=10L, is(true));
+        assertThat(
+            Math.abs(java.time.Duration.between(LocalDateTime.now(), UserTimestamp.mkForUser("root").at()).getSeconds())
+            <= 10L, is(true));
     }
 
     @Test
