@@ -61,8 +61,8 @@ class IOUtilitiesTest {
         assertThat(result.getDescription(), is("class path resource []"));
         assertThat(result.getFile().getPath().startsWith(System.getProperty("java.io.tmpdir")), is(true));
         assertThat(result.getFilename(), is(""));
-        assertThat(result.getURI().toString(), is("file:/tmp/jcover-cp-RBFtdF/"));
-        assertThat(result.getURL().toString(), is("file:/tmp/jcover-cp-RBFtdF/"));
+        assertThat(result.getURI().toString(), is("file:/tmp/jcover-cp-bDFO01/"));
+        assertThat(result.getURL().toString(), is("file:/tmp/jcover-cp-bDFO01/"));
         assertThat(result.isFile(), is(true));
         assertThat(result.isOpen(), is(false));
     }
