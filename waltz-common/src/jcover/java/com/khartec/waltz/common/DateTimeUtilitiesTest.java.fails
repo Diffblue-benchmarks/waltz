@@ -31,7 +31,7 @@ class DateTimeUtilitiesTest {
 
     @Test
     void nowUtcTimestamp() {
-        assertThat(DateTimeUtilities.nowUtcTimestamp(), equalTo(Timestamp.valueOf("2020-11-12 04:09:09.168")));
+        assertThat(DateTimeUtilities.nowUtcTimestamp(), equalTo(Timestamp.valueOf("2020-11-17 04:16:50.72")));
     }
 
     @Test
@@ -44,8 +44,8 @@ class DateTimeUtilitiesTest {
 
     @Test
     void toLocalDate() throws java.text.ParseException {
-        assertThat(Pattern.matches("\\d{2,4}-\\d{1,2}-\\d{1,2}", DateTimeUtilities.toLocalDate(Timestamp.valueOf("2019-12-31 23:10:59")).toString()), is(true));
-        assertThat(Pattern.matches("\\d{2,4}-\\d{1,2}-\\d{1,2}", DateTimeUtilities.toLocalDate(new SimpleDateFormat("yyyy-MM-dd").parse("2010-12-31")).toString()), is(true));
+        assertThat(Pattern.matches("\\d{4}-\\d{1,2}-\\d{1,2}", DateTimeUtilities.toLocalDate(Timestamp.valueOf("2019-12-31 23:10:59")).toString()), is(true));
+        assertThat(Pattern.matches("\\d{4}-\\d{1,2}-\\d{1,2}", DateTimeUtilities.toLocalDate(new SimpleDateFormat("yyyy-MM-dd").parse("2010-12-31")).toString()), is(true));
         assertThat(DateTimeUtilities.toLocalDate((java.util.Date) null), is(nullValue()));
         assertThat(DateTimeUtilities.toLocalDate((Timestamp) null), is(nullValue()));
     }
